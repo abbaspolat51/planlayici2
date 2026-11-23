@@ -11,16 +11,16 @@ module.exports = {
     name: 'Planlayıcı',
     slug: 'planlayici',
     ...(push.owner ? { owner: push.owner } : {}),
-    version: '2.2.0',
+    version: '2.3.0',
     orientation: 'default',
     icon: './assets/icon.png',
     userInterfaceStyle: 'automatic',
     backgroundColor: '#f4f3ef',
-    splash: { image: './assets/splash-icon.png', resizeMode: 'contain', backgroundColor: '#2950E0' },
+    splash: { image: './assets/splash-icon.png', resizeMode: 'contain', backgroundColor: '#F4ECDD' },
     android: {
       package: 'com.planlayici.mobil',
       versionCode: Number(process.env.GITHUB_RUN_NUMBER || 1),
-      adaptiveIcon: { foregroundImage: './assets/adaptive-icon.png', backgroundColor: '#2950E0' },
+      adaptiveIcon: { foregroundImage: './assets/adaptive-icon.png', backgroundColor: '#F4ECDD' },
       ...(googleServices ? { googleServicesFile: googleServices } : {}),
       permissions: [
         'android.permission.POST_NOTIFICATIONS',
@@ -36,7 +36,7 @@ module.exports = {
     experiments: { baseUrl: process.env.EXPO_BASE_URL || '' },
     extra: push.projectId ? { eas: { projectId: push.projectId } } : {},
     plugins: [
-      ['expo-notifications', { color: '#2950E0', sounds: ['./assets/zil.wav'] }],
+      ['expo-notifications', { color: '#9B1B16', sounds: ['./assets/zil.wav'] }],
       // Pomodoro zili için; mikrofon izni istemez
       ['expo-audio', { microphonePermission: false, recordAudioAndroid: false }],
       ['expo-calendar', { calendarPermission: 'Planlayıcı, görevlerini ve takvim etkinliklerini eşitlemek için takvimine erişir.' }],

@@ -91,7 +91,7 @@ export const DEF = {
   week: () => ({ items: [], from: 7, to: 23 }),
   goals: () => ({ items: [] }),
   prefs: () => ({
-    theme: 'sade', palette: 'tema', mode: 'system', name: '',
+    theme: 'nisan', palette: 'tema', mode: 'system', name: '',
     home: { ...HOME_DEF }, hidden: [],
     calImport: true, calExport: true, calNotify: false, calIds: [], calSkip: [],
     groups: [],
@@ -99,7 +99,7 @@ export const DEF = {
 };
 // Ana ekrandaki bölümler (Profil > Ana ekran'dan açılıp kapatılır)
 export const HOME_SECTIONS = [
-  ['ilham', 'Günün ayeti ve hadisi'], ['today', 'Bugün yapılacaklar'], ['goals', 'Hedeflerim (piller)'],
+  ['ilham', 'Günün ayeti ve hadisi'], ['today', 'Bugün yapılacaklar'], ['gtasks', 'Grup görevleri'], ['goals', 'Hedeflerim (piller)'],
   ['timer', 'Pomodoro sayacı'], ['cal', 'Kalori kartı'], ['tiles', 'Bölüm düğmeleri'], ['week', 'Haftalık program'],
   ['phone', 'Telefon takvimi (bugün)'], ['due', 'Yaklaşan son günler'],
   ['groups', 'Gruplarım'], ['notif', 'Bildirimler'],
@@ -120,7 +120,9 @@ export function norm(k, v) {
   if (k === 'food') o.days = o.days || {};
   if (k === 'prefs') {
     // 2.2: yeni sade arayüz bir kez varsayılan olur; sonra kullanıcı istediği temayı seçer
-    if (!o.v22) { o.theme = 'sade'; o.v22 = true; }
+    if (!o.v22) { o.theme = 'nisan'; o.v22 = true; }
+    // 2.3: yeni "Nişan" konsepti bir kez varsayılan olur
+    if (!o.v23) { o.theme = 'nisan'; o.v23 = true; }
     o.home = { ...HOME_DEF, ...(o.home || {}) };
     for (const a of ['hidden', 'calIds', 'calSkip', 'groups']) o[a] = Array.isArray(o[a]) ? o[a] : [];
     o.calSkip = o.calSkip.slice(-500);

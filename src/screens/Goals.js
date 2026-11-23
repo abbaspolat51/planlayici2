@@ -3,9 +3,9 @@ import React, { useState } from 'react';
 import { View, Text, Pressable } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useStore } from '../store';
-import { useTheme, alpha, battColor } from '../theme';
+import { useTheme, alpha, battColor, modColor } from '../theme';
 import {
-  T, Mute, H2, H3, Card, Btn, Chip, Row, Grid, Empty, IconBtn, Field, Seg, Sheet, FormFooter, Battery, useUI,
+  T, Mute, H2, H3, Card, Btn, Chip, Row, Grid, Empty, IconBtn, Field, Seg, Sheet, FormFooter, Battery, SectionHead, useUI,
 } from '../ui';
 import { useGo } from '../components';
 import { PERIODS, UNITS, goalProgress, fmtAmount, rid, today, fmtD, parse } from '../logic';
@@ -145,7 +145,7 @@ export function GoalsMini() {
   const G = st.goals.items;
   return (
     <Card>
-      <Row style={{ justifyContent: 'space-between' }}><H3>Hedeflerim</H3><Btn sm title={G.length ? 'Tümü' : '+ Hedef'} onPress={() => go('hedef')} /></Row>
+      <SectionHead icon="flag" color={modColor(t, 'hedef')} title="Hedeflerim" right={<Btn sm title={G.length ? 'Tümü' : '+ Hedef'} onPress={() => go('hedef')} />} />
       {G.length ? (
         <View style={{ gap: 12 }}>
           {G.slice(0, 5).map((g) => {

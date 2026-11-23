@@ -67,7 +67,7 @@ export function TaskRow({ x, rank, inFolder }) {
           (x.start || x.end) && <Text key="r" style={{ fontSize: 13, color: t.mute }}>{x.start && x.end && x.start === x.end ? fmtD(x.end) : (x.start ? fmtD(x.start) : '…') + ' → ' + (x.end ? fmtD(x.end) : '…')}</Text>,
           left && !cal && <Text key="l" style={{ fontSize: 13, fontWeight: left.n <= 2 ? '800' : '400', color: left.n < 0 ? t.red : left.n <= 2 ? t.yelT : t.mute }}>{left.text}</Text>,
           rem && <Text key="b" style={{ fontSize: 13, color: t.mute }}>{rem}</Text>,
-          x.ext === 'grp' && <Text key="g" style={{ fontSize: 13, color: t.acc, fontWeight: '700' }}>{x.gtype === 'ekip' ? 'Ekip lideri atadı' : 'Öğretmen atadı'}</Text>,
+          x.ext === 'grp' && <Text key="g" style={{ fontSize: 13, color: t.accT, fontWeight: '700' }}>{x.gtype === 'ekip' ? (x.byName ? x.byName + ' verdi' : 'Ekipten') : 'Öğretmen atadı'}</Text>,
         ]} />
       </Pressable>
     </RowShell>
@@ -137,7 +137,7 @@ export function TimerCard({ big }) {
     <Card style={{ alignItems: big ? 'center' : 'stretch', gap: 8 }}>
       <Row wrap={false} style={{ justifyContent: big ? 'center' : 'space-between' }}>
         <View style={{ alignItems: big ? 'center' : 'flex-start', flexShrink: 1 }}>
-          <Text style={{ color: s.run ? col : t.mute, fontWeight: '700', fontSize: 13.5 }}>{ph + (S.subj ? ' · ' + S.subj : '')}</Text>
+          <Text style={{ color: s.run ? (s.ph === 'b' ? t.grn : t.accT) : t.mute, fontWeight: '700', fontSize: 13.5 }}>{ph + (S.subj ? ' · ' + S.subj : '')}</Text>
           <Text style={{ color: t.ink, fontSize: big ? 84 : 50, fontWeight: '800', letterSpacing: -1.5, fontVariant: ['tabular-nums'], lineHeight: big ? 92 : 56 }}>{mmss(s.rem)}</Text>
         </View>
         {!big ? (
@@ -211,7 +211,7 @@ export function WeekProgram() {
         {wide ? (
           <View style={{ flexDirection: 'row', borderBottomWidth: 1, borderColor: t.line }}>
             <View style={{ width: 50 }} />
-            {days.map((i) => <Text key={i} style={{ flex: 1, textAlign: 'center', paddingVertical: 8, fontWeight: '800', fontSize: 13, color: i === tdw ? t.acc : t.ink }}>{DN[i]}</Text>)}
+            {days.map((i) => <Text key={i} style={{ flex: 1, textAlign: 'center', paddingVertical: 8, fontWeight: '800', fontSize: 13, color: i === tdw ? t.accT : t.ink }}>{DN[i]}</Text>)}
           </View>
         ) : null}
         <ScrollView ref={scroll} style={{ maxHeight: 520 }} nestedScrollEnabled>
@@ -336,12 +336,12 @@ function ExtTaskSheet({ data, close }) {
   const cal = data.ext === 'cal';
   const when = (data.start && data.end && data.start !== data.end ? fmtD(data.start) + ' → ' + fmtD(data.end) : fmtD(data.end || data.start)) + (isTime(data.rTime) ? ' · ' + data.rTime : '');
   return (
-    <Sheet visible title={cal ? 'Telefon takviminden' : data.gtype === 'ekip' ? 'Ekip liderinin atadığı görev' : 'Öğretmenin atadığı görev'} onClose={close}>
+    <Sheet visible title={cal ? 'Telefon takviminden' : data.gtype === 'ekip' ? 'Ekipten gelen görev' : 'Öğretmenin atadığı görev'} onClose={close}>
       <T s={20} w="800">{data.title}</T>
       <Mute>{when}</Mute>
       {cal && data.alarms && data.alarms.length ? <Mute>{'Hatırlatıcılar: ' + data.alarms.map((m) => (m ? -m + ' dk önce' : 'başlarken')).join(', ')}</Mute> : null}
       {data.note ? <T>{data.note}</T> : null}
-      <Mute>{cal ? 'Bu etkinlik telefonunun takviminden geliyor; değiştirmek için takvim uygulamasını kullan, burada da güncellenir.' : data.gtype === 'ekip' ? 'Bu görevi ekip liderin atadı. Tamamlayınca işaretle; ekip liderin görür.' : 'Bu görevi öğretmenin atadı. Tamamlayınca işaretle; öğretmenin görür.'}</Mute>
+      <Mute>{cal ? 'Bu etkinlik telefonunun takviminden geliyor; değiştirmek için takvim uygulamasını kullan, burada da güncellenir.' : data.gtype === 'ekip' ? 'Bu görevi ' + (data.byName || 'ekipten biri') + ' verdi. Tamamlayınca işaretle; ekip görür.' : 'Bu görevi öğretmenin atadı. Tamamlayınca işaretle; öğretmenin görür.'}</Mute>
       <Row>
         <Btn kind="pri" icon={data.done ? 'arrow-undo-outline' : 'checkmark'} title={data.done ? 'Tamamlanmadı olarak işaretle' : 'Tamamlandı'} onPress={() => {
           update('tasks', (d) => { const y = d.items.find((i) => i.id === data.id); if (y) { y.done = !y.done; y.doneAt = y.done ? today() : null; } });

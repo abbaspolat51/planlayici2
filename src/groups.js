@@ -10,6 +10,13 @@ import { useUI } from './ui';
 import { myStats, groupCode, rid, today, fmtD, ymd } from './logic';
 
 const ymdOf = (ms) => ymd(new Date(ms));
+// Firebase hatasını anlaşılır yaz (kod da görünsün)
+const fbErr = (e, what) => {
+  const c = String((e && e.code) || (e && e.message) || 'bilinmiyor');
+  if (c.includes('permission-denied')) return what + ': Firebase izin vermedi. Firebase → Firestore → Kurallar sekmesine firestore.rules dosyasını yapıştırıp Yayınla (README).';
+  if (c.includes('unavailable') || c.includes('network')) return what + ': internet bağlantısı yok ya da zayıf.';
+  return what + ' (' + c + ').';
+};
 import { getPushToken, sendPush, notifyNow, ring, scheduleOne, cancelOne } from './notifications';
 
 const Ctx = createContext(null);
@@ -23,6 +30,14 @@ export const MEMBER_ROLE = { ogretmen: 'student', ekip: 'member', yaris: 'member
 export const ROLE_NAMES = { teacher: 'Öğretmen', student: 'Öğrenci', leader: 'Ekip lideri', member: 'Üye' };
 // Çalışma ve Görevler sayfasındaki düğmelerden Gruplar sayfasına geçerken ne açılacağı
 export const groupIntent = { current: null };
+// Görevin kime verildiği: 'all' = veren hariç herkes, dizi ya da tek kişi
+export function targetsOf(a, g) {
+  const mem = (g && g.members) || [];
+  if (a.to === 'all') return mem.filter((id) => id !== a.by && !(g.type === 'ogretmen' && id === g.owner));
+  return (Array.isArray(a.to) ? a.to : [a.to]).filter((id) => mem.includes(id));
+}
+// Ekipte herkes görev verebilir; öğretmen–öğrencide yalnızca öğretmen
+export const canAssign = (g, uid) => !!g && (g.type === 'ekip' || (g.type === 'ogretmen' && g.owner === uid));
 
 export function GroupsProvider({ children }) {
   const { st, update, user, configured } = useStore();
@@ -81,8 +96,8 @@ export function GroupsProvider({ children }) {
   const mine = [];
   for (const code of codes) {
     const D = data[code];
-    if (!D || !D.g || D.missing || !ASSIGN_TYPES.includes(D.g.type) || D.g.owner === uid || !D.assign) continue;
-    for (const a of D.assign) if (a.to === 'all' || a.to === uid) mine.push({ code, gname: D.g.name, gtype: D.g.type, a });
+    if (!D || !D.g || D.missing || !ASSIGN_TYPES.includes(D.g.type) || !D.assign) continue;
+    for (const a of D.assign) if (targetsOf(a, D.g).includes(uid)) mine.push({ code, gname: D.g.name, gtype: D.g.type, a });
   }
   const loadedCodes = codes.filter((c) => data[c] && data[c].assign && data[c].g);
   const mirrorKey = JSON.stringify([mine.map((m) => [m.code, m.a.id, m.a.title, m.a.p, m.a.end, m.a.rTime, m.a.note, !!(m.a.done && m.a.done[uid])]), loadedCodes, codesKey]);
@@ -107,7 +122,8 @@ export function GroupsProvider({ children }) {
         const v = {
           // Son günü olmayan görev de takvime düşsün: atandığı gün
           title: m.a.title, p: m.a.p || 2, end: m.a.end || (m.a.created ? ymdOf(m.a.created) : today()), rDate: '', rTime: m.a.rTime || '',
-          note: (m.gtype === 'ekip' ? 'Ekip lideri: ' : 'Öğretmen: ') + (m.a.byName || '') + (m.a.note ? ' · ' + m.a.note : ''),
+          note: (m.gtype === 'ekip' ? 'Veren: ' : 'Öğretmen: ') + (m.a.byName || '') + (m.a.note ? ' · ' + m.a.note : ''),
+          byName: m.a.byName || '', gname: m.gname,
           gtype: m.gtype,
         };
         const x = d.items.find((y) => y.ext === 'grp' && y.extKey === key);
@@ -149,7 +165,7 @@ export function GroupsProvider({ children }) {
       addCode(code);
       return { code };
     } catch (e) {
-      return 'Grup kurulamadı. Firebase kurallarını güncellediğinden emin ol (README).';
+      return fbErr(e, 'Grup kurulamadı');
     }
   }, [configured, uid]);
 
@@ -171,7 +187,7 @@ export function GroupsProvider({ children }) {
       addCode(code);
       return { code, name: g.name };
     } catch (e) {
-      return 'Gruba katılınamadı. Firebase kurallarını güncellediğinden emin ol (README).';
+      return fbErr(e, 'Gruba katılınamadı');
     }
   }, [configured, uid]);
 
@@ -204,13 +220,15 @@ export function GroupsProvider({ children }) {
 
   const assign = useCallback(async (code, v) => {
     const D = ref.current.data[code] || {};
+    if (!canAssign(D.g, uid)) return 'Bu grupta görevi yalnızca öğretmen verebilir.';
     try {
       await addDoc(collection(db, 'groups', code, 'assign'), { ...v, by: uid, byName: ref.current.name, created: Date.now(), done: {} });
-      const toks = tokensOf(code, (id) => v.to === 'all' || v.to === id);
-      const ok = await sendPush(toks, 'Yeni görev: ' + v.title, ((D.g && D.g.name) || 'Grup') + (v.end ? ' · son gün ' + fmtD(v.end) : '') + ' · takvimine eklendi', { kind: 'assign', code });
+      const tg = targetsOf({ ...v, by: uid }, D.g);
+      const toks = tokensOf(code, (id) => tg.includes(id));
+      const ok = await sendPush(toks, 'Yeni görev: ' + v.title + ' (' + ref.current.name + ')', ((D.g && D.g.name) || 'Grup') + (v.end ? ' · son gün ' + fmtD(v.end) : '') + ' · takvimine eklendi', { kind: 'assign', code });
       return { pushed: ok && toks.length };
     } catch (e) {
-      return 'Görev atanamadı.';
+      return fbErr(e, 'Görev atanamadı');
     }
   }, [uid]);
 
@@ -222,6 +240,11 @@ export function GroupsProvider({ children }) {
     const [code, id] = String(extKey).split('/');
     try { await updateDoc(doc(db, 'groups', code, 'assign', id), { ['done.' + uid]: !!done }); } catch (e) { /* yok say */ }
   }, [uid]);
+  // Grup panosundan ya da ana sayfadan işaretleyince kendi görev listemdeki kopyası da güncellensin
+  const setMine = useCallback((code, id, done) => {
+    markAssign(code + '/' + id, done);
+    update('tasks', (d) => { const x = d.items.find((y) => y.ext === 'grp' && y.extKey === code + '/' + id); if (x) { x.done = !!done; x.doneAt = done ? today() : null; } });
+  }, [markAssign, update]);
 
   // ---- birlikte pomodoro ----
   const setTimer = (code, timer, extra) => updateDoc(doc(db, 'groups', code), { timer, ...(extra || {}) }).catch(() => toast('Sayaç güncellenemedi'));
@@ -292,6 +315,19 @@ export function GroupsProvider({ children }) {
   }, [timersKey]);
 
   const list = useMemo(() => codes.map((code) => ({ code, ...(data[code] || {}) })), [codesKey, data]);
-  const value = { list, uid, name, token, create, join, leave, remove, kick, assign, delAssign, markAssign, pomo, joined, setJoin };
+  // Tüm gruplardaki görevler: bana verilenler ve benim verdiklerim
+  const groupTasks = useMemo(() => {
+    const out = [];
+    for (const code of codes) {
+      const D = data[code];
+      if (!D || !D.g || D.missing || !ASSIGN_TYPES.includes(D.g.type)) continue;
+      for (const a of D.assign || []) {
+        const tg = targetsOf(a, D.g);
+        out.push({ code, g: D.g, a, targets: tg, toMe: tg.includes(uid), byMe: a.by === uid, doneMe: !!(a.done && a.done[uid]), doneN: tg.filter((id) => a.done && a.done[id]).length });
+      }
+    }
+    return out.sort((x, y) => (x.a.end || '9999').localeCompare(y.a.end || '9999') || (x.a.p || 2) - (y.a.p || 2));
+  }, [codesKey, data, uid]);
+  const value = { list, groupTasks, uid, name, token, create, join, leave, remove, kick, assign, delAssign, markAssign, setMine, pomo, joined, setJoin };
   return React.createElement(Ctx.Provider, { value }, children);
 }

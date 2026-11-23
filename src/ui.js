@@ -24,6 +24,26 @@ export function H3({ children, style }) {
   return <T s={17} w="800" style={style}>{children}</T>;
 }
 
+// Bölüm başlığı: renkli simge rozeti + başlık + isteğe bağlı alt yazı ve sağda düğme
+export function SectionHead({ icon, color, title, sub, right }) {
+  const t = useTheme();
+  const c = color || t.accT;
+  return (
+    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+      {icon ? (
+        <View style={{ width: 34, height: 34, borderRadius: t.soft ? 12 : 9, backgroundColor: alpha(c, t.dark ? 0.2 : 0.13), alignItems: 'center', justifyContent: 'center' }}>
+          <Ionicons name={icon} size={18} color={c} />
+        </View>
+      ) : null}
+      <View style={{ flex: 1 }}>
+        <T s={17} w="800">{title}</T>
+        {sub ? <Text style={{ fontSize: 12.5, color: t.mute }} numberOfLines={2}>{sub}</Text> : null}
+      </View>
+      {right || null}
+    </View>
+  );
+}
+
 export function Card({ children, style, bg, border }) {
   const t = useTheme();
   return (

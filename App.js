@@ -6,7 +6,7 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { StoreProvider, useStore } from './src/store';
 import { useTheme } from './src/theme';
 import { UIProvider, useUI, IconBtn, T, Sheet } from './src/ui';
-import { alpha } from './src/theme';
+import { alpha, modColor, shadow } from './src/theme';
 import { FormsProvider, GoCtx, usePomo } from './src/components';
 import { GroupsProvider } from './src/groups';
 import { setupNotifications, syncNotifications, ring } from './src/notifications';
@@ -71,7 +71,7 @@ function Root() {
     return (
       <View style={{ flex: 1, backgroundColor: t.bg, alignItems: 'center', justifyContent: 'center' }}>
         <StatusBar style={t.dark ? 'light' : 'dark'} />
-        <ActivityIndicator size="large" color={t.acc} />
+        <ActivityIndicator size="large" color={t.accT} />
       </View>
     );
   }
@@ -92,7 +92,7 @@ function Root() {
 
 function Shell() {
   const t = useTheme();
-  const { st, user, status } = useStore();
+  const { st, user, status, setThemeMode } = useStore();
   const { width } = useWindowDimensions();
   const wide = width >= 900;
   const [route, setRoute] = useState('');
@@ -124,18 +124,34 @@ function Shell() {
   const navKeys = Object.keys(ROUTES).filter((k) => !hidden.includes(k));
   const tabs = TAB_ORDER.filter((k) => !hidden.includes(k)).slice(0, 4);
   const display = (st.prefs.name || '').trim() || (user && user.email ? user.email.split('@')[0] : 'Profil');
-  const NavItem = ({ k, compact }) => {
-    const on = k === route;
+  const icon = (k, on) => (on ? ROUTES[k][2].replace('-outline', '') : ROUTES[k][2]);
+  const modeBtn = (
+    <Pressable onPress={() => setThemeMode(t.dark ? 'light' : 'dark')} accessibilityRole="button" accessibilityLabel={t.dark ? 'Açık moda geç' : 'Koyu moda geç'}
+      style={({ pressed }) => ({ width: 40, height: 40, borderRadius: 20, alignItems: 'center', justifyContent: 'center', backgroundColor: pressed ? t.card2 : t.card, ...(shadow(t) || {}) })}>
+      <Ionicons name={t.dark ? 'sunny' : 'moon'} size={19} color={t.dark ? t.gold : t.accT} />
+    </Pressable>
+  );
+  const SideItem = ({ k }) => {
+    const on = k === route, c = modColor(t, k);
     return (
       <Pressable onPress={() => go(k)} accessibilityRole="button" accessibilityState={{ selected: on }} accessibilityLabel={ROUTES[k][0]}
-        style={({ pressed }) => (compact
-          ? { flex: 1, alignItems: 'center', justifyContent: 'center', gap: 3, minHeight: 54, opacity: pressed ? 0.6 : 1 }
-          : { flexDirection: 'row', alignItems: 'center', gap: 12, minHeight: 42, paddingHorizontal: 12, borderRadius: t.rs, backgroundColor: on ? alpha(t.acc, 0.13) : pressed ? t.card2 : 'transparent' })}>
-        <Ionicons name={on ? ROUTES[k][2].replace('-outline', '') : ROUTES[k][2]} size={compact ? 23 : 20} color={on ? t.acc : t.mute} />
-        <Text style={{ fontSize: compact ? 11.5 : 15, fontWeight: on ? '800' : '600', color: on ? t.acc : compact ? t.mute : t.ink }} numberOfLines={1}>{ROUTES[k][0]}</Text>
+        style={({ pressed }) => ({ flexDirection: 'row', alignItems: 'center', gap: 12, minHeight: 44, paddingHorizontal: 10, borderRadius: t.rs, backgroundColor: on ? alpha(c, t.dark ? 0.2 : 0.12) : pressed ? t.card2 : 'transparent' })}>
+        <View style={{ width: 30, height: 30, borderRadius: 9, alignItems: 'center', justifyContent: 'center', backgroundColor: on ? c : alpha(c, 0.12) }}>
+          <Ionicons name={icon(k, on)} size={17} color={on ? '#fff' : c} />
+        </View>
+        <Text style={{ fontSize: 15, fontWeight: on ? '800' : '600', color: t.ink }} numberOfLines={1}>{ROUTES[k][0]}</Text>
       </Pressable>
     );
   };
+  const TabItem = ({ k, onPress, label, ic, on }) => (
+    <Pressable onPress={onPress} accessibilityRole="button" accessibilityState={{ selected: on }} accessibilityLabel={label}
+      style={({ pressed }) => ({ flex: 1, alignItems: 'center', justifyContent: 'center', gap: 2, minHeight: 56, opacity: pressed ? 0.7 : 1 })}>
+      <View style={{ paddingHorizontal: 16, paddingVertical: 4, borderRadius: 999, backgroundColor: on ? alpha(t.acc, t.dark ? 0.22 : 0.16) : 'transparent' }}>
+        <Ionicons name={ic} size={22} color={on ? t.accT : t.mute} />
+      </View>
+      <Text style={{ fontSize: 11.5, fontWeight: on ? '800' : '600', color: on ? t.accT : t.mute }} numberOfLines={1}>{label}</Text>
+    </Pressable>
+  );
   return (
     <GoCtx.Provider value={go}>
       <FormsProvider>
@@ -144,60 +160,72 @@ function Shell() {
           <StatusBar style={t.dark ? 'light' : 'dark'} />
           <View style={{ flex: 1, flexDirection: 'row' }}>
             {wide ? (
-              <View style={{ width: 232, backgroundColor: t.card, borderRightWidth: 1, borderColor: t.line, paddingVertical: 16, paddingHorizontal: 10, gap: 2 }}>
-                <Text style={{ fontSize: 19, fontWeight: '800', color: t.ink, paddingHorizontal: 12, paddingBottom: 14 }}>Planlayıcı</Text>
-                {navKeys.map((k) => <NavItem key={k} k={k} />)}
+              <View style={{ width: 240, backgroundColor: t.card, borderRightWidth: 1, borderColor: t.line, paddingVertical: 18, paddingHorizontal: 12, gap: 2 }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 8, paddingBottom: 16 }}>
+                  <View style={{ width: 34, height: 34, borderRadius: 10, backgroundColor: t.hero, alignItems: 'center', justifyContent: 'center' }}>
+                    <Ionicons name="navigate" size={18} color={t.gold} style={{ transform: [{ rotate: '45deg' }] }} />
+                  </View>
+                  <Text style={{ fontSize: 19, fontWeight: '800', color: t.ink }}>Planlayıcı</Text>
+                </View>
+                {navKeys.map((k) => <SideItem key={k} k={k} />)}
               </View>
             ) : null}
             <View style={{ flex: 1 }}>
-              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, paddingHorizontal: 10, paddingVertical: 6 }}>
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, paddingHorizontal: 14, paddingTop: 8, paddingBottom: 6 }}>
                 {route ? (
-                  <T s={19} w="800" numberOfLines={1} style={{ flex: 1, paddingLeft: 6 }}>{title}</T>
+                  <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+                    <View style={{ width: 34, height: 34, borderRadius: 11, alignItems: 'center', justifyContent: 'center', backgroundColor: alpha(modColor(t, route), t.dark ? 0.22 : 0.14) }}>
+                      <Ionicons name={icon(route, true)} size={18} color={modColor(t, route)} />
+                    </View>
+                    <T s={20} w="800" numberOfLines={1} style={{ flex: 1 }}>{title}</T>
+                  </View>
                 ) : (
                   <Pressable onPress={() => go('profil')} accessibilityRole="button" accessibilityLabel="Ayarlar ve profil"
-                    style={({ pressed }) => ({ flex: 1, flexDirection: 'row', alignItems: 'center', gap: 10, paddingVertical: 4, paddingHorizontal: 4, opacity: pressed ? 0.7 : 1 })}>
-                    <View style={{ width: 38, height: 38, borderRadius: 19, backgroundColor: t.acc, alignItems: 'center', justifyContent: 'center' }}>
-                      <Text style={{ color: t.accI, fontWeight: '800', fontSize: 17 }}>{display.slice(0, 1).toUpperCase()}</Text>
+                    style={({ pressed }) => ({ flex: 1, flexDirection: 'row', alignItems: 'center', gap: 10, opacity: pressed ? 0.7 : 1 })}>
+                    <View style={{ width: 40, height: 40, borderRadius: 20, backgroundColor: t.hero, alignItems: 'center', justifyContent: 'center', borderWidth: 2, borderColor: t.gold }}>
+                      <Text style={{ color: t.heroI, fontWeight: '800', fontSize: 17 }}>{display.slice(0, 1).toUpperCase()}</Text>
                     </View>
                     <View style={{ flexShrink: 1 }}>
                       <T s={16} w="800" numberOfLines={1}>{display}</T>
-                      <Text style={{ fontSize: 12, color: t.mute }}>Ayarlar ve temalar</Text>
+                      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5 }}>
+                        <View style={{ width: 7, height: 7, borderRadius: 4, backgroundColor: dotColor }} />
+                        <Text style={{ fontSize: 12, color: t.mute }}>{STATUS[status]}</Text>
+                      </View>
                     </View>
                   </Pressable>
                 )}
                 <MiniTimer route={route} go={go} />
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, paddingHorizontal: 6 }} accessibilityLabel={STATUS[status]}>
-                  <View style={{ width: 8, height: 8, borderRadius: 4, backgroundColor: dotColor }} />
-                  {width > 380 ? <Text style={{ fontSize: 12.5, color: t.mute }}>{STATUS[status]}</Text> : null}
-                </View>
+                {route ? <View style={{ width: 8, height: 8, borderRadius: 4, backgroundColor: dotColor, marginHorizontal: 4 }} accessibilityLabel={STATUS[status]} /> : null}
+                {modeBtn}
               </View>
               <ScrollView ref={scroll} style={{ flex: 1 }} keyboardShouldPersistTaps="handled"
-                contentContainerStyle={{ padding: 16, paddingTop: 4, paddingBottom: wide ? 60 : 32, width: '100%', maxWidth: 1040, alignSelf: 'center' }}>
+                contentContainerStyle={{ padding: 16, paddingTop: 6, paddingBottom: wide ? 60 : 110, width: '100%', maxWidth: 1040, alignSelf: 'center' }}>
                 <Animated.View style={{ opacity: fade }}>
                   <Screen />
                 </Animated.View>
               </ScrollView>
               {!wide ? (
-                <View style={{ flexDirection: 'row', borderTopWidth: 1, borderColor: t.line, backgroundColor: t.card, paddingHorizontal: 4, paddingVertical: 4 }}>
-                  {tabs.map((k) => <NavItem key={k} k={k} compact />)}
-                  <Pressable onPress={() => setMenu(true)} accessibilityRole="button" accessibilityLabel="Tüm bölümler"
-                    style={({ pressed }) => ({ flex: 1, alignItems: 'center', justifyContent: 'center', gap: 3, minHeight: 54, opacity: pressed ? 0.6 : 1 })}>
-                    <Ionicons name={tabs.includes(route) ? 'grid-outline' : 'grid'} size={22} color={tabs.includes(route) ? t.mute : t.acc} />
-                    <Text style={{ fontSize: 11.5, fontWeight: tabs.includes(route) ? '600' : '800', color: tabs.includes(route) ? t.mute : t.acc }}>Menü</Text>
-                  </Pressable>
+                <View pointerEvents="box-none" style={{ position: 'absolute', left: 12, right: 12, bottom: 10 }}>
+                  <View style={{ flexDirection: 'row', backgroundColor: t.card, borderRadius: 24, paddingHorizontal: 4, borderWidth: t.dark ? 1 : 0, borderColor: t.line,
+                    ...Platform.select({ web: { boxShadow: t.dark ? '0 10px 30px rgba(0,0,0,0.5)' : '0 10px 30px rgba(15,50,60,0.16)' }, default: { elevation: 10, shadowColor: '#000', shadowOpacity: 0.18, shadowRadius: 18, shadowOffset: { width: 0, height: 8 } } }) }}>
+                    {tabs.map((k) => <TabItem key={k} k={k} label={ROUTES[k][0]} ic={icon(k, k === route)} on={k === route} onPress={() => go(k)} />)}
+                    <TabItem k="menu" label="Menü" ic={tabs.includes(route) ? 'grid-outline' : 'grid'} on={!tabs.includes(route)} onPress={() => setMenu(true)} />
+                  </View>
                 </View>
               ) : null}
             </View>
           </View>
           <Sheet visible={menu} title="Tüm bölümler" onClose={() => setMenu(false)}>
-            <View style={{ flexDirection: 'row', flexWrap: 'wrap', marginHorizontal: -4 }}>
+            <View style={{ flexDirection: 'row', flexWrap: 'wrap', marginHorizontal: -5 }}>
               {navKeys.map((k) => {
-                const on = k === route;
+                const on = k === route, c = modColor(t, k);
                 return (
-                  <View key={k} style={{ width: '33.333%', padding: 4 }}>
-                    <Pressable onPress={() => go(k)} style={({ pressed }) => ({ alignItems: 'center', gap: 6, paddingVertical: 16, paddingHorizontal: 4, borderRadius: t.rm, borderWidth: on ? 2 : 1, borderColor: on ? t.acc : t.line, backgroundColor: pressed ? t.card2 : t.card })}>
-                      <Ionicons name={ROUTES[k][2]} size={24} color={on ? t.acc : t.ink} />
-                      <Text style={{ fontSize: 13, fontWeight: '700', color: on ? t.acc : t.ink, textAlign: 'center' }} numberOfLines={1}>{ROUTES[k][0]}</Text>
+                  <View key={k} style={{ width: '33.333%', padding: 5 }}>
+                    <Pressable onPress={() => go(k)} accessibilityLabel={ROUTES[k][0]} style={({ pressed }) => ({ alignItems: 'center', gap: 8, paddingVertical: 14, paddingHorizontal: 4, borderRadius: t.rm, borderWidth: on ? 2 : 0, borderColor: c, backgroundColor: pressed ? alpha(c, 0.18) : alpha(c, t.dark ? 0.14 : 0.08) })}>
+                      <View style={{ width: 44, height: 44, borderRadius: 14, backgroundColor: c, alignItems: 'center', justifyContent: 'center' }}>
+                        <Ionicons name={icon(k, true)} size={22} color="#fff" />
+                      </View>
+                      <Text style={{ fontSize: 12.5, fontWeight: '700', color: t.ink, textAlign: 'center' }} numberOfLines={1}>{ROUTES[k][0]}</Text>
                     </Pressable>
                   </View>
                 );
@@ -220,7 +248,7 @@ function MiniTimer({ route, go }) {
   const s = tmState(st.study);
   if (s.idle || route === '' || route === 'calisma') return null;
   return (
-    <Pressable onPress={() => go('calisma')} style={{ backgroundColor: t.acc, borderRadius: 999, paddingHorizontal: 12, minHeight: 32, justifyContent: 'center' }}>
+    <Pressable onPress={() => go('calisma')} style={{ backgroundColor: t.acc, borderRadius: 999, paddingHorizontal: 12, minHeight: 34, justifyContent: 'center' }}>
       <Text style={{ color: t.accI, fontWeight: '800', fontVariant: ['tabular-nums'] }}>{(s.ph === 'b' ? 'Mola ' : '') + mmss(s.rem) + (s.run ? '' : ' ‖')}</Text>
     </Pressable>
   );

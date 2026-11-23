@@ -61,6 +61,15 @@ kutusuna yapıştırıp **Aktar**'a bas.
    `npm run paketler` çalıştırıyor. Bundan sonra yeni paket eklemek için yalnızca `package.json` değişir.
 3. Telefonda ilk açılışta **takvim iznine** "İzin ver" de.
 
+## Sürüm 2.3'te neler var
+
+- **Yeni konsept "Nişan – hedefe odaklan":** gece mavisi/petrol yeşili, altın ve mercan renkler; ana sayfada hedef halkalı
+  karşılama alanı (selamlama, bugünkü ilerleme, çalışma süresi, öndeki hedef), hızlı işlem düğmeleri, her bölümün kendi rengi,
+  yüzen alt menü. Üst sağdaki güneş/ay düğmesiyle tek dokunuşta açık–koyu mod.
+- **Açık (pastel) renk paletleri:** Pudra, Lavanta, Nane, Gökyüzü, Şeftali, Limon.
+- **Ekip görevleri:** ekipte herkes birbirine görev verebilir (öğretmen–öğrencide yalnızca öğretmen); yeni görev panosu
+  ve ana sayfada "Grup görevleri". Yeni uygulama simgesi: yay ve ok.
+
 ## Sürüm 2.2'de neler var
 
 - **Yeni sade arayüz:** telefonda alt menü çubuğu (Bugün, Görevler, Hedefler, Çalışma, Menü), bilgisayarda sol menü.

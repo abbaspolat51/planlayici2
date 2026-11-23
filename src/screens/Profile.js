@@ -36,7 +36,7 @@ function ThemeCard({ id, on, onPress }) {
           <T w="800">{THEMES[id].name}</T>
           <Mute s={13}>{THEMES[id].desc}</Mute>
         </View>
-        {on ? <Ionicons name="checkmark-circle" size={24} color={t.acc} /> : null}
+        {on ? <Ionicons name="checkmark-circle" size={24} color={t.accT} /> : null}
       </Row>
     </Pressable>
   );
@@ -130,29 +130,59 @@ export default function Profile() {
 
       <View style={{ gap: 10 }}>
         <H2>Temalar</H2>
-        <Mute>Arayüzü seç; her temanın içinde renk paletini ayrıca değiştirebilirsin.</Mute>
+        <Mute>Önerilen: Nişan. Her temanın içinde açık/koyu modu ve renk paletini ayrıca seçebilirsin.</Mute>
         <Grid min={200} gap={12}>
-          {THEME_IDS.map((id) => <ThemeCard key={id} id={id} on={(P.theme || 'sade') === id} onPress={() => setTheme(id)} />)}
+          {THEME_IDS.map((id) => <ThemeCard key={id} id={id} on={(P.theme || 'nisan') === id} onPress={() => setTheme(id)} />)}
         </Grid>
         <Card>
-          <H3>Renk paleti</H3>
-          <Mute s={13}>{'Düğmeler, switch\'ler, pomodoro ve vurgular bu renkle görünür. Şu an: ' + THEMES[t.id].name + ' · ' + PALETTES[t.pal].name}</Mute>
-          <Row style={{ gap: 10 }}>
-            {PALETTE_IDS.map((k) => {
-              const c = k === 'tema' ? buildTheme(P.theme, t.dark).acc : (t.dark ? PALETTES[k].dark : PALETTES[k].light);
-              const on = (P.palette || 'tema') === k;
+          <H3>Açık / koyu mod</H3>
+          <View style={{ flexDirection: 'row', gap: 10 }}>
+            {[['light', 'Açık', 'sunny'], ['dark', 'Koyu', 'moon'], ['system', 'Otomatik', 'phone-portrait-outline']].map(([k, l, ic]) => {
+              const on = (P.mode || 'system') === k;
+              const pv = buildTheme(P.theme, k === 'dark' ? true : k === 'light' ? false : t.dark, P.palette);
               return (
-                <Pressable key={k} onPress={() => update('prefs', (d) => { d.palette = k; })} accessibilityRole="radio" accessibilityState={{ checked: on }} accessibilityLabel={PALETTES[k].name}
-                  style={{ alignItems: 'center', gap: 4, width: 64 }}>
-                  <View style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: c, borderWidth: 3, borderColor: on ? t.ink : 'transparent', alignItems: 'center', justifyContent: 'center' }}>
-                    {on ? <Ionicons name="checkmark" size={20} color="#fff" /> : k === 'tema' ? <Ionicons name="color-palette-outline" size={18} color="#fff" /> : null}
+                <Pressable key={k} onPress={() => setThemeMode(k)} accessibilityRole="radio" accessibilityState={{ checked: on }} accessibilityLabel={l}
+                  style={{ flex: 1, borderRadius: t.rm, borderWidth: 2, borderColor: on ? t.acc : t.line, padding: 6, gap: 6, backgroundColor: t.card }}>
+                  <View style={{ height: 58, borderRadius: t.rs, backgroundColor: pv.bg, padding: 8, gap: 5, overflow: 'hidden' }}>
+                    <View style={{ height: 16, borderRadius: 6, backgroundColor: pv.hero }} />
+                    <View style={{ flexDirection: 'row', gap: 5 }}>
+                      <View style={{ flex: 1, height: 18, borderRadius: 6, backgroundColor: pv.card }} />
+                      <View style={{ width: 26, height: 18, borderRadius: 9, backgroundColor: pv.acc }} />
+                    </View>
                   </View>
-                  <Text style={{ fontSize: 11.5, color: on ? t.ink : t.mute, fontWeight: on ? '800' : '500', textAlign: 'center' }} numberOfLines={1}>{PALETTES[k].name}</Text>
+                  <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 5, paddingBottom: 2 }}>
+                    <Ionicons name={ic} size={14} color={on ? t.accT : t.mute} />
+                    <Text style={{ fontSize: 12.5, fontWeight: on ? '800' : '600', color: on ? t.accT : t.ink }} numberOfLines={1}>{l}</Text>
+                  </View>
                 </Pressable>
               );
             })}
-          </Row>
-          <Seg label="Görünüm" value={P.mode || 'system'} onChange={setThemeMode} options={[['system', 'Telefona göre'], ['light', 'Aydınlık'], ['dark', 'Karanlık']]} />
+          </View>
+        </Card>
+        <Card>
+          <H3>Renk paleti</H3>
+          <Mute s={13}>{'Düğmeler, switch\'ler ve vurgular bu renkle görünür. Şu an: ' + THEMES[t.id].name + ' · ' + PALETTES[t.pal].name}</Mute>
+          {[['Canlı renkler', PALETTE_IDS.filter((k) => !PALETTES[k].pastel)], ['Açık renkler (pastel)', PALETTE_IDS.filter((k) => PALETTES[k].pastel)]].map(([gl, ids]) => (
+            <View key={gl} style={{ gap: 8 }}>
+              <Mute s={13} style={{ fontWeight: '700' }}>{gl}</Mute>
+              <Row style={{ gap: 8 }}>
+                {ids.map((k) => {
+                  const c = k === 'tema' ? buildTheme(P.theme, t.dark).acc : (t.dark ? PALETTES[k].dark : PALETTES[k].light);
+                  const on = (P.palette || 'tema') === k;
+                  const pastel = !!PALETTES[k].pastel;
+                  return (
+                    <Pressable key={k} onPress={() => update('prefs', (d) => { d.palette = k; })} accessibilityRole="radio" accessibilityState={{ checked: on }} accessibilityLabel={PALETTES[k].name}
+                      style={{ alignItems: 'center', gap: 4, width: 62 }}>
+                      <View style={{ width: 46, height: 46, borderRadius: 23, backgroundColor: c, borderWidth: 3, borderColor: on ? t.ink : 'transparent', alignItems: 'center', justifyContent: 'center' }}>
+                        {on ? <Ionicons name="checkmark" size={20} color={pastel ? '#1A1A24' : '#fff'} /> : k === 'tema' ? <Ionicons name="color-palette-outline" size={18} color="#fff" /> : null}
+                      </View>
+                      <Text style={{ fontSize: 11.5, color: on ? t.ink : t.mute, fontWeight: on ? '800' : '500', textAlign: 'center' }} numberOfLines={1}>{PALETTES[k].name}</Text>
+                    </Pressable>
+                  );
+                })}
+              </Row>
+            </View>
+          ))}
         </Card>
       </View>
 

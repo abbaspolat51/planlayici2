@@ -3,6 +3,12 @@ import { useStore } from './store';
 
 // Her tema: aydınlık + karanlık renkler ve şekil (köşe, kenarlık, gölge, yumuşak geçiş)
 export const THEMES = {
+  nisan: {
+    name: 'Nişan', desc: 'Hedefe odaklan: petrol yeşili, altın ve mercan; yumuşak gölgeler',
+    light: { bg: '#EDF2F3', card: '#FFFFFF', card2: '#F1F6F7', ink: '#0F242B', mute: '#5B6F75', line: '#DCE6E8', acc: '#0E6E7A', accI: '#FFFFFF', red: '#E0483A', yel: '#E9A92E', yelT: '#8A5A00', grn: '#1E9460', off: '#C9D5D8', gold: '#E9A92E', coral: '#FF6B4A', hero: '#123B4A', heroI: '#FFFFFF' },
+    dark: { bg: '#0A1A20', card: '#10252D', card2: '#16313A', ink: '#E8F3F4', mute: '#8FA8AE', line: '#1E3B45', acc: '#56D0D6', accI: '#06161B', red: '#FF7A6B', yel: '#FFC857', yelT: '#FFC857', grn: '#5FD49A', off: '#2D4A53', gold: '#FFC857', coral: '#FF7A59', hero: '#16404D', heroI: '#FFFFFF' },
+    shape: { r: 22, rm: 16, rs: 14, rb: 14, bw: 0, shadow: true, soft: true },
+  },
   sade: {
     name: 'Sade', desc: 'Liste satırları, switch\'ler, serin gri zemin',
     light: { bg: '#eef1f5', card: '#ffffff', card2: '#f2f4f7', ink: '#18202b', mute: '#5d6775', line: '#e2e6eb', acc: '#3b55e6', accI: '#ffffff', red: '#d23b3b', yel: '#e0a000', yelT: '#8a6200', grn: '#1f9254', off: '#cbd2da' },
@@ -43,8 +49,15 @@ export const THEMES = {
 export const THEME_IDS = Object.keys(THEMES);
 
 // Her temanın içinde seçilebilen vurgu rengi (renk paleti). 'tema' = temanın kendi rengi
+// pastel: açık renkler; üstündeki yazı koyu olur, yazı vurgusu için koyu tonu (text) kullanılır
 export const PALETTES = {
   tema: { name: 'Temanın rengi' },
+  pudra: { name: 'Pudra', light: '#F5B5CB', dark: '#F7B8CD', text: '#B0365F', pastel: true },
+  lavanta: { name: 'Lavanta', light: '#C6B6F7', dark: '#C9BBFA', text: '#5B3FC4', pastel: true },
+  nane: { name: 'Nane', light: '#9FE3C3', dark: '#A3E8C8', text: '#16764B', pastel: true },
+  gokyuzu: { name: 'Gökyüzü', light: '#A5D4F7', dark: '#A9D7F8', text: '#1B5F99', pastel: true },
+  seftali: { name: 'Şeftali', light: '#FFC4A3', dark: '#FFC7A8', text: '#B04A16', pastel: true },
+  limon: { name: 'Limon', light: '#F6E27F', dark: '#F7E48A', text: '#7A6300', pastel: true },
   kobalt: { name: 'Kobalt', light: '#2f55e4', dark: '#8ca2ff' },
   mor: { name: 'Mor', light: '#7a4fe0', dark: '#b59bff' },
   turkuaz: { name: 'Turkuaz', light: '#0d8796', dark: '#4fd1df' },
@@ -57,15 +70,22 @@ export const PALETTES = {
 export const PALETTE_IDS = Object.keys(PALETTES);
 
 export function buildTheme(id, dark, pal) {
-  const th = THEMES[id] || THEMES.sade;
+  const th = THEMES[id] || THEMES.nisan;
   const base = { ...(dark ? th.dark : th.light) };
   if (!base.off) base.off = dark ? '#3a414b' : '#cbd2da';
+  base.accT = base.acc; // yazı ve simge için vurgu
   const P = PALETTES[pal];
   if (P && P.light) {
     base.acc = dark ? P.dark : P.light;
-    base.accI = dark ? base.bg : '#ffffff';
+    base.accI = P.pastel ? '#1A1A24' : dark ? base.bg : '#ffffff';
+    base.accT = P.pastel && !dark ? P.text : base.acc;
   }
-  return { ...base, ...th.shape, dark, id: THEMES[id] ? id : 'sade', pal: P && P.light ? pal : 'tema' };
+  if (!base.gold) base.gold = base.yel;
+  if (!base.coral) base.coral = base.red;
+  if (!base.hero) base.hero = dark ? base.card2 : base.acc;
+  if (!base.heroI) base.heroI = dark ? base.ink : base.accI;
+  if (P && P.light && id === 'nisan') { base.hero = dark ? base.card2 : P.pastel ? P.light : P.light; base.heroI = P.pastel ? '#14202A' : '#ffffff'; }
+  return { ...base, ...th.shape, dark, id: THEMES[id] ? id : 'nisan', pal: P && P.light ? pal : 'tema' };
 }
 
 export function useTheme() {
@@ -80,8 +100,8 @@ export function useTheme() {
 export function shadow(t) {
   if (!t.shadow) return null;
   return Platform.select({
-    web: { boxShadow: t.dark ? '0 8px 24px rgba(0,0,0,0.35)' : '0 8px 24px rgba(40,40,80,0.10)' },
-    default: { shadowColor: '#000', shadowOpacity: t.dark ? 0.35 : 0.08, shadowRadius: 16, shadowOffset: { width: 0, height: 6 }, elevation: 3 },
+    web: { boxShadow: t.dark ? '0 6px 20px rgba(0,0,0,0.35)' : '0 6px 22px rgba(15,50,60,0.08)' },
+    default: { shadowColor: t.dark ? '#000' : '#0F323C', shadowOpacity: t.dark ? 0.35 : 0.09, shadowRadius: 14, shadowOffset: { width: 0, height: 5 }, elevation: t.dark ? 2 : 3 },
   });
 }
 
@@ -97,3 +117,11 @@ export const lvlColor = (c, l) => (l === 'g' ? c.grn : l === 'y' ? c.yel : l ===
 export const lvlText = (c, l) => (l === 'y' ? c.yelT : lvlColor(c, l));
 // Pil rengi: yüzdeye göre kırmızı → sarı → yeşil
 export const battColor = (c, pct) => (pct >= 100 ? c.grn : pct >= 50 ? c.grn : pct >= 20 ? c.yel : c.red);
+
+// Her bölümün kendi rengi (simgeler, kutucuklar, menü)
+const MODC = {
+  '': ['#0E6E7A', '#56D0D6'], gorevler: ['#E0483A', '#FF8A7A'], hedef: ['#C98A10', '#FFC857'], calisma: ['#0E7C86', '#4FD1DF'],
+  rutin: ['#7A4FE0', '#B59BFF'], takvim: ['#2F63D9', '#8CB0FF'], grup: ['#C8326E', '#FF86B2'], yemek: ['#2E8B57', '#6FD49A'],
+  para: ['#18805F', '#5FD4A8'], kitap: ['#9A5A1E', '#E6A86A'], ambar: ['#4A55C8', '#9AA4FF'], profil: ['#5B6F75', '#A9BEC3'],
+};
+export const modColor = (t, k) => (MODC[k] || MODC[''])[t.dark ? 1 : 0];

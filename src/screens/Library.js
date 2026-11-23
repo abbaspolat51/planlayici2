@@ -36,7 +36,7 @@ export default function Library() {
             {L.folders.map((x) => (
               <Pressable key={x.id} onPress={() => setOpenId(x.id)} style={({ pressed }) => ({ minHeight: 120, padding: 14, borderRadius: t.r, borderWidth: t.bw, borderColor: pressed ? t.acc : t.line, backgroundColor: t.card, justifyContent: 'space-between' })}>
                 <View style={{ width: 44, height: 44, borderRadius: t.soft ? 22 : 12, backgroundColor: alpha(t.acc, 0.14), alignItems: 'center', justifyContent: 'center' }}>
-                  <Ionicons name="folder-open-outline" size={23} color={t.acc} />
+                  <Ionicons name="folder-open-outline" size={23} color={t.accT} />
                 </View>
                 <View><T w="800">{x.name}</T><Mute s={13}>{x.files.length + ' dosya'}</Mute></View>
               </Pressable>
@@ -126,7 +126,7 @@ export default function Library() {
           return (
             <ListRow key={x.id} last={i === files.length - 1}>
               <View style={{ width: 40, height: 48, borderRadius: 8, alignItems: 'center', justifyContent: 'center', backgroundColor: alpha(x.kind === 'link' ? t.acc : t.red, 0.15) }}>
-                {x.kind === 'link' ? <Ionicons name="link" size={20} color={t.acc} /> : <Text style={{ fontSize: 11, fontWeight: '800', color: t.red }}>PDF</Text>}
+                {x.kind === 'link' ? <Ionicons name="link" size={20} color={t.accT} /> : <Text style={{ fontSize: 11, fontWeight: '800', color: t.red }}>PDF</Text>}
               </View>
               <View style={{ flex: 1 }}>
                 <T w="700">{x.name}</T>
