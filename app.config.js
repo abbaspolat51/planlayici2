@@ -37,6 +37,8 @@ module.exports = {
     extra: push.projectId ? { eas: { projectId: push.projectId } } : {},
     plugins: [
       ['expo-notifications', { color: '#2950E0', sounds: ['./assets/zil.wav'] }],
+      // Pomodoro zili için; mikrofon izni istemez
+      ['expo-audio', { microphonePermission: false, recordAudioAndroid: false }],
       ['expo-calendar', { calendarPermission: 'Planlayıcı, görevlerini ve takvim etkinliklerini eşitlemek için takvimine erişir.' }],
     ],
   },
