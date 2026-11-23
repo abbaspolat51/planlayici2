@@ -1,10 +1,10 @@
 // Ortak arayüz parçaları
-import React, { createContext, useCallback, useContext, useRef, useState } from 'react';
+import React, { createContext, useCallback, useContext, useEffect, useRef, useState } from 'react';
 import {
-  View, Text, Pressable, TextInput, Modal, ScrollView, KeyboardAvoidingView, Platform, useWindowDimensions,
+  View, Text, Pressable, TextInput, Modal, ScrollView, KeyboardAvoidingView, Platform, useWindowDimensions, Animated,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { useTheme, alpha, shadow } from './theme';
+import { useTheme, alpha, shadow, battColor } from './theme';
 import { AY, DN, monthCells, nowYM, shiftM, today, fmtD, isDate, fmtTimeInput, parse, ymd } from './logic';
 
 export const R = 16; // köşe yuvarlaklığı
@@ -231,16 +231,69 @@ export function DayPick({ value, onChange }) {
   );
 }
 
-export function Check({ label, value, onChange }) {
+// Açma–kapama düğmesi (tik kutusu yerine)
+export function Switch({ value, onChange, label, color, disabled }) {
+  const t = useTheme();
+  const x = useRef(new Animated.Value(value ? 1 : 0)).current;
+  useEffect(() => {
+    Animated.spring(x, { toValue: value ? 1 : 0, useNativeDriver: Platform.OS !== 'web', speed: 22, bounciness: 6 }).start();
+  }, [value]);
+  const on = color || t.acc;
+  return (
+    <Pressable onPress={() => !disabled && onChange(!value)} accessibilityRole="switch" accessibilityState={{ checked: !!value, disabled: !!disabled }} accessibilityLabel={label} hitSlop={8}
+      style={{ width: 56, height: 44, alignItems: 'center', justifyContent: 'center', opacity: disabled ? 0.4 : 1 }}>
+      <View style={{ width: 50, height: 30, borderRadius: 15, backgroundColor: value ? on : t.off, justifyContent: 'center' }}>
+        <Animated.View style={{ width: 24, height: 24, borderRadius: 12, backgroundColor: '#fff', marginLeft: 3,
+          transform: [{ translateX: x.interpolate({ inputRange: [0, 1], outputRange: [0, 20] }) }],
+          ...Platform.select({ web: { boxShadow: '0 1px 3px rgba(0,0,0,0.3)' }, default: { elevation: 2, shadowColor: '#000', shadowOpacity: 0.25, shadowRadius: 2, shadowOffset: { width: 0, height: 1 } } }) }} />
+      </View>
+    </Pressable>
+  );
+}
+
+// Etiket solda, switch sağda (eski tik kutusunun yerine)
+export function Check({ label, value, onChange, sub }) {
   const t = useTheme();
   return (
-    <Pressable onPress={() => onChange(!value)} accessibilityRole="checkbox" accessibilityState={{ checked: !!value }}
-      style={{ flexDirection: 'row', alignItems: 'center', gap: 10, minHeight: 44 }}>
-      <View style={{ width: 24, height: 24, borderRadius: 7, borderWidth: 2, borderColor: value ? t.acc : t.line, backgroundColor: value ? t.acc : 'transparent', alignItems: 'center', justifyContent: 'center' }}>
-        {value ? <Ionicons name="checkmark" size={16} color={t.accI} /> : null}
+    <Pressable onPress={() => onChange(!value)} accessibilityRole="switch" accessibilityState={{ checked: !!value }}
+      style={{ flexDirection: 'row', alignItems: 'center', gap: 10, minHeight: 48 }}>
+      <View style={{ flex: 1 }}>
+        <T w="600">{label}</T>
+        {sub ? <Text style={{ fontSize: 13, color: t.mute }}>{sub}</Text> : null}
       </View>
-      <T w="700">{label}</T>
+      <Switch value={!!value} onChange={onChange} label={label} />
     </Pressable>
+  );
+}
+
+// Telefonun şarj simgesi gibi ilerleme pili. pct 0–100+
+export function Battery({ pct, w = 120, h = 54, label, showText = true }) {
+  const t = useTheme();
+  const p = Math.max(0, Math.min(100, pct || 0));
+  const c = battColor(t, p);
+  const bw = Math.max(2, Math.round(h / 16));
+  const pad = Math.max(2, Math.round(h / 14));
+  const nubW = Math.max(4, Math.round(w / 22)), nubH = Math.round(h * 0.42);
+  const full = (pct || 0) >= 100;
+  return (
+    <View accessibilityRole="progressbar" accessibilityLabel={(label ? label + ': ' : '') + '%' + Math.round(pct || 0)} accessibilityValue={{ min: 0, max: 100, now: Math.round(p) }}
+      style={{ flexDirection: 'row', alignItems: 'center' }}>
+      <View style={{ width: w, height: h, borderRadius: Math.round(h / 4), borderWidth: bw, borderColor: alpha(t.ink, 0.8), padding: pad, justifyContent: 'center' }}>
+        <View style={{ width: p + '%', height: '100%', borderRadius: Math.max(2, Math.round(h / 6) - pad), backgroundColor: c, minWidth: p > 0 ? 3 : 0 }} />
+        {/* parlama çizgisi */}
+        {p > 8 ? <View style={{ position: 'absolute', left: pad + 4, top: pad + 3, width: Math.max(0, (w - 2 * pad - 2 * bw) * p / 100 - 10), height: Math.max(2, h / 10), borderRadius: 4, backgroundColor: 'rgba(255,255,255,0.28)' }} /> : null}
+        {showText ? (
+          <View style={{ position: 'absolute', left: 0, right: 0, top: 0, bottom: 0, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 2 }}>
+            {full ? <Text style={{ fontSize: h * 0.34, color: '#fff' }}>⚡</Text> : null}
+            <Text style={{ fontSize: Math.max(11, h * 0.34), fontWeight: '800', fontVariant: ['tabular-nums'], color: p >= 45 ? '#fff' : t.ink,
+              ...(p >= 45 ? { textShadowColor: 'rgba(0,0,0,0.35)', textShadowRadius: 3, textShadowOffset: { width: 0, height: 1 } } : null) }}>
+              {'%' + Math.floor(pct || 0)}
+            </Text>
+          </View>
+        ) : null}
+      </View>
+      <View style={{ width: nubW, height: nubH, marginLeft: 2, borderTopRightRadius: nubW, borderBottomRightRadius: nubW, backgroundColor: alpha(t.ink, 0.8) }} />
+    </View>
   );
 }
 

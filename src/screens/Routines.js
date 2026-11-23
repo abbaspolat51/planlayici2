@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, Pressable } from 'react-native';
 import { useStore } from '../store';
 import { useTheme } from '../theme';
-import { T, Mute, H2, H3, Card, Btn, Row, Grid, Empty, IconBtn, MonthView, ListRow } from '../ui';
+import { T, Mute, H2, H3, Card, Btn, Row, Grid, Empty, IconBtn, MonthView, ListRow, Switch } from '../ui';
 import { useForms } from '../components';
 import { today, addDays, streak, runs, fmtD, nowYM, shiftM, AY } from '../logic';
 
@@ -44,9 +44,10 @@ export default function Routines() {
                 <Text style={{ color: t.ink }}> günlük seri</Text>
                 <Text style={{ color: t.mute }}>{' · en uzun ' + best + ' gün' + (r.rTime ? ' · hatırlatma ' + r.rTime : '')}</Text>
               </Text>
-              <Row>
-                <Btn kind={on ? 'ok' : 'pri'} icon={on ? 'checkmark' : undefined} title={on ? 'Bugün yapıldı' : 'Bugün yaptım'} onPress={() => toggle(r.id, td)} />
-                <IconBtn name="create-outline" label="Rutini düzenle" onPress={() => forms.open('routine', r)} />
+              <Row wrap={false}>
+                <T w="700" c={on ? r.color : t.mute} style={{ flex: 1 }}>{on ? 'Bugün yapıldı' : 'Bugün yapmadın'}</T>
+                <IconBtn name="create-outline" label="Rutini düzenle" color={t.mute} onPress={() => forms.open('routine', r)} />
+                <Switch value={on} onChange={() => toggle(r.id, td)} label={r.name + ': bugün yapıldı'} color={r.color} />
               </Row>
             </Card>
           );

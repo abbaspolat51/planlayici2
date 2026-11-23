@@ -1,10 +1,12 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { View, Text, ScrollView, BackHandler, ActivityIndicator, Platform, Pressable, Animated } from 'react-native';
+import { View, Text, ScrollView, BackHandler, ActivityIndicator, Platform, Pressable, Animated, useWindowDimensions } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { StoreProvider, useStore } from './src/store';
 import { useTheme } from './src/theme';
-import { UIProvider, useUI, IconBtn, T } from './src/ui';
+import { UIProvider, useUI, IconBtn, T, Sheet } from './src/ui';
+import { alpha } from './src/theme';
 import { FormsProvider, GoCtx, usePomo } from './src/components';
 import { GroupsProvider } from './src/groups';
 import { setupNotifications, syncNotifications, ring } from './src/notifications';
@@ -20,22 +22,26 @@ import Library from './src/screens/Library';
 import Money from './src/screens/Money';
 import Books from './src/screens/Books';
 import Groups from './src/screens/Groups';
+import Goals from './src/screens/Goals';
 import Profile from './src/screens/Profile';
 import Login from './src/screens/Login';
 
 const ROUTES = {
-  '': ['Ana sayfa', Home],
-  gorevler: ['Görevler', Tasks],
-  rutin: ['Rutinler', Routines],
-  takvim: ['Takvim', Calendar],
-  yemek: ['Yemek takibi', Food],
-  calisma: ['Çalışma', Study],
-  ambar: ['Ders ambarı', Library],
-  para: ['Para takibi', Money],
-  kitap: ['Kitaplarım', Books],
-  grup: ['Gruplar', Groups],
-  profil: ['Profil ve ayarlar', Profile],
+  '': ['Bugün', Home, 'home-outline'],
+  gorevler: ['Görevler', Tasks, 'checkbox-outline'],
+  hedef: ['Hedefler', Goals, 'battery-half-outline'],
+  calisma: ['Çalışma', Study, 'timer-outline'],
+  rutin: ['Rutinler', Routines, 'link-outline'],
+  takvim: ['Takvim', Calendar, 'calendar-outline'],
+  grup: ['Gruplar', Groups, 'people-outline'],
+  yemek: ['Yemek takibi', Food, 'nutrition-outline'],
+  para: ['Para takibi', Money, 'wallet-outline'],
+  kitap: ['Kitaplarım', Books, 'book-outline'],
+  ambar: ['Ders ambarı', Library, 'folder-open-outline'],
+  profil: ['Ayarlar ve profil', Profile, 'settings-outline'],
 };
+// Telefonda alt çubukta duran bölümler (gizlenmişse sıradaki gelir)
+const TAB_ORDER = ['', 'gorevler', 'hedef', 'calisma', 'rutin', 'takvim', 'grup'];
 const STATUS = { local: 'Bu cihazda', wait: 'Bağlanıyor', on: 'Eşitlendi', slow: 'Bağlantı yavaş', err: 'Eşitleme hatası' };
 
 export default function App() {
@@ -86,12 +92,16 @@ function Root() {
 
 function Shell() {
   const t = useTheme();
-  const { st, user, status, setThemeMode } = useStore();
+  const { st, user, status } = useStore();
+  const { width } = useWindowDimensions();
+  const wide = width >= 900;
   const [route, setRoute] = useState('');
+  const [menu, setMenu] = useState(false);
   const scroll = useRef(null);
   const fade = useRef(new Animated.Value(1)).current;
   useCalendarSync();
   const go = useCallback((r) => {
+    setMenu(false);
     setRoute(ROUTES[r] ? r : '');
     if (scroll.current) scroll.current.scrollTo({ y: 0, animated: false });
   }, []);
@@ -102,62 +112,99 @@ function Shell() {
   }, [route]);
   useEffect(() => {
     const sub = BackHandler.addEventListener('hardwareBackPress', () => {
+      if (menu) { setMenu(false); return true; }
       if (route) { go(''); return true; }
       return false;
     });
     return () => sub.remove();
-  }, [route, go]);
-  const [title, Screen] = ROUTES[route];
+  }, [route, go, menu]);
+  const [title, Screen] = ROUTES[route] || ROUTES[''];
   const dotColor = status === 'on' ? t.grn : status === 'err' ? t.red : status === 'slow' ? t.yel : t.mute;
   const hidden = st.prefs.hidden || [];
-  const navKeys = Object.keys(ROUTES).filter((k) => k !== 'profil' && !hidden.includes(k));
+  const navKeys = Object.keys(ROUTES).filter((k) => !hidden.includes(k));
+  const tabs = TAB_ORDER.filter((k) => !hidden.includes(k)).slice(0, 4);
   const display = (st.prefs.name || '').trim() || (user && user.email ? user.email.split('@')[0] : 'Profil');
+  const NavItem = ({ k, compact }) => {
+    const on = k === route;
+    return (
+      <Pressable onPress={() => go(k)} accessibilityRole="button" accessibilityState={{ selected: on }} accessibilityLabel={ROUTES[k][0]}
+        style={({ pressed }) => (compact
+          ? { flex: 1, alignItems: 'center', justifyContent: 'center', gap: 3, minHeight: 54, opacity: pressed ? 0.6 : 1 }
+          : { flexDirection: 'row', alignItems: 'center', gap: 12, minHeight: 42, paddingHorizontal: 12, borderRadius: t.rs, backgroundColor: on ? alpha(t.acc, 0.13) : pressed ? t.card2 : 'transparent' })}>
+        <Ionicons name={on ? ROUTES[k][2].replace('-outline', '') : ROUTES[k][2]} size={compact ? 23 : 20} color={on ? t.acc : t.mute} />
+        <Text style={{ fontSize: compact ? 11.5 : 15, fontWeight: on ? '800' : '600', color: on ? t.acc : compact ? t.mute : t.ink }} numberOfLines={1}>{ROUTES[k][0]}</Text>
+      </Pressable>
+    );
+  };
   return (
     <GoCtx.Provider value={go}>
       <FormsProvider>
         <Watchers />
         <SafeAreaView edges={['top', 'left', 'right', 'bottom']} style={{ flex: 1, backgroundColor: t.bg }}>
           <StatusBar style={t.dark ? 'light' : 'dark'} />
-          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, paddingHorizontal: 10, paddingVertical: 6, borderBottomWidth: t.bw ? 1 : 0, borderColor: t.line }}>
-            {route ? (
-              <>
-                <IconBtn name="chevron-back" label="Ana sayfaya dön" onPress={() => go('')} />
-                <T s={19} w="800" numberOfLines={1} style={{ flex: 1 }}>{title}</T>
-              </>
-            ) : (
-              <Pressable onPress={() => go('profil')} accessibilityRole="button" accessibilityLabel="Profil ve ayarlar"
-                style={({ pressed }) => ({ flex: 1, flexDirection: 'row', alignItems: 'center', gap: 10, paddingVertical: 4, paddingHorizontal: 4, opacity: pressed ? 0.7 : 1 })}>
-                <View style={{ width: 38, height: 38, borderRadius: 19, backgroundColor: t.acc, alignItems: 'center', justifyContent: 'center' }}>
-                  <Text style={{ color: t.accI, fontWeight: '800', fontSize: 17 }}>{display.slice(0, 1).toUpperCase()}</Text>
+          <View style={{ flex: 1, flexDirection: 'row' }}>
+            {wide ? (
+              <View style={{ width: 232, backgroundColor: t.card, borderRightWidth: 1, borderColor: t.line, paddingVertical: 16, paddingHorizontal: 10, gap: 2 }}>
+                <Text style={{ fontSize: 19, fontWeight: '800', color: t.ink, paddingHorizontal: 12, paddingBottom: 14 }}>Planlayıcı</Text>
+                {navKeys.map((k) => <NavItem key={k} k={k} />)}
+              </View>
+            ) : null}
+            <View style={{ flex: 1 }}>
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, paddingHorizontal: 10, paddingVertical: 6 }}>
+                {route ? (
+                  <T s={19} w="800" numberOfLines={1} style={{ flex: 1, paddingLeft: 6 }}>{title}</T>
+                ) : (
+                  <Pressable onPress={() => go('profil')} accessibilityRole="button" accessibilityLabel="Ayarlar ve profil"
+                    style={({ pressed }) => ({ flex: 1, flexDirection: 'row', alignItems: 'center', gap: 10, paddingVertical: 4, paddingHorizontal: 4, opacity: pressed ? 0.7 : 1 })}>
+                    <View style={{ width: 38, height: 38, borderRadius: 19, backgroundColor: t.acc, alignItems: 'center', justifyContent: 'center' }}>
+                      <Text style={{ color: t.accI, fontWeight: '800', fontSize: 17 }}>{display.slice(0, 1).toUpperCase()}</Text>
+                    </View>
+                    <View style={{ flexShrink: 1 }}>
+                      <T s={16} w="800" numberOfLines={1}>{display}</T>
+                      <Text style={{ fontSize: 12, color: t.mute }}>Ayarlar ve temalar</Text>
+                    </View>
+                  </Pressable>
+                )}
+                <MiniTimer route={route} go={go} />
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, paddingHorizontal: 6 }} accessibilityLabel={STATUS[status]}>
+                  <View style={{ width: 8, height: 8, borderRadius: 4, backgroundColor: dotColor }} />
+                  {width > 380 ? <Text style={{ fontSize: 12.5, color: t.mute }}>{STATUS[status]}</Text> : null}
                 </View>
-                <View style={{ flexShrink: 1 }}>
-                  <T s={16} w="800" numberOfLines={1}>{display}</T>
-                  <Text style={{ fontSize: 12, color: t.mute }}>Profil · temalar · ayarlar</Text>
+              </View>
+              <ScrollView ref={scroll} style={{ flex: 1 }} keyboardShouldPersistTaps="handled"
+                contentContainerStyle={{ padding: 16, paddingTop: 4, paddingBottom: wide ? 60 : 32, width: '100%', maxWidth: 1040, alignSelf: 'center' }}>
+                <Animated.View style={{ opacity: fade }}>
+                  <Screen />
+                </Animated.View>
+              </ScrollView>
+              {!wide ? (
+                <View style={{ flexDirection: 'row', borderTopWidth: 1, borderColor: t.line, backgroundColor: t.card, paddingHorizontal: 4, paddingVertical: 4 }}>
+                  {tabs.map((k) => <NavItem key={k} k={k} compact />)}
+                  <Pressable onPress={() => setMenu(true)} accessibilityRole="button" accessibilityLabel="Tüm bölümler"
+                    style={({ pressed }) => ({ flex: 1, alignItems: 'center', justifyContent: 'center', gap: 3, minHeight: 54, opacity: pressed ? 0.6 : 1 })}>
+                    <Ionicons name={tabs.includes(route) ? 'grid-outline' : 'grid'} size={22} color={tabs.includes(route) ? t.mute : t.acc} />
+                    <Text style={{ fontSize: 11.5, fontWeight: tabs.includes(route) ? '600' : '800', color: tabs.includes(route) ? t.mute : t.acc }}>Menü</Text>
+                  </Pressable>
                 </View>
-              </Pressable>
-            )}
-            <MiniTimer route={route} go={go} />
-            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
-              <View style={{ width: 8, height: 8, borderRadius: 4, backgroundColor: dotColor }} />
-              <Text style={{ fontSize: 12.5, color: t.mute }}>{STATUS[status]}</Text>
+              ) : null}
             </View>
-            <IconBtn name={t.dark ? 'sunny-outline' : 'moon-outline'} label="Aydınlık / karanlık mod" onPress={() => setThemeMode(t.dark ? 'light' : 'dark')} />
           </View>
-          {route ? (
-            <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ flexGrow: 0, borderBottomWidth: t.bw ? 1 : 0, borderColor: t.line }} contentContainerStyle={{ gap: 6, paddingHorizontal: 10, paddingVertical: 8 }}>
-              {navKeys.map((k) => (
-                <Pressable key={k} onPress={() => go(k)} style={{ minHeight: 36, paddingHorizontal: 14, borderRadius: 999, borderWidth: 1, justifyContent: 'center', backgroundColor: k === route ? t.ink : t.card, borderColor: k === route ? t.ink : t.line }}>
-                  <Text style={{ fontWeight: '700', fontSize: 14, color: k === route ? t.bg : t.ink }}>{ROUTES[k][0]}</Text>
-                </Pressable>
-              ))}
-            </ScrollView>
-          ) : null}
-          <ScrollView ref={scroll} style={{ flex: 1 }} keyboardShouldPersistTaps="handled"
-            contentContainerStyle={{ padding: 16, paddingBottom: 60, width: '100%', maxWidth: 1120, alignSelf: 'center' }}>
-            <Animated.View style={{ opacity: fade }}>
-              <Screen />
-            </Animated.View>
-          </ScrollView>
+          <Sheet visible={menu} title="Tüm bölümler" onClose={() => setMenu(false)}>
+            <View style={{ flexDirection: 'row', flexWrap: 'wrap', marginHorizontal: -4 }}>
+              {navKeys.map((k) => {
+                const on = k === route;
+                return (
+                  <View key={k} style={{ width: '33.333%', padding: 4 }}>
+                    <Pressable onPress={() => go(k)} style={({ pressed }) => ({ alignItems: 'center', gap: 6, paddingVertical: 16, paddingHorizontal: 4, borderRadius: t.rm, borderWidth: on ? 2 : 1, borderColor: on ? t.acc : t.line, backgroundColor: pressed ? t.card2 : t.card })}>
+                      <Ionicons name={ROUTES[k][2]} size={24} color={on ? t.acc : t.ink} />
+                      <Text style={{ fontSize: 13, fontWeight: '700', color: on ? t.acc : t.ink, textAlign: 'center' }} numberOfLines={1}>{ROUTES[k][0]}</Text>
+                    </Pressable>
+                  </View>
+                );
+              })}
+            </View>
+            {hidden.length ? <Text style={{ fontSize: 13, color: t.mute }}>Kapattığın bölümleri Ayarlar → Bölümleri aç / kapat'tan geri açabilirsin.</Text> : null}
+          </Sheet>
         </SafeAreaView>
       </FormsProvider>
     </GoCtx.Provider>

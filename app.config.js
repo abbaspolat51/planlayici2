@@ -11,7 +11,7 @@ module.exports = {
     name: 'Planlayıcı',
     slug: 'planlayici',
     ...(push.owner ? { owner: push.owner } : {}),
-    version: '2.1.0',
+    version: '2.2.0',
     orientation: 'default',
     icon: './assets/icon.png',
     userInterfaceStyle: 'automatic',
@@ -38,7 +38,6 @@ module.exports = {
     plugins: [
       ['expo-notifications', { color: '#2950E0', sounds: ['./assets/zil.wav'] }],
       ['expo-calendar', { calendarPermission: 'Planlayıcı, görevlerini ve takvim etkinliklerini eşitlemek için takvimine erişir.' }],
-      ['expo-audio', { microphonePermission: false, recordAudioAndroid: false }],
     ],
   },
 };

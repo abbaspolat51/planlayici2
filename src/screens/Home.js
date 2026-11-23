@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, Pressable, useWindowDimensions } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useStore } from '../store';
 import { useTheme, alpha, lvlColor, lvlText, shadow } from '../theme';
-import { T, Mute, H3, Card, Btn, Row, Grid, Bar, Empty, ListRow } from '../ui';
+import { T, Mute, H3, Card, Btn, Row, Grid, Bar, Empty, ListRow, Switch, IconBtn } from '../ui';
 import { TimerCard, WeekProgram, NotifCard, TaskRow, DailyRow, useGo, useForms } from '../components';
 import { today, addDays, AY, GUN, num, tl, hm, fday, ftot, lvl, LV, streak, balance, byPri, isTime } from '../logic';
 import { useGroups, GROUP_TYPES } from '../groups';
+import { AYETLER, HADISLER, randomPair } from '../ilham';
+import { GoalsMini } from './Goals';
 
 export const TILES = [
   ['gorevler', 'Görevler', 'checkbox-outline'],
@@ -14,11 +16,41 @@ export const TILES = [
   ['takvim', 'Takvim', 'calendar-outline'],
   ['yemek', 'Yemek takibi', 'nutrition-outline'],
   ['calisma', 'Çalışma', 'timer-outline'],
+  ['hedef', 'Hedefler', 'battery-half-outline'],
   ['ambar', 'Ders ambarı', 'folder-open-outline'],
   ['para', 'Para takibi', 'wallet-outline'],
   ['kitap', 'Kitaplarım', 'book-outline'],
   ['grup', 'Gruplar', 'people-outline'],
 ];
+
+// Günün ayeti ve hadisi köşesi
+export function IlhamCard() {
+  const t = useTheme();
+  const [pair, setPair] = useState(() => randomPair());
+  const a = AYETLER[pair.a], h = HADISLER[pair.h];
+  const Block = ({ label, icon, text, src }) => (
+    <View style={{ gap: 6 }}>
+      <Row style={{ gap: 6 }}>
+        <Ionicons name={icon} size={15} color={t.acc} />
+        <Text style={{ fontSize: 13, fontWeight: '800', color: t.acc }}>{label}</Text>
+      </Row>
+      <Text style={{ fontSize: 16.5, lineHeight: 25, color: t.ink, fontWeight: '500' }}>{'“' + text + '”'}</Text>
+      <Text style={{ fontSize: 13, color: t.mute, fontWeight: '600' }}>{src}</Text>
+    </View>
+  );
+  return (
+    <Card bg={alpha(t.acc, t.dark ? 0.12 : 0.07)} border={alpha(t.acc, 0.3)}>
+      <Row wrap={false}>
+        <T s={15} w="800" style={{ flex: 1 }}>Günün ayeti ve hadisi</T>
+        <IconBtn name="shuffle-outline" label="Başka bir ayet ve hadis göster" color={t.acc} onPress={() => setPair((p) => randomPair(p))} />
+      </Row>
+      <Block label="Ayet" icon="book-outline" text={a[0]} src={'Kur’ân-ı Kerîm, ' + a[1]} />
+      <View style={{ height: 1, backgroundColor: alpha(t.acc, 0.2) }} />
+      <Block label="Hadis" icon="chatbubble-ellipses-outline" text={h[0]} src={h[1] + ' · Riyâzü’s-Sâlihîn'} />
+      <Mute s={12}>Anlamlar sade Türkçeyle aktarılmıştır; kelimesi kelimesine meal değildir.</Mute>
+    </Card>
+  );
+}
 
 export function CalorieCard() {
   const t = useTheme();
@@ -85,8 +117,12 @@ export default function Home() {
     kitap: rd ? rd.title : 'Kitap ekle',
     grup: G && G.list.length ? G.list.length + ' grup' : 'Grup kur ya da katıl',
   };
+  stats.hedef = st.goals.items.length ? st.goals.items.length + ' hedef' : 'Hedef koy';
   const tiles = TILES.filter(([k]) => !hidden.includes(k));
-  const tileCols = width < 600 ? 2 : width < 900 ? 4 : Math.min(tiles.length, 9);
+  const tileCols = width < 600 ? 3 : width < 900 ? 5 : Math.min(tiles.length, 10);
+  const R0 = hidden.includes('rutin') ? [] : st.routines.items;
+  const tot = R0.length + daily.length;
+  const doneN = R0.filter((r) => r.done.includes(td)).length + daily.filter((x) => (x.doneOn || []).includes(td)).length;
   const cards = [
     H.due ? (
       <Card key="due">
@@ -108,13 +144,6 @@ export default function Home() {
         ))}
       </Card>
     ) : null,
-    H.daily ? (
-      <Card key="daily">
-        <Row style={{ justifyContent: 'space-between' }}><H3>Günlük işler</H3><Btn sm title="Tümü" onPress={() => go('gorevler')} /></Row>
-        {daily.length ? daily.map((x) => <DailyRow key={x.id} x={x} />) : <Empty text="Görevler sayfasındaki “Günlük İşler” klasörüne ekleyebilirsin." />}
-      </Card>
-    ) : null,
-    H.routines && !hidden.includes('rutin') ? <RoutinesToday key="routines" /> : null,
     H.groups && G && G.list.length && !hidden.includes('grup') ? (
       <Card key="groups">
         <Row style={{ justifyContent: 'space-between' }}><H3>Gruplarım</H3><Btn sm title="Gruplar" onPress={() => go('grup')} /></Row>
@@ -134,8 +163,15 @@ export default function Home() {
     <View style={{ gap: 16 }}>
       <View>
         <Mute>{GUN[n.getDay()]}</Mute>
-        <T s={44} w="800" style={{ letterSpacing: -1 }}>{n.getDate() + ' ' + AY[n.getMonth()]}</T>
+        <T s={46} w="800" style={{ letterSpacing: -1.5 }}>{n.getDate() + ' ' + AY[n.getMonth()]}</T>
+        {tot ? (
+          <Row wrap={false} style={{ marginTop: 8, gap: 12 }}>
+            <View style={{ flex: 1, maxWidth: 260 }}><Bar pct={(doneN / tot) * 100} h={8} /></View>
+            <Mute><Text style={{ fontWeight: '800', color: t.ink }}>{doneN + '/' + tot}</Text>{' bugün tamam'}</Mute>
+          </Row>
+        ) : null}
       </View>
+      {H.ilham ? <IlhamCard /> : null}
       {!configured ? (
         <Card bg={alpha(t.yel, 0.15)} border={alpha(t.yel, 0.5)}>
           <T w="700">Eşitleme henüz kurulmadı</T>
@@ -148,18 +184,18 @@ export default function Home() {
           {H.cal && !hidden.includes('yemek') ? <CalorieCard /> : null}
         </Grid>
       ) : null}
+      {H.today ? <TodayList routines={R0} daily={daily} /> : null}
+      {H.goals && !hidden.includes('hedef') ? <GoalsMini /> : null}
       {H.tiles && tiles.length ? (
         <View style={{ flexDirection: 'row', flexWrap: 'wrap', marginHorizontal: -6, rowGap: 12 }}>
           {tiles.map(([k, l, ic]) => (
             <View key={k} style={{ width: 100 / tileCols + '%', paddingHorizontal: 6 }}>
               <Pressable onPress={() => go(k)} accessibilityRole="button"
-                style={({ pressed }) => [{ minHeight: 124, padding: 14, borderRadius: t.r, borderWidth: t.bw, borderColor: pressed ? t.acc : t.line, backgroundColor: t.card, justifyContent: 'space-between', gap: 10, transform: [{ scale: pressed && t.soft ? 0.96 : 1 }] }, shadow(t)]}>
-                <View style={{ width: 44, height: 44, borderRadius: t.soft ? 22 : 12, backgroundColor: alpha(t.acc, 0.14), alignItems: 'center', justifyContent: 'center' }}>
-                  <Ionicons name={ic} size={23} color={t.acc} />
-                </View>
+                style={({ pressed }) => [{ minHeight: 96, padding: 12, borderRadius: t.rm, borderWidth: t.bw, borderColor: pressed ? t.acc : t.line, backgroundColor: t.card, justifyContent: 'space-between', gap: 8, transform: [{ scale: pressed && t.soft ? 0.96 : 1 }] }, shadow(t)]}>
+                <Ionicons name={ic} size={22} color={t.acc} />
                 <View>
-                  <T w="800">{l}</T>
-                  <Mute s={13} numberOfLines={2}>{stats[k]}</Mute>
+                  <T s={14} w="700" numberOfLines={1}>{l}</T>
+                  <Mute s={12} numberOfLines={1}>{stats[k]}</Mute>
                 </View>
               </Pressable>
             </View>
@@ -168,37 +204,44 @@ export default function Home() {
       ) : null}
       {H.week ? <WeekProgram /> : null}
       {cards.length ? <Grid min={310}>{cards}</Grid> : null}
-      {!cards.length && !H.week && !H.tiles && !H.timer && !H.cal ? (
+      {!cards.length && !H.week && !H.tiles && !H.timer && !H.cal && !H.today && !H.ilham ? (
         <Card><Mute>Ana ekranda gösterilecek bölüm seçmedin. Sağ üstteki profil düğmesinden açabilirsin.</Mute></Card>
       ) : null}
     </View>
   );
 }
 
-function RoutinesToday() {
+// Bugün yapılacaklar: rutinler ve günlük işler, hepsi switch
+function TodayList({ routines, daily }) {
   const t = useTheme();
-  const { st, update } = useStore();
+  const { update } = useStore();
   const go = useGo();
-  const td = today(), R = st.routines.items;
+  const forms = useForms();
+  const td = today();
   return (
     <Card>
-      <Row style={{ justifyContent: 'space-between' }}><H3>Bugünkü rutinler</H3><Btn sm title="Zincirler" onPress={() => go('rutin')} /></Row>
-      {R.length ? R.map((r, i) => {
+      <Row style={{ justifyContent: 'space-between' }}>
+        <H3>Bugün yapılacaklar</H3>
+        <Btn sm icon="add" title="Günlük iş" onPress={() => forms.open('task', { cat: 'daily' })} />
+      </Row>
+      {routines.map((r) => {
         const on = r.done.includes(td);
         return (
-          <ListRow key={r.id} last={i === R.length - 1}>
-            <View style={{ width: 14, height: 14, borderRadius: 7, backgroundColor: r.color }} />
-            <View style={{ flex: 1 }}>
-              <T w="700">{r.name}</T>
-              <Mute>{streak(r.done) + ' günlük seri'}</Mute>
-            </View>
-            <Btn sm kind={on ? 'ok' : undefined} title={on ? 'Yapıldı' : 'Yaptım'} onPress={() => update('routines', (d) => {
+          <View key={r.id} style={{ flexDirection: 'row', alignItems: 'center', gap: 10, borderRadius: t.rm, backgroundColor: t.card2, borderWidth: t.bw ? 1 : 0, borderColor: t.line, overflow: 'hidden', minHeight: 60, paddingRight: 2 }}>
+            <View style={{ width: 4, alignSelf: 'stretch', backgroundColor: r.color }} />
+            <Pressable style={{ flex: 1, paddingVertical: 6 }} onPress={() => go('rutin')}>
+              <T s={15.5} w="600" c={on ? t.mute : t.ink} style={{ textDecorationLine: on ? 'line-through' : 'none' }}>{r.name}</T>
+              <Mute s={13}>{'Rutin · ' + streak(r.done) + ' günlük seri'}</Mute>
+            </Pressable>
+            <Switch value={on} color={r.color} label={r.name + ': bugün yapıldı'} onChange={() => update('routines', (d) => {
               const x = d.items.find((y) => y.id === r.id); if (!x) return;
               const k = x.done.indexOf(td); if (k >= 0) x.done.splice(k, 1); else x.done.push(td);
             })} />
-          </ListRow>
+          </View>
         );
-      }) : <Empty text="Henüz rutin yok." />}
+      })}
+      {daily.map((x) => <DailyRow key={x.id} x={x} />)}
+      {!routines.length && !daily.length ? <Empty text="Rutin ya da günlük iş ekle; her gün buradan tek dokunuşla açarsın." /> : null}
     </Card>
   );
 }

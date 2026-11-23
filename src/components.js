@@ -6,7 +6,7 @@ import { useStore } from './store';
 import { useTheme, alpha, priColor, priText } from './theme';
 import {
   T, Mute, H2, H3, Card, Btn, Chip, Row, Field, TimeField, DateField, Seg, ColorPick, DayPick, Check,
-  Sheet, FormFooter, Empty, ListRow, Bar, useUI,
+  Sheet, FormFooter, Empty, ListRow, Bar, Switch, IconBtn, useUI,
 } from './ui';
 import {
   PRI, RC, BST, DN, today, fmtD, rid, isTime, isDate, toMin, dowOf, pad, leftInfo, tmState, tmDur, mmss,
@@ -28,15 +28,17 @@ export function useNow(ms = 500) {
 // ---------- görev satırları ----------
 const catName = (st, id) => (st.tasks.cats.find((c) => c.id === id) || { name: 'Genel' }).name;
 
-function CheckBox({ on, color, onPress, label }) {
+// Satır: solda öncelik rengi şeridi, ortada başlık, sağda switch
+function RowShell({ color, done, children, sw }) {
+  const t = useTheme();
   return (
-    <Pressable onPress={onPress} accessibilityRole="checkbox" accessibilityState={{ checked: on }} accessibilityLabel={label} hitSlop={6}
-      style={{ width: 34, height: 34, borderRadius: 10, borderWidth: 2, borderColor: color, backgroundColor: on ? color : 'transparent', alignItems: 'center', justifyContent: 'center' }}>
-      {on ? <Ionicons name="checkmark" size={20} color="#fff" /> : null}
-    </Pressable>
+    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, paddingRight: 2, borderRadius: t.rm, backgroundColor: t.card2, borderWidth: t.bw ? 1 : 0, borderColor: t.line, overflow: 'hidden', minHeight: 60 }}>
+      <View style={{ width: 4, alignSelf: 'stretch', backgroundColor: color, opacity: done ? 0.45 : 1 }} />
+      {children}
+      {sw}
+    </View>
   );
 }
-
 function Meta({ items }) {
   return <View style={{ flexDirection: 'row', flexWrap: 'wrap', columnGap: 10, rowGap: 2 }}>{items.filter(Boolean)}</View>;
 }
@@ -56,21 +58,19 @@ export function TaskRow({ x, rank, inFolder }) {
     if (x.ext === 'grp' && G) G.markAssign(x.extKey, !x.done);
   };
   return (
-    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, padding: 8, borderRadius: t.rm, backgroundColor: alpha(c, 0.11), borderWidth: 1, borderColor: alpha(c, 0.32), opacity: x.done ? 0.62 : 1 }}>
-      <Text style={{ width: 22, textAlign: 'center', fontWeight: '800', color: ct }}>{rank}</Text>
-      <CheckBox on={!!x.done} color={c} label="Tamamlandı" onPress={toggle} />
-      <Pressable style={{ flex: 1, minHeight: 44, justifyContent: 'center', gap: 2 }} onPress={() => forms.open('task', x)}>
-        <T s={15.5} w="700" style={{ textDecorationLine: x.done ? 'line-through' : 'none' }}>{x.title}</T>
+    <RowShell color={c} done={x.done} sw={<Switch value={!!x.done} onChange={toggle} label={x.done ? 'Tamamlandı, geri al' : 'Tamamlandı olarak işaretle'} />}>
+      <Pressable style={{ flex: 1, minHeight: 52, justifyContent: 'center', gap: 2, paddingVertical: 6 }} onPress={() => forms.open('task', x)}>
+        <T s={15.5} w="600" c={x.done ? t.mute : t.ink} style={{ textDecorationLine: x.done ? 'line-through' : 'none' }}>{x.title}</T>
         <Meta items={[
           <Text key="p" style={{ fontSize: 13, fontWeight: '800', color: ct }}>{cal ? 'Etkinlik' : PRI[x.p]}</Text>,
           !inFolder && <Text key="c" style={{ fontSize: 13, color: t.mute }}>{catName(st, x.cat)}</Text>,
           (x.start || x.end) && <Text key="r" style={{ fontSize: 13, color: t.mute }}>{x.start && x.end && x.start === x.end ? fmtD(x.end) : (x.start ? fmtD(x.start) : '…') + ' → ' + (x.end ? fmtD(x.end) : '…')}</Text>,
           left && !cal && <Text key="l" style={{ fontSize: 13, fontWeight: left.n <= 2 ? '800' : '400', color: left.n < 0 ? t.red : left.n <= 2 ? t.yelT : t.mute }}>{left.text}</Text>,
           rem && <Text key="b" style={{ fontSize: 13, color: t.mute }}>{rem}</Text>,
-          x.ext === 'grp' && <Text key="g" style={{ fontSize: 13, color: t.acc, fontWeight: '700' }}>Öğretmen atadı</Text>,
+          x.ext === 'grp' && <Text key="g" style={{ fontSize: 13, color: t.acc, fontWeight: '700' }}>{x.gtype === 'ekip' ? 'Ekip lideri atadı' : 'Öğretmen atadı'}</Text>,
         ]} />
       </Pressable>
-    </View>
+    </RowShell>
   );
 }
 
@@ -80,22 +80,21 @@ export function DailyRow({ x }) {
   const forms = useForms();
   const td = today(), on = (x.doneOn || []).includes(td), c = priColor(t, x.p);
   return (
-    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, padding: 8, borderRadius: t.rm, backgroundColor: alpha(c, 0.11), borderWidth: 1, borderColor: alpha(c, 0.32), opacity: on ? 0.62 : 1 }}>
-      <CheckBox on={on} color={c} label="Bugün yapıldı" onPress={() => update('tasks', (d) => {
+    <RowShell color={c} done={on} sw={<Switch value={on} label="Bugün yapıldı" onChange={() => update('tasks', (d) => {
         const y = d.items.find((i) => i.id === x.id); if (!y) return;
         const a = y.doneOn || []; const k = a.indexOf(td);
         if (k >= 0) a.splice(k, 1); else a.push(td);
         y.doneOn = a.slice(-120);
-      })} />
-      <Pressable style={{ flex: 1, minHeight: 44, justifyContent: 'center', gap: 2 }} onPress={() => forms.open('task', x)}>
-        <T s={15.5} w="700" style={{ textDecorationLine: on ? 'line-through' : 'none' }}>{x.title}</T>
+      })} />}>
+      <Pressable style={{ flex: 1, minHeight: 52, justifyContent: 'center', gap: 2, paddingVertical: 6 }} onPress={() => forms.open('task', x)}>
+        <T s={15.5} w="600" c={on ? t.mute : t.ink} style={{ textDecorationLine: on ? 'line-through' : 'none' }}>{x.title}</T>
         <Meta items={[
           <Text key="p" style={{ fontSize: 13, fontWeight: '800', color: priText(t, x.p) }}>{PRI[x.p]}</Text>,
           <Text key="h" style={{ fontSize: 13, color: t.mute }}>Her gün</Text>,
           isTime(x.rTime) && <Text key="b" style={{ fontSize: 13, color: t.mute }}>{'Bildirim ' + x.rTime}</Text>,
         ]} />
       </Pressable>
-    </View>
+    </RowShell>
   );
 }
 
@@ -133,22 +132,42 @@ export function TimerCard({ big }) {
   const S = st.study, s = tmState(S, now);
   const pct = s.dur ? Math.min(100, Math.max(0, (1 - s.rem / s.dur) * 100)) : 0;
   const ph = (s.ph === 'b' ? 'Mola' : 'Çalışma') + (s.idle ? ' · hazır' : !s.run ? ' · duraklatıldı' : '');
+  const col = s.ph === 'b' ? t.grn : t.acc;
   return (
-    <Card bg={t.acc} border={t.acc} style={{ alignItems: big ? 'center' : 'stretch' }}>
-      <Text style={{ color: t.accI, fontWeight: '700', opacity: 0.88 }}>{ph}</Text>
-      <Text style={{ color: t.accI, fontSize: big ? 84 : 68, fontWeight: '800', letterSpacing: -2, fontVariant: ['tabular-nums'], lineHeight: big ? 92 : 74 }}>{mmss(s.rem)}</Text>
-      <View style={{ height: 8, borderRadius: 8, backgroundColor: alpha(t.accI, 0.22), overflow: 'hidden', alignSelf: 'stretch', marginVertical: 6 }}>
-        <View style={{ width: pct + '%', height: '100%', backgroundColor: t.accI, borderRadius: 8 }} />
-      </View>
-      <Row style={{ justifyContent: big ? 'center' : 'flex-start' }}>
-        <Btn title={s.run ? 'Duraklat' : s.idle ? 'Başlat' : 'Devam'} onPress={p.toggle} color={t.accI} style={{ borderColor: t.accI }} />
-        <Btn title="Sıfırla" kind="inv" onPress={p.reset} />
-        <Btn title="Atla" kind="inv" onPress={p.skip} />
-        {!big ? <Btn title="Ayarlar" kind="inv" onPress={() => go('calisma')} /> : null}
+    <Card style={{ alignItems: big ? 'center' : 'stretch', gap: 8 }}>
+      <Row wrap={false} style={{ justifyContent: big ? 'center' : 'space-between' }}>
+        <View style={{ alignItems: big ? 'center' : 'flex-start', flexShrink: 1 }}>
+          <Text style={{ color: s.run ? col : t.mute, fontWeight: '700', fontSize: 13.5 }}>{ph + (S.subj ? ' · ' + S.subj : '')}</Text>
+          <Text style={{ color: t.ink, fontSize: big ? 84 : 50, fontWeight: '800', letterSpacing: -1.5, fontVariant: ['tabular-nums'], lineHeight: big ? 92 : 56 }}>{mmss(s.rem)}</Text>
+        </View>
+        {!big ? (
+          <Row wrap={false} style={{ gap: 2 }}>
+            <Btn kind="pri" title={s.run ? 'Duraklat' : s.idle ? 'Başlat' : 'Devam'} onPress={p.toggle} style={{ minWidth: 96 }} />
+          </Row>
+        ) : null}
       </Row>
-      <Text style={{ color: t.accI, opacity: 0.85, fontSize: 13.5 }}>
-        {S.work + ' dk çalışma + ' + S.brk + ' dk mola · ' + s.cyc + ' tur tamam' + (S.subj ? ' · ' + S.subj : '')}
-      </Text>
+      <View style={{ height: 6, borderRadius: 6, backgroundColor: t.card2, overflow: 'hidden', alignSelf: 'stretch' }}>
+        <View style={{ width: pct + '%', height: '100%', backgroundColor: col, borderRadius: 6 }} />
+      </View>
+      {big ? (
+        <>
+          <Row wrap={false} style={{ justifyContent: 'center', gap: 12, marginTop: 4 }}>
+            <IconBtn name="refresh-outline" label="Sıfırla" color={t.mute} onPress={p.reset} />
+            <Btn kind="pri" title={s.run ? 'Duraklat' : s.idle ? 'Başlat' : 'Devam'} onPress={p.toggle} style={{ minWidth: 150, minHeight: 52, borderRadius: 999 }} />
+            <IconBtn name="play-skip-forward-outline" label="Atla" color={t.mute} onPress={p.skip} />
+          </Row>
+          <Text style={{ color: t.mute, fontSize: 13, textAlign: 'center' }}>{S.work + ' dk çalışma + ' + S.brk + ' dk mola · ' + s.cyc + ' tur tamam'}</Text>
+        </>
+      ) : (
+        <Row wrap={false} style={{ justifyContent: 'space-between' }}>
+          <Text style={{ color: t.mute, fontSize: 13, flexShrink: 1 }}>{S.work + ' + ' + S.brk + ' dk · ' + s.cyc + ' tur tamam'}</Text>
+          <Row wrap={false} style={{ gap: 0 }}>
+            <IconBtn name="refresh-outline" label="Sıfırla" color={t.mute} onPress={p.reset} />
+            <IconBtn name="play-skip-forward-outline" label="Atla" color={t.mute} onPress={p.skip} />
+            <IconBtn name="options-outline" label="Pomodoro ayarları" color={t.mute} onPress={() => go('calisma')} />
+          </Row>
+        </Row>
+      )}
     </Card>
   );
 }
@@ -317,12 +336,12 @@ function ExtTaskSheet({ data, close }) {
   const cal = data.ext === 'cal';
   const when = (data.start && data.end && data.start !== data.end ? fmtD(data.start) + ' → ' + fmtD(data.end) : fmtD(data.end || data.start)) + (isTime(data.rTime) ? ' · ' + data.rTime : '');
   return (
-    <Sheet visible title={cal ? 'Telefon takviminden' : 'Öğretmenin atadığı görev'} onClose={close}>
+    <Sheet visible title={cal ? 'Telefon takviminden' : data.gtype === 'ekip' ? 'Ekip liderinin atadığı görev' : 'Öğretmenin atadığı görev'} onClose={close}>
       <T s={20} w="800">{data.title}</T>
       <Mute>{when}</Mute>
       {cal && data.alarms && data.alarms.length ? <Mute>{'Hatırlatıcılar: ' + data.alarms.map((m) => (m ? -m + ' dk önce' : 'başlarken')).join(', ')}</Mute> : null}
       {data.note ? <T>{data.note}</T> : null}
-      <Mute>{cal ? 'Bu etkinlik telefonunun takviminden geliyor; değiştirmek için takvim uygulamasını kullan, burada da güncellenir.' : 'Bu görevi öğretmenin atadı. Tamamlayınca işaretle; öğretmenin görür.'}</Mute>
+      <Mute>{cal ? 'Bu etkinlik telefonunun takviminden geliyor; değiştirmek için takvim uygulamasını kullan, burada da güncellenir.' : data.gtype === 'ekip' ? 'Bu görevi ekip liderin atadı. Tamamlayınca işaretle; ekip liderin görür.' : 'Bu görevi öğretmenin atadı. Tamamlayınca işaretle; öğretmenin görür.'}</Mute>
       <Row>
         <Btn kind="pri" icon={data.done ? 'arrow-undo-outline' : 'checkmark'} title={data.done ? 'Tamamlanmadı olarak işaretle' : 'Tamamlandı'} onPress={() => {
           update('tasks', (d) => { const y = d.items.find((i) => i.id === data.id); if (y) { y.done = !y.done; y.doneAt = y.done ? today() : null; } });

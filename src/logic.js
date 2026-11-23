@@ -79,7 +79,7 @@ export const RC = ['#2f5bea', '#e8590c', '#0ca678', '#ae3ec9', '#1098ad', '#d633
 export const BST = { oku: 'Okuyorum', sira: 'Okunacak', bitti: 'Bitti' };
 
 // ---------- veri şekli ----------
-export const KEYS = ['tasks', 'routines', 'food', 'study', 'library', 'money', 'books', 'week', 'prefs'];
+export const KEYS = ['tasks', 'routines', 'food', 'study', 'library', 'money', 'books', 'week', 'goals', 'prefs'];
 export const DEF = {
   tasks: () => ({ items: [], cats: [{ id: 'daily', name: 'Günlük İşler' }, { id: 'genel', name: 'Genel' }] }),
   routines: () => ({ items: [] }),
@@ -89,8 +89,9 @@ export const DEF = {
   money: () => ({ items: [], start: 0 }),
   books: () => ({ items: [] }),
   week: () => ({ items: [], from: 7, to: 23 }),
+  goals: () => ({ items: [] }),
   prefs: () => ({
-    theme: 'klasik', mode: 'system', name: '',
+    theme: 'sade', palette: 'tema', mode: 'system', name: '',
     home: { ...HOME_DEF }, hidden: [],
     calImport: true, calExport: true, calNotify: false, calIds: [], calSkip: [],
     groups: [],
@@ -98,9 +99,10 @@ export const DEF = {
 };
 // Ana ekrandaki bölümler (Profil > Ana ekran'dan açılıp kapatılır)
 export const HOME_SECTIONS = [
+  ['ilham', 'Günün ayeti ve hadisi'], ['today', 'Bugün yapılacaklar'], ['goals', 'Hedeflerim (piller)'],
   ['timer', 'Pomodoro sayacı'], ['cal', 'Kalori kartı'], ['tiles', 'Bölüm düğmeleri'], ['week', 'Haftalık program'],
-  ['phone', 'Telefon takvimi (bugün)'], ['due', 'Yaklaşan son günler'], ['daily', 'Günlük işler'],
-  ['routines', 'Bugünkü rutinler'], ['groups', 'Gruplarım'], ['notif', 'Bildirimler'],
+  ['phone', 'Telefon takvimi (bugün)'], ['due', 'Yaklaşan son günler'],
+  ['groups', 'Gruplarım'], ['notif', 'Bildirimler'],
 ];
 const HOME_DEF = Object.fromEntries(HOME_SECTIONS.map(([k]) => [k, true]));
 export function norm(k, v) {
@@ -117,9 +119,15 @@ export function norm(k, v) {
   if (k === 'study') o.log = o.log || {};
   if (k === 'food') o.days = o.days || {};
   if (k === 'prefs') {
+    // 2.2: yeni sade arayüz bir kez varsayılan olur; sonra kullanıcı istediği temayı seçer
+    if (!o.v22) { o.theme = 'sade'; o.v22 = true; }
     o.home = { ...HOME_DEF, ...(o.home || {}) };
     for (const a of ['hidden', 'calIds', 'calSkip', 'groups']) o[a] = Array.isArray(o[a]) ? o[a] : [];
     o.calSkip = o.calSkip.slice(-500);
+  }
+  if (k === 'goals') {
+    o.items = (Array.isArray(o.items) ? o.items : []).filter((g) => g && g.id);
+    o.items.forEach((g) => { g.logs = Array.isArray(g.logs) ? g.logs : []; g.target = +g.target || 1; });
   }
   if (k === 'week') {
     o.items = (o.items || []).filter((w) => w && Array.isArray(w.days));
@@ -255,6 +263,49 @@ export const whenTxt = (ms) => {
   return (ds === t ? 'Bugün' : ds === addDays(t, 1) ? 'Yarın' : fmtD(ds)) + ' ' + pad(d.getHours()) + ':' + pad(d.getMinutes());
 };
 
+// ---------- hedefler ----------
+export const PERIODS = { week: 'Haftalık', month: 'Aylık', year: 'Yıllık' };
+// [anahtar, ad, kısa ad, hızlı ekleme düğmeleri]
+export const UNITS = {
+  saat: ['Saat', 'sa', [[60, '+1 saat'], [30, '+30 dk']]],
+  sayfa: ['Sayfa', 'sayfa', [[10, '+10'], [1, '+1']]],
+  adet: ['Adet', 'adet', [[1, '+1'], [5, '+5']]],
+  km: ['Kilometre', 'km', [[1, '+1 km'], [5, '+5 km']]],
+};
+// Dönemin ilk ve son günü
+export function periodRange(period, d = today()) {
+  const x = parse(d);
+  if (period === 'week') return [weekStart(d), addDays(weekStart(d), 6)];
+  if (period === 'month') return [ymd(new Date(x.getFullYear(), x.getMonth(), 1)), ymd(new Date(x.getFullYear(), x.getMonth() + 1, 0))];
+  return [x.getFullYear() + '-01-01', x.getFullYear() + '-12-31'];
+}
+// Hedefin bu dönemdeki ilerlemesi. Saat hedeflerinde değerler dakika olarak tutulur.
+export function goalProgress(st, g) {
+  const [a, b] = periodRange(g.period);
+  let v = 0;
+  for (const l of g.logs || []) if (l.d >= a && l.d <= b) v += +l.v || 0;
+  // Pomodoro ile bağlıysa çalışma süresi de sayılır
+  if (g.unit === 'saat' && g.subj) {
+    const L = (st.study && st.study.log) || {};
+    for (const d of Object.keys(L)) {
+      if (d < a || d > b) continue;
+      v += g.subj === '*' ? +L[d].m || 0 : +((L[d].by || {})[g.subj]) || 0;
+    }
+  }
+  const done = g.unit === 'saat' ? v / 60 : v;
+  const pct = g.target ? (done / g.target) * 100 : 0;
+  const left = diffDays(today(), b) + 1;
+  const need = Math.max(0, g.target - done);
+  return { done, pct, left, need, perDay: left > 0 ? need / left : need, from: a, to: b };
+}
+export const fmtAmount = (unit, v) => {
+  if (unit === 'saat') {
+    const m = Math.round(v * 60);
+    return m >= 60 ? (Math.round(v * 10) / 10).toString().replace('.', ',') + ' sa' : m + ' dk';
+  }
+  return num(v) + ' ' + (UNITS[unit] || UNITS.adet)[1];
+};
+
 // ---------- grup istatistikleri ----------
 // [anahtar, ad, bugün alanı, hafta alanı, birim]
 export const MODULES = [
@@ -280,13 +331,19 @@ export function myStats(st) {
       if (x.doneAt >= ws) tasksWeek++;
     }
   }
-  return { day: td, week: ws, studyToday: (L[td] || {}).m || 0, studyWeek, pagesToday, pagesWeek, streak: streakBest, routinesToday, tasksToday, tasksWeek };
+  // Bu haftanın günlük çalışma dakikaları (Pzt → Paz) ve şu an çalışıp çalışmadığım
+  const study7 = Array.from({ length: 7 }, (_, i) => (L[addDays(ws, i)] || {}).m || 0);
+  const T = st.study.timer;
+  const live = T && T.run && T.end ? { ph: T.phase, end: T.end, subj: T.subj || '' } : null;
+  return { day: td, week: ws, studyToday: (L[td] || {}).m || 0, studyWeek, study7, live, pagesToday, pagesWeek, streak: streakBest, routinesToday, tasksToday, tasksWeek };
 }
 // Başka günden kalan "bugün" değerlerini sıfırla
 export function freshStats(m) {
   const td = today(), ws = weekStart(td), s = { ...(m || {}) };
   if (s.day !== td) { s.studyToday = 0; s.pagesToday = 0; s.routinesToday = 0; s.tasksToday = 0; }
-  if (s.week !== ws) { s.studyWeek = 0; s.pagesWeek = 0; s.tasksWeek = 0; }
+  if (s.week !== ws) { s.studyWeek = 0; s.pagesWeek = 0; s.tasksWeek = 0; s.study7 = []; }
+  if (s.live && s.live.end < Date.now()) s.live = null;
+  if (!Array.isArray(s.study7)) s.study7 = [];
   return s;
 }
 export const groupCode = () => {

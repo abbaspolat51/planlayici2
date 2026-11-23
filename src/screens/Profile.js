@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, Pressable, Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useStore } from '../store';
-import { useTheme, alpha, THEMES, THEME_IDS, buildTheme, shadow } from '../theme';
+import { useTheme, alpha, THEMES, THEME_IDS, PALETTES, PALETTE_IDS, buildTheme, shadow } from '../theme';
 import { T, Mute, H2, H3, Card, Btn, Chip, Row, Grid, Field, Seg, Check, useUI } from '../ui';
 import { NotifCard } from '../components';
 import { useGroups } from '../groups';
@@ -14,7 +14,8 @@ import { testPomodoro, pushProjectId, nativeNotifications } from '../notificatio
 function ThemeCard({ id, on, onPress }) {
   const t = useTheme();
   const dark = t.dark;
-  const p = buildTheme(id, dark);
+  const { st } = useStore();
+  const p = buildTheme(id, dark, (st.prefs || {}).palette);
   return (
     <Pressable onPress={onPress} accessibilityRole="radio" accessibilityState={{ checked: on }}
       style={({ pressed }) => [{ borderRadius: t.r, borderWidth: on ? 2 : t.bw || 1, borderColor: on ? t.acc : t.line, backgroundColor: t.card, padding: 12, gap: 10, transform: [{ scale: pressed && t.soft ? 0.97 : 1 }] }, shadow(t)]}>
@@ -129,10 +130,28 @@ export default function Profile() {
 
       <View style={{ gap: 10 }}>
         <H2>Temalar</H2>
-        <Grid min={220} gap={12}>
-          {THEME_IDS.map((id) => <ThemeCard key={id} id={id} on={(P.theme || 'klasik') === id} onPress={() => setTheme(id)} />)}
+        <Mute>Arayüzü seç; her temanın içinde renk paletini ayrıca değiştirebilirsin.</Mute>
+        <Grid min={200} gap={12}>
+          {THEME_IDS.map((id) => <ThemeCard key={id} id={id} on={(P.theme || 'sade') === id} onPress={() => setTheme(id)} />)}
         </Grid>
         <Card>
+          <H3>Renk paleti</H3>
+          <Mute s={13}>{'Düğmeler, switch\'ler, pomodoro ve vurgular bu renkle görünür. Şu an: ' + THEMES[t.id].name + ' · ' + PALETTES[t.pal].name}</Mute>
+          <Row style={{ gap: 10 }}>
+            {PALETTE_IDS.map((k) => {
+              const c = k === 'tema' ? buildTheme(P.theme, t.dark).acc : (t.dark ? PALETTES[k].dark : PALETTES[k].light);
+              const on = (P.palette || 'tema') === k;
+              return (
+                <Pressable key={k} onPress={() => update('prefs', (d) => { d.palette = k; })} accessibilityRole="radio" accessibilityState={{ checked: on }} accessibilityLabel={PALETTES[k].name}
+                  style={{ alignItems: 'center', gap: 4, width: 64 }}>
+                  <View style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: c, borderWidth: 3, borderColor: on ? t.ink : 'transparent', alignItems: 'center', justifyContent: 'center' }}>
+                    {on ? <Ionicons name="checkmark" size={20} color="#fff" /> : k === 'tema' ? <Ionicons name="color-palette-outline" size={18} color="#fff" /> : null}
+                  </View>
+                  <Text style={{ fontSize: 11.5, color: on ? t.ink : t.mute, fontWeight: on ? '800' : '500', textAlign: 'center' }} numberOfLines={1}>{PALETTES[k].name}</Text>
+                </Pressable>
+              );
+            })}
+          </Row>
           <Seg label="Görünüm" value={P.mode || 'system'} onChange={setThemeMode} options={[['system', 'Telefona göre'], ['light', 'Aydınlık'], ['dark', 'Karanlık']]} />
         </Card>
       </View>
@@ -145,8 +164,8 @@ export default function Profile() {
           ))}
         </Card>
         <Card>
-          <H3>Bölümler</H3>
-          <Mute>Kullanmadığın bölümleri gizle; ana ekrandan ve üstteki menüden kalkar. Verileri silinmez.</Mute>
+          <H3>Bölümleri aç / kapat</H3>
+          <Mute>Kullanmadığın bölümü kapat (örneğin Yemek takibi); menüden ve ana ekrandan kalkar. Verilerin silinmez, açınca geri gelir.</Mute>
           {TILES.map(([k, l]) => (
             <Check key={k} label={l} value={!P.hidden.includes(k)} onChange={(v) => update('prefs', (d) => { d.hidden = v ? d.hidden.filter((x) => x !== k) : [...d.hidden, k]; })} />
           ))}
@@ -166,7 +185,7 @@ export default function Profile() {
             <Card>
               <H3>Anlık bildirim (gruplar)</H3>
               <Mute>{G && G.token
-                ? 'Kurulu. Öğretmenin görev atadığında ya da grupta birlikte çalışma başladığında anında bildirim gelir.'
+                ? 'Kurulu. Öğretmenin ya da ekip liderin görev atadığında ya da grupta birlikte çalışma başladığında anında bildirim gelir.'
                 : pushProjectId()
                   ? 'Anlık bildirim için izin bekleniyor ya da Firebase anahtarı eksik (README, Anlık bildirim bölümü).'
                   : 'Henüz kurulmadı. Kurulana kadar grup bildirimleri uygulama açıkken gelir (README, Anlık bildirim bölümü).'}</Mute>

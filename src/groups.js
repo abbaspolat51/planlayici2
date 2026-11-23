@@ -1,4 +1,4 @@
-// Gruplar: arkadaşlarla yarış, öğretmen–öğrenci görev atama, birlikte pomodoro
+// Gruplar: grup çalışması / yarış, öğretmen–öğrenci ve ekip–lider görev atama, birlikte pomodoro
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
@@ -7,13 +7,22 @@ import {
 import { db } from './firebase';
 import { useStore } from './store';
 import { useUI } from './ui';
-import { myStats, groupCode, rid, today, fmtD } from './logic';
+import { myStats, groupCode, rid, today, fmtD, ymd } from './logic';
+
+const ymdOf = (ms) => ymd(new Date(ms));
 import { getPushToken, sendPush, notifyNow, ring, scheduleOne, cancelOne } from './notifications';
 
 const Ctx = createContext(null);
 export const useGroups = () => useContext(Ctx);
 
-export const GROUP_TYPES = { yaris: 'Arkadaşlarla yarış', ogretmen: 'Öğretmen – öğrenci' };
+export const GROUP_TYPES = { yaris: 'Grup çalışması', ogretmen: 'Öğretmen – öğrenci', ekip: 'Ekip – lider' };
+// Görev atayan rol: öğretmen ya da ekip lideri
+export const ASSIGN_TYPES = ['ogretmen', 'ekip'];
+export const LEAD_ROLE = { ogretmen: 'teacher', ekip: 'leader' };
+export const MEMBER_ROLE = { ogretmen: 'student', ekip: 'member', yaris: 'member' };
+export const ROLE_NAMES = { teacher: 'Öğretmen', student: 'Öğrenci', leader: 'Ekip lideri', member: 'Üye' };
+// Çalışma ve Görevler sayfasındaki düğmelerden Gruplar sayfasına geçerken ne açılacağı
+export const groupIntent = { current: null };
 
 export function GroupsProvider({ children }) {
   const { st, update, user, configured } = useStore();
@@ -72,8 +81,8 @@ export function GroupsProvider({ children }) {
   const mine = [];
   for (const code of codes) {
     const D = data[code];
-    if (!D || !D.g || D.missing || D.g.type !== 'ogretmen' || D.g.owner === uid || !D.assign) continue;
-    for (const a of D.assign) if (a.to === 'all' || a.to === uid) mine.push({ code, gname: D.g.name, a });
+    if (!D || !D.g || D.missing || !ASSIGN_TYPES.includes(D.g.type) || D.g.owner === uid || !D.assign) continue;
+    for (const a of D.assign) if (a.to === 'all' || a.to === uid) mine.push({ code, gname: D.g.name, gtype: D.g.type, a });
   }
   const loadedCodes = codes.filter((c) => data[c] && data[c].assign && data[c].g);
   const mirrorKey = JSON.stringify([mine.map((m) => [m.code, m.a.id, m.a.title, m.a.p, m.a.end, m.a.rTime, m.a.note, !!(m.a.done && m.a.done[uid])]), loadedCodes, codesKey]);
@@ -96,8 +105,10 @@ export function GroupsProvider({ children }) {
         if (!cat) d.cats.push({ id: catId, name: m.gname });
         else if (cat.name !== m.gname) cat.name = m.gname;
         const v = {
-          title: m.a.title, p: m.a.p || 2, end: m.a.end || '', rDate: '', rTime: m.a.rTime || '',
-          note: 'Öğretmen: ' + (m.a.byName || '') + (m.a.note ? ' · ' + m.a.note : ''),
+          // Son günü olmayan görev de takvime düşsün: atandığı gün
+          title: m.a.title, p: m.a.p || 2, end: m.a.end || (m.a.created ? ymdOf(m.a.created) : today()), rDate: '', rTime: m.a.rTime || '',
+          note: (m.gtype === 'ekip' ? 'Ekip lideri: ' : 'Öğretmen: ') + (m.a.byName || '') + (m.a.note ? ' · ' + m.a.note : ''),
+          gtype: m.gtype,
         };
         const x = d.items.find((y) => y.ext === 'grp' && y.extKey === key);
         if (x) Object.assign(x, v);
@@ -114,7 +125,7 @@ export function GroupsProvider({ children }) {
           if (seen.has(key)) continue;
           seen.add(key);
           changed = true;
-          if (!token && m.a.created && Date.now() - m.a.created < 3 * 864e5) notifyNow('Yeni görev: ' + m.a.title, m.gname + (m.a.end ? ' · son gün ' + fmtD(m.a.end) : ''));
+          if (!token && m.a.created && Date.now() - m.a.created < 3 * 864e5) notifyNow('Yeni görev: ' + m.a.title, m.gname + (m.a.end ? ' · son gün ' + fmtD(m.a.end) : '') + ' · takvimine eklendi');
         }
         if (changed) await AsyncStorage.setItem('pl-seen-assign', JSON.stringify([...seen].slice(-500)));
       } catch (e) { /* yok say */ }
@@ -132,7 +143,7 @@ export function GroupsProvider({ children }) {
       for (let i = 0; i < 5; i++) { const s = await getDoc(doc(db, 'groups', code)); if (!s.exists()) break; code = groupCode(); }
       await setDoc(doc(db, 'groups', code), {
         name: gname, type, modules, pomo: !!pomo, owner: uid, members: [uid],
-        names: { [uid]: ref.current.name }, roles: { [uid]: type === 'ogretmen' ? 'teacher' : 'member' },
+        names: { [uid]: ref.current.name }, roles: { [uid]: LEAD_ROLE[type] || 'member' },
         created: Date.now(), timer: null, work: 25, brk: 5,
       });
       addCode(code);
@@ -154,7 +165,7 @@ export function GroupsProvider({ children }) {
         await updateDoc(doc(db, 'groups', code), {
           members: arrayUnion(uid),
           ['names.' + uid]: ref.current.name,
-          ['roles.' + uid]: g.type === 'ogretmen' ? 'student' : 'member',
+          ['roles.' + uid]: MEMBER_ROLE[g.type] || 'member',
         });
       }
       addCode(code);
@@ -196,7 +207,7 @@ export function GroupsProvider({ children }) {
     try {
       await addDoc(collection(db, 'groups', code, 'assign'), { ...v, by: uid, byName: ref.current.name, created: Date.now(), done: {} });
       const toks = tokensOf(code, (id) => v.to === 'all' || v.to === id);
-      const ok = await sendPush(toks, 'Yeni görev: ' + v.title, ((D.g && D.g.name) || 'Grup') + (v.end ? ' · son gün ' + fmtD(v.end) : ''), { kind: 'assign', code });
+      const ok = await sendPush(toks, 'Yeni görev: ' + v.title, ((D.g && D.g.name) || 'Grup') + (v.end ? ' · son gün ' + fmtD(v.end) : '') + ' · takvimine eklendi', { kind: 'assign', code });
       return { pushed: ok && toks.length };
     } catch (e) {
       return 'Görev atanamadı.';

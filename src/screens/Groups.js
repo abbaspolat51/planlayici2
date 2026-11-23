@@ -4,19 +4,125 @@ import { Ionicons } from '@expo/vector-icons';
 import { useStore } from '../store';
 import { useTheme, alpha, shadow } from '../theme';
 import {
-  T, Mute, H2, H3, Card, Btn, Chip, Row, Grid, Empty, IconBtn, Field, DateField, TimeField, Seg, Check, Sheet, FormFooter, ListRow, Bar, useUI,
+  T, Mute, H2, H3, Card, Btn, Chip, Row, Grid, Empty, IconBtn, Field, DateField, TimeField, Seg, Check, Sheet, FormFooter, ListRow, Bar, Switch, useUI,
 } from '../ui';
-import { useNow } from '../components';
-import { useGroups, GROUP_TYPES } from '../groups';
-import { MODULES, PRE, PRI, freshStats, mmss, fmtD, hm, isTime, today, num } from '../logic';
+import { useNow, useGo } from '../components';
+import { useGroups, GROUP_TYPES, ASSIGN_TYPES, ROLE_NAMES, groupIntent } from '../groups';
+import { MODULES, PRE, PRI, DN, freshStats, mmss, fmtD, hm, isTime, today, addDays, num } from '../logic';
+
+const TYPE_ICON = { yaris: 'timer-outline', ogretmen: 'school-outline', ekip: 'people-outline' };
+const TYPE_DESC = {
+  yaris: 'Arkadaşlarınla aynı anda çalışın: birlikte pomodoro, herkes birbirinin çalışma saatini görür, istersen seçtiğin bölümlerde yarışın.',
+  ogretmen: 'Sen öğretmen olursun. Öğrencilerine görev atarsın; görev bildirim olarak gider ve takvimlerine işlenir. Öğrencilerinin çalışma saatlerini görürsün.',
+  ekip: 'Sen ekip lideri olursun. Ekibe görev dağıtırsın; görev bildirim olarak gider ve herkesin takvimine işlenir. Ekipteki herkes birbirinin çalışma saatini görür.',
+};
+
+// Çalışma ve Görevler sayfalarındaki rol düğmeleri
+export function RoleCard({ onPick }) {
+  const t = useTheme();
+  const go = useGo();
+  const G = useGroups();
+  const now = useNow(30000);
+  const open = (action, type) => {
+    if (onPick) return onPick(action, type);
+    groupIntent.current = { action, type };
+    go('grup');
+  };
+  let live = 0;
+  for (const x of (G && G.list) || []) for (const [id, m] of Object.entries(x.members || {})) if (id !== G.uid && m.live && m.live.end > now && m.live.ph === 'w') live++;
+  const rows = [
+    ['ogretmen', 'Öğretmen – öğrenci', 'Öğretmenim', 'Öğrenciyim'],
+    ['ekip', 'Ekip – lider', 'Ekip kur (lider)', 'Ekibe katıl'],
+    ['yaris', 'Grup çalışması', 'Grup kur', 'Koda katıl'],
+  ];
+  return (
+    <Card>
+      <Row style={{ justifyContent: 'space-between' }}>
+        <View style={{ flex: 1, minWidth: 160 }}>
+          <H3>Birlikte çalış</H3>
+          <Mute s={13}>{live ? 'Şu an gruplarında ' + live + ' kişi çalışıyor' : 'Rolünü seç: görev ver, görev al ya da birlikte çalış'}</Mute>
+        </View>
+        {G && G.list.length ? <Btn sm icon="people-outline" title={G.list.length + ' grubum'} onPress={() => go('grup')} /> : null}
+      </Row>
+      {rows.map(([type, title, lead, join], i) => (
+        <View key={type} style={{ gap: 8, paddingTop: 10, borderTopWidth: 1, borderColor: t.line }}>
+          <Row wrap={false} style={{ gap: 10 }}>
+            <View style={{ width: 34, height: 34, borderRadius: t.soft ? 17 : 10, backgroundColor: alpha(t.acc, 0.13), alignItems: 'center', justifyContent: 'center' }}>
+              <Ionicons name={TYPE_ICON[type]} size={19} color={t.acc} />
+            </View>
+            <T w="800" style={{ flex: 1 }}>{title}</T>
+          </Row>
+          <Row wrap={false}>
+            <Btn sm kind="pri" title={lead} onPress={() => open('create', type)} style={{ flex: 1 }} />
+            <Btn sm title={join} onPress={() => open('join', type)} style={{ flex: 1 }} />
+          </Row>
+        </View>
+      ))}
+    </Card>
+  );
+}
+
+// Herkes birbirinin çalışma saatini görür: bugün, bu hafta, şu an çalışıyor mu
+function StudyBoard({ g, members, uid }) {
+  const t = useTheme();
+  const now = useNow(15000);
+  const people = (g.members || []).map((id) => {
+    const m = (members || {})[id];
+    return { id, n: (m && m.name) || (g.names || {})[id] || 'Üye', s: freshStats(m) };
+  }).sort((a, b) => (b.s.studyWeek || 0) - (a.s.studyWeek || 0));
+  const top = Math.max(60, ...people.map((p) => Math.max(0, ...(p.s.study7 || []))));
+  const tdIdx = (new Date().getDay() + 6) % 7;
+  return (
+    <Card>
+      <Row style={{ justifyContent: 'space-between' }}><H3>Kim ne kadar çalıştı?</H3><Mute s={13}>bu hafta, Pzt → Paz</Mute></Row>
+      {people.map((p, i) => {
+        const L = p.s.live && p.s.live.end > now ? p.s.live : null;
+        const st7 = p.s.study7 || [];
+        return (
+          <View key={p.id} style={{ gap: 8, paddingTop: 10, borderTopWidth: i ? 1 : 0, borderColor: t.line }}>
+            <Row wrap={false}>
+              <View style={{ width: 34, height: 34, borderRadius: 17, backgroundColor: alpha(t.acc, 0.15), alignItems: 'center', justifyContent: 'center' }}>
+                <Text style={{ color: t.acc, fontWeight: '800' }}>{String(p.n).slice(0, 1).toUpperCase()}</Text>
+              </View>
+              <View style={{ flex: 1 }}>
+                <T w={p.id === uid ? '800' : '700'} numberOfLines={1}>{p.n + (p.id === uid ? ' (sen)' : '')}</T>
+                {L ? (
+                  <Row wrap={false} style={{ gap: 6 }}>
+                    <View style={{ width: 8, height: 8, borderRadius: 4, backgroundColor: L.ph === 'w' ? t.grn : t.yel }} />
+                    <Text style={{ fontSize: 12.5, fontWeight: '700', color: L.ph === 'w' ? t.grn : t.yelT }} numberOfLines={1}>
+                      {(L.ph === 'w' ? 'Şu an çalışıyor' : 'Molada') + ' · ' + Math.max(1, Math.ceil((L.end - now) / 60000)) + ' dk kaldı' + (L.subj ? ' · ' + L.subj : '')}
+                    </Text>
+                  </Row>
+                ) : <Mute s={12.5}>{'Bugün ' + hm(p.s.studyToday || 0)}</Mute>}
+              </View>
+              <View style={{ alignItems: 'flex-end' }}>
+                <T w="800">{hm(p.s.studyWeek || 0)}</T>
+                <Mute s={12}>{'bugün ' + hm(p.s.studyToday || 0)}</Mute>
+              </View>
+            </Row>
+            <View style={{ flexDirection: 'row', gap: 4, height: 34, alignItems: 'flex-end', paddingLeft: 44 }}>
+              {DN.map((d, k) => (
+                <View key={d} style={{ flex: 1, alignItems: 'center', gap: 2 }}>
+                  <View style={{ width: '100%', height: Math.max(2, ((st7[k] || 0) / top) * 22), borderRadius: 3, backgroundColor: k === tdIdx ? t.acc : alpha(t.acc, 0.4) }} />
+                  <Text style={{ fontSize: 9.5, color: t.mute }}>{d}</Text>
+                </View>
+              ))}
+            </View>
+          </View>
+        );
+      })}
+      <Mute s={12.5}>Çalışma süreleri herkesin kendi pomodorosundan gelir.</Mute>
+    </Card>
+  );
+}
 
 const unitVal = (m, period, v) => (m[0] === 'ders' ? hm(v || 0) : m[0] === 'rutin' && period === 'week' ? (v || 0) + ' gün seri' : num(v || 0) + ' ' + m[4]);
 
-function CreateSheet({ onClose }) {
+function CreateSheet({ onClose, type0 }) {
   const t = useTheme();
   const G = useGroups();
   const { toast } = useUI();
-  const [v, setV] = useState({ name: '', type: 'yaris', modules: ['ders'], pomo: true });
+  const [v, setV] = useState({ name: '', type: type0 || 'yaris', modules: ['ders'], pomo: true });
   const [busy, setBusy] = useState(false);
   const toggleMod = (k) => setV((o) => ({ ...o, modules: o.modules.includes(k) ? o.modules.filter((x) => x !== k) : [...o.modules, k] }));
   const save = async () => {
@@ -31,22 +137,20 @@ function CreateSheet({ onClose }) {
   };
   return (
     <Sheet visible title="Grup kur" onClose={() => onClose()} footer={<FormFooter onCancel={() => onClose()} onSave={save} saveLabel={busy ? 'Kuruluyor…' : 'Kur'} />}>
-      <Field label="Grup adı" value={v.name} onChangeText={(x) => setV((o) => ({ ...o, name: x }))} placeholder="Örn. Termo çalışma grubu" autoFocus />
-      <Seg label="Grup türü" value={v.type} onChange={(x) => setV((o) => ({ ...o, type: x }))} options={[['yaris', 'Arkadaşlarla yarış'], ['ogretmen', 'Öğretmen – öğrenci']]} />
-      <Mute>{v.type === 'yaris'
-        ? 'Herkes seçtiğin bölümlerde birbiriyle kapışır: kim daha çok çalıştı, kim daha çok okudu…'
-        : 'Sen öğretmen olursun. Öğrencilerin seçtiğin bölümlerdeki durumunu görür, onlara görev atarsın; görev atayınca öğrenciye bildirim gider.'}</Mute>
+      <Field label={v.type === 'ekip' ? 'Ekip adı' : 'Grup adı'} value={v.name} onChangeText={(x) => setV((o) => ({ ...o, name: x }))} placeholder={v.type === 'ekip' ? 'Örn. Bitirme projesi ekibi' : v.type === 'ogretmen' ? 'Örn. 11-A Matematik' : 'Örn. Termo çalışma grubu'} autoFocus />
+      <Seg label="Tür" value={v.type} onChange={(x) => setV((o) => ({ ...o, type: x }))} options={[['yaris', 'Grup çalışması'], ['ogretmen', 'Öğretmen – öğrenci'], ['ekip', 'Ekip – lider']]} />
+      <Mute>{TYPE_DESC[v.type]}</Mute>
       <View style={{ gap: 6 }}>
         <Mute style={{ fontWeight: '700' }}>{v.type === 'yaris' ? 'Neyle yarışılacak?' : 'Neyi takip edeceksin?'}</Mute>
         <Row>{MODULES.map((m) => <Chip key={m[0]} label={m[1]} on={v.modules.includes(m[0])} onPress={() => toggleMod(m[0])} />)}</Row>
       </View>
       <Check label="Birlikte pomodoro olsun" value={v.pomo} onChange={(x) => setV((o) => ({ ...o, pomo: x }))} />
-      <Mute>Grup kurulunca bir davet kodu çıkar; arkadaşların ya da öğrencilerin bu kodla katılır.</Mute>
+      <Mute>{'Grup kurulunca bir davet kodu çıkar; ' + (v.type === 'ogretmen' ? 'öğrencilerin' : v.type === 'ekip' ? 'ekip arkadaşların' : 'arkadaşların') + ' bu kodla katılır.'}</Mute>
     </Sheet>
   );
 }
 
-function JoinSheet({ onClose }) {
+function JoinSheet({ onClose, type0 }) {
   const G = useGroups();
   const { toast } = useUI();
   const [code, setCode] = useState('');
@@ -60,7 +164,8 @@ function JoinSheet({ onClose }) {
     onClose(r.code);
   };
   return (
-    <Sheet visible title="Koda katıl" onClose={() => onClose()} footer={<FormFooter onCancel={() => onClose()} onSave={save} saveLabel={busy ? 'Bekle…' : 'Katıl'} />}>
+    <Sheet visible title={type0 === 'ogretmen' ? 'Öğrenci olarak katıl' : type0 === 'ekip' ? 'Ekibe katıl' : 'Koda katıl'} onClose={() => onClose()} footer={<FormFooter onCancel={() => onClose()} onSave={save} saveLabel={busy ? 'Bekle…' : 'Katıl'} />}>
+      <Mute>{type0 === 'ogretmen' ? 'Öğretmeninin verdiği davet kodunu yaz. Verdiği görevler bildirim olarak gelir ve takvimine işlenir.' : type0 === 'ekip' ? 'Ekip liderinin verdiği kodu yaz. Atanan görevler bildirim olarak gelir ve takvimine işlenir; ekipteki herkesin çalışma saatini görürsün.' : 'Arkadaşının verdiği grup kodunu yaz.'}</Mute>
       <Field label="Davet kodu" value={code} onChangeText={(x) => setCode(x.toUpperCase())} placeholder="Örn. K7MP2QX" autoCapitalize="characters" autoFocus maxLength={10} onSubmitEditing={save} />
     </Sheet>
   );
@@ -70,12 +175,12 @@ function AssignSheet({ code, students, onClose }) {
   const t = useTheme();
   const G = useGroups();
   const { toast } = useUI();
-  const [v, setV] = useState({ to: 'all', title: '', p: 2, end: '', rTime: '', note: '' });
+  const [v, setV] = useState({ to: 'all', title: '', p: 2, end: addDays(today(), 1), rTime: '', note: '' });
   const set = (k) => (x) => setV((o) => ({ ...o, [k]: x }));
   const save = async () => {
     if (!v.title.trim()) return toast('Görevi yaz');
     if (v.rTime && !isTime(v.rTime)) return toast('Saati SS:DD olarak yaz');
-    const r = await G.assign(code, { ...v, title: v.title.trim(), note: v.note.trim() });
+    const r = await G.assign(code, { ...v, end: v.end || today(), title: v.title.trim(), note: v.note.trim() });
     if (typeof r === 'string') return toast(r);
     toast(r.pushed ? 'Görev atandı, bildirim gönderildi' : 'Görev atandı');
     onClose();
@@ -96,6 +201,7 @@ function AssignSheet({ code, students, onClose }) {
         <TimeField label="Hatırlatma saati" value={v.rTime} onChange={set('rTime')} />
       </Row>
       <Field label="Not" value={v.note} onChangeText={set('note')} />
+      <Mute s={13}>Görev atanınca bildirim olarak gider, son günüyle birlikte görevlerine ve takvimine işlenir.</Mute>
     </Sheet>
   );
 }
@@ -133,9 +239,9 @@ function GroupTimer({ code, g }) {
           </Pressable>
         ))}
       </Row>
-      <Pressable onPress={() => G.setJoin(code, !joined)} style={{ flexDirection: 'row', alignItems: 'center', gap: 8, minHeight: 40 }}>
-        <Ionicons name={joined ? 'checkbox' : 'square-outline'} size={22} color={t.accI} />
-        <Text style={{ color: t.accI, fontWeight: '700' }}>{joined ? 'Katılıyorum: zil bende de çalar, süre bana da yazılır' : 'Bu oturuma katıl'}</Text>
+      <Pressable onPress={() => G.setJoin(code, !joined)} style={{ flexDirection: 'row', alignItems: 'center', gap: 8, minHeight: 44 }}>
+        <Text style={{ color: t.accI, fontWeight: '700', flex: 1 }}>{joined ? 'Katılıyorum: zil bende de çalar, süre bana da yazılır' : 'Bu oturuma katıl'}</Text>
+        <Switch value={joined} onChange={(x) => G.setJoin(code, x)} label="Oturuma katıl" color={alpha(t.accI, 0.9)} />
       </Pressable>
     </Card>
   );
@@ -188,9 +294,9 @@ function GroupDetail({ code, onBack }) {
     );
   }
   if (!g) return <View style={{ gap: 16 }}><Btn sm icon="chevron-back" title="Gruplar" onPress={onBack} style={{ alignSelf: 'flex-start' }} /><Mute>Yükleniyor…</Mute></View>;
-  const me = G.uid, isOwner = g.owner === me, teacherType = g.type === 'ogretmen';
+  const me = G.uid, isOwner = g.owner === me, teacherType = ASSIGN_TYPES.includes(g.type), ekip = g.type === 'ekip';
   const names = g.names || {}, roles = g.roles || {};
-  const students = (g.members || []).filter((id) => roles[id] === 'student').map((id) => [id, (D.members && D.members[id] && D.members[id].name) || names[id] || 'Öğrenci']);
+  const students = (g.members || []).filter((id) => id !== g.owner).map((id) => [id, (D.members && D.members[id] && D.members[id].name) || names[id] || (ekip ? 'Üye' : 'Öğrenci')]);
   const assigns = (D.assign || []).slice().sort((a, b) => (b.created || 0) - (a.created || 0));
   const mineAssigns = assigns.filter((a) => a.to === 'all' || a.to === me);
   const mods = MODULES.filter((m) => (g.modules || []).includes(m[0]));
@@ -210,6 +316,8 @@ function GroupDetail({ code, onBack }) {
 
       {g.pomo ? <GroupTimer code={code} g={g} /> : null}
 
+      {!teacherType || ekip || isOwner ? <StudyBoard g={g} members={D.members} uid={me} /> : null}
+
       {!teacherType ? (
         <>
           <Row>
@@ -221,7 +329,7 @@ function GroupDetail({ code, onBack }) {
       ) : isOwner ? (
         <>
           <Row style={{ justifyContent: 'space-between' }}>
-            <H2>Öğrenciler</H2>
+            <H2>{ekip ? 'Ekip üyeleri' : 'Öğrenciler'}</H2>
             <Row>
               <Chip label="Bugün" on={period === 'today'} onPress={() => setPeriod('today')} />
               <Chip label="Bu hafta" on={period === 'week'} onPress={() => setPeriod('week')} />
@@ -246,7 +354,7 @@ function GroupDetail({ code, onBack }) {
                 );
               })}
             </Grid>
-          ) : <Card><Empty text="Henüz öğrenci yok. Davet kodunu öğrencilerinle paylaş." /></Card>}
+          ) : <Card><Empty text={ekip ? 'Henüz ekip üyesi yok. Davet kodunu ekibinle paylaş.' : 'Henüz öğrenci yok. Davet kodunu öğrencilerinle paylaş.'} /></Card>}
           <Card>
             <Row style={{ justifyContent: 'space-between' }}>
               <H3>Atanan görevler</H3>
@@ -259,7 +367,7 @@ function GroupDetail({ code, onBack }) {
                 <ListRow key={a.id} last={i === assigns.length - 1}>
                   <View style={{ flex: 1 }}>
                     <T w="700">{a.title}</T>
-                    <Mute s={13}>{(a.to === 'all' ? 'Herkes' : names[a.to] || 'Öğrenci') + ' · ' + PRI[a.p || 2] + (a.end ? ' · son gün ' + fmtD(a.end) : '') + ' · ' + doneN + '/' + targets.length + ' tamamladı'}</Mute>
+                    <Mute s={13}>{(a.to === 'all' ? 'Herkes' : names[a.to] || (ekip ? 'Üye' : 'Öğrenci')) + ' · ' + PRI[a.p || 2] + (a.end ? ' · son gün ' + fmtD(a.end) : '') + ' · ' + doneN + '/' + targets.length + ' tamamladı'}</Mute>
                   </View>
                   <IconBtn name="trash-outline" label="Görevi sil" onPress={() => confirm('Bu görev öğrencilerden de silinsin mi?', () => G.delAssign(code, a.id))} />
                 </ListRow>
@@ -269,19 +377,17 @@ function GroupDetail({ code, onBack }) {
         </>
       ) : (
         <Card>
-          <H3>{'Öğretmenin verdiği görevler'}</H3>
-          <Mute>Bunlar Görevler sayfanda da görünür; orada işaretlediğinde öğretmenin görür.</Mute>
+          <H3>{ekip ? 'Ekip liderinin verdiği görevler' : 'Öğretmenin verdiği görevler'}</H3>
+          <Mute>{'Bunlar Görevler sayfanda ve takviminde de görünür; tamamladığında ' + (ekip ? 'ekip liderin' : 'öğretmenin') + ' görür.'}</Mute>
           {mineAssigns.length ? mineAssigns.map((a, i) => {
             const done = !!(a.done && a.done[me]);
             return (
               <ListRow key={a.id} last={i === mineAssigns.length - 1}>
-                <Pressable onPress={() => G.markAssign(code + '/' + a.id, !done)} hitSlop={6}>
-                  <Ionicons name={done ? 'checkbox' : 'square-outline'} size={26} color={done ? t.grn : t.mute} />
-                </Pressable>
                 <View style={{ flex: 1 }}>
-                  <T w="700" style={{ textDecorationLine: done ? 'line-through' : 'none' }}>{a.title}</T>
+                  <T w="700" style={{ textDecorationLine: done ? 'line-through' : 'none', color: done ? t.mute : t.ink }}>{a.title}</T>
                   <Mute s={13}>{PRI[a.p || 2] + (a.end ? ' · son gün ' + fmtD(a.end) : '') + (a.note ? ' · ' + a.note : '')}</Mute>
                 </View>
+                <Switch value={done} onChange={(x) => G.markAssign(code + '/' + a.id, x)} label="Tamamlandı" />
               </ListRow>
             );
           }) : <Empty text="Henüz görev yok." />}
@@ -296,8 +402,8 @@ function GroupDetail({ code, onBack }) {
               <Text style={{ color: t.acc, fontWeight: '800' }}>{String(names[id] || '?').slice(0, 1).toUpperCase()}</Text>
             </View>
             <T style={{ flex: 1 }} w={id === me ? '800' : '500'}>{(names[id] || 'Üye') + (id === me ? ' (sen)' : '')}</T>
-            <Mute>{roles[id] === 'teacher' ? 'Öğretmen' : roles[id] === 'student' ? 'Öğrenci' : id === g.owner ? 'Kurucu' : 'Üye'}</Mute>
-            {isOwner && id !== me && !teacherType ? <IconBtn name="person-remove-outline" label="Gruptan çıkar" onPress={() => confirm((names[id] || 'Üye') + ' gruptan çıkarılsın mı?', () => G.kick(code, id), 'Çıkar')} /> : null}
+            <Mute>{ROLE_NAMES[roles[id]] && roles[id] !== 'member' ? ROLE_NAMES[roles[id]] : id === g.owner ? 'Kurucu' : 'Üye'}</Mute>
+            {isOwner && id !== me ? <IconBtn name="person-remove-outline" label="Gruptan çıkar" onPress={() => confirm((names[id] || 'Üye') + ' gruptan çıkarılsın mı?', () => G.kick(code, id), 'Çıkar')} /> : null}
           </ListRow>
         ))}
         <Row>
@@ -316,16 +422,20 @@ export default function Groups() {
   const { configured, user } = useStore();
   const G = useGroups();
   const [open, setOpen] = useState(null);
-  const [sheet, setSheet] = useState(null);
+  const intent = React.useRef(groupIntent.current);
+  if (groupIntent.current) groupIntent.current = null;
+  const [sheet, setSheet] = useState(intent.current ? intent.current.action : null);
+  const [type0, setType0] = useState(intent.current ? intent.current.type : undefined);
+  const pick = (action, type) => { setType0(type); setSheet(action); };
   if (!configured || !user) return <Card><T w="700">Gruplar için eşitleme ve giriş gerekiyor.</T></Card>;
   if (open) return <GroupDetail code={open} onBack={() => setOpen(null)} />;
   return (
     <View style={{ gap: 16 }}>
       <Row style={{ justifyContent: 'space-between', alignItems: 'flex-start' }}>
-        <View style={{ flex: 1, minWidth: 180 }}><H2>Gruplar</H2><Mute>Arkadaşlarınla yarış ya da öğrencilerini takip et</Mute></View>
+        <View style={{ flex: 1, minWidth: 180 }}><H2>Gruplar</H2><Mute>Grup çalışması, öğretmen–öğrenci ve ekip–lider</Mute></View>
         <Row>
-          <Btn title="Koda katıl" onPress={() => setSheet('join')} />
-          <Btn kind="pri" title="+ Grup kur" onPress={() => setSheet('create')} />
+          <Btn title="Koda katıl" onPress={() => pick('join', undefined)} />
+          <Btn kind="pri" title="+ Grup kur" onPress={() => pick('create', undefined)} />
         </Row>
       </Row>
       {G.list.length ? (
@@ -337,7 +447,7 @@ export default function Groups() {
                 style={({ pressed }) => [{ minHeight: 120, padding: 16, borderRadius: t.r, borderWidth: t.bw, borderColor: pressed ? t.acc : t.line, backgroundColor: t.card, gap: 8, transform: [{ scale: pressed && t.soft ? 0.97 : 1 }] }, shadow(t)]}>
                 <Row wrap={false}>
                   <View style={{ width: 44, height: 44, borderRadius: t.soft ? 22 : 12, backgroundColor: alpha(t.acc, 0.14), alignItems: 'center', justifyContent: 'center' }}>
-                    <Ionicons name={g && g.type === 'ogretmen' ? 'school-outline' : 'trophy-outline'} size={23} color={t.acc} />
+                    <Ionicons name={(g && TYPE_ICON[g.type]) || 'people-outline'} size={23} color={t.acc} />
                   </View>
                   <View style={{ flex: 1 }}>
                     <T w="800" numberOfLines={1}>{g ? g.name : x.missing ? 'Silinmiş grup' : 'Yükleniyor…'}</T>
@@ -349,9 +459,10 @@ export default function Groups() {
             );
           })}
         </Grid>
-      ) : <Card><Empty text="Henüz bir grubun yok. Grup kur ve kodunu arkadaşlarınla paylaş ya da sana verilen kodla katıl." /></Card>}
-      {sheet === 'create' ? <CreateSheet onClose={(code) => { setSheet(null); if (code) setOpen(code); }} /> : null}
-      {sheet === 'join' ? <JoinSheet onClose={(code) => { setSheet(null); if (code) setOpen(code); }} /> : null}
+      ) : null}
+      <RoleCard onPick={pick} />
+      {sheet === 'create' ? <CreateSheet type0={type0} onClose={(code) => { setSheet(null); if (code) setOpen(code); }} /> : null}
+      {sheet === 'join' ? <JoinSheet type0={type0} onClose={(code) => { setSheet(null); if (code) setOpen(code); }} /> : null}
     </View>
   );
 }

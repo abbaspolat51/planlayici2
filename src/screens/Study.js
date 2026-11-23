@@ -4,7 +4,9 @@ import { useStore } from '../store';
 import { useTheme } from '../theme';
 import { T, Mute, H3, Card, Btn, Chip, Row, Grid, Field, ListRow, useUI } from '../ui';
 import { TimerCard, usePomo } from '../components';
-import { PRE, today, addDays, dShort, hm } from '../logic';
+import { PRE, today, addDays, dShort, hm, goalProgress } from '../logic';
+import { RoleCard } from './Groups';
+import { studySubjects } from './Goals';
 
 export default function Study() {
   const t = useTheme();
@@ -14,7 +16,8 @@ export default function Study() {
   const S = st.study, td = today(), L = S.log[td] || { m: 0, n: 0, by: {} };
   const [w, setW] = useState(String(S.work));
   const [b, setB] = useState(String(S.brk));
-  const subs = [...new Set([...st.library.folders.map((f) => f.name), ...(S.subj ? [S.subj] : [])])];
+  const subs = studySubjects(st);
+  const linked = st.goals.items.filter((g) => g.unit === 'saat' && g.subj && (g.subj === '*' || g.subj === S.subj));
   const days = Array.from({ length: 7 }, (_, i) => addDays(td, i - 6));
   const mins = days.map((d) => (S.log[d] || {}).m || 0);
   const mx = Math.max(60, ...mins), wk = mins.reduce((a, c) => a + c, 0);
@@ -44,9 +47,11 @@ export default function Study() {
               <Chip label="Seçme" on={!S.subj} onPress={() => setSubj('')} />
               {subs.map((s) => <Chip key={s} label={s} on={S.subj === s} onPress={() => setSubj(s)} />)}
             </Row>
-          ) : <Mute>Ders ambarına klasör ekleyince dersler burada çıkar.</Mute>}
+          ) : <Mute>Ders ambarına klasör ya da Hedefler'e saat hedefi ekleyince dersler burada çıkar.</Mute>}
+          {linked.length ? <Mute s={13}>{'Bu çalışma şu hedeflere sayılıyor: ' + linked.map((g) => g.title + ' (%' + Math.floor(goalProgress(st, g).pct) + ')').join(', ')}</Mute> : null}
         </Card>
       </Grid>
+      <RoleCard />
       <Card>
         <H3>Çalışma özeti</H3>
         <Row>

@@ -5,6 +5,7 @@ import { useTheme, alpha } from '../theme';
 import { T, Mute, H2, H3, Card, Btn, Row, Grid, Empty, IconBtn, useUI } from '../ui';
 import { TaskRow, DailyRow, useForms } from '../components';
 import { PRI, byPri, today, addDays } from '../logic';
+import { RoleCard } from './Groups';
 
 export default function Tasks() {
   const t = useTheme();
@@ -47,6 +48,8 @@ export default function Tasks() {
         ) : null}
       </Card>
 
+      <RoleCard />
+
       <View style={{ gap: 12 }}>
         <Row style={{ justifyContent: 'space-between', alignItems: 'flex-start' }}>
           <View style={{ flex: 1, minWidth: 180 }}>
@@ -77,7 +80,7 @@ export default function Tasks() {
                   }))} /> : null}
                 </Row>
                 {its.length ? its.map((x) => <TaskRow key={x.id} x={x} rank={x.done ? '' : ++r} inFolder />) : <Empty text="Bu başlıkta görev yok." />}
-                {isCal ? <Mute>Önümüzdeki 14 gün · telefon takviminden</Mute> : c.id.startsWith('g-') ? <Mute>Öğretmeninin atadığı görevler</Mute> : <Btn sm title="+ Görev" onPress={() => forms.open('task', { cat: c.id })} style={{ alignSelf: 'flex-start' }} />}
+                {isCal ? <Mute>Önümüzdeki 14 gün · telefon takviminden</Mute> : c.id.startsWith('g-') ? <Mute>Grupta sana atanan görevler (takviminde de görünür)</Mute> : <Btn sm title="+ Görev" onPress={() => forms.open('task', { cat: c.id })} style={{ alignSelf: 'flex-start' }} />}
               </Card>
             );
           })}

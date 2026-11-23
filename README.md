@@ -61,9 +61,24 @@ kutusuna yapıştırıp **Aktar**'a bas.
    `npm run paketler` çalıştırıyor. Bundan sonra yeni paket eklemek için yalnızca `package.json` değişir.
 3. Telefonda ilk açılışta **takvim iznine** "İzin ver" de.
 
+## Sürüm 2.2'de neler var
+
+- **Yeni sade arayüz:** telefonda alt menü çubuğu (Bugün, Görevler, Hedefler, Çalışma, Menü), bilgisayarda sol menü.
+  Tik kutularının hepsi açma–kapama düğmesi (switch) oldu.
+- **Günün ayeti ve hadisi:** ana sayfanın en üstünde; karıştır düğmesiyle yenisi gelir.
+- **Hedefler:** haftalık, aylık, yıllık hedefler; her hedef bir pil gibi dolar. Saat hedefleri pomodoro ile
+  otomatik sayılır (örn. “C1 İngilizce, yıllık 800 saat”: Çalışma'da “C1 İngilizce”yi seçip çalıştıkça pil dolar).
+- **Gruplar:** Grup çalışması, Öğretmen–öğrenci ve yeni **Ekip–lider**. Görevler ve Çalışma sayfalarında
+  “Birlikte çalış” kartından rolünü seçersin. Atanan görevler bildirim olarak gider ve takvime işlenir;
+  ekipte herkes birbirinin bugünkü/haftalık çalışma saatini ve şu an çalışıp çalışmadığını görür.
+- **Temalar:** Sade, Klasik, Yumuşak, Okyanus, Orman, Gece mavisi; her birinin içinde 8 renk paleti.
+- **Bölümleri aç / kapat:** Ayarlar'da kullanmadığın bölümü (örn. Yemek takibi) kapatabilirsin.
+
+Bu sürüm için Firebase kurallarını değiştirmen gerekmez.
+
 ## Anlık bildirim (gruplar için, isteğe bağlı)
 
-Öğretmen görev atadığında ya da grupta birlikte çalışma başladığında, uygulama kapalıyken de
+Öğretmen ya da ekip lideri görev atadığında ya da grupta birlikte çalışma başladığında, uygulama kapalıyken de
 anında bildirim gelmesi için:
 
 1. https://expo.dev adresinde ücretsiz hesap aç.
