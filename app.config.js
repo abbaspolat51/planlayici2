@@ -38,6 +38,7 @@ module.exports = {
     plugins: [
       ['expo-notifications', { color: '#2950E0', sounds: ['./assets/zil.wav'] }],
       ['expo-calendar', { calendarPermission: 'Planlayıcı, görevlerini ve takvim etkinliklerini eşitlemek için takvimine erişir.' }],
+      ['expo-audio', { microphonePermission: false, recordAudioAndroid: false }],
     ],
   },
 };
