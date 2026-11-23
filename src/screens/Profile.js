@@ -1,0 +1,194 @@
+import React, { useEffect, useState } from 'react';
+import { View, Text, Pressable, Platform } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import { useStore } from '../store';
+import { useTheme, alpha, THEMES, THEME_IDS, buildTheme, shadow } from '../theme';
+import { T, Mute, H2, H3, Card, Btn, Chip, Row, Grid, Field, Seg, Check, useUI } from '../ui';
+import { NotifCard } from '../components';
+import { useGroups } from '../groups';
+import { HOME_SECTIONS } from '../logic';
+import { TILES } from './Home';
+import { calendarSupported, calPermission, listCalendars, syncNow } from '../calendar';
+import { testPomodoro, pushProjectId, nativeNotifications } from '../notifications';
+
+function ThemeCard({ id, on, onPress }) {
+  const t = useTheme();
+  const dark = t.dark;
+  const p = buildTheme(id, dark);
+  return (
+    <Pressable onPress={onPress} accessibilityRole="radio" accessibilityState={{ checked: on }}
+      style={({ pressed }) => [{ borderRadius: t.r, borderWidth: on ? 2 : t.bw || 1, borderColor: on ? t.acc : t.line, backgroundColor: t.card, padding: 12, gap: 10, transform: [{ scale: pressed && t.soft ? 0.97 : 1 }] }, shadow(t)]}>
+      <View style={{ backgroundColor: p.bg, borderRadius: p.r - 6 > 6 ? p.r - 6 : 8, padding: 10, gap: 8 }}>
+        <View style={{ backgroundColor: p.card, borderRadius: p.rm, borderWidth: p.bw, borderColor: p.line, padding: 10, gap: 6 }}>
+          <View style={{ width: '60%', height: 8, borderRadius: 4, backgroundColor: p.ink, opacity: 0.85 }} />
+          <View style={{ width: '40%', height: 6, borderRadius: 3, backgroundColor: p.mute }} />
+          <View style={{ flexDirection: 'row', gap: 6, marginTop: 2 }}>
+            <View style={{ width: 54, height: 20, borderRadius: p.rb > 100 ? 10 : p.rb / 2, backgroundColor: p.acc }} />
+            <View style={{ width: 14, height: 14, borderRadius: 7, backgroundColor: p.red, alignSelf: 'center' }} />
+            <View style={{ width: 14, height: 14, borderRadius: 7, backgroundColor: p.yel, alignSelf: 'center' }} />
+            <View style={{ width: 14, height: 14, borderRadius: 7, backgroundColor: p.grn, alignSelf: 'center' }} />
+          </View>
+        </View>
+      </View>
+      <Row wrap={false}>
+        <View style={{ flex: 1 }}>
+          <T w="800">{THEMES[id].name}</T>
+          <Mute s={13}>{THEMES[id].desc}</Mute>
+        </View>
+        {on ? <Ionicons name="checkmark-circle" size={24} color={t.acc} /> : null}
+      </Row>
+    </Pressable>
+  );
+}
+
+function CalendarCard() {
+  const { st, update } = useStore();
+  const { toast } = useUI();
+  const P = st.prefs;
+  const [perm, setPerm] = useState(null);
+  const [cals, setCals] = useState([]);
+  const load = async (ask) => {
+    const ok = await calPermission(ask);
+    setPerm(ok);
+    if (ok) setCals(await listCalendars());
+  };
+  useEffect(() => { load(false); }, []);
+  const set = (k, v) => update('prefs', (d) => { d[k] = v; });
+  const toggleCal = (id) => update('prefs', (d) => {
+    const all = cals.map((c) => c.id);
+    const cur = d.calIds.length ? d.calIds : all;
+    const next = cur.includes(id) ? cur.filter((x) => x !== id) : [...cur, id];
+    d.calIds = next.length === all.length ? [] : next;
+  });
+  if (!calendarSupported) {
+    return <Card><H3>Telefon takvimi</H3><Mute>Telefon takvimi bağlantısı Android uygulamasında çalışır. Telefonda içe alınan etkinlikler burada da “Telefon Takvimi” başlığı altında görünür.</Mute></Card>;
+  }
+  const imported = st.tasks.items.filter((x) => x.ext === 'cal').length;
+  return (
+    <Card>
+      <H3>Telefon takvimi</H3>
+      {perm === false ? (
+        <>
+          <Mute>Planlayıcı'nın telefon takvimine erişmesine izin ver.</Mute>
+          <Row><Btn kind="pri" title="Takvime erişim izni ver" onPress={() => load(true)} /></Row>
+        </>
+      ) : (
+        <>
+          <Check label="Telefon takvimindeki etkinlikleri görevlere al" value={P.calImport} onChange={(v) => set('calImport', v)} />
+          <Check label="Görevleri ve haftalık programı telefon takvimine yaz" value={P.calExport} onChange={(v) => set('calExport', v)} />
+          <Check label="Takvim etkinlikleri için Planlayıcı da hatırlatsın" value={P.calNotify} onChange={(v) => set('calNotify', v)} />
+          <Mute>{'Etkinliklerin hatırlatıcıları (alarmları) görevde saklanır. Son seçenek açıksa her hatırlatıcı için Planlayıcı da bildirim gönderir; telefonun takvimi zaten hatırlatıyorsa kapalı bırak. Şu an ' + imported + ' etkinlik içe alındı.'}</Mute>
+          {P.calImport && cals.length ? (
+            <View style={{ gap: 6 }}>
+              <Mute style={{ fontWeight: '700' }}>Hangi takvimlerden alınsın?</Mute>
+              <Row>{cals.map((c) => <Chip key={c.id} label={c.title + (c.account && c.account !== c.title ? ' · ' + c.account : '')} on={!P.calIds.length || P.calIds.includes(c.id)} onPress={() => toggleCal(c.id)} />)}</Row>
+            </View>
+          ) : null}
+          <Row><Btn title="Şimdi eşitle" icon="sync-outline" onPress={async () => { const ok = await syncNow(st, update); toast(ok ? 'Takvim eşitlendi' : 'Takvime erişim izni yok'); }} /></Row>
+        </>
+      )}
+    </Card>
+  );
+}
+
+export default function Profile() {
+  const t = useTheme();
+  const { st, update, user, configured, signOut, importData, status, setTheme, setThemeMode } = useStore();
+  const { toast, confirm } = useUI();
+  const G = useGroups();
+  const P = st.prefs;
+  const [name, setName] = useState(P.name || '');
+  const [imp, setImp] = useState('');
+  const [showImp, setShowImp] = useState(false);
+  const shown = (user && user.email) || '';
+  const display = (P.name || '').trim() || (shown ? shown.split('@')[0] : 'Ben');
+  const doImport = () => {
+    try {
+      const n = importData(JSON.parse(imp));
+      toast(n ? n + ' bölüm aktarıldı' : 'Bu metinde planlayıcı verisi bulunamadı');
+      if (n) { setImp(''); setShowImp(false); }
+    } catch (e) { toast('Metin okunamadı; tamamını kopyaladığından emin ol'); }
+  };
+  return (
+    <View style={{ gap: 16 }}>
+      <Card>
+        <Row wrap={false} style={{ gap: 14 }}>
+          <View style={{ width: 64, height: 64, borderRadius: 32, backgroundColor: t.acc, alignItems: 'center', justifyContent: 'center' }}>
+            <Text style={{ color: t.accI, fontSize: 28, fontWeight: '800' }}>{display.slice(0, 1).toUpperCase()}</Text>
+          </View>
+          <View style={{ flex: 1 }}>
+            <T s={24} w="800">{display}</T>
+            <Mute>{shown ? shown + (status === 'on' ? ' · eşitlendi' : '') : 'Eşitleme kapalı'}</Mute>
+          </View>
+        </Row>
+        <Row style={{ alignItems: 'flex-end' }}>
+          <Field label="Görünen adın (gruplarda bu görünür)" value={name} onChangeText={setName} placeholder="Örn. Abbas" />
+          <Btn title="Kaydet" onPress={() => { update('prefs', (d) => { d.name = name.trim(); }); toast('Ad kaydedildi'); }} />
+        </Row>
+      </Card>
+
+      <View style={{ gap: 10 }}>
+        <H2>Temalar</H2>
+        <Grid min={220} gap={12}>
+          {THEME_IDS.map((id) => <ThemeCard key={id} id={id} on={(P.theme || 'klasik') === id} onPress={() => setTheme(id)} />)}
+        </Grid>
+        <Card>
+          <Seg label="Görünüm" value={P.mode || 'system'} onChange={setThemeMode} options={[['system', 'Telefona göre'], ['light', 'Aydınlık'], ['dark', 'Karanlık']]} />
+        </Card>
+      </View>
+
+      <Grid min={310}>
+        <Card>
+          <H3>Ana ekranda görünenler</H3>
+          {HOME_SECTIONS.map(([k, l]) => (
+            <Check key={k} label={l} value={P.home[k] !== false} onChange={(v) => update('prefs', (d) => { d.home[k] = v; })} />
+          ))}
+        </Card>
+        <Card>
+          <H3>Bölümler</H3>
+          <Mute>Kullanmadığın bölümleri gizle; ana ekrandan ve üstteki menüden kalkar. Verileri silinmez.</Mute>
+          {TILES.map(([k, l]) => (
+            <Check key={k} label={l} value={!P.hidden.includes(k)} onChange={(v) => update('prefs', (d) => { d.hidden = v ? d.hidden.filter((x) => x !== k) : [...d.hidden, k]; })} />
+          ))}
+        </Card>
+      </Grid>
+
+      <Grid min={310}>
+        <CalendarCard />
+        <View style={{ gap: 16 }}>
+          <NotifCard />
+          <Card>
+            <H3>Pomodoro zili</H3>
+            <Mute>Süre bitince zil çalar ve telefon titrer. Uygulama kapalıyken de zilli bildirim gelir.</Mute>
+            <Row><Btn title="Zili dene" icon="musical-notes-outline" onPress={async () => { await testPomodoro(); toast(nativeNotifications ? '3 saniye içinde zil çalacak' : 'Zil çalıyor'); }} /></Row>
+          </Card>
+          {nativeNotifications ? (
+            <Card>
+              <H3>Anlık bildirim (gruplar)</H3>
+              <Mute>{G && G.token
+                ? 'Kurulu. Öğretmenin görev atadığında ya da grupta birlikte çalışma başladığında anında bildirim gelir.'
+                : pushProjectId()
+                  ? 'Anlık bildirim için izin bekleniyor ya da Firebase anahtarı eksik (README, Anlık bildirim bölümü).'
+                  : 'Henüz kurulmadı. Kurulana kadar grup bildirimleri uygulama açıkken gelir (README, Anlık bildirim bölümü).'}</Mute>
+            </Card>
+          ) : null}
+        </View>
+      </Grid>
+
+      <Card>
+        <H3>Hesap ve veriler</H3>
+        <Btn sm title={showImp ? 'Veri aktarmayı kapat' : 'Eski planlayıcıdan veri aktar'} onPress={() => setShowImp(!showImp)} style={{ alignSelf: 'flex-start' }} />
+        {showImp ? (
+          <View style={{ gap: 8 }}>
+            <Mute>Eski planlayıcı sayfasında "Verilerini dışa aktar" düğmesine bas, kopyalanan metni buraya yapıştır.</Mute>
+            <Field value={imp} onChangeText={setImp} multiline placeholder="{ ... }" inputStyle={{ minHeight: 100, textAlignVertical: 'top', paddingTop: 10 }} />
+            <Row><Btn sm kind="pri" title="Aktar" onPress={doImport} /></Row>
+          </View>
+        ) : null}
+        {configured && user ? (
+          <Btn kind="danger" title="Çıkış yap" onPress={() => confirm('Çıkış yapılsın mı? Verilerin bulutta kalır.', signOut, 'Çıkış yap')} style={{ alignSelf: 'flex-start' }} />
+        ) : <Mute>Eşitleme kapalı: veriler yalnızca bu cihazda.</Mute>}
+      </Card>
+    </View>
+  );
+}

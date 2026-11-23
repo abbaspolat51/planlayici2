@@ -79,7 +79,7 @@ export const RC = ['#2f5bea', '#e8590c', '#0ca678', '#ae3ec9', '#1098ad', '#d633
 export const BST = { oku: 'Okuyorum', sira: 'Okunacak', bitti: 'Bitti' };
 
 // ---------- veri şekli ----------
-export const KEYS = ['tasks', 'routines', 'food', 'study', 'library', 'money', 'books', 'week'];
+export const KEYS = ['tasks', 'routines', 'food', 'study', 'library', 'money', 'books', 'week', 'prefs'];
 export const DEF = {
   tasks: () => ({ items: [], cats: [{ id: 'daily', name: 'Günlük İşler' }, { id: 'genel', name: 'Genel' }] }),
   routines: () => ({ items: [] }),
@@ -89,7 +89,20 @@ export const DEF = {
   money: () => ({ items: [], start: 0 }),
   books: () => ({ items: [] }),
   week: () => ({ items: [], from: 7, to: 23 }),
+  prefs: () => ({
+    theme: 'klasik', mode: 'system', name: '',
+    home: { ...HOME_DEF }, hidden: [],
+    calImport: true, calExport: true, calNotify: false, calIds: [], calSkip: [],
+    groups: [],
+  }),
 };
+// Ana ekrandaki bölümler (Profil > Ana ekran'dan açılıp kapatılır)
+export const HOME_SECTIONS = [
+  ['timer', 'Pomodoro sayacı'], ['cal', 'Kalori kartı'], ['tiles', 'Bölüm düğmeleri'], ['week', 'Haftalık program'],
+  ['phone', 'Telefon takvimi (bugün)'], ['due', 'Yaklaşan son günler'], ['daily', 'Günlük işler'],
+  ['routines', 'Bugünkü rutinler'], ['groups', 'Gruplarım'], ['notif', 'Bildirimler'],
+];
+const HOME_DEF = Object.fromEntries(HOME_SECTIONS.map(([k]) => [k, true]));
 export function norm(k, v) {
   const o = Object.assign(DEF[k](), v && typeof v === 'object' ? v : {});
   if (k === 'tasks') {
@@ -103,6 +116,11 @@ export function norm(k, v) {
   if (k === 'library') o.folders.forEach((f) => { f.files = f.files || []; });
   if (k === 'study') o.log = o.log || {};
   if (k === 'food') o.days = o.days || {};
+  if (k === 'prefs') {
+    o.home = { ...HOME_DEF, ...(o.home || {}) };
+    for (const a of ['hidden', 'calIds', 'calSkip', 'groups']) o[a] = Array.isArray(o[a]) ? o[a] : [];
+    o.calSkip = o.calSkip.slice(-500);
+  }
   if (k === 'week') {
     o.items = (o.items || []).filter((w) => w && Array.isArray(w.days));
     o.from = Math.min(23, Math.max(0, +o.from || 0));
@@ -186,7 +204,15 @@ export function tmState(study, now = Date.now()) {
 export function notifPlan(st, minAt) {
   const out = [], td = today(), H = 14, lim = minAt ?? Date.now() - 1000;
   const at = (d, t) => { const x = parse(d), m = toMin(t); x.setHours(Math.floor(m / 60), m % 60, 0, 0); return x.getTime(); };
+  const P = st.prefs || {};
   for (const x of st.tasks.items) {
+    if (x.ext === 'cal') {
+      // Telefon takviminden gelenler: telefon zaten hatırlatır; istenirse Planlayıcı da hatırlatır
+      if (!P.calNotify || x.done || !x.startAt) continue;
+      const offs = (x.alarms && x.alarms.length ? x.alarms : [0]);
+      offs.forEach((m, i) => out.push({ id: 'c' + x.id + i, at: x.startAt + m * 60000, title: x.title, text: 'Takvim' + (m ? ' · ' + -m + ' dk sonra' : ' · şimdi') }));
+      continue;
+    }
     if (!isTime(x.rTime)) continue;
     if (x.cat === 'daily') {
       for (let i = 0; i < H; i++) {
@@ -227,4 +253,45 @@ export function notifPlan(st, minAt) {
 export const whenTxt = (ms) => {
   const d = new Date(ms), ds = ymd(d), t = today();
   return (ds === t ? 'Bugün' : ds === addDays(t, 1) ? 'Yarın' : fmtD(ds)) + ' ' + pad(d.getHours()) + ':' + pad(d.getMinutes());
+};
+
+// ---------- grup istatistikleri ----------
+// [anahtar, ad, bugün alanı, hafta alanı, birim]
+export const MODULES = [
+  ['ders', 'Ders çalışma', 'studyToday', 'studyWeek', 'dk'],
+  ['kitap', 'Kitap okuma', 'pagesToday', 'pagesWeek', 'sayfa'],
+  ['rutin', 'Rutinler', 'routinesToday', 'streak', 'rutin'],
+  ['gorev', 'Görevler', 'tasksToday', 'tasksWeek', 'görev'],
+];
+export function myStats(st) {
+  const td = today(), ws = weekStart(td), L = st.study.log || {};
+  let studyWeek = 0;
+  for (let i = 0; i < 7; i++) studyWeek += (L[addDays(ws, i)] || {}).m || 0;
+  let pagesToday = 0, pagesWeek = 0;
+  for (const b of st.books.items) for (const l of b.logs) { if (l.d === td) pagesToday += +l.p || 0; if (l.d >= ws) pagesWeek += +l.p || 0; }
+  let streakBest = 0, routinesToday = 0;
+  for (const r of st.routines.items) { streakBest = Math.max(streakBest, streak(r.done)); if (r.done.includes(td)) routinesToday++; }
+  let tasksToday = 0, tasksWeek = 0;
+  for (const x of st.tasks.items) {
+    if (x.cat === 'daily') {
+      for (const d of x.doneOn || []) { if (d === td) tasksToday++; if (d >= ws) tasksWeek++; }
+    } else if (x.done && x.doneAt) {
+      if (x.doneAt === td) tasksToday++;
+      if (x.doneAt >= ws) tasksWeek++;
+    }
+  }
+  return { day: td, week: ws, studyToday: (L[td] || {}).m || 0, studyWeek, pagesToday, pagesWeek, streak: streakBest, routinesToday, tasksToday, tasksWeek };
+}
+// Başka günden kalan "bugün" değerlerini sıfırla
+export function freshStats(m) {
+  const td = today(), ws = weekStart(td), s = { ...(m || {}) };
+  if (s.day !== td) { s.studyToday = 0; s.pagesToday = 0; s.routinesToday = 0; s.tasksToday = 0; }
+  if (s.week !== ws) { s.studyWeek = 0; s.pagesWeek = 0; s.tasksWeek = 0; }
+  return s;
+}
+export const groupCode = () => {
+  const A = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  let c = '';
+  for (let i = 0; i < 7; i++) c += A[Math.floor(Math.random() * A.length)];
+  return c;
 };

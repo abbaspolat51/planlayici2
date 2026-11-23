@@ -42,7 +42,7 @@ function Reading({ b }) {
       <Bar pct={total ? (r / total) * 100 : 0} h={14} />
       <Row>
         {[['Okunan', num(r) + ' / ' + num(total)], ['Kalan sayfa', num(rem)], ['Bugün', num(tdp) + ' sayfa']].map(([l, v]) => (
-          <View key={l} style={{ flexGrow: 1, flexBasis: 110, padding: 12, borderRadius: 14, backgroundColor: t.card2 }}>
+          <View key={l} style={{ flexGrow: 1, flexBasis: 110, padding: 12, borderRadius: t.rm, backgroundColor: t.card2 }}>
             <Mute s={13}>{l}</Mute><T s={21} w="800">{v}</T>
           </View>
         ))}

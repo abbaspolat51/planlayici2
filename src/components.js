@@ -13,6 +13,7 @@ import {
   notifPlan, whenTxt,
 } from './logic';
 import { nativeNotifications, permission, testNotification } from './notifications';
+import { useGroups } from './groups';
 
 // Belirli aralıkla yeniden çizim
 export function useNow(ms = 500) {
@@ -44,20 +45,29 @@ export function TaskRow({ x, rank, inFolder }) {
   const t = useTheme();
   const { st, update } = useStore();
   const forms = useForms();
+  const G = useGroups();
   const c = priColor(t, x.p), ct = priText(t, x.p), left = leftInfo(x);
-  const rem = isTime(x.rTime) ? 'Bildirim ' + (isDate(x.rDate) ? fmtD(x.rDate) + ' ' : '') + x.rTime : null;
+  const cal = x.ext === 'cal';
+  const rem = cal
+    ? 'Telefon takvimi' + (isTime(x.rTime) ? ' · ' + x.rTime : '') + (x.alarms && x.alarms.length ? ' · ' + x.alarms.length + ' hatırlatıcı' : '')
+    : isTime(x.rTime) ? 'Bildirim ' + (isDate(x.rDate) ? fmtD(x.rDate) + ' ' : '') + x.rTime : null;
+  const toggle = () => {
+    update('tasks', (d) => { const y = d.items.find((i) => i.id === x.id); if (y) { y.done = !y.done; y.doneAt = y.done ? today() : null; } });
+    if (x.ext === 'grp' && G) G.markAssign(x.extKey, !x.done);
+  };
   return (
-    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, padding: 8, borderRadius: 14, backgroundColor: alpha(c, 0.11), borderWidth: 1, borderColor: alpha(c, 0.32), opacity: x.done ? 0.62 : 1 }}>
+    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, padding: 8, borderRadius: t.rm, backgroundColor: alpha(c, 0.11), borderWidth: 1, borderColor: alpha(c, 0.32), opacity: x.done ? 0.62 : 1 }}>
       <Text style={{ width: 22, textAlign: 'center', fontWeight: '800', color: ct }}>{rank}</Text>
-      <CheckBox on={!!x.done} color={c} label="Tamamlandı" onPress={() => update('tasks', (d) => { const y = d.items.find((i) => i.id === x.id); if (y) { y.done = !y.done; y.doneAt = y.done ? today() : null; } })} />
+      <CheckBox on={!!x.done} color={c} label="Tamamlandı" onPress={toggle} />
       <Pressable style={{ flex: 1, minHeight: 44, justifyContent: 'center', gap: 2 }} onPress={() => forms.open('task', x)}>
         <T s={15.5} w="700" style={{ textDecorationLine: x.done ? 'line-through' : 'none' }}>{x.title}</T>
         <Meta items={[
-          <Text key="p" style={{ fontSize: 13, fontWeight: '800', color: ct }}>{PRI[x.p]}</Text>,
+          <Text key="p" style={{ fontSize: 13, fontWeight: '800', color: ct }}>{cal ? 'Etkinlik' : PRI[x.p]}</Text>,
           !inFolder && <Text key="c" style={{ fontSize: 13, color: t.mute }}>{catName(st, x.cat)}</Text>,
-          (x.start || x.end) && <Text key="r" style={{ fontSize: 13, color: t.mute }}>{(x.start ? fmtD(x.start) : '…') + ' → ' + (x.end ? fmtD(x.end) : '…')}</Text>,
-          left && <Text key="l" style={{ fontSize: 13, fontWeight: left.n <= 2 ? '800' : '400', color: left.n < 0 ? t.red : left.n <= 2 ? t.yelT : t.mute }}>{left.text}</Text>,
+          (x.start || x.end) && <Text key="r" style={{ fontSize: 13, color: t.mute }}>{x.start && x.end && x.start === x.end ? fmtD(x.end) : (x.start ? fmtD(x.start) : '…') + ' → ' + (x.end ? fmtD(x.end) : '…')}</Text>,
+          left && !cal && <Text key="l" style={{ fontSize: 13, fontWeight: left.n <= 2 ? '800' : '400', color: left.n < 0 ? t.red : left.n <= 2 ? t.yelT : t.mute }}>{left.text}</Text>,
           rem && <Text key="b" style={{ fontSize: 13, color: t.mute }}>{rem}</Text>,
+          x.ext === 'grp' && <Text key="g" style={{ fontSize: 13, color: t.acc, fontWeight: '700' }}>Öğretmen atadı</Text>,
         ]} />
       </Pressable>
     </View>
@@ -70,7 +80,7 @@ export function DailyRow({ x }) {
   const forms = useForms();
   const td = today(), on = (x.doneOn || []).includes(td), c = priColor(t, x.p);
   return (
-    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, padding: 8, borderRadius: 14, backgroundColor: alpha(c, 0.11), borderWidth: 1, borderColor: alpha(c, 0.32), opacity: on ? 0.62 : 1 }}>
+    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, padding: 8, borderRadius: t.rm, backgroundColor: alpha(c, 0.11), borderWidth: 1, borderColor: alpha(c, 0.32), opacity: on ? 0.62 : 1 }}>
       <CheckBox on={on} color={c} label="Bugün yapıldı" onPress={() => update('tasks', (d) => {
         const y = d.items.find((i) => i.id === x.id); if (!y) return;
         const a = y.doneOn || []; const k = a.indexOf(td);
@@ -178,7 +188,7 @@ export function WeekProgram() {
       {!wide ? (
         <Row>{DN.map((d, i) => <Chip key={d} label={d} on={i === sel} onPress={() => setSel(i)} />)}</Row>
       ) : null}
-      <View style={{ borderWidth: 1, borderColor: t.line, borderRadius: 14, overflow: 'hidden' }}>
+      <View style={{ borderWidth: 1, borderColor: t.line, borderRadius: t.rm, overflow: 'hidden' }}>
         {wide ? (
           <View style={{ flexDirection: 'row', borderBottomWidth: 1, borderColor: t.line }}>
             <View style={{ width: 50 }} />
@@ -300,7 +310,41 @@ export function FormsProvider({ children }) {
   );
 }
 
+function ExtTaskSheet({ data, close }) {
+  const { update } = useStore();
+  const { confirm } = useUI();
+  const G = useGroups();
+  const cal = data.ext === 'cal';
+  const when = (data.start && data.end && data.start !== data.end ? fmtD(data.start) + ' → ' + fmtD(data.end) : fmtD(data.end || data.start)) + (isTime(data.rTime) ? ' · ' + data.rTime : '');
+  return (
+    <Sheet visible title={cal ? 'Telefon takviminden' : 'Öğretmenin atadığı görev'} onClose={close}>
+      <T s={20} w="800">{data.title}</T>
+      <Mute>{when}</Mute>
+      {cal && data.alarms && data.alarms.length ? <Mute>{'Hatırlatıcılar: ' + data.alarms.map((m) => (m ? -m + ' dk önce' : 'başlarken')).join(', ')}</Mute> : null}
+      {data.note ? <T>{data.note}</T> : null}
+      <Mute>{cal ? 'Bu etkinlik telefonunun takviminden geliyor; değiştirmek için takvim uygulamasını kullan, burada da güncellenir.' : 'Bu görevi öğretmenin atadı. Tamamlayınca işaretle; öğretmenin görür.'}</Mute>
+      <Row>
+        <Btn kind="pri" icon={data.done ? 'arrow-undo-outline' : 'checkmark'} title={data.done ? 'Tamamlanmadı olarak işaretle' : 'Tamamlandı'} onPress={() => {
+          update('tasks', (d) => { const y = d.items.find((i) => i.id === data.id); if (y) { y.done = !y.done; y.doneAt = y.done ? today() : null; } });
+          if (!cal && G) G.markAssign(data.extKey, !data.done);
+          close();
+        }} />
+        {cal ? <Btn kind="danger" title="Planlayıcı'da gizle" onPress={() => confirm('Bu etkinlik Planlayıcı\'dan kaldırılsın mı? Telefon takviminde kalır.', () => {
+          update('prefs', (d) => { d.calSkip = [...d.calSkip, data.extKey]; });
+          update('tasks', (d) => { d.items = d.items.filter((i) => i.id !== data.id); });
+          close();
+        }, 'Gizle')} /> : null}
+      </Row>
+    </Sheet>
+  );
+}
+
 function TaskForm({ data, close }) {
+  if (data.ext) return <ExtTaskSheet data={data} close={close} />;
+  return <TaskFormInner data={data} close={close} />;
+}
+
+function TaskFormInner({ data, close }) {
   const t = useTheme();
   const { st, update } = useStore();
   const { toast, confirm } = useUI();

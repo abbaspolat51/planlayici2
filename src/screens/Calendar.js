@@ -18,8 +18,8 @@ export default function Calendar() {
   const by = {};
   tasks.forEach((x) => { (by[x.end] = by[x.end] || []).push(x); });
   const dl = (by[sel] || []).slice().sort(byPri);
-  const ongoing = st.tasks.items.filter((x) => !x.done && x.cat !== 'daily' && x.start && x.end && x.start <= sel && x.end > sel).sort(byPri);
-  const up = tasks.filter((x) => !x.done && x.end >= td && x.end <= addDays(td, 14)).sort((a, b) => a.end.localeCompare(b.end) || a.p - b.p);
+  const ongoing = st.tasks.items.filter((x) => !x.done && x.cat !== 'daily' && x.ext !== 'cal' && x.start && x.end && x.start <= sel && x.end > sel).sort(byPri);
+  const up = tasks.filter((x) => !x.done && x.ext !== 'cal' && x.end >= td && x.end <= addDays(td, 14)).sort((a, b) => a.end.localeCompare(b.end) || a.p - b.p);
   return (
     <View style={{ gap: 16 }}>
       <Card>
@@ -33,12 +33,12 @@ export default function Calendar() {
                 <Text style={{ alignSelf: 'flex-start', fontWeight: '700', fontSize: 14, paddingHorizontal: 6, borderRadius: 8, overflow: 'hidden', backgroundColor: isT ? t.acc : 'transparent', color: isT ? t.accI : t.ink }}>{+d.slice(8)}</Text>
                 {narrow ? (
                   <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 3, paddingLeft: 4 }}>
-                    {its.slice(0, 4).map((x) => <View key={x.id} style={{ width: 9, height: 9, borderRadius: 5, backgroundColor: priColor(t, x.p), opacity: x.done ? 0.4 : 1 }} />)}
+                    {its.slice(0, 4).map((x) => <View key={x.id} style={{ width: 9, height: 9, borderRadius: 5, backgroundColor: x.ext === 'cal' ? t.acc : priColor(t, x.p), opacity: x.done ? 0.4 : 1 }} />)}
                   </View>
                 ) : (
                   <>
                     {its.slice(0, 3).map((x) => (
-                      <Text key={x.id} numberOfLines={1} style={{ fontSize: 12, fontWeight: '700', paddingHorizontal: 6, paddingVertical: 2, borderRadius: 6, overflow: 'hidden', color: t.ink, backgroundColor: alpha(priColor(t, x.p), 0.22), opacity: x.done ? 0.5 : 1, textDecorationLine: x.done ? 'line-through' : 'none' }}>{x.title}</Text>
+                      <Text key={x.id} numberOfLines={1} style={{ fontSize: 12, fontWeight: '700', paddingHorizontal: 6, paddingVertical: 2, borderRadius: 6, overflow: 'hidden', color: t.ink, backgroundColor: alpha(x.ext === 'cal' ? t.acc : priColor(t, x.p), 0.22), opacity: x.done ? 0.5 : 1, textDecorationLine: x.done ? 'line-through' : 'none' }}>{x.title}</Text>
                     ))}
                     {its.length > 3 ? <Mute s={12}>{'+' + (its.length - 3)}</Mute> : null}
                   </>

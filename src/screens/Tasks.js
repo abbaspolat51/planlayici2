@@ -4,7 +4,7 @@ import { useStore } from '../store';
 import { useTheme, alpha } from '../theme';
 import { T, Mute, H2, H3, Card, Btn, Row, Grid, Empty, IconBtn, useUI } from '../ui';
 import { TaskRow, DailyRow, useForms } from '../components';
-import { PRI, byPri, today } from '../logic';
+import { PRI, byPri, today, addDays } from '../logic';
 
 export default function Tasks() {
   const t = useTheme();
@@ -12,7 +12,10 @@ export default function Tasks() {
   const forms = useForms();
   const { confirm } = useUI();
   const [showDone, setShowDone] = useState(false);
-  const all = st.tasks.items.filter((x) => x.cat !== 'daily');
+  const all = st.tasks.items.filter((x) => x.cat !== 'daily' && x.ext !== 'cal');
+  const td0 = today();
+  const calItems = st.tasks.items.filter((x) => x.ext === 'cal' && x.end >= td0 && x.start <= addDays(td0, 14))
+    .sort((a, b) => (a.start + (a.rTime || '')).localeCompare(b.start + (b.rTime || '')));
   const open = all.filter((x) => !x.done).sort(byPri), done = all.filter((x) => x.done).sort(byPri);
   const daily = st.tasks.items.filter((x) => x.cat === 'daily').sort(byPri);
   const td = today(), dd = daily.filter((x) => (x.doneOn || []).includes(td)).length;
@@ -59,20 +62,22 @@ export default function Tasks() {
             <Btn sm title="+ Günlük iş" onPress={() => forms.open('task', { cat: 'daily' })} style={{ alignSelf: 'flex-start' }} />
           </Card>
           {st.tasks.cats.filter((c) => c.id !== 'daily').map((c) => {
-            const its = all.filter((x) => x.cat === c.id).sort(byPri);
+            const isCal = c.id === 'takvim';
+            if (isCal && !calItems.length) return null;
+            const its = isCal ? calItems : all.filter((x) => x.cat === c.id).sort(byPri);
             let r = 0;
             return (
               <Card key={c.id}>
                 <Row style={{ justifyContent: 'space-between' }} wrap={false}>
                   <H3 style={{ flex: 1 }}>{c.name}</H3>
                   <Mute>{its.filter((x) => !x.done).length + ' açık'}</Mute>
-                  {c.id !== 'genel' ? <IconBtn name="trash-outline" label="Başlığı sil" onPress={() => confirm('Bu başlık silinsin mi? İçindeki görevler “Genel” başlığına taşınır.', () => update('tasks', (d) => {
+                  {c.id !== 'genel' && !isCal && !c.id.startsWith('g-') ? <IconBtn name="trash-outline" label="Başlığı sil" onPress={() => confirm('Bu başlık silinsin mi? İçindeki görevler “Genel” başlığına taşınır.', () => update('tasks', (d) => {
                     d.items.forEach((x) => { if (x.cat === c.id) x.cat = 'genel'; });
                     d.cats = d.cats.filter((y) => y.id !== c.id);
                   }))} /> : null}
                 </Row>
                 {its.length ? its.map((x) => <TaskRow key={x.id} x={x} rank={x.done ? '' : ++r} inFolder />) : <Empty text="Bu başlıkta görev yok." />}
-                <Btn sm title="+ Görev" onPress={() => forms.open('task', { cat: c.id })} style={{ alignSelf: 'flex-start' }} />
+                {isCal ? <Mute>Önümüzdeki 14 gün · telefon takviminden</Mute> : c.id.startsWith('g-') ? <Mute>Öğretmeninin atadığı görevler</Mute> : <Btn sm title="+ Görev" onPress={() => forms.open('task', { cat: c.id })} style={{ alignSelf: 'flex-start' }} />}
               </Card>
             );
           })}

@@ -1,13 +1,14 @@
 {
   "name": "planlayici",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "private": true,
   "main": "index.js",
   "scripts": {
     "start": "expo start",
     "android": "expo run:android",
     "web": "expo start --web",
-    "build:web": "expo export --platform web"
+    "build:web": "expo export --platform web",
+    "paketler": "expo install react react-dom react-native react-native-web @expo/metro-runtime @expo/vector-icons expo-status-bar expo-notifications expo-document-picker expo-file-system expo-intent-launcher expo-calendar expo-audio expo-constants react-native-safe-area-context @react-native-async-storage/async-storage -- --legacy-peer-deps"
   },
   "dependencies": {
     "expo": "~54.0.0",

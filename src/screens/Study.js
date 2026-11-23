@@ -51,7 +51,7 @@ export default function Study() {
         <H3>Çalışma özeti</H3>
         <Row>
           {[['Bugün', hm(L.m)], ['Bugün biten pomodoro', String(L.n)], ['Son 7 gün', hm(wk)]].map(([l, v]) => (
-            <View key={l} style={{ flexGrow: 1, flexBasis: 140, padding: 14, borderRadius: 14, backgroundColor: t.card2 }}>
+            <View key={l} style={{ flexGrow: 1, flexBasis: 140, padding: 14, borderRadius: t.rm, backgroundColor: t.card2 }}>
               <Mute s={13}>{l}</Mute>
               <T s={24} w="800">{v}</T>
             </View>

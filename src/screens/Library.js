@@ -34,8 +34,8 @@ export default function Library() {
         {L.folders.length ? (
           <Grid min={200} gap={12}>
             {L.folders.map((x) => (
-              <Pressable key={x.id} onPress={() => setOpenId(x.id)} style={({ pressed }) => ({ minHeight: 120, padding: 14, borderRadius: 18, borderWidth: 1, borderColor: pressed ? t.acc : t.line, backgroundColor: t.card, justifyContent: 'space-between' })}>
-                <View style={{ width: 44, height: 44, borderRadius: 12, backgroundColor: alpha(t.acc, 0.14), alignItems: 'center', justifyContent: 'center' }}>
+              <Pressable key={x.id} onPress={() => setOpenId(x.id)} style={({ pressed }) => ({ minHeight: 120, padding: 14, borderRadius: t.r, borderWidth: t.bw, borderColor: pressed ? t.acc : t.line, backgroundColor: t.card, justifyContent: 'space-between' })}>
+                <View style={{ width: 44, height: 44, borderRadius: t.soft ? 22 : 12, backgroundColor: alpha(t.acc, 0.14), alignItems: 'center', justifyContent: 'center' }}>
                   <Ionicons name="folder-open-outline" size={23} color={t.acc} />
                 </View>
                 <View><T w="800">{x.name}</T><Mute s={13}>{x.files.length + ' dosya'}</Mute></View>

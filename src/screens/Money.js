@@ -56,7 +56,7 @@ export default function Money() {
           </Row>
           <Row>
             {[['Kazandım', inc, t.grn], ['Harcadım', exp, t.red], ['Haftalık fark', inc - exp, t.ink]].map(([l, n, c]) => (
-              <View key={l} style={{ flexGrow: 1, flexBasis: 120, padding: 14, borderRadius: 14, backgroundColor: t.card2 }}>
+              <View key={l} style={{ flexGrow: 1, flexBasis: 120, padding: 14, borderRadius: t.rm, backgroundColor: t.card2 }}>
                 <Mute s={13}>{l}</Mute>
                 <T s={21} w="800" c={c}>{tl(n)}</T>
               </View>

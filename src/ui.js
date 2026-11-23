@@ -4,7 +4,7 @@ import {
   View, Text, Pressable, TextInput, Modal, ScrollView, KeyboardAvoidingView, Platform, useWindowDimensions,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { useTheme, alpha } from './theme';
+import { useTheme, alpha, shadow } from './theme';
 import { AY, DN, monthCells, nowYM, shiftM, today, fmtD, isDate, fmtTimeInput, parse, ymd } from './logic';
 
 export const R = 16; // köşe yuvarlaklığı
@@ -27,7 +27,7 @@ export function H3({ children, style }) {
 export function Card({ children, style, bg, border }) {
   const t = useTheme();
   return (
-    <View style={[{ backgroundColor: bg || t.card, borderColor: border || t.line, borderWidth: 1, borderRadius: 18, padding: 16, gap: 10 }, style]}>
+    <View style={[{ backgroundColor: bg || t.card, borderColor: border || t.line, borderWidth: border ? Math.max(1, t.bw) : t.bw, borderRadius: t.r, padding: t.soft ? 18 : 16, gap: 10 }, bg ? null : shadow(t), style]}>
       {children}
     </View>
   );
@@ -44,9 +44,10 @@ export function Btn({ title, onPress, kind, sm, icon, disabled, style, color }) 
       disabled={disabled}
       accessibilityRole="button"
       style={({ pressed }) => [{
-        minHeight: sm ? 38 : 44, paddingHorizontal: sm ? 12 : 16, borderRadius: 12, borderWidth: 1,
+        minHeight: sm ? 38 : 44, paddingHorizontal: sm ? 12 : 16, borderRadius: t.rb, borderWidth: 1,
         backgroundColor: color || bg, borderColor: color || bd, flexDirection: 'row', alignItems: 'center',
-        justifyContent: 'center', gap: 6, opacity: disabled ? 0.45 : pressed ? 0.75 : 1,
+        justifyContent: 'center', gap: 6, opacity: disabled ? 0.45 : pressed ? (t.soft ? 0.9 : 0.75) : 1,
+        transform: [{ scale: pressed && t.soft ? 0.96 : 1 }],
       }, style]}
     >
       {icon ? <Ionicons name={icon} size={sm ? 16 : 18} color={fg} /> : null}
@@ -64,7 +65,7 @@ export function IconBtn({ name, onPress, label, color, size = 22, disabled }) {
       accessibilityRole="button"
       accessibilityLabel={label}
       hitSlop={4}
-      style={({ pressed }) => ({ width: 44, height: 44, borderRadius: 12, alignItems: 'center', justifyContent: 'center', backgroundColor: pressed ? t.card2 : 'transparent', opacity: disabled ? 0.35 : 1 })}
+      style={({ pressed }) => ({ width: 44, height: 44, borderRadius: t.soft ? 22 : 12, alignItems: 'center', justifyContent: 'center', backgroundColor: pressed ? t.card2 : 'transparent', opacity: disabled ? 0.35 : 1 })}
     >
       <Ionicons name={name} size={size} color={color || t.ink} />
     </Pressable>
@@ -103,7 +104,7 @@ export function Field({ label, style, inputStyle, ...p }) {
       {label ? <Text style={{ fontSize: 14, fontWeight: '700', color: t.mute }}>{label}</Text> : null}
       <TextInput
         placeholderTextColor={t.mute}
-        style={[{ minHeight: 44, fontSize: 16, borderRadius: 12, borderWidth: 1, borderColor: t.line, backgroundColor: t.card2, paddingHorizontal: 12, color: t.ink }, inputStyle]}
+        style={[{ minHeight: 44, fontSize: 16, borderRadius: t.rs, borderWidth: 1, borderColor: t.line, backgroundColor: t.card2, paddingHorizontal: 12, color: t.ink }, inputStyle]}
         {...p}
       />
     </View>
@@ -134,7 +135,7 @@ export function DateField({ label, value, onChange, style, allowClear = true }) 
       {label ? <Text style={{ fontSize: 14, fontWeight: '700', color: t.mute }}>{label}</Text> : null}
       <Pressable
         onPress={() => { const d = isDate(value) ? parse(value) : new Date(); setYm({ y: d.getFullYear(), m: d.getMonth() }); setOpen(true); }}
-        style={{ minHeight: 44, borderRadius: 12, borderWidth: 1, borderColor: t.line, backgroundColor: t.card2, paddingHorizontal: 12, justifyContent: 'center' }}
+        style={{ minHeight: 44, borderRadius: t.rs, borderWidth: 1, borderColor: t.line, backgroundColor: t.card2, paddingHorizontal: 12, justifyContent: 'center' }}
       >
         <Text style={{ fontSize: 16, color: isDate(value) ? t.ink : t.mute }}>{isDate(value) ? fmtD(value) + ' ' + parse(value).getFullYear() : 'Tarih seç'}</Text>
       </Pressable>
@@ -177,7 +178,7 @@ export function Seg({ options, value, onChange, label }) {
               onPress={() => onChange(v)}
               accessibilityRole="radio"
               accessibilityState={{ checked: on }}
-              style={{ flex: 1, minHeight: 44, borderRadius: 12, borderWidth: 1.5, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 6,
+              style={{ flex: 1, minHeight: 44, borderRadius: t.rs, borderWidth: 1.5, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 6,
                 backgroundColor: on ? col || t.acc : t.card, borderColor: on ? col || t.acc : t.line }}
             >
               <Text style={{ fontWeight: '800', fontSize: 14, textAlign: 'center', color: on ? (col === t.yel ? '#221a00' : col ? '#fff' : t.accI) : t.ink }}>{l}</Text>
@@ -215,7 +216,7 @@ export function DayPick({ value, onChange }) {
           const on = value.includes(i);
           return (
             <Pressable key={d} onPress={() => toggle(i)} accessibilityState={{ checked: on }}
-              style={{ flex: 1, minHeight: 44, borderRadius: 12, borderWidth: 1.5, alignItems: 'center', justifyContent: 'center', backgroundColor: on ? t.acc : t.card, borderColor: on ? t.acc : t.line }}>
+              style={{ flex: 1, minHeight: 44, borderRadius: t.rs, borderWidth: 1.5, alignItems: 'center', justifyContent: 'center', backgroundColor: on ? t.acc : t.card, borderColor: on ? t.acc : t.line }}>
               <Text style={{ fontWeight: '800', fontSize: 13, color: on ? t.accI : t.ink }}>{d}</Text>
             </Pressable>
           );
@@ -295,7 +296,7 @@ export function Sheet({ visible, title, onClose, children, footer }) {
     <Modal visible={visible} transparent animationType={wide ? 'fade' : 'slide'} onRequestClose={onClose}>
       <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined} style={{ flex: 1 }}>
         <Pressable onPress={onClose} style={{ flex: 1, backgroundColor: 'rgba(8,10,13,0.55)', justifyContent: wide ? 'center' : 'flex-end', alignItems: 'center', padding: wide ? 16 : 0 }}>
-          <Pressable onPress={() => {}} style={{ width: '100%', maxWidth: 540, maxHeight: '92%', backgroundColor: t.card, borderTopLeftRadius: 20, borderTopRightRadius: 20, borderBottomLeftRadius: wide ? 20 : 0, borderBottomRightRadius: wide ? 20 : 0, borderWidth: 1, borderColor: t.line }}>
+          <Pressable onPress={() => {}} style={{ width: '100%', maxWidth: 540, maxHeight: '92%', backgroundColor: t.card, borderTopLeftRadius: t.r + 2, borderTopRightRadius: t.r + 2, borderBottomLeftRadius: wide ? t.r + 2 : 0, borderBottomRightRadius: wide ? t.r + 2 : 0, borderWidth: 1, borderColor: t.line }}>
             <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 18, paddingTop: 12 }}>
               <T s={18} w="800" style={{ flex: 1 }}>{title}</T>
               <IconBtn name="close" label="Kapat" onPress={onClose} />
@@ -344,7 +345,7 @@ export function UIProvider({ children }) {
       {children}
       {msg ? (
         <View pointerEvents="none" style={{ position: 'absolute', left: 0, right: 0, bottom: 40, alignItems: 'center', paddingHorizontal: 20 }}>
-          <View style={{ backgroundColor: t.ink, paddingVertical: 12, paddingHorizontal: 18, borderRadius: 12, maxWidth: 520 }}>
+          <View style={{ backgroundColor: t.ink, paddingVertical: 12, paddingHorizontal: 18, borderRadius: t.soft ? 999 : 12, maxWidth: 520 }}>
             <Text style={{ color: t.bg, fontWeight: '700', textAlign: 'center' }}>{msg}</Text>
           </View>
         </View>

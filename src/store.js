@@ -1,5 +1,6 @@
 // Uygulama verisi: cihazda (AsyncStorage) önbellek + Firebase ile telefon–bilgisayar eşitlemesi.
 import React, { createContext, useCallback, useContext, useEffect, useRef, useState } from 'react';
+import { LayoutAnimation, Platform, UIManager } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword,
@@ -8,6 +9,16 @@ import {
 import { doc, onSnapshot, setDoc } from 'firebase/firestore';
 import { auth, db, configured } from './firebase';
 import { KEYS, norm, emptyState, rid, pruneFood } from './logic';
+import { THEMES } from './theme';
+
+if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
+  try { UIManager.setLayoutAnimationEnabledExperimental(true); } catch (e) { /* yeni mimaride gerekmez */ }
+}
+const softAnim = (st) => {
+  const th = THEMES[(st.prefs || {}).theme];
+  if (!th || !th.shape.soft || Platform.OS === 'web') return;
+  try { LayoutAnimation.configureNext(LayoutAnimation.create(220, 'easeInEaseOut', 'opacity')); } catch (e) { /* yok say */ }
+};
 
 const Ctx = createContext(null);
 export const useStore = () => useContext(Ctx);
@@ -31,7 +42,6 @@ export function StoreProvider({ children }) {
   const [ready, setReady] = useState(false);
   const [user, setUser] = useState(configured ? undefined : null); // undefined: bekleniyor
   const [status, setStatus] = useState(configured ? 'wait' : 'local');
-  const [mode, setMode] = useState('system');
   const [dev, setDev] = useState('');
   const dirty = useRef({}), busy = useRef({}), again = useRef({}), timers = useRef({});
   const uidRef = useRef(null);
@@ -50,7 +60,7 @@ export function StoreProvider({ children }) {
         }
         stRef.current = s;
         setSt(s);
-        if (m['pl-mode']) setMode(m['pl-mode']);
+        if (m['pl-mode'] && !m['pl-prefs']) s.prefs.mode = m['pl-mode'];
         let d = m['pl-dev'];
         if (!d) { d = rid(); AsyncStorage.setItem('pl-dev', d).catch(() => {}); }
         setDev(d);
@@ -125,7 +135,9 @@ export function StoreProvider({ children }) {
     const r = fn(draft);
     const val = norm(k, r === undefined ? draft : r);
     if (k === 'food') pruneFood(val);
+    if (JSON.stringify(val) === JSON.stringify(cur[k])) return; // değişiklik yok
     const next = { ...cur, [k]: val };
+    softAnim(next);
     stRef.current = next;
     setSt(next);
     AsyncStorage.setItem('pl-' + k, JSON.stringify(val)).catch(() => {});
@@ -134,10 +146,8 @@ export function StoreProvider({ children }) {
     timers.current[k] = setTimeout(() => flush(k), 500);
   }, [flush]);
 
-  const setThemeMode = useCallback((m) => {
-    setMode(m);
-    AsyncStorage.setItem('pl-mode', m).catch(() => {});
-  }, []);
+  const setThemeMode = useCallback((m) => update('prefs', (d) => { d.mode = m; }), [update]);
+  const setTheme = useCallback((id) => update('prefs', (d) => { d.theme = id; }), [update]);
 
   const signIn = useCallback(async (email, pw) => {
     try { await signInWithEmailAndPassword(auth, email.trim(), pw); return null; } catch (e) { return authError(e); }
@@ -167,7 +177,7 @@ export function StoreProvider({ children }) {
   }, [update]);
 
   const value = {
-    st, ready, user, status, update, mode, setThemeMode, dev, configured,
+    st, ready, user, status, update, mode: st.prefs.mode, setThemeMode, setTheme, dev, configured,
     signIn, signUp, resetPw, signOut, importData,
   };
   return React.createElement(Ctx.Provider, { value }, children);

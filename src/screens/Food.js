@@ -72,7 +72,7 @@ export default function Food() {
             return (
               <View key={k} style={{ width: '50%', paddingHorizontal: 5, maxWidth: 280 }}>
                 <Pressable onPress={() => setMeal(on ? null : k)} accessibilityState={{ selected: on }}
-                  style={{ minHeight: 80, borderRadius: 16, borderWidth: 1, borderColor: on ? t.acc : t.line, backgroundColor: on ? t.acc : t.card, alignItems: 'center', justifyContent: 'center' }}>
+                  style={{ minHeight: 80, borderRadius: t.r, borderWidth: t.bw || (on ? 0 : 1), borderColor: on ? t.acc : t.line, backgroundColor: on ? t.acc : t.card, alignItems: 'center', justifyContent: 'center' }}>
                   <Text style={{ fontWeight: '800', fontSize: 17, color: on ? t.accI : t.ink }}>{n}</Text>
                   <Text style={{ fontSize: 13.5, color: on ? t.accI : t.mute }}>{num(sub(k)) + ' kcal'}</Text>
                 </Pressable>

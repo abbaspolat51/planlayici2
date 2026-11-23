@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View, Text, Pressable, useWindowDimensions } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useStore } from '../store';
-import { useTheme, alpha, lvlColor, lvlText } from '../theme';
-import { T, Mute, H3, Card, Btn, Row, Grid, Bar, Empty, ListRow, Field, Seg, useUI } from '../ui';
+import { useTheme, alpha, lvlColor, lvlText, shadow } from '../theme';
+import { T, Mute, H3, Card, Btn, Row, Grid, Bar, Empty, ListRow } from '../ui';
 import { TimerCard, WeekProgram, NotifCard, TaskRow, DailyRow, useGo, useForms } from '../components';
-import { today, addDays, AY, GUN, num, tl, hm, fday, ftot, lvl, LV, streak, balance, byPri } from '../logic';
+import { today, addDays, AY, GUN, num, tl, hm, fday, ftot, lvl, LV, streak, balance, byPri, isTime } from '../logic';
+import { useGroups, GROUP_TYPES } from '../groups';
 
-const TILES = [
+export const TILES = [
   ['gorevler', 'Görevler', 'checkbox-outline'],
   ['rutin', 'Rutinler', 'link-outline'],
   ['takvim', 'Takvim', 'calendar-outline'],
@@ -16,6 +17,7 @@ const TILES = [
   ['ambar', 'Ders ambarı', 'folder-open-outline'],
   ['para', 'Para takibi', 'wallet-outline'],
   ['kitap', 'Kitaplarım', 'book-outline'],
+  ['grup', 'Gruplar', 'people-outline'],
 ];
 
 export function CalorieCard() {
@@ -54,56 +56,19 @@ export function Scale({ tot, max }) {
   );
 }
 
-function SettingsCard() {
-  const t = useTheme();
-  const { mode, setThemeMode, user, signOut, configured, importData, status } = useStore();
-  const { toast, confirm } = useUI();
-  const [imp, setImp] = useState('');
-  const [showImp, setShowImp] = useState(false);
-  const doImport = () => {
-    try {
-      const obj = JSON.parse(imp);
-      const n = importData(obj);
-      toast(n ? n + ' bölüm aktarıldı' : 'Bu metinde planlayıcı verisi bulunamadı');
-      if (n) { setImp(''); setShowImp(false); }
-    } catch (e) { toast('Metin okunamadı; tamamını kopyaladığından emin ol'); }
-  };
-  return (
-    <Card>
-      <H3>Ayarlar</H3>
-      <Seg label="Görünüm" value={mode} onChange={setThemeMode} options={[['system', 'Telefona göre'], ['light', 'Aydınlık'], ['dark', 'Karanlık']]} />
-      {configured ? (
-        user ? (
-          <Row style={{ justifyContent: 'space-between' }}>
-            <Mute style={{ flex: 1 }}>{'Hesap: ' + (user.email || '') + (status === 'on' ? ' · eşitlendi' : '')}</Mute>
-            <Btn sm title="Çıkış yap" onPress={() => confirm('Çıkış yapılsın mı? Verilerin bulutta kalır.', signOut, 'Çıkış yap')} />
-          </Row>
-        ) : null
-      ) : (
-        <Mute>Eşitleme kapalı: veriler yalnızca bu cihazda. Telefon ve bilgisayarı eşitlemek için README'deki Firebase adımlarını yap.</Mute>
-      )}
-      <Btn sm title={showImp ? 'Veri aktarmayı kapat' : 'Eski planlayıcıdan veri aktar'} onPress={() => setShowImp(!showImp)} />
-      {showImp ? (
-        <View style={{ gap: 8 }}>
-          <Mute>Eski planlayıcı sayfasında "Verilerini dışa aktar" düğmesine bas, kopyalanan metni buraya yapıştır.</Mute>
-          <Field value={imp} onChangeText={setImp} multiline placeholder="{ ... }" inputStyle={{ minHeight: 100, textAlignVertical: 'top', paddingTop: 10 }} />
-          <Row><Btn sm kind="pri" title="Aktar" onPress={doImport} /></Row>
-        </View>
-      ) : null}
-    </Card>
-  );
-}
-
 export default function Home() {
   const t = useTheme();
   const { st, configured } = useStore();
   const go = useGo();
+  const G = useGroups();
   const { width } = useWindowDimensions();
+  const H = st.prefs.home, hidden = st.prefs.hidden;
   const n = new Date(), td = today();
-  const T0 = st.tasks.items, open = T0.filter((x) => !x.done && x.cat !== 'daily');
+  const T0 = st.tasks.items, open = T0.filter((x) => !x.done && x.cat !== 'daily' && x.ext !== 'cal');
   const urgent = open.filter((x) => x.p === 1).length;
   const due = open.filter((x) => x.end).sort((a, b) => a.end.localeCompare(b.end) || a.p - b.p).slice(0, 6);
   const daily = T0.filter((x) => x.cat === 'daily').sort(byPri);
+  const phone = T0.filter((x) => x.ext === 'cal' && x.start <= td && x.end >= td).sort((a, b) => (a.rTime || '00:00').localeCompare(b.rTime || '00:00'));
   const R = st.routines.items, best = R.reduce((m, r) => Math.max(m, streak(r.done)), 0);
   const SL = st.study.log[td] || { m: 0 };
   const rd = st.books.items.find((b) => b.st === 'oku');
@@ -118,8 +83,53 @@ export default function Home() {
     ambar: st.library.folders.length + ' klasör · ' + files + ' dosya',
     para: 'Kalan ' + tl(balance(st.money)),
     kitap: rd ? rd.title : 'Kitap ekle',
+    grup: G && G.list.length ? G.list.length + ' grup' : 'Grup kur ya da katıl',
   };
-  const tileCols = width < 600 ? 2 : width < 900 ? 4 : 8;
+  const tiles = TILES.filter(([k]) => !hidden.includes(k));
+  const tileCols = width < 600 ? 2 : width < 900 ? 4 : Math.min(tiles.length, 9);
+  const cards = [
+    H.due ? (
+      <Card key="due">
+        <Row style={{ justifyContent: 'space-between' }}><H3>Yaklaşan son günler</H3><Btn sm title="Takvim" onPress={() => go('takvim')} /></Row>
+        {due.length ? due.map((x, i) => <TaskRow key={x.id} x={x} rank={i + 1} />) : <Empty text="Son tarihi olan açık görev yok." />}
+      </Card>
+    ) : null,
+    H.phone && phone.length ? (
+      <Card key="phone">
+        <Row style={{ justifyContent: 'space-between' }}><H3>Telefon takvimi · bugün</H3><Btn sm title="Tümü" onPress={() => go('gorevler')} /></Row>
+        {phone.map((x, i) => (
+          <ListRow key={x.id} last={i === phone.length - 1}>
+            <T w="800" style={{ width: 52 }}>{isTime(x.rTime) ? x.rTime : 'Gün'}</T>
+            <View style={{ flex: 1 }}>
+              <T w="700">{x.title}</T>
+              {x.alarms && x.alarms.length ? <Mute s={13}>{x.alarms.length + ' hatırlatıcı'}</Mute> : null}
+            </View>
+          </ListRow>
+        ))}
+      </Card>
+    ) : null,
+    H.daily ? (
+      <Card key="daily">
+        <Row style={{ justifyContent: 'space-between' }}><H3>Günlük işler</H3><Btn sm title="Tümü" onPress={() => go('gorevler')} /></Row>
+        {daily.length ? daily.map((x) => <DailyRow key={x.id} x={x} />) : <Empty text="Görevler sayfasındaki “Günlük İşler” klasörüne ekleyebilirsin." />}
+      </Card>
+    ) : null,
+    H.routines && !hidden.includes('rutin') ? <RoutinesToday key="routines" /> : null,
+    H.groups && G && G.list.length && !hidden.includes('grup') ? (
+      <Card key="groups">
+        <Row style={{ justifyContent: 'space-between' }}><H3>Gruplarım</H3><Btn sm title="Gruplar" onPress={() => go('grup')} /></Row>
+        {G.list.map((x, i) => (
+          <ListRow key={x.code} last={i === G.list.length - 1}>
+            <View style={{ flex: 1 }}>
+              <T w="700">{x.g ? x.g.name : x.code}</T>
+              <Mute s={13}>{x.g ? GROUP_TYPES[x.g.type] + (x.g.timer && x.g.timer.run ? ' · şu an birlikte çalışılıyor' : '') : ''}</Mute>
+            </View>
+          </ListRow>
+        ))}
+      </Card>
+    ) : null,
+    H.notif ? <NotifCard key="notif" /> : null,
+  ].filter(Boolean);
   return (
     <View style={{ gap: 16 }}>
       <View>
@@ -132,40 +142,35 @@ export default function Home() {
           <Mute>Uygulama çalışıyor ama veriler yalnızca bu cihazda. Telefonla bilgisayarı eşitlemek için README'deki Firebase adımlarını yap.</Mute>
         </Card>
       ) : null}
-      <Grid min={330}>
-        <TimerCard />
-        <CalorieCard />
-      </Grid>
-      <View style={{ flexDirection: 'row', flexWrap: 'wrap', marginHorizontal: -6, rowGap: 12 }}>
-        {TILES.map(([k, l, ic]) => (
-          <View key={k} style={{ width: 100 / tileCols + '%', paddingHorizontal: 6 }}>
-            <Pressable onPress={() => go(k)} accessibilityRole="button"
-              style={({ pressed }) => ({ minHeight: 124, padding: 14, borderRadius: 18, borderWidth: 1, borderColor: pressed ? t.acc : t.line, backgroundColor: t.card, justifyContent: 'space-between', gap: 10 })}>
-              <View style={{ width: 44, height: 44, borderRadius: 12, backgroundColor: alpha(t.acc, 0.14), alignItems: 'center', justifyContent: 'center' }}>
-                <Ionicons name={ic} size={23} color={t.acc} />
-              </View>
-              <View>
-                <T w="800">{l}</T>
-                <Mute s={13} numberOfLines={2}>{stats[k]}</Mute>
-              </View>
-            </Pressable>
-          </View>
-        ))}
-      </View>
-      <WeekProgram />
-      <Grid min={310}>
-        <Card>
-          <Row style={{ justifyContent: 'space-between' }}><H3>Yaklaşan son günler</H3><Btn sm title="Takvim" onPress={() => go('takvim')} /></Row>
-          {due.length ? due.map((x, i) => <TaskRow key={x.id} x={x} rank={i + 1} />) : <Empty text="Son tarihi olan açık görev yok." />}
-        </Card>
-        <Card>
-          <Row style={{ justifyContent: 'space-between' }}><H3>Günlük işler</H3><Btn sm title="Tümü" onPress={() => go('gorevler')} /></Row>
-          {daily.length ? daily.map((x) => <DailyRow key={x.id} x={x} />) : <Empty text="Görevler sayfasındaki “Günlük İşler” klasörüne ekleyebilirsin." />}
-        </Card>
-        <RoutinesToday />
-        <NotifCard />
-        <SettingsCard />
-      </Grid>
+      {H.timer || H.cal ? (
+        <Grid min={330}>
+          {H.timer && !hidden.includes('calisma') ? <TimerCard /> : null}
+          {H.cal && !hidden.includes('yemek') ? <CalorieCard /> : null}
+        </Grid>
+      ) : null}
+      {H.tiles && tiles.length ? (
+        <View style={{ flexDirection: 'row', flexWrap: 'wrap', marginHorizontal: -6, rowGap: 12 }}>
+          {tiles.map(([k, l, ic]) => (
+            <View key={k} style={{ width: 100 / tileCols + '%', paddingHorizontal: 6 }}>
+              <Pressable onPress={() => go(k)} accessibilityRole="button"
+                style={({ pressed }) => [{ minHeight: 124, padding: 14, borderRadius: t.r, borderWidth: t.bw, borderColor: pressed ? t.acc : t.line, backgroundColor: t.card, justifyContent: 'space-between', gap: 10, transform: [{ scale: pressed && t.soft ? 0.96 : 1 }] }, shadow(t)]}>
+                <View style={{ width: 44, height: 44, borderRadius: t.soft ? 22 : 12, backgroundColor: alpha(t.acc, 0.14), alignItems: 'center', justifyContent: 'center' }}>
+                  <Ionicons name={ic} size={23} color={t.acc} />
+                </View>
+                <View>
+                  <T w="800">{l}</T>
+                  <Mute s={13} numberOfLines={2}>{stats[k]}</Mute>
+                </View>
+              </Pressable>
+            </View>
+          ))}
+        </View>
+      ) : null}
+      {H.week ? <WeekProgram /> : null}
+      {cards.length ? <Grid min={310}>{cards}</Grid> : null}
+      {!cards.length && !H.week && !H.tiles && !H.timer && !H.cal ? (
+        <Card><Mute>Ana ekranda gösterilecek bölüm seçmedin. Sağ üstteki profil düğmesinden açabilirsin.</Mute></Card>
+      ) : null}
     </View>
   );
 }

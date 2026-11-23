@@ -4,8 +4,9 @@ Tamamen JavaScript ile yazılmış, telefonda gerçek bir uygulama olarak çalı
 Aynı kod bilgisayarda tarayıcıda da çalışır. Veriler Firebase'de durur; telefon ve bilgisayar eşitlenir.
 
 İçindekiler: görevler (öncelik renkleri, başlıklar, Günlük İşler), rutin zincirleri, ana takvim,
-haftalık saat saat program, yemek/kalori takibi, pomodoro, ders ambarı, para takibi, kitaplar,
-telefon bildirimleri, aydınlık/karanlık mod.
+haftalık saat saat program, yemek/kalori takibi, pomodoro (zil + titreşim), ders ambarı, para takibi,
+kitaplar, telefon takvimi bağlantısı, gruplar (yarış, öğretmen–öğrenci, birlikte pomodoro),
+seçilebilir temalar (Klasik, Yumuşak, Okyanus), profil ve ayarlar, telefon bildirimleri.
 
 Kurulum bir kerelik, yaklaşık 20 dakika sürer.
 
@@ -51,6 +52,39 @@ Eski Planlayıcı uygulaması ayrı bir uygulama olarak kalır; yenisi çalış�
 Eski planlayıcı sayfasının ana sayfasının en altındaki **Verilerini dışa aktar** düğmesine bas
 (metin panoya kopyalanır). Yeni uygulamada **Ana sayfa → Ayarlar → Eski planlayıcıdan veri aktar**
 kutusuna yapıştırıp **Aktar**'a bas.
+
+## Sürüm 2.1 güncellemesi (bir kerelik)
+
+1. **Firestore kuralları:** Firebase → Firestore Database → Kurallar → `firestore.rules` dosyasının
+   yeni içeriğini yapıştır → Yayınla. (Gruplar için gerekli.)
+2. **İş akışları:** `.github/workflows/android.yml` ve `web.yml` içindeki "Paketleri kur" adımı artık
+   `npm run paketler` çalıştırıyor. Bundan sonra yeni paket eklemek için yalnızca `package.json` değişir.
+3. Telefonda ilk açılışta **takvim iznine** "İzin ver" de.
+
+## Anlık bildirim (gruplar için, isteğe bağlı)
+
+Öğretmen görev atadığında ya da grupta birlikte çalışma başladığında, uygulama kapalıyken de
+anında bildirim gelmesi için:
+
+1. https://expo.dev adresinde ücretsiz hesap aç.
+2. **Projects → Create a project**: ad `planlayici`. Açılan sayfadaki **Project ID**'yi kopyala.
+3. GitHub'da `push.json` dosyasını düzenle: `projectId` ve `owner` (Expo kullanıcı adın) değerlerini yaz.
+4. Firebase → Proje ayarları → **Uygulama ekle → Android** → paket adı `com.planlayici.mobil` →
+   **Uygulamayı kaydet** → `google-services.json` dosyasını indir → GitHub'da deponun ana klasörüne yükle.
+5. Firebase → Proje ayarları → **Hizmet hesapları → Yeni özel anahtar oluştur** → bir JSON dosyası iner.
+   **Bu dosya gizlidir, GitHub'a yükleme.**
+6. expo.dev → `planlayici` projesi → **Credentials → Android** → uygulama kimliği `com.planlayici.mobil` →
+   **FCM V1 service account key** → 5. adımdaki dosyayı yükle.
+7. Yeni APK derlenince kur. Profil → "Anlık bildirim" kartında **Kurulu** yazmalı.
+
+Kurulmazsa da her şey çalışır; grup bildirimleri yalnızca uygulama açıkken gelir.
+
+## Telefon takvimi
+
+- Telefon takvimindeki etkinlikler (ve hatırlatıcıları) **Görevler → Telefon Takvimi** altına gelir,
+  bilgisayarda da görünür. Takvim uygulamasında değiştirince burada da güncellenir.
+- Görevlerin son günleri ve haftalık program telefonda **Planlayıcı** adlı ayrı bir takvime yazılır.
+- Profil → Telefon takvimi kartından hangi takvimlerin alınacağını ve yönleri seçebilirsin.
 
 ## Bildirimler
 
