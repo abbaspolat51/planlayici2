@@ -1,0 +1,49 @@
+name: Bilgisayar uygulaması (Windows)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'desktop/**'
+      - '.github/workflows/windows.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Paketleri kur
+        working-directory: desktop
+        run: npm install
+
+      - name: Kurulum dosyasını derle
+        working-directory: desktop
+        run: npx electron-builder --win nsis --publish never
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Planlayici-Windows
+          path: desktop/dist/Planlayici-Kurulum.exe
+
+      - name: Sürümler (Releases) sayfasına koy
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: masaustu
+          name: Planlayıcı masaüstü (Windows)
+          body: |
+            Windows için kurulum dosyası. İndirip çalıştır, kurulum bitince masaüstünde ve Başlat menüsünde "Planlayıcı" çıkar.
+            Uygulama içeriği web sürümünden gelir; GitHub'a yüklediğin güncellemeler masaüstüne de kendiliğinden yansır.
+            Windows "bilgisayarınız korundu" derse: "Ek bilgi" → "Yine de çalıştır".
+          files: desktop/dist/Planlayici-Kurulum.exe
+          make_latest: false
