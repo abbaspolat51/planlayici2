@@ -61,6 +61,14 @@ kutusuna yapıştırıp **Aktar**'a bas.
    `npm run paketler` çalıştırıyor. Bundan sonra yeni paket eklemek için yalnızca `package.json` değişir.
 3. Telefonda ilk açılışta **takvim iznine** "İzin ver" de.
 
+## Bilgisayar uygulaması (Windows)
+
+`desktop/` klasörü Planlayıcı'yı Windows'ta kendi penceresinde açan küçük bir masaüstü uygulamasıdır.
+GitHub'da **"Bilgisayar uygulaması (Windows)"** işi kurulum dosyasını derler ve **Releases → Planlayıcı masaüstü (Windows)**
+sayfasına `Planlayici-Kurulum.exe` olarak koyar. Bir kez kurman yeter: içerik web sürümünden geldiği için
+GitHub'a yüklediğin her güncelleme masaüstü uygulamasına da kendiliğinden yansır.
+Kısayollar: F5 yenile, F11 tam ekran, Ctrl + / Ctrl - yakınlaştır.
+
 ## Sürüm 2.3'te neler var
 
 - **Yeni konsept "Nişan – hedefe odaklan":** gece mavisi/petrol yeşili, altın ve mercan renkler; ana sayfada hedef halkalı
