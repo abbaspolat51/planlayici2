@@ -1,0 +1,119 @@
+# 1 | Literatür taraması | Reviewing the Literature
+The first stage of my thesis was a thorough literature review. My supervisor, Dr Visser, insisted that I read widely before formulating any hypothesis. Over two months, I worked through more than a hundred papers on heat pumps, thermal storage and energy poverty. Many of them contradicted one another, which was initially bewildering. Gradually, however, I learned to evaluate the methodology of each study rather than simply accepting its conclusions at face value.
+
+# 2 | Araştırma sorusu | Formulating a Research Question
+Dr Visser repeatedly emphasised that a good thesis rests on a precise research question. My initial question, whether heat pumps could make heating affordable, was far too broad. After several frustrating iterations, I narrowed it down considerably: under what conditions does combining a small heat pump with a water storage tank reduce heating costs for low-income households in continental climates? The revised question was less ambitious, but it was answerable within the time available.
+
+# 3 | Bir model kurmak | Building a Model
+To answer the question, I developed a computational model of a typical house, including its walls, windows, heating system and occupants' behaviour. Calibrating the model was painstaking. I compared its predictions with measured data from the laboratory and adjusted uncertain parameters until the discrepancies became acceptably small. Throughout this process, I documented every assumption meticulously, knowing that reviewers would scrutinise them and that I might otherwise forget my own reasoning.
+
+# 4 | Belirsizlikle başa çıkmak | Dealing with Uncertainty
+One of the most valuable concepts I encountered was uncertainty analysis. Rather than producing a single estimate of energy savings, I ran thousands of simulations with varying inputs, such as electricity prices and insulation quality. The outcome was a range of plausible results rather than one deceptively precise number. Presenting results this way felt less impressive at first, yet it was considerably more honest and, ultimately, more useful to decision-makers.
+
+# 5 | Şaşırtıcı bir bulgu | A Counterintuitive Finding
+The simulations revealed something counterintuitive. In poorly insulated houses, adding a heat pump alone yielded only modest savings, because most of the heat simply escaped through the walls. However, when basic insulation was combined with a smaller, cheaper heat pump, the total investment decreased and the savings increased substantially. In other words, the sequence of interventions mattered enormously. Insulating first and electrifying second proved to be the most cost-effective strategy.
+
+# 6 | Danışmanla anlaşmazlık | A Disagreement with My Supervisor
+When I presented these findings, Dr Visser was initially skeptical. She suspected that the result might be an artefact of the model rather than a genuine effect. Although I was disappointed, I recognised that her skepticism was entirely legitimate. She proposed a test: if the effect was real, it should persist even when the most uncertain parameters were varied substantially. I spent another month conducting these sensitivity tests, and the conclusion held.
+
+# 7 | Araştırma etiği | Research Ethics
+To validate the model, I wanted to monitor real households, which raised ethical questions I had not previously considered. Collecting detailed data on when people are at home could reveal sensitive information about their daily lives. I had to submit a proposal to the university's ethics committee, explaining how participants would give informed consent and how their data would be anonymised and stored securely. The process was bureaucratic, but I came to regard it as essential.
+
+# 8 | Saha çalışması | Fieldwork
+With the committee's approval, we installed sensors in twelve homes in a former mining town where many residents struggled to pay their energy bills. Visiting these households was humbling. Some elderly residents heated only one room throughout the winter and wore coats indoors. These encounters reminded me that behind every statistic on energy poverty are individuals making difficult trade-offs between warmth, food and other necessities.
+
+# 9 | Verilerin söyledikleri | What the Data Revealed
+The measured data broadly confirmed the model's predictions, although there were notable discrepancies. Occupants' behaviour proved far more variable than I had assumed. Some households opened windows while the heating was running, whereas others kept temperatures surprisingly low to save money. I concluded that technical solutions alone are insufficient; they must be accompanied by clear information and, ideally, by financial support that reaches the households most in need.
+
+# 10 | İlk makale | The First Paper
+Dr Visser suggested that we turn part of my thesis into a journal article. Writing for an academic journal demanded a level of precision and concision I had never practised before. Every claim had to be supported either by our own data or by references. We submitted the manuscript in March and, three months later, received the reviewers' comments. One reviewer was enthusiastic; the other was scathing, describing our methodology as inadequately justified.
+
+# 11 | Hakem eleştirisi | Responding to Criticism
+My first instinct was to feel indignant about the harsh review. Dr Visser, however, advised me to set the comments aside for a few days and then reread them dispassionately. On closer inspection, several of the criticisms were valid. We performed additional analyses, rewrote the methods section and responded to each point courteously and in detail. The revised paper was accepted. The experience taught me that criticism, however painful, often improves the work.
+
+# 12 | Doktora teklifi | A PhD Offer
+Shortly before I submitted my thesis, Dr Visser offered me a fully funded PhD position in her group. It was a flattering and tempting proposal. A doctorate would allow me to pursue the research questions that fascinated me and perhaps eventually to become an academic. Yet I hesitated. I had always intended to return to Turkey and contribute more directly to solving practical problems there. The decision weighed on me for weeks.
+
+# 13 | Değerleri tartmak | Weighing Values
+To clarify my thinking, I wrote down what I valued most: learning, impact, proximity to my family and financial stability. When I ranked these values honestly, impact and family came first. A PhD would maximise learning, but I suspected that I could achieve greater impact by applying existing knowledge rather than generating new knowledge. With considerable reluctance, I declined the offer, and Dr Visser, to her credit, respected my reasoning.
+
+# 14 | Tez savunması | The Thesis Defence
+My thesis defence took place in a small seminar room in front of a committee of three professors. The external examiner, a renowned specialist in building physics, asked probing questions about the limitations of my model. At one point, I had to admit that I did not know the answer, and I explained how I would investigate it. Afterwards, he told me that acknowledging uncertainty had impressed him more than any confident answer could have.
+
+# 15 | Türkiye'ye dönüş | Returning to Turkey
+I returned to Ankara with a master's degree, a published paper and a clear sense of purpose, but no job. Rather than joining a large company, I decided to explore whether our village project could become a sustainable social enterprise. This was a risky choice, and some relatives openly questioned my judgement. My father, however, supported me unreservedly. "You have spent years preparing," he said. "Now it is time to find out what you can build."
+
+# 16 | Bir girişim kurmak | Founding a Venture
+I contacted Zehra, who was growing restless in her corporate job, and proposed that we establish the enterprise together. After lengthy discussions, she agreed to join on a part-time basis. Our concept was to offer affordable packages combining insulation, solar water heating and, where appropriate, small heat pumps, installed by trained local technicians. We drafted a business plan, though neither of us had any formal training in management or finance.
+
+# 17 | Finansman arayışı | In Search of Finance
+Securing finance proved exceptionally difficult. Banks were reluctant to lend to a start-up without a track record, and conventional investors expected rapid growth and high returns, which were incompatible with our mission. Eventually, we obtained a combination of a small grant from an international development foundation and an interest-free loan from a regional development agency. The sums were modest, but they enabled us to pilot our model in three villages.
+
+# 18 | Teknisyen yetiştirmek | Training Technicians
+A central element of our approach was training local technicians, so that the installations could be maintained without our presence. We recruited young people from the pilot villages, several of whom had left school early and had few employment prospects. Designing the training programme forced us to translate technical knowledge into practical, accessible instructions. Watching our trainees gain confidence and skills became one of the most rewarding aspects of the entire venture.
+
+# 19 | İlk kriz | The First Crisis
+Our first winter brought an unexpected crisis. A batch of valves we had purchased from a new supplier failed in freezing temperatures, causing leaks in several houses. We could have blamed the supplier, but our customers had trusted us, not the supplier. We immediately replaced every faulty valve at our own expense, which nearly exhausted our funds. The incident was financially painful, yet it strengthened our reputation for reliability considerably.
+
+# 20 | Ders çıkarmak | Learning from Failure
+After the crisis, Zehra and I conducted a thorough review to understand how it had happened. We discovered that, under pressure to reduce costs, we had skipped testing components in realistic conditions. We introduced a rigorous procedure: no new component would be installed until it had been tested through simulated freeze cycles. In retrospect, the failure was an invaluable, if expensive, lesson in the dangers of cutting corners.
+
+# 21 | Belediyeyle işbirliği | Working with the Municipality
+Our growing reputation attracted the attention of a provincial municipality interested in reducing energy poverty. Collaborating with a public institution introduced us to an entirely different world of procurement rules, committees and lengthy approval processes. At times, the bureaucracy seemed absurd. Nonetheless, I came to understand that many of these procedures exist to ensure transparency and prevent corruption in the spending of public money, which is a legitimate concern.
+
+# 22 | Paydaş toplantısı | A Stakeholder Meeting
+The municipality organised a meeting with residents, local officials and representatives of the electricity distributor. Facilitating such a diverse group was challenging. The residents were primarily concerned about cost and disruption, the officials about accountability, and the distributor about the impact on the local grid. Instead of defending our proposal, I tried to listen and identify common ground. By the end, we had a list of shared priorities that formed the basis of a pilot agreement.
+
+# 23 | Ekibin büyümesi | Growing the Team
+Within two years, our enterprise had grown to fourteen employees, including technicians, an accountant and a community coordinator. Managing people turned out to be far more demanding than managing technology. I had to learn how to give constructive feedback, resolve conflicts and delegate responsibility instead of attempting to control every detail. I read extensively on leadership, but the most useful lessons came from my own mistakes and from candid conversations with the team.
+
+# 24 | Yetki devretmek | Learning to Delegate
+Delegation did not come naturally to me. I was accustomed to doing things myself, partly because I believed I could do them better. This habit was exhausting for me and frustrating for my colleagues, who felt that I did not trust them. A turning point came when a technician named Yusuf redesigned our installation procedure without consulting me, reducing installation time by a third. I realised that my reluctance to delegate had been holding the organisation back.
+
+# 25 | İş ve yaşam dengesi | Work and Life
+During this period, I worked almost continuously, often late into the night and at weekends. My health began to suffer; I slept badly and had frequent headaches. Ayşe, who was by then studying psychology, gently confronted me about it. She pointed out that exhaustion impairs judgement and that a leader who burns out helps no one. Reluctantly, I began to set boundaries, protecting my evenings and taking proper holidays.
+
+# 26 | Mert'in seçimi | Mert's Choice
+My younger brother Mert, meanwhile, had chosen an entirely different path. Instead of going to university immediately, he had trained as an electrician, and he was proud of working with his hands. Some relatives considered this a lesser choice, an attitude I found deeply unfair. Skilled tradespeople are indispensable to the energy transition; without them, no solar panel or heat pump gets installed. I eventually invited Mert to join our technical team.
+
+# 27 | Politika önerileri | Policy Recommendations
+As our experience accumulated, a government ministry invited us to contribute to a consultation on energy efficiency policy. We drafted recommendations based on our data, arguing that subsidies should target low-income households and prioritise insulation before new heating equipment. Writing for policymakers required yet another style: concise, evidence-based and free of technical jargon. I was struck by how rarely the people most affected by policy are consulted directly.
+
+# 28 | Yeşil aklama | Greenwashing
+Not every development in our sector was encouraging. As energy efficiency became fashionable, some companies began making exaggerated claims about their products, a practice known as greenwashing. One competitor advertised savings that were physically impossible under normal conditions. Although it would have been tempting to exaggerate our own results to compete, we decided to publish our actual performance data openly. Transparency, we believed, would prove more durable than marketing.
+
+# 29 | Bir gazeteci | A Journalist
+A journalist from a national newspaper interviewed me for an article on energy poverty. I was apprehensive, having heard that journalists sometimes simplify complex issues. To my relief, she was well informed and asked thoughtful questions. Nevertheless, the published headline overstated our achievements considerably. I learned to prepare concise key messages before interviews and to accept that I could not control how others would frame my words.
+
+# 30 | Dijital izleme | Digital Monitoring
+To improve maintenance, we introduced inexpensive sensors that monitored the systems remotely and alerted technicians to faults. This allowed us to fix problems before customers even noticed them. However, it raised the same privacy concerns I had encountered during my thesis. We adopted strict principles: collect only the data necessary for maintenance, explain clearly what is collected, and never sell it. Some advisers considered this commercially naive, but we never regretted it.
+
+# 31 | Can'ın ikilemi | Can's Dilemma
+Can, now an experienced engineer in the defence industry, confided in me that he was struggling with a moral dilemma. His team was developing a guidance system, and he had begun to question whether he wanted to contribute to weapons technology. We discussed it late into the night. I did not tell him what to do; I simply asked questions about his values. Months later, he moved to a company developing medical imaging equipment.
+
+# 32 | Mühendislik ve sorumluluk | Engineering and Responsibility
+Our conversation prompted me to reflect on engineers' responsibilities more generally. Engineering decisions are rarely purely technical; they embody choices about who benefits, who bears the risks and what consequences are acceptable. Engineers therefore have obligations not only to their employers but to the public. Professional codes of ethics state this explicitly, yet in practice, commercial pressures can make these obligations easy to rationalise away.
+
+# 33 | Bir ödül | An Award
+In our fifth year, our enterprise received an international award for social innovation. The ceremony in Geneva was glamorous and slightly surreal; I felt somewhat like an impostor among the distinguished guests. In my brief speech, I emphasised that the award belonged to our technicians and to the families who had trusted us. Privately, I worried that recognition might make us complacent. Awards celebrate the past, after all, not the challenges ahead.
+
+# 34 | Ölçeklendirme ikilemi | The Scaling Dilemma
+After the award, investors who had previously ignored us suddenly expressed interest. One proposed a substantial investment, conditional on expanding rapidly into five new provinces. Zehra and I disagreed sharply about this. She argued that rapid growth would let us help many more families; I feared that it would compromise quality and our close relationships with communities. Ultimately, we accepted a smaller investment with slower, more manageable growth targets.
+
+# 35 | Büyükannemin vefatı | Losing My Grandmother
+That autumn, my grandmother passed away peacefully in her sleep, at the age of ninety-one. I returned to the village for the funeral, where neighbours shared stories of her generosity and stubbornness in equal measure. Sitting in her empty kitchen, beside the old stove where she had told me countless stories, I was overwhelmed by grief and gratitude. In many ways, our entire enterprise had begun in that very room.
+
+# 36 | Bir anma | A Tribute
+To honour her memory, we established a small scholarship fund for young people from her village who wished to train as technicians. The first recipient was a determined young woman named Esra, who later became one of our most skilled installers. I like to think that my grandmother, who had never been allowed to finish primary school, would have been delighted that her legacy took the form of education.
+
+# 37 | İklim uyumu | Adapting to Climate Change
+Over these years, the effects of climate change became increasingly tangible. Summers in central Anatolia grew hotter, and many of our customers began to struggle with overheating rather than cold. This prompted us to rethink our offering. Our heat pumps could also provide cooling, and good insulation protected houses against heat as effectively as against cold. Adaptation, we realised, was becoming as important as reducing emissions.
+
+# 38 | Yanlış bir varsayım | A Flawed Assumption
+Expanding into cooling exposed a flawed assumption in our business model. We had presumed that customers would use the equipment sparingly to minimise costs. In reality, during heatwaves, some households ran their air conditioning continuously, resulting in unexpectedly high electricity bills and complaints. We responded by developing simple guidance on efficient cooling and by fitting smart controllers. The episode reminded me that technology interacts with human behaviour in ways that are difficult to predict.
+
+# 39 | Bir öğrenci grubu | A Group of Students
+One spring, Professor Demir asked me to speak to her final-year students. Facing them, I recognised my younger self: eager, idealistic and slightly anxious about the future. I told them candidly about our failures as well as our successes. Afterwards, a student asked how I had known which path to choose. I admitted that I had not known; I had simply made the best decisions I could with the information available and adjusted along the way.
+
+# 40 | On yıl sonra | Ten Years On
+Ten years after my first English lesson, I occasionally reread the simple sentences in my old notebook: "My name is Deniz. I am a student." The contrast with my current life is striking. Yet I remain, fundamentally, a student. Every project, every failure and every conversation continues to teach me something. Perhaps the most important lesson is that expertise is not a destination but a disposition: a willingness to keep learning.

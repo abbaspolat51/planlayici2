@@ -1,0 +1,119 @@
+# 1 | Son sınıf | The Final Year
+My final year at university began with a mixture of excitement and pressure. On the one hand, the end of my studies was finally in sight. On the other hand, I had to complete our graduation project, take several advanced courses and decide what to do after graduating. Professor Demir warned us that the final year passes surprisingly quickly. "If you postpone things," she said, "you will regret it in June."
+
+# 2 | Prototipi tasarlamak | Designing the Prototype
+Our first major task was to design a working prototype of the solar water heater. The basic principle is straightforward: sunlight heats a dark surface, and the heat is transferred to water flowing through pipes. However, achieving good efficiency with cheap materials is far from simple. We compared several designs using computer simulations, estimating how much heat each one would collect on a typical winter day in central Anatolia.
+
+# 3 | Simülasyonun sınırları | The Limits of Simulation
+The simulations were useful, but they had limitations. They assumed perfect insulation and ideal weather conditions, which never exist in reality. Professor Demir encouraged us to treat the results with caution. "A model is only as good as its assumptions," she reminded us. Consequently, we decided to build two different prototypes and test them outdoors, so that we could compare the predictions with actual measurements.
+
+# 4 | Malzeme toplamak | Gathering Materials
+Gathering the materials turned out to be an adventure in itself. Since our budget was limited, we visited scrapyards and second-hand markets around Ankara. We found old window glass, aluminium sheets and a used water tank at remarkably low prices. Some sellers were curious about our project, and one of them even gave us a discount once he heard that it was intended for village families.
+
+# 5 | Çatıda deney | The Experiment on the Roof
+With the department's permission, we installed both prototypes on the roof of the engineering building. We attached temperature sensors to the inlet and outlet pipes and connected them to a small data logger. Every hour, the device recorded the temperatures, the amount of sunlight and the air temperature. For the first time, our project felt genuinely real, and we checked the data on our phones almost obsessively.
+
+# 6 | Beklenmedik sonuçlar | Unexpected Results
+After two weeks, the results were surprising. The simpler prototype, which we had expected to perform worse, actually produced hotter water on cold mornings. After analysing the data, Zehra suggested an explanation: the complex design had more joints, and heat was escaping through them. This taught us an important lesson. Complexity is not automatically an advantage, especially when a system must be built and repaired by non-specialists.
+
+# 7 | İklim değişikliği semineri | A Seminar on Climate Change
+In October, the department organised a seminar on climate change. The speaker, a climate scientist, presented data showing that average temperatures in Turkey have risen noticeably over recent decades. She explained that droughts and extreme weather events are expected to become more frequent. What struck me most was her argument that engineers have a central role in both reducing emissions and helping communities adapt to changes that are already unavoidable.
+
+# 8 | Enerji politikası tartışması | A Debate on Energy Policy
+After the seminar, our class held a debate on national energy policy. One group argued that the country should invest heavily in solar and wind power, since we have abundant sunshine and strong winds in many regions. Another group pointed out that renewable sources are intermittent and that reliable storage remains expensive. I realised that both sides had valid points, and that good policy requires balancing environmental, economic and social concerns.
+
+# 9 | Depolama sorunu | The Storage Problem
+The debate made me think about energy storage, which connected directly to my internship experience. Batteries can store electricity for hours, but storing energy for days or seasons is much more difficult. Researchers are exploring alternatives such as pumped hydro, hydrogen and thermal storage. I wrote a short essay arguing that thermal storage, which is what our water tank essentially provides, deserves more attention because it is cheap and technically mature.
+
+# 10 | Yapay zekâ dersi | An AI Course
+That semester, I also took an elective course on artificial intelligence for engineers. We learned how machine learning algorithms can detect patterns in large datasets. Our lecturer emphasised that these tools are powerful but not magical. If the training data is incomplete or biased, the predictions will be unreliable. For my course project, I trained a simple model to predict the output of our solar heater from weather forecasts.
+
+# 11 | Model tahminleri | The Model's Predictions
+Surprisingly, the model worked reasonably well on sunny days, predicting the water temperature within a few degrees. On cloudy days, however, its predictions were far less accurate, because we had collected very little data under those conditions. This experience made the lecturer's warning concrete for me. A model cannot know what it has never seen. I suggested in my report that we should continue collecting data throughout the winter.
+
+# 12 | Sosyal medya ve dikkat | Social Media and Attention
+Around this time, I noticed that I was spending too much time on my phone. I would open an app to check one message and find myself scrolling for half an hour. It was affecting my concentration, especially when I was studying. Inspired by an article on digital habits, I turned off most notifications and set a daily time limit. Within a couple of weeks, I felt calmer and more productive.
+
+# 13 | Can Londra'dan dönüyor | Can Returns from London
+Can had come back from London full of stories. He had stayed with the Wilsons, who apparently still talked about me and my Turkish tea. Jack had grown taller and was now obsessed with robots, partly because of my stories. Can's English had improved dramatically, and he had become more self-confident. He admitted that my advice to speak English all the time had been annoying but extremely effective.
+
+# 14 | Fon başvurusu | Applying for Funding
+In November, Professor Demir told us about a national innovation fund that supports student projects with social impact. If we were successful, we would receive money to build a full-scale system in a real village house. The application was demanding: we had to describe the problem, our solution, a budget, a timeline and the expected benefits. We divided the sections among ourselves and worked on them every evening for three weeks.
+
+# 15 | Etkiyi ölçmek | Measuring Impact
+The most challenging part of the application was explaining the expected impact. It was not enough to say that our heater would help people. We had to estimate how much money a family could save, how much carbon dioxide emissions would be reduced and how many households could potentially benefit. I used the data from our field visit to make these estimates, and I clearly stated the assumptions behind every number.
+
+# 16 | Mülakat paneli | The Interview Panel
+Our application reached the final round, and we were invited to present our project to a panel of experts. One panel member, an economist, challenged us on whether villagers would actually adopt the technology. It was an excellent question, and we had not thought about it enough. Zehra replied that we planned to involve local people in building the system, so that they would understand and trust it.
+
+# 17 | Fon kazandık | We Won the Funding
+Two weeks later, we received the news that our project had been selected for funding. We were all overjoyed. The amount was modest, but it was enough to install a complete system in one house and monitor it for a whole year. Professor Demir congratulated us and immediately reminded us of our responsibilities. "Now you have to deliver what you promised," she said with a smile.
+
+# 18 | Ev sahibini seçmek | Choosing the House
+With the help of the village headman, we chose a house belonging to an elderly couple, Hatice and Osman. Their house was typical of the region: thick stone walls, small windows and a wood stove. They heated water on the stove, which was time-consuming and used a lot of firewood. They were somewhat skeptical at first, but they agreed after we explained that the system would cost them nothing.
+
+# 19 | Köylülerle birlikte inşa | Building with the Villagers
+We built the system during the spring break. Following our plan, we invited neighbours to help. Several young men assisted with the heavy work, and Osman, who had been a carpenter, made the wooden frame himself. Working together created a sense of ownership. By the end of the week, the solar collector was on the roof, the insulated tank was in the attic, and the first warm water was flowing from the tap.
+
+# 20 | İlk tepkiler | First Reactions
+Hatice's reaction was unforgettable. When warm water came out of the tap on a sunny afternoon, she laughed and called her neighbours to come and see. Within a few days, other families were asking whether they could have a similar system. We had to explain that our funding covered only one house. Nevertheless, their enthusiasm convinced us that the project addressed a genuine need.
+
+# 21 | Veri toplama sorunları | Problems with Data Collection
+Monitoring the system remotely proved more difficult than we had anticipated. The mobile signal in the village was weak, so the data logger often failed to send its measurements. On one occasion, a power cut erased several days of data. We eventually solved the problem by storing the data on a memory card and asking Osman's grandson to send us photos of a simple display every week. Sometimes the low-tech solution is the most reliable.
+
+# 22 | Mezuniyet projesi raporu | The Project Report
+Writing the final report was a substantial task. The report had to be written in English, following the format of a scientific paper. We described the background, the design process, the experimental method, the results and the limitations. Professor Demir insisted that we discuss our failures honestly. "Readers learn as much from what did not work," she explained, "as from what did." We revised the report four times before submitting it.
+
+# 23 | İş başvuruları | Job Applications
+Meanwhile, I had to think about my career. Selin, my former supervisor, informed me that the bus company had an opening for a junior battery engineer. At the same time, Professor Demir encouraged me to apply for a master's programme abroad. I felt torn. The job offered security and practical experience, whereas a master's degree would deepen my knowledge and open doors to research. I decided to apply for both and then make a decision.
+
+# 24 | Yüksek lisans başvurusu | The Master's Application
+The master's applications required a statement of purpose, two letters of recommendation and an English language certificate. I took the language exam in February and achieved a score well above the minimum requirement, which was a great relief. In my statement, I described how my internship and the village project had shaped my interest in affordable energy solutions. Selin and Professor Demir kindly agreed to write my recommendation letters.
+
+# 25 | Bir teklif ve bir kabul | An Offer and an Acceptance
+In April, two pieces of news arrived in the same week. The bus company offered me the junior engineer position, and a university in the Netherlands accepted me for a two-year master's programme in sustainable energy, with a partial scholarship. Instead of feeling happy, I felt anxious. Whichever option I chose, I would lose something valuable. I spent several sleepless nights weighing the advantages and disadvantages.
+
+# 26 | Zor bir karar | A Difficult Decision
+Eventually, I discussed the dilemma with Selin herself. To my surprise, she encouraged me to choose the master's degree. She said that the company would still need good engineers in two years, and that international experience would make me more valuable. My parents were worried about the cost, but the scholarship covered my tuition fees, and I had savings from my internship. I accepted the offer from the Netherlands.
+
+# 27 | Mezuniyet töreni | The Graduation Ceremony
+In June, I graduated with honours. The ceremony took place in the university stadium, under a bright sun. My parents, Ayşe and Mert sat in the audience, and even my grandmother made the long journey from the village. When my name was called, I could hear Mert shouting. Afterwards, we took countless photos. My grandmother held my diploma carefully, as if it were made of glass.
+
+# 28 | Veda etmek | Saying Farewell
+The weeks after graduation were full of farewells. Can had decided to stay in Ankara and start working for a defence company. Zehra had found a job in Istanbul, and Burak was going to start his own small business repairing drones. We met one last time at our favourite café near the campus. We promised to stay in touch, although we all knew that our lives were about to change significantly.
+
+# 29 | Hollanda'ya hazırlık | Preparing for the Netherlands
+Preparing to move abroad involved a surprising amount of bureaucracy. I needed a residence permit, health insurance and accommodation, which is notoriously hard to find in Dutch university towns. After weeks of searching online, I found a small room in a student house. Mrs Wilson, with whom I still exchanged emails, sent me practical advice about living in Northern Europe, including the importance of a good waterproof jacket.
+
+# 30 | Yeni bir ülke | A New Country
+I arrived in the Netherlands at the end of August. My first impression was that everything was flat and orderly. Bicycles were everywhere, far outnumbering cars in the town centre. I bought a second-hand bicycle on my first day, as my housemates told me it was essential. Cycling in the rain, with traffic rules I barely understood, was initially terrifying, but within a week it had become part of my daily routine.
+
+# 31 | Kültür şoku | Culture Shock
+Despite my previous experience in London, I experienced a certain amount of culture shock. Dutch people are famously direct, and at first I sometimes interpreted their honesty as rudeness. In Turkey, we often soften criticism to protect someone's feelings. Gradually, I came to appreciate the Dutch style: when someone said my idea was not good, they also explained exactly why, which was genuinely helpful.
+
+# 32 | Uluslararası sınıf | An International Classroom
+My master's class consisted of thirty students from nineteen countries. In group projects, these differences were both a challenge and a strength. Some students expected the group leader to make decisions, while others assumed that every decision should be discussed by everyone. We learned to agree on working methods at the very beginning of each project. This experience taught me more about teamwork than any lecture could have done.
+
+# 33 | Rüzgâr çiftliği ziyareti | Visiting a Wind Farm
+In our first semester, we visited an offshore wind farm in the North Sea. We travelled by boat for two hours, and I struggled with seasickness the whole time. Nevertheless, seeing the giant turbines up close was breathtaking. Each blade was longer than a football field. An engineer explained how the turbines were maintained in harsh weather and how their electricity reached the mainland through cables buried under the seabed.
+
+# 34 | Akıllı şebekeler | Smart Grids
+One of my favourite courses dealt with smart grids. Traditional electricity networks were designed for power to flow in one direction, from large power stations to consumers. Today, however, millions of households produce their own electricity with solar panels and sometimes store it in batteries. A smart grid uses sensors, communication and software to balance supply and demand in real time. I found the subject fascinating, as it combined everything I had studied.
+
+# 35 | Köyden haber | News from the Village
+In December, I received a message from Osman's grandson with photos of the solar heater covered in snow. To everyone's delight, the system was still working, although less effectively in winter. He mentioned that three other families had copied our design using their own money and materials. This news meant more to me than any grade. Our idea was spreading without our involvement, which is perhaps the best sign of success.
+
+# 36 | Yarı zamanlı iş | A Part-Time Job
+To cover my living expenses, I found a part-time job as a research assistant in a laboratory studying heat pumps. Heat pumps move heat from the outside air or ground into buildings, using electricity far more efficiently than conventional heaters. My job involved preparing experiments and processing measurement data. It was not glamorous work, but I learned laboratory skills and got to know the researchers, which later proved very valuable.
+
+# 37 | Yalnızlık | Loneliness
+The Dutch winter was dark, wet and long. In January, the sun set before five o'clock, and I began to feel lonely and homesick. I missed my family, Turkish food and the sunny winter days of Ankara. A housemate from Greece noticed that I was withdrawn and invited me to join a running group. Exercising with others and having a regular social activity gradually lifted my mood. I learned that asking for support is a strength, not a weakness.
+
+# 38 | Bir konferans | A Conference
+In the spring, my supervisor at the laboratory suggested that I present a poster about our village project at a student conference. Preparing the poster forced me to summarise two years of work on a single page. At the conference, dozens of people stopped to ask questions. A researcher from Kenya told me about a similar project in East Africa, and we exchanged contact details. I realised that the problems we had faced were shared around the world.
+
+# 39 | Tez konusu | The Thesis Topic
+By the end of my first year, I had to choose a topic for my master's thesis. After discussions with my supervisor, I decided to study how heat pumps and thermal storage could be combined to make heating more affordable in regions with cold winters and limited incomes. The topic connected my experiences from Bursa, the village and the Netherlands. For the first time, my scattered interests seemed to form a single, coherent direction.
+
+# 40 | Geriye bakmak | Looking Back
+On a warm evening in June, I cycled along a canal and reflected on how much my life had changed. Five years earlier, I had been a nervous first-year student who could barely introduce himself in English. Now I was conducting research in a foreign country and discussing complex ideas with people from all over the world. I felt grateful to everyone who had helped me, and curious about what the future would bring.

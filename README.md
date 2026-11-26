@@ -61,6 +61,13 @@ kutusuna yapıştırıp **Aktar**'a bas.
    `npm run paketler` çalıştırıyor. Bundan sonra yeni paket eklemek için yalnızca `package.json` değişir.
 3. Telefonda ilk açılışta **takvim iznine** "İzin ver" de.
 
+## Günün ayeti ve hadisi nereden geliyor?
+
+- **Ayetler:** Kur'an'ın 6236 ayetinden rastgele; Arapça metin ve **Diyanet İşleri meali**, [api.alquran.cloud](https://alquran.cloud) üzerinden.
+- **Hadisler:** Arapça metin ve Türkçe tercümesiyle, kaynak kitabı ve sıhhat derecesi (yalnızca sahih ve hasen) ile
+  [HadeethEnc – Tercüme Edilmiş Hadis Ansiklopedisi](https://hadeethenc.com) üzerinden.
+- İnternet yoksa en son gösterilen ayet ve hadis, hiç yoksa uygulamanın içindeki küçük yedek liste görünür.
+
 ## Bilgisayar uygulaması (Windows)
 
 `desktop/` klasörü Planlayıcı'yı Windows'ta kendi penceresinde açan küçük bir masaüstü uygulamasıdır.
@@ -68,6 +75,34 @@ GitHub'da **"Bilgisayar uygulaması (Windows)"** işi kurulum dosyasını derler
 sayfasına `Planlayici-Kurulum.exe` olarak koyar. Bir kez kurman yeter: içerik web sürümünden geldiği için
 GitHub'a yüklediğin her güncelleme masaüstü uygulamasına da kendiliğinden yansır.
 Kısayollar: F5 yenile, F11 tam ekran, Ctrl + / Ctrl - yakınlaştır.
+
+## Sürüm 2.4: İngilizce kelime dersleri
+
+Menüde yeni bir **İngilizce** bölümü var. Her gün bir ders açılır: A1, A2, B1, B2, C1 ve C2 olmak üzere 6 seviye var, her seviyede 40 metin (toplam 240 ders, yaklaşık 2.600 kelime).
+
+- **Bağlantılı konular:** Metinler, mühendislik öğrencisi Deniz'in hikâyesini anlatır. A1'de üniversite ve aile var. A2'de Londra'da dil kursu, B1'de staj ve proje, B2'de mezuniyet ve yurt dışında yüksek lisans. C1'de araştırma ve girişim, C2'de mühendislik etiği ve olgunluk yılları anlatılır.
+- **Seviye seviye kelime:** Her metin yalnızca önceki derslerde öğrenilen kelimeleri ve o günün yeni kelimelerini kullanır. Bu kural 240 metnin tamamında otomatik olarak denetlendi.
+- **Ders akışı:**
+  1. Metindeki yeni kelimeler, anlamlarıyla birlikte
+  2. Metin: bir kelimeye dokununca anlamı altında açılır, yeni kelimeler altı çizili görünür; metni sesli de dinleyebilirsin
+  3. Kelime kartları (dokunarak çevrilir)
+  4. Kısa sınav: 4 seçenekli; yanlış cevaplanan soru sona eklenir
+- **Tekrar:** Bitirdiğin kelimeler 1, 2, 4, 8, 16 ve 32 gün arayla tekrar kartı olarak geri gelir. Bildiğin kelime daha seyrek, bilemediğin kelime daha sık gelir.
+- **Kelime defteri:** Öğrendiğin tüm kelimeleri seviyeye göre listeler, arama yapmanı sağlar.
+- **Aç / kapat düğmesi:** İngilizce ekranında ve **Rutinler** ekranının üstünde **Günlük İngilizce görevi** düğmesi var.
+  - Açınca rutinlerine "İngilizce: günün dersi" eklenir ve dersi bitirdiğin gün zincir kendiliğinden işaretlenir.
+  - Kapatınca rutin kalkar ama zincirin saklanır; yeniden açınca geri gelir.
+  - İstersen bir hatırlatma saati de koyabilirsin.
+- Bölümü tamamen gizlemek için Ayarlar'da **Bölümleri aç / kapat**'ı kullan. Ana ekran kartı için de **Ana ekranda görünenler**'deki "Günün İngilizce dersi" ayarı var.
+
+Sesli okuma için `expo-speech` paketi eklendi; GitHub derlemesi onu kendiliğinden kurar. Bu sürümde yeni APK'yı bir kez kurman gerekir.
+
+Metinleri ve sözlüğü değiştirmek istersen kaynaklar `eng/content` klasöründe:
+- `A1.txt` … `C2.txt`: metinler
+- `dict.txt`: Türkçe anlamlar
+- `names.txt`: özel adlar
+
+Değişiklikten sonra `node eng/build.js --write src/english/data.js` komutu uygulama verisini yeniden üretir.
 
 ## Sürüm 2.3'te neler var
 

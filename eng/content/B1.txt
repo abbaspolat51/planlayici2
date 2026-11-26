@@ -1,0 +1,119 @@
+# 1 | Staj aramak | Looking for an Internship
+In my third year, I started looking for an internship. Our department told us that a summer internship is compulsory for engineering students. However, finding a good one is not easy, because many students apply for the same positions. I made a list of companies that work on electric vehicles. Then I visited their websites and read about their projects. Most of them asked for a CV and a cover letter in English.
+
+# 2 | Özgeçmiş yazmak | Writing a CV
+Writing my CV took longer than I expected. I had to describe my education, my skills and my experience in a clear and short way. I did not have much work experience, so I wrote about the robotics club, the London course and my job teaching maths to children. My English teacher, Mr Brown, checked my CV and corrected a few mistakes. He also advised me to use active verbs like "designed", "built" and "organised".
+
+# 3 | Ön yazı | The Cover Letter
+The cover letter was even harder. In the letter, I needed to explain why I was interested in the company and why I was a suitable candidate. I wrote three drafts. In the first draft, I talked too much about myself. In the second, my sentences were too long and complicated. Finally, I found the right balance. I sent applications to eight companies and hoped for the best.
+
+# 4 | Cevaplar | Replies
+Over the next month, I received several replies. Three companies said that they had already found interns. Two did not reply at all, which was disappointing. But one company, a manufacturer of electric buses near Bursa, invited me to an online interview. I was both excited and anxious. I knew that this was a real opportunity, so I began to prepare seriously.
+
+# 5 | Mülakata hazırlık | Preparing for the Interview
+To prepare, I researched the company carefully. I learned that it was founded in 2010 and that it now exports buses to more than twenty countries. I also practised common interview questions with Can. He pretended to be a strict manager and asked me difficult questions. At first, my answers were too short. Can suggested that I give examples from my own experience to support what I said.
+
+# 6 | Çevrim içi mülakat | The Online Interview
+The interview took place on a Thursday morning. Two engineers from the company joined the video call. One of them asked about my robotics project, and I described how we solved the problem with the line-following car. The other engineer asked a technical question about batteries. I did not know the full answer, so I explained what I knew and said that I was eager to learn more. They seemed satisfied with my honesty.
+
+# 7 | Kabul edildim | I Got the Internship
+A week later, I received an email from the human resources department. They offered me a six-week internship in their engineering department, starting in July. I read the email three times to make sure it was true. Then I called my parents. My father was especially pleased, because he had always encouraged me to follow my interest in vehicles. That evening, my family celebrated with a special dinner.
+
+# 8 | Robot yarışması | The Robot Competition
+Before the summer, our robotics club took part in a national competition in Istanbul. Teams had to build a robot that could find a path through a maze. We worked late every night for a month. On the day of the competition, our robot got stuck twice, but it still finished the maze. We came fifth out of thirty teams. It was not a prize, but we were proud, and we learned a great deal about teamwork.
+
+# 9 | Bursa'ya taşınmak | Moving to Bursa
+At the beginning of July, I moved to Bursa for the internship. The company had arranged a room for me in a shared flat with two other interns. One was studying electrical engineering in Izmir, and the other was a software student from Eskişehir. The flat was simple, but it was close to the factory. On the first evening, we cooked together and talked about our expectations. We were all a bit nervous.
+
+# 10 | İlk iş günü | The First Day at Work
+On my first day, a manager gave us a tour of the factory. It was enormous. There were separate areas for the bodies of the buses, the electrical systems and the final assembly. Everybody had to wear safety shoes, glasses and a helmet. After the tour, I met my supervisor, Selin. She was a senior engineer in the battery team. She explained that I would help with testing battery packs.
+
+# 11 | İş güvenliği | Safety First
+Before we could work in the factory, all the interns had to attend a safety training course. The instructor explained that batteries can be dangerous if they are damaged or overheated. We learned what to do in case of a fire and where the emergency exits were. He also showed us the correct way to lift heavy objects. I realised that safety is not just a rule; it is part of good engineering.
+
+# 12 | Pil testleri | Testing Batteries
+My main task was to help test battery modules. Each module contains many small cells. We charged and discharged the modules many times and measured their temperature, voltage and capacity. The data went to a computer, and I had to check it for errors. At first, the numbers did not mean much to me. Selin patiently explained how to read the graphs and what a normal result looks like.
+
+# 13 | Bir hata | A Mistake
+In my second week, I made a mistake. I entered the wrong settings for a test, and the machine stopped after two hours. We lost a whole day of data. I felt terrible and expected Selin to be angry. Instead, she calmly asked me to explain what happened. Then she said: "Everyone makes mistakes. The important thing is to understand why it happened and to prevent it next time." We wrote a short checklist together.
+
+# 14 | Kontrol listesi | The Checklist
+The checklist turned out to be very useful. It included every step of the test, from checking the cables to saving the results. Other engineers in the team started using it as well. Selin even suggested that I present it at the weekly team meeting. Speaking in front of experienced engineers made me nervous, but they asked helpful questions and gave me positive feedback. My mistake had become something useful.
+
+# 15 | Haftalık toplantı | The Weekly Meeting
+Every Monday morning, the battery team had a meeting. Each engineer reported on their progress and any problems. The meetings were in Turkish, but many technical words were in English, such as "thermal management" and "state of charge". I took notes and looked up new terms in the evening. I noticed that good engineers communicate clearly. They describe a problem briefly, explain the possible causes and suggest a solution.
+
+# 16 | Öğle arası sohbetleri | Lunch Break Conversations
+I enjoyed lunch breaks in the company canteen. Engineers from different departments sat together and discussed everything from football to the future of transport. One designer told me that the company was developing a smaller bus for narrow city streets. A software engineer described how the buses send data to the company while they are driving. These conversations helped me see how the different parts of the company work together.
+
+# 17 | Elektrikli otobüsler | Electric Buses
+I learned a lot about why cities are buying electric buses. They produce no exhaust gases on the street, so the air in city centres becomes cleaner. They are also much quieter than diesel buses. However, they are more expensive to buy, and cities need charging stations. Selin explained that the total cost over many years can be lower, because electricity is cheaper than fuel and electric motors need less maintenance.
+
+# 18 | Şarj istasyonu | The Charging Station
+One day, I joined a team that was installing a fast charging station at a bus depot. The station could charge a bus in about three hours. The engineers had to make sure that the local electricity network could handle the extra demand. I was surprised by how much planning was necessary. A single bus seems simple, but it is part of a much larger system that includes energy, roads, drivers and timetables.
+
+# 19 | Hafta sonu Uludağ | A Weekend on Uludağ
+At the weekend, the interns took a cable car up Uludağ, the mountain above Bursa. Even in July, the air at the top was fresh and cool. We walked through the pine forest and had a picnic near a stream. My flatmates and I talked about our studies and our plans. We discovered that we all wanted to work in sustainable energy. By the end of the day, we were not just colleagues but friends.
+
+# 20 | Elif'ten haber | News from Elif
+On Sunday evening, Elif called me. She was doing her own summer training in a hospital in Istanbul. She told me that she had watched her first operation, and that she nearly fainted. We laughed about it. She asked about my internship, and I described the battery tests. We realised that both of us were learning to be responsible for other people's safety, in very different ways.
+
+# 21 | Rapor yazmak | Writing a Report
+Every intern had to write a report at the end of the internship. Selin advised me to write a little every week instead of leaving everything to the last moment. The report needed an introduction, a description of the company, a section on my tasks and a conclusion. I included graphs from the battery tests. Writing about my work in a formal style was difficult, but it helped me organise what I had learned.
+
+# 22 | Bir sorun ortaya çıkıyor | A Problem Appears
+In the fifth week, the team noticed that some modules were getting hotter than normal during fast charging. This was a serious concern, because high temperatures can shorten the life of a battery. Selin organised extra tests to find the cause. I helped by comparing the data from different modules. After three days, we found a pattern: all the hot modules came from the same production batch.
+
+# 23 | Sebebi bulmak | Finding the Cause
+The team contacted the supplier of the cooling plates. It turned out that a small change in their production process had made the plates slightly thinner. As a result, they removed less heat from the cells. The supplier agreed to replace the faulty plates. Selin thanked me for my careful work with the data. I was proud that I had helped, even though my part was small.
+
+# 24 | Veda | Saying Goodbye
+On my last day, the battery team organised a small farewell for the interns. Selin gave me a written reference and said that I could apply for a full-time job after I graduated. I thanked everyone for their patience and support. As I left the factory for the last time, I felt grateful. Six weeks earlier, I had arrived knowing almost nothing about batteries. Now I understood how a real engineering team works.
+
+# 25 | Üniversiteye dönüş | Back at University
+When I returned to university in September, I felt different. The theory in my lectures suddenly made more sense, because I had seen how it was used in practice. In thermodynamics, for example, I could connect the equations with the cooling problem in the battery modules. I also started to ask more questions in class. My lecturers noticed that I was more motivated than before.
+
+# 26 | Grup projesi | A Group Project
+In our machine design course, we had to work in groups of four to design a small wind turbine. I worked with Can and two other students, Zehra and Burak. At first, we disagreed about almost everything. Zehra wanted a simple design, while Burak wanted to try something new. We finally agreed to make a list of requirements and to choose the design that met them best.
+
+# 27 | Görev dağılımı | Dividing the Work
+To work efficiently, we divided the tasks. Zehra calculated the forces on the blades, Burak designed the frame on the computer, Can chose the generator, and I was responsible for the gearbox. We created a shared online document and a timetable with deadlines. Every Friday, we met in the library to check our progress. This system worked well, and we rarely missed a deadline.
+
+# 28 | Atölyede | In the Workshop
+After the calculations, we built a prototype in the university workshop. The technician, Mr Hasan, taught us how to use the lathe and the drilling machine safely. Building the turbine took much longer than we had planned. Some parts did not fit together, and we had to make them again. I learned that a design that looks perfect on the screen can be difficult to produce in reality.
+
+# 29 | Rüzgâr tünelinde test | Testing in the Wind Tunnel
+We tested our turbine in the department's small wind tunnel. We measured the speed of the blades and the electricity it produced at different wind speeds. The results were lower than our calculations. After some discussion, we realised that friction in the gearbox was higher than we had assumed. It was my part of the project, so I felt responsible. We decided to improve the gearbox before the final presentation.
+
+# 30 | Dişli kutusunu iyileştirmek | Improving the Gearbox
+I spent two weekends redesigning the gearbox. I replaced some plastic gears with metal ones and added better bearings. Mr Hasan helped me to make the new parts. When we tested the turbine again, the electricity output increased by almost thirty percent. The whole group was delighted. I learned that testing is not a failure when the results are bad; it shows you exactly what to improve.
+
+# 31 | Final sunumu | The Final Presentation
+At the end of the term, each group presented its turbine to the professors and the other students. We explained our design choices, showed the test results and talked honestly about our problems. One professor asked why we had not chosen a vertical design. Zehra answered confidently, using the requirements list. We received one of the highest marks in the class, and the professor praised our teamwork.
+
+# 32 | Sınav dönemi | Exam Period
+Then came the exam period. I had six exams in two weeks, including fluid mechanics, which was famous for being difficult. I made a study plan and stuck to it. I studied in the library from morning until evening, with short breaks every hour. Can and I tested each other with old exam questions. Although I was tired, I felt well prepared. Good planning, I realised, reduces stress.
+
+# 33 | Kış tatili | Winter Holiday
+After the exams, I went to my grandmother's village for a few days. It was covered in snow, and the roads were icy. My grandmother was getting older, and she needed help with heavy work. I chopped wood for the stove and repaired a broken door. In the evenings, we sat by the warm stove, and she told me stories about her childhood. I realised how much the world had changed in her lifetime.
+
+# 34 | Köydeki enerji | Energy in the Village
+While I was in the village, I noticed how much energy my grandmother's house wasted. The windows let in cold air, and the old stove used a lot of wood. I started to think about simple solutions: better insulation, new windows and maybe solar panels for hot water. When I explained my ideas, my grandmother smiled and said: "So all those years at university were useful after all!"
+
+# 35 | Bir fikir | An Idea
+Back in Ankara, I could not stop thinking about the village. Many old houses in rural areas have the same problems. I talked to Can and Zehra about it. Together, we came up with an idea for our final-year project: a low-cost system that combines insulation and solar heating for village houses. We wanted it to be cheap enough for families with low incomes.
+
+# 36 | Danışman bulmak | Finding a Supervisor
+We needed a professor to supervise our project. We wrote a short proposal and sent it to Professor Demir, who worked on renewable energy. She invited us to her office. She liked the idea, but she warned us that the project was ambitious. She asked us to focus on one part first: a solar water heater made from local materials. We agreed, and she became our supervisor.
+
+# 37 | Saha ziyareti | A Field Visit
+In the spring, we visited my grandmother's village to collect data. We measured the temperatures in several houses and asked families how much they spent on heating. Most people were friendly and curious. An old man showed us a water heater that he had built himself from an old barrel. It was not efficient, but the idea was clever. We took photos and notes to use in our design.
+
+# 38 | Bütçe sorunu | A Budget Problem
+Our first design used high-quality copper pipes, but when we calculated the cost, it was far too expensive. Professor Demir reminded us that our goal was a cheap system. We searched for alternatives and found that some plastic pipes could survive the temperatures we needed. This reduced the cost by half. I learned that engineering is always about choices between performance and price.
+
+# 39 | Can'ın haberi | Can's News
+In May, Can told me some exciting news. He had been accepted for a summer course in London, at the same school I went to. He was going to stay with the Wilsons! I gave him a long list of advice and a message for Lucy and Jack. Can laughed and said: "You sound like my mother." Still, I was very happy for him.
+
+# 40 | Üçüncü yılın sonu | The End of the Third Year
+At the end of my third year, I looked back at everything that had happened. I had completed an internship, built a turbine and started a real project. My English had become a tool that I used every day, not just a school subject. I also understood that engineering is not only about machines, but about people and their needs. I was ready for the next challenge.

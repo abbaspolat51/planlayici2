@@ -1,0 +1,119 @@
+# 1 | Bir kitap fikri | The Idea for a Book
+It was Ayşe who first suggested, half in jest, that I write a book. "You never stop telling stories about the villages," she teased, "so you might as well put them on paper." The notion lingered. I had no literary pretensions, yet I felt that the narrative of our enterprise, with its blunders and serendipitous breakthroughs, might resonate with young engineers who are seldom told how messy innovation actually is.
+
+# 2 | Yazmanın zorluğu | The Discipline of Writing
+Writing proved far more arduous than I had envisaged. Technical reports had accustomed me to a terse, impersonal register, whereas a book demanded voice, rhythm and candour. My early drafts were stilted and self-congratulatory. An editor, to whom Professor Demir had introduced me, scrawled a blunt remark in the margin: "Less triumph, more doubt." That laconic advice transformed the manuscript, compelling me to dwell on uncertainty rather than gloss over it.
+
+# 3 | Teknoloji tarihi | Lessons from History
+To situate our work in a broader context, I immersed myself in the history of technology. I was struck by how often innovations had been hailed as panaceas, only to engender unforeseen predicaments. The automobile promised liberation yet begot congestion and sprawl; cheap fossil fuels propelled prosperity while quietly destabilising the climate. Such precedents instilled in me a wariness of any technology marketed as an unambiguous solution to complex societal problems.
+
+# 4 | Jevons paradoksu | The Rebound Effect
+One concept preoccupied me in particular: the rebound effect, sometimes called the Jevons paradox. When a resource is used more efficiently, it becomes cheaper, which can paradoxically stimulate greater consumption. Our own data hinted at this phenomenon; some households, once their heating became affordable, understandably heated more rooms. I did not regard this as a failure, since warmth is a legitimate need, but it complicated simplistic assumptions about efficiency curtailing emissions.
+
+# 5 | Büyüme tartışması | The Growth Debate
+The rebound effect led me, somewhat inexorably, into the contentious debate about economic growth. Proponents of so-called green growth maintain that prosperity can be decoupled from environmental harm through innovation. Advocates of degrowth contend that wealthy societies must curb consumption altogether. I found neither camp entirely persuasive. Dogmatism on either side seemed to obscure the unglamorous, incremental work of making particular systems less wasteful and more equitable.
+
+# 6 | Bir konferans konuşması | A Keynote Address
+When I was invited to deliver a keynote address at an international energy conference, I was initially inclined to decline, fearing that I lacked the requisite eminence. Zehra dismissed my hesitancy as false modesty. In the address, I eschewed grand pronouncements and instead recounted the episode of the faulty valves. Judging by the audience's reaction, an admission of fallibility proved more compelling than any polished vision of a frictionless future.
+
+# 7 | Yapay zekâ ve emek | Automation and Labour
+During the question session, a delegate asked whether automation would render technicians like ours obsolete. It was a perceptive question. Algorithms were already optimising our maintenance schedules with uncanny accuracy. Yet installing insulation in a crumbling village house, persuading a wary homeowner, or improvising a repair with scant resources demanded tacit skills that remain stubbornly resistant to automation. I argued that the pertinent question was not whether machines would replace workers, but who would reap the gains.
+
+# 8 | Örtük bilgi | Tacit Knowledge
+The philosopher Michael Polanyi famously observed that we know more than we can tell. This insight, which I encountered belatedly, illuminated much of my experience. Yusuf could diagnose a malfunctioning pump merely by listening to it, yet he struggled to articulate how. Such tacit knowledge is transmitted through apprenticeship and shared practice rather than manuals. Organisations that disregard it, I came to believe, imperil the very expertise on which they depend.
+
+# 9 | Zehra'nın ayrılışı | Zehra Moves On
+After nine years, Zehra announced that she intended to leave the enterprise to pursue a doctorate in public policy. The news was bittersweet. Our partnership had weathered innumerable disputes and crises, and her pragmatism had often tempered my idealism. She reassured me that her departure was not a repudiation of our work but its natural continuation. We marked the occasion with a modest dinner, reminiscing until the restaurant staff began pointedly stacking chairs.
+
+# 10 | Liderlik devri | Passing the Baton
+Zehra's departure compelled me to confront an uncomfortable question: was the enterprise excessively dependent on its founders? I resolved to cultivate a new generation of leaders. Esra, the first recipient of my grandmother's scholarship, had risen to become head of operations. Entrusting her with genuine authority, rather than merely nominal responsibility, required me to relinquish control in ways that were at times disconcerting, yet her decisions frequently surpassed my own.
+
+# 11 | Bir edebiyat kulübü | A Reading Circle
+Partly to counterbalance the relentless pragmatism of my working life, I joined a reading circle that met monthly in a bookshop in Ankara. We read novels and poetry, both Turkish and foreign, often in translation. Initially, I approached literature with an engineer's impatience, scanning for plot and conclusion. Over time, I learned to savour ambiguity and to appreciate that the most profound works frequently withhold resolution rather than supply it.
+
+# 12 | Belirsizlikle yaşamak | Living with Ambiguity
+That newfound tolerance for ambiguity seeped, unexpectedly, into my professional conduct. I became less inclined to force premature closure on intractable problems and more willing to entertain several hypotheses simultaneously. In meetings, I noticed that I listened more and interjected less. A colleague remarked, with characteristic Dutch bluntness during a visit, that I had become "less certain and more convincing", an observation I chose to interpret as a compliment.
+
+# 13 | Mentorluk | Mentoring
+Each year, I mentored a handful of young engineers, some from our own staff and others from universities. Mentoring is a curious undertaking. The temptation is to dispense advice, to recount one's own trajectory as though it were a template. Yet circumstances differ, and what proved prudent for me might be ill-advised for them. I gradually learned that the most valuable thing I could offer was not answers but well-chosen questions and an attentive, non-judgemental ear.
+
+# 14 | Başarısızlığın değeri | In Praise of Failure
+Among my mentees, I noticed a pervasive dread of failure, exacerbated perhaps by social media's relentless display of curated success. Many of them regarded a single setback as a verdict on their worth. I shared the unvarnished chronology of our missteps, from the leaking valves to the misjudged cooling strategy. I wanted them to grasp that failure, when acknowledged and scrutinised, is not the antithesis of competence but one of its indispensable ingredients.
+
+# 15 | Mühendislik ve demokrasi | Engineering and Democracy
+Our collaboration with municipalities convinced me that infrastructure is inherently political. Decisions about where to build power lines, which neighbourhoods receive upgrades first, or how costs are apportioned all embody value judgements, however technical their presentation. When such decisions are made opaquely, public trust erodes. I became an advocate for participatory planning, in which citizens deliberate on infrastructure choices, cumbersome as such processes can be.
+
+# 16 | Bir hayal kırıklığı | A Disillusionment
+Not all my advocacy bore fruit. A national programme I had helped shape was, after a change of administration, diluted almost beyond recognition. Funding was redirected towards conspicuous projects that yielded favourable headlines but negligible benefit to impoverished households. I was disheartened and, for a while, cynical. Ayşe reminded me that progress is seldom linear and that disillusionment, if indulged, becomes an excuse for disengagement. I resolved not to let it.
+
+# 17 | Mert'in atölyesi | Mert's Workshop
+Mert, meanwhile, had flourished. He had founded his own workshop, training electricians in the installation of solar systems and battery storage. His apprentices adored his exacting standards and irreverent humour in equal measure. Visiting his workshop, I was struck by how naturally he combined meticulous craftsmanship with unpretentious generosity. The relatives who had once disparaged his choice now solicited his advice whenever their own wiring malfunctioned, a reversal he relished discreetly.
+
+# 18 | Ayşe'nin araştırması | Ayşe's Research
+Ayşe, now a clinical psychologist, was researching how chronic financial insecurity affects mental health. Our conversations revealed unexpected affinities between our fields. She explained that persistent anxiety about bills consumes cognitive resources, leaving people less able to plan ahead, a phenomenon researchers term scarcity. This reframed my understanding of energy poverty. A cold home was not merely a physical hardship but a psychological burden that compounded disadvantage in insidious ways.
+
+# 19 | Bir hikâyenin anlatılışı | How a Story Is Told
+My book was finally published in both Turkish and English. Its reception was gratifying, albeit modest. One review, however, criticised me for romanticising rural life and casting villagers as passive beneficiaries rather than agents. The critique stung, precisely because it was partly justified. Rereading my chapters, I discerned a condescending undertone I had not intended. It was a sobering reminder that narratives about others inevitably reveal as much about the narrator as about their subjects.
+
+# 20 | Seslerin yeri | Whose Voices?
+In response, I collaborated with a documentary filmmaker on a project in which residents of the pilot villages recounted their own experiences, unmediated by my interpretation. Their accounts were by turns humorous, critical and moving. Hatice, now in her eighties, recalled her initial suspicion of "the young engineers with their strange contraptions" with mischievous delight. Relinquishing narrative authority felt uncomfortable, but the resulting film was far richer than anything I could have written.
+
+# 21 | Afet | The Earthquake
+Then came the earthquake. In the early hours of a winter morning, a devastating tremor struck several provinces, and tens of thousands of buildings collapsed. Among the affected areas were towns where we had installed systems. In the following days, the scale of the catastrophe was almost incomprehensible. Our technicians, several of whom had lost relatives, nonetheless volunteered to help restore heating and electricity to emergency shelters in freezing conditions.
+
+# 22 | Yıkımın ardından | In the Aftermath
+Working in the aftermath of the disaster was harrowing. The physical devastation was overwhelming, yet it was the human loss that left the deepest imprint. I met an elderly man searching the rubble for photographs of his late wife. As an engineer, I could not avoid confronting the uncomfortable truth that many deaths had resulted not from the earthquake itself but from negligent construction and the lax enforcement of building codes that had long existed on paper.
+
+# 23 | Hesap verebilirlik | Accountability
+The disaster provoked an intense public reckoning. Engineers, contractors and officials were scrutinised, and some faced prosecution. I felt a mixture of anger and introspection. It was too easy to blame individual wrongdoers while ignoring systemic incentives that rewarded speed and cost-cutting over safety. I wrote an essay arguing that professional integrity must be underpinned by institutions capable of upholding it; otherwise, conscientious engineers are simply outcompeted by unscrupulous ones.
+
+# 24 | Yeniden inşa | Rebuilding
+In the reconstruction that followed, our enterprise was invited to advise on making new housing both earthquake-resistant and energy-efficient. These objectives were occasionally in tension; heavy insulation materials, for instance, could add weight to structures. Reconciling them required close collaboration with structural engineers, architects and residents. I found myself repeatedly reiterating a principle I had learned from Professor Demir: rushed solutions, however well-intentioned, often entrench the very problems they purport to solve.
+
+# 25 | Dayanıklılık | Resilience
+The earthquake reshaped my thinking about resilience. Efficient systems are frequently optimised to the point of fragility, with no redundancy to absorb shocks. In the shelters, decentralised solar panels and batteries had continued to function when the central grid collapsed. I began to argue that energy planning should value robustness and redundancy, even at some cost to efficiency. Resilience, I suggested, is the capacity not merely to withstand disruption but to recover gracefully from it.
+
+# 26 | Can'ın mektubu | A Letter from Can
+Some months later, Can wrote me a long letter, an unusual gesture in an age of terse messages. He reflected on our student years, the robot that once spun in circles, and the late-night conversation that had prompted his change of career. His medical imaging equipment was now used in hospitals across the region, including some that had treated earthquake survivors. He closed with characteristic understatement: "Not bad for two kids who once burned their fingers soldering."
+
+# 27 | Elif ile buluşma | Meeting Elif Again
+Elif, whom I had seen only sporadically over the years, visited Ankara for a medical conference. She had become a paediatric surgeon of considerable renown. Over a long dinner, we compared the ethical dilemmas of our professions: she weighed the risks of operating on fragile infants; I weighed the trade-offs between affordability and safety. We agreed that both medicine and engineering demand acting decisively despite irreducible uncertainty, and living with the consequences.
+
+# 28 | Teknolojik iyimserlik | Technological Optimism
+A younger colleague once accused me, not unkindly, of having become a pessimist. I protested that I remained an optimist, though of a chastened variety. Naive technological optimism presumes that ingenuity will automatically resolve our predicaments. The optimism I endorse is more conditional: it acknowledges that technologies can mitigate suffering, but only when embedded in just institutions, accompanied by humility, and subjected to the scrutiny of those who must live with them.
+
+# 29 | Zaman ve bakım | Time and Maintenance
+Visiting a village where we had installed our earliest systems over fifteen years earlier, I was moved to find several still functioning, lovingly patched by local technicians. Maintenance, I reflected, is the unsung counterpart of innovation. Societies lavish admiration on inventors while neglecting the custodians who keep things working. Yet without diligent maintenance, even the most ingenious invention swiftly deteriorates into scrap. I resolved to champion the dignity of repair.
+
+# 30 | Onarım hakkı | The Right to Repair
+That conviction drew me into the movement for the right to repair. Manufacturers increasingly design products that are deliberately difficult to fix, employing proprietary parts, sealed casings and software locks. This practice, while profitable, generates mountains of waste and deprives communities of autonomy. I testified before a parliamentary committee, arguing that durable, repairable design should be mandated rather than left to the discretion of companies whose incentives point in the opposite direction.
+
+# 31 | Bir öğrencinin sorusu | A Student's Question
+At a university lecture, a student posed a question that unsettled me: had I ever compromised my principles for the sake of the enterprise? After a pause, I admitted that I had. Years earlier, under financial duress, we had accepted funding from a company whose environmental record I found dubious. I had rationalised it as pragmatic. Recounting it publicly was uncomfortable, but candour seemed more instructive than an unblemished but fictitious portrait of integrity.
+
+# 32 | Ahlaki uzlaşma | Moral Compromise
+The student's question prompted me to think more carefully about moral compromise. Absolute purity is rarely attainable for those who act in the world; abstention, too, has consequences. Yet there is a meaningful distinction between principled compromise, undertaken transparently and with clear limits, and gradual erosion, in which each concession makes the next seem trivial. The danger, I concluded, lies less in any single decision than in the imperceptible drift of habit.
+
+# 33 | Dil ve düşünce | Language and Thought
+Living much of my life in two languages had subtly altered how I think. Certain ideas seemed to come more readily in English, others only in Turkish. Some Turkish expressions, steeped in communal warmth, have no satisfactory English equivalent, while English afforded me a certain detachment useful in analysis. I came to regard bilingualism not as a mere skill but as a kind of double vision, enabling me to perceive the assumptions embedded in each language.
+
+# 34 | Babamın emekliliği | My Father Retires
+My father retired after forty years of teaching. At his farewell ceremony, former pupils, some now grey-haired, spoke of the enduring influence of his patience and integrity. Listening to them, I recognised how profoundly his quiet example had shaped my own conduct. He had never lectured me on ethics; he had simply lived consistently with his convictions. I realised that the most enduring forms of teaching are often unspoken.
+
+# 35 | Mirasın anlamı | The Meaning of Legacy
+His retirement prompted me to contemplate the elusive notion of legacy. I had once imagined it as some monumental achievement bearing one's name. Increasingly, I suspected that legacy is more diffuse: the habits we instil in others, the institutions we help sustain, the kindnesses that ripple outward unacknowledged. My grandmother had left no monument, yet her influence permeated an entire enterprise and the lives of dozens of technicians she never met.
+
+# 36 | Londra'ya dönüş | Return to London
+Decades after my first trip, I returned to London for a conference. On impulse, I visited the street where the Wilsons had lived. The house had been repainted, and strangers now occupied it. Lucy, I knew, was a teacher in Manchester, and Jack, astonishingly, had become a robotics engineer who credited my youthful enthusiasm with sparking his vocation. Standing on that pavement in the familiar drizzle, I felt the strange vertigo of time folding back upon itself.
+
+# 37 | Bilim Müzesi | The Science Museum Revisited
+I also revisited the Science Museum, where I had once marvelled at steam engines. The exhibitions had been transformed, now foregrounding climate, energy transitions and the ethical quandaries of technology. In one gallery, I paused before a display questioning whether progress is always beneficial. My younger self would have found the question perplexing, even faintly heretical. Now it struck me as the most important question an engineering museum could pose.
+
+# 38 | Bir konuşmanın taslağı | Drafting a Speech
+Back in Ankara, I was asked to deliver the commencement address at my old university. Drafting it proved unexpectedly daunting. I wanted to avoid both hollow inspiration and world-weary cynicism. Eventually, I settled on a simple structure: three things I wished I had understood at their age. That competence is collective, not solitary. That doubt is a professional virtue. And that the purpose of engineering is not machines but the flourishing of the people they serve.
+
+# 39 | Mezuniyet konuşması | The Commencement Address
+Standing at the lectern, I gazed at the sea of young faces and remembered my own graduation, my grandmother cradling my diploma as though it were made of glass. I told the graduates that they would inherit problems my generation had failed to solve, and that I offered not an apology but an invitation. "Be rigorous, be humble, and be kind," I concluded. The applause was warm, but it was the faces of the anxious, hopeful few that stayed with me.
+
+# 40 | Bitmeyen yolculuk | The Unfinished Journey
+Tonight, as I write these lines, an old notebook lies open beside me. On its first page, in my clumsy adolescent handwriting, are the words: "My name is Deniz. I am a student." I have learned two languages, built an enterprise, endured loss and made innumerable mistakes. Yet those first sentences remain, in the deepest sense, true. Learning is not a stage of life one completes but a way of living one chooses, again and again.

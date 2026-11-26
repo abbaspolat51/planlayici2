@@ -1,6 +1,86 @@
-// Günün ayeti ve hadisi. Metinler sade Türkçeyle, anlam olarak aktarılmıştır (kelimesi kelimesine meal değildir).
-// Hadisler İmam Nevevî'nin Riyâzü's-Sâlihîn'inde yer alan bilinen rivayetlerdendir; kaynak olarak asıl hadis kitabı yazılır.
+// Günün ayeti ve hadisi.
+// Ayetler: Arapça metin + Diyanet İşleri meali, api.alquran.cloud üzerinden (6236 ayetin tamamından rastgele).
+// Hadisler: Arapça metin + Türkçe tercüme, HadeethEnc (Tercüme Edilmiş Hadis Ansiklopedisi) üzerinden; yalnızca sahih ve hasen olanlar.
+// İnternet yoksa son gösterilen ayet/hadis, hiç yoksa aşağıdaki küçük yedek liste kullanılır.
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
+export const SURELER = ['Fâtiha', 'Bakara', 'Âl-i İmrân', 'Nisâ', 'Mâide', 'En\'âm', 'A\'râf', 'Enfâl', 'Tevbe', 'Yûnus',
+  'Hûd', 'Yûsuf', 'Ra\'d', 'İbrâhîm', 'Hicr', 'Nahl', 'İsrâ', 'Kehf', 'Meryem', 'Tâhâ',
+  'Enbiyâ', 'Hac', 'Mü\'minûn', 'Nûr', 'Furkân', 'Şuarâ', 'Neml', 'Kasas', 'Ankebût', 'Rûm',
+  'Lokmân', 'Secde', 'Ahzâb', 'Sebe\'', 'Fâtır', 'Yâsîn', 'Sâffât', 'Sâd', 'Zümer', 'Mü\'min',
+  'Fussılet', 'Şûrâ', 'Zuhruf', 'Duhân', 'Câsiye', 'Ahkâf', 'Muhammed', 'Fetih', 'Hucurât', 'Kâf',
+  'Zâriyât', 'Tûr', 'Necm', 'Kamer', 'Rahmân', 'Vâkıa', 'Hadîd', 'Mücâdele', 'Haşr', 'Mümtehine',
+  'Saf', 'Cuma', 'Münâfikûn', 'Teğâbün', 'Talâk', 'Tahrîm', 'Mülk', 'Kalem', 'Hâkka', 'Meâric',
+  'Nûh', 'Cin', 'Müzzemmil', 'Müddessir', 'Kıyâme', 'İnsân', 'Mürselât', 'Nebe\'', 'Nâziât', 'Abese',
+  'Tekvîr', 'İnfitâr', 'Mutaffifîn', 'İnşikâk', 'Bürûc', 'Târık', 'A\'lâ', 'Gâşiye', 'Fecr', 'Beled',
+  'Şems', 'Leyl', 'Duhâ', 'İnşirâh', 'Tîn', 'Alak', 'Kadr', 'Beyyine', 'Zilzâl', 'Âdiyât',
+  'Kâria', 'Tekâsür', 'Asr', 'Hümeze', 'Fîl', 'Kureyş', 'Mâûn', 'Kevser', 'Kâfirûn', 'Nasr',
+  'Tebbet', 'İhlâs', 'Felak', 'Nâs'];
+
+const CACHE = 'pl-ilham';
+const TOPLAM_AYET = 6236;
+// HadeethEnc ana bölümleri ve yaklaşık hadis sayıları (rastgele seçimi dengelemek için)
+const BOLUMLER = [['5', 728], ['3', 436], ['4', 1054], ['7', 173], ['6', 92], ['1', 72], ['2', 10]];
+
+async function getJson(url, ms = 9000) {
+  const ctl = typeof AbortController !== 'undefined' ? new AbortController() : null;
+  const tm = setTimeout(() => ctl && ctl.abort(), ms);
+  try {
+    const r = await fetch(url, ctl ? { signal: ctl.signal } : undefined);
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    return await r.json();
+  } finally { clearTimeout(tm); }
+}
+
+const BESMELE = /^بِسْمِ\s+\S+\s+\S+\s+\S+\s*/;
+export async function fetchAyet() {
+  const n = 1 + Math.floor(Math.random() * TOPLAM_AYET);
+  const j = await getJson('https://api.alquran.cloud/v1/ayah/' + n + '/editions/quran-simple,tr.diyanet');
+  const [ar, tr] = j.data;
+  const sure = ar.surah.number, ayet = ar.numberInSurah;
+  let arText = ar.text;
+  if (ayet === 1 && sure !== 1 && sure !== 9) arText = arText.replace(BESMELE, '');
+  return {
+    ar: arText.trim(), tr: tr.text.trim(),
+    src: (SURELER[sure - 1] || ar.surah.englishName) + ' ' + sure + ':' + ayet,
+    meal: 'Diyanet İşleri meali',
+  };
+}
+
+export async function fetchHadis() {
+  const top = BOLUMLER.reduce((a, b) => a + b[1], 0);
+  for (let deneme = 0; deneme < 4; deneme++) {
+    let r = Math.random() * top, cat = BOLUMLER[0];
+    for (const b of BOLUMLER) { if (r < b[1]) { cat = b; break; } r -= b[1]; }
+    const page = 1 + Math.floor(Math.random() * cat[1]);
+    const L = await getJson('https://hadeethenc.com/api/v1/hadeeths/list/?language=tr&category_id=' + cat[0] + '&page=' + page + '&per_page=1');
+    const id = L && L.data && L.data[0] && L.data[0].id;
+    if (!id) continue;
+    const h = await getJson('https://hadeethenc.com/api/v1/hadeeths/one/?language=tr&id=' + id);
+    const grade = String(h.grade || '');
+    if (!/sahih|hasen/i.test(grade) || !h.hadeeth) continue;
+    return { ar: String(h.hadeeth_ar || '').trim(), tr: String(h.hadeeth).trim(), src: String(h.attribution || '').trim(), grade, id };
+  }
+  throw new Error('Uygun hadis bulunamadı');
+}
+
+// Yedek: internet yokken
+export function fallbackPair() {
+  const a = AYETLER[Math.floor(Math.random() * AYETLER.length)];
+  const h = HADISLER[Math.floor(Math.random() * HADISLER.length)];
+  return {
+    ayet: { ar: '', tr: a[0], src: a[1], meal: 'uygulamadaki yedek liste', yedek: true },
+    hadis: { ar: '', tr: h[0], src: h[1], grade: '', yedek: true },
+  };
+}
+export async function loadCached() {
+  try { const v = await AsyncStorage.getItem(CACHE); return v ? JSON.parse(v) : null; } catch (e) { return null; }
+}
+export async function saveCached(v) {
+  try { await AsyncStorage.setItem(CACHE, JSON.stringify(v)); } catch (e) { /* yok say */ }
+}
+
+// Yedek liste (sade Türkçe, anlam olarak). İnternet yokken gösterilir.
 export const AYETLER = [
   ['Şüphesiz zorlukla beraber bir kolaylık vardır. Evet, zorlukla beraber bir kolaylık vardır.', 'İnşirâh 94:5–6'],
   ['Allah hiç kimseye gücünün yetmeyeceği bir yük yüklemez.', 'Bakara 2:286'],
@@ -59,13 +139,3 @@ export const HADISLER = [
   ['Güzel söz sadakadır.', 'Buhârî, Müslim (hadisin bir bölümü)'],
 ];
 
-// Rastgele bir ayet ve bir hadis (aynısı arka arkaya gelmesin)
-export function randomPair(prev) {
-  const pick = (arr, last) => {
-    if (arr.length < 2) return 0;
-    let i = Math.floor(Math.random() * arr.length);
-    if (i === last) i = (i + 1) % arr.length;
-    return i;
-  };
-  return { a: pick(AYETLER, prev && prev.a), h: pick(HADISLER, prev && prev.h) };
-}

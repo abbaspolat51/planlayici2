@@ -1,0 +1,119 @@
+# 1 | Merhaba, ben Deniz | Hello, I am Deniz
+Hello! My name is Deniz. I am a student. I am 19 years old. I am from Turkey. I live in Ankara. Ankara is a big city. I like my city. This is my first day at university. I am happy.
+
+# 2 | Ailem | My Family
+This is my family. My father is Ahmet. He is a teacher. My mother is Zeynep. She is a doctor. I have a sister and a brother. My sister is Ayşe. She is 15. My brother is Mert. He is 10. We live in a small house. I love my family.
+
+# 3 | Evimiz | Our House
+Our house is small, but it is nice. It has two bedrooms, a kitchen and a living room. My room is small too. In my room, there is a bed, a desk and a chair. There is a window. I can see a tree from my window. I like my room.
+
+# 4 | Sabahım | My Morning
+I get up at 7:00 every day. I wash my face and I brush my teeth. Then I eat breakfast with my family. I eat bread, cheese and eggs. I drink tea. My mother drinks coffee. At 8:00, I go to university by bus.
+
+# 5 | Üniversitede | At the University
+My university is big. There are many students. I study engineering. My classes start at 9:00. Today I have two classes: math and physics. Math is easy for me, but physics is difficult. My teacher is very good. Her name is Ms Kaya.
+
+# 6 | Yeni bir arkadaş | A New Friend
+In the physics class, I meet a new friend. His name is Can. He is from Istanbul. He studies engineering too. Can is tall and funny. We sit together in class. After class, we drink tea in the garden. Can likes football. I like football too!
+
+# 7 | Haftanın günleri | Days of the Week
+There are seven days in a week: Monday, Tuesday, Wednesday, Thursday, Friday, Saturday and Sunday. I go to university from Monday to Friday. On Saturday, I play football with Can. On Sunday, I stay at home. I read books and watch films. Sunday is my favourite day.
+
+# 8 | Saat kaç? | What Time Is It?
+What time is it? It is 10:30. Now I am in the library. The library is quiet. I study math here for two hours. At 12:30, I have lunch with Can. We eat soup and rice. Lunch is not expensive at the university. Then we go back to class.
+
+# 9 | Renkler | Colours
+I love colours. My favourite colour is blue. The sky is blue and the sea is blue. My bag is black. My shoes are white. Can's favourite colour is red. His car is red too. My sister Ayşe likes pink and purple. What is your favourite colour?
+
+# 10 | Kıyafetler | Clothes
+Today it is cold. I wear a warm coat, a sweater and jeans. I also wear a hat. In summer, I wear a shirt and shorts. My mother buys clothes for me. She says: "Deniz, these shoes are old. You need new shoes." I want brown shoes.
+
+# 11 | Hava durumu | The Weather
+What is the weather like today? In Ankara, winter is cold and snowy. Summer is hot and dry. Today it is sunny but windy. I take my umbrella because it often rains in spring. I like autumn. The trees are yellow and orange.
+
+# 12 | Alışveriş | Shopping
+On Saturday morning, I go to the market with my mother. We buy fruit and vegetables. Apples are cheap today. We buy two kilos of apples, some tomatoes and potatoes. My mother asks: "How much is it?" The man says: "Forty lira." We pay and go home.
+
+# 13 | Mutfakta | In the Kitchen
+I can cook a little. Today I make pasta for my family. First, I boil water. Then I put the pasta in the water. I make a tomato sauce with oil, salt and garlic. My brother Mert helps me. Dinner is ready! Everyone likes my pasta.
+
+# 14 | Hobilerim | My Hobbies
+I have three hobbies. First, I like reading. I read a book every month. Second, I love music. I play the guitar. Third, I like drawing. I draw pictures of buildings and machines. Can's hobby is photography. He takes photos of the city.
+
+# 15 | Spor | Sports
+Sport is important for me. I play football on Saturdays and I run in the park on Wednesdays. Can plays basketball too. He is a good player. My sister Ayşe swims. She goes to the swimming pool twice a week. My father walks every evening. Sport makes us healthy.
+
+# 16 | Doktorda | At the Doctor
+Today I feel bad. My head hurts and my throat hurts too. I go to the doctor. The doctor asks some questions. "Do you have a fever?" "Yes, a little." She says: "You have a cold. Drink a lot of water and rest. Stay in bed for two days."
+
+# 17 | Hayvanlar | Animals
+My grandmother lives in a village. She has a farm. There are many animals on the farm: cows, sheep, chickens and a horse. She also has a dog and two cats. The dog's name is Karabaş. I visit my grandmother in summer. I help her with the animals. I feed the chickens.
+
+# 18 | Para | Money
+I have a small job. I help children with math on Tuesday evenings. I earn 500 lira a week. I spend 200 lira on food and 100 lira on transport. I save the rest of the money. I want to buy a new computer. A good computer costs a lot of money.
+
+# 19 | En iyi arkadaşım | My Best Friend
+My best friend is Elif. We are friends from high school. She is short and she has long black hair. She is very kind and clever. Elif studies medicine in Istanbul. We do not see each other often, but we talk on the phone every Sunday. I miss her.
+
+# 20 | Bir doğum günü | A Birthday
+Today is my sister's birthday. She is 16 years old. We have a party at home. My mother makes a big chocolate cake. Ayşe's friends come to the party. They sing "Happy Birthday". I give her a present: a book and a pen. She is very happy. It is a great day.
+
+# 21 | Aylar | The Months
+There are twelve months in a year. My birthday is in March. March is in spring. In June, the university closes and the summer holiday starts. In July and August, it is very hot. In September, classes start again. In December, it snows in Ankara. What month is your birthday?
+
+# 22 | Ulaşım | Transport
+Ankara has buses, a metro and taxis. I usually take the metro to university. It is fast and cheap. Sometimes I walk. Walking is slow, but it is good for me. My father drives a car to work. The roads are busy in the morning. Taxis are expensive.
+
+# 23 | Sınava hazırlık | Before the Exam
+Next week, I have a math exam. I study every day. I go to the library after class. I read my notes and I solve problems. Can studies with me. When we do not understand something, we ask Ms Kaya. She always helps us. I am a little nervous, but I am ready.
+
+# 24 | Sınav günü | The Exam
+Today is the exam day. I get up early. I eat a good breakfast. The exam starts at 10:00. There are ten questions. Some questions are easy and some are difficult. I answer all the questions. After the exam, I feel tired but happy. I think my exam is good.
+
+# 25 | Sonuçlar | The Results
+One week later, Ms Kaya gives the results. I get 85 out of 100! Can gets 90. We are very happy. We call our families. My father says: "Well done, Deniz!" In the evening, we eat pizza with our friends. We celebrate.
+
+# 26 | Mahallem | My Neighbourhood
+I live in a quiet neighbourhood. Near my house, there is a bakery, a pharmacy and a small supermarket. There is also a mosque and a park. Every morning, I buy fresh bread from the bakery. The baker is an old man. He is always friendly. He knows my name.
+
+# 27 | Yol sormak | Asking the Way
+A tourist stops me in the street. "Excuse me, where is the museum?" he asks. "Go straight on and turn left at the bank. The museum is next to the post office," I say. "Is it far?" "No, it is near. It is five minutes on foot." He says: "Thank you very much!"
+
+# 28 | Bir telefon | A Phone Call
+My phone rings. It is my grandmother. "Hello, Deniz! How are you?" "I am fine, thank you. How are you, Grandma?" "I am well. When do you come to the village?" "I come in June, after my exams." "Good! I want to see you. Study well!"
+
+# 29 | Ev temizliği | Cleaning the House
+On Saturday, we clean the house together. My father cleans the kitchen. My mother washes the clothes. Ayşe cleans the windows and Mert puts his toys in a box. I clean my room and the bathroom. It takes two hours. Then the house is clean and we drink tea.
+
+# 30 | Film gecesi | A Film Night
+On Friday evening, Can and Elif come to my house. Elif is in Ankara for the weekend. We watch a film together. It is a science fiction film about robots. We eat popcorn and drink juice. The film is long but very interesting. After the film, we talk about robots and engineering.
+
+# 31 | Planlarım | My Plans
+I have many plans. This summer, I want to learn English well. I am going to take a course. Next year, I want to find a summer job in a factory. In the future, I want to be a good engineer. I want to design machines and cars.
+
+# 32 | İngilizce kursu | The English Course
+The English course is on Monday and Thursday evenings. There are twelve students in my class. Our teacher is Mr Brown. He is from London. He speaks a little Turkish. In class, we read, write, listen and speak. I like listening to songs in English. It helps me.
+
+# 33 | Elif'e bir mesaj | A Message to Elif
+Dear Elif, how are you? I am very busy these days. I have classes at university and an English course in the evening. English is difficult, but I like it. Mr Brown is a good teacher. Can says hello to you. Please write to me soon. Love, Deniz
+
+# 34 | İki kahvaltı | Two Breakfasts
+Mr Brown asks us about Turkish breakfast. I say: "We eat bread, cheese, olives, tomatoes, cucumbers, eggs and honey. We drink black tea." Mr Brown laughs. "In England, we eat eggs, sausages, beans and toast. We drink tea with milk." Tea with milk? That is strange for me!
+
+# 35 | Can'ın ailesi | Can's Family
+On Sunday, I visit Can's family. They live in a flat in the city centre. Can's mother is a nurse and his father is a taxi driver. Can has a little brother, Emre. Emre is 6. He loves cars and trains. Can's mother makes delicious food for us. I eat a lot!
+
+# 36 | Göle gezi | A Trip to the Lake
+In May, the weather is warm. Our class goes on a trip to a lake near Ankara. We go by bus. At the lake, we walk, take photos and have a picnic. Some students swim, but the water is cold. In the afternoon, we play volleyball. It is a beautiful day.
+
+# 37 | Hayalimdeki araba | My Dream Car
+I love cars. My dream car is an electric car. It is fast, quiet and clean. It does not use petrol. It uses electricity. Its battery is very big. I want to design cars like this in the future. Can's dream car is old: a red Mustang from 1965!
+
+# 38 | Yılın sonu | The End of the Year
+It is June. The exams are finished. This year is difficult but good. I learn a lot. I have new friends, and my English is better now. Tomorrow, I go to my grandmother's village. I am going to stay there for two weeks. I want to rest, read and help on the farm.
+
+# 39 | Köyde yaz | Summer in the Village
+The village is very quiet. I get up early with the chickens! Every morning, I drink milk from my grandmother's cows. I help her in the garden. We grow tomatoes, peppers and beans. In the evening, we sit outside and look at the stars. There are many stars here. It is not like the city.
+
+# 40 | Yeni bir başlangıç | A New Start
+My summer is over. I am back in Ankara. I am ready for a new year at university. Now I can talk about my family, my home, my day and my plans in English. I know many words. Next, I want to travel and use my English. Maybe I can go to London!

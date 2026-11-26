@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, Pressable, useWindowDimensions, Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useStore } from '../store';
@@ -7,9 +7,11 @@ import { T, Mute, H3, Card, Btn, Row, Grid, Bar, Empty, ListRow, Switch, IconBtn
 import { TimerCard, WeekProgram, NotifCard, TaskRow, DailyRow, useGo, useForms } from '../components';
 import { today, addDays, AY, GUN, GK, DN, num, tl, hm, fday, ftot, lvl, LV, streak, balance, byPri, isTime, goalProgress, tmState, mmss, weekStart, parse } from '../logic';
 import { useGroups, GROUP_TYPES } from '../groups';
-import { AYETLER, HADISLER, randomPair } from '../ilham';
+import { fetchAyet, fetchHadis, fallbackPair, loadCached, saveCached } from '../ilham';
 import { GoalsMini } from './Goals';
 import { GroupTasksHome } from './Groups';
+import { EngHomeCard } from './English';
+import { LESSONS } from '../english/logic';
 
 export const TILES = [
   ['gorevler', 'Görevler', 'checkbox-outline'],
@@ -18,35 +20,78 @@ export const TILES = [
   ['yemek', 'Yemek takibi', 'nutrition-outline'],
   ['calisma', 'Çalışma', 'timer-outline'],
   ['hedef', 'Hedefler', 'battery-half-outline'],
+  ['ingilizce', 'İngilizce', 'language-outline'],
   ['ambar', 'Ders ambarı', 'folder-open-outline'],
   ['para', 'Para takibi', 'wallet-outline'],
   ['kitap', 'Kitaplarım', 'book-outline'],
   ['grup', 'Gruplar', 'people-outline'],
 ];
 
-// Günün ayeti ve hadisi köşesi
-export function IlhamCard() {
+// Günün ayeti ve hadisi köşesi: Arapçası + Diyanet İşleri meali, hadiste Arapçası + tercümesi
+function IlhamBlock({ label, icon, color, item, sub }) {
   const t = useTheme();
-  const [pair, setPair] = useState(() => randomPair());
-  const a = AYETLER[pair.a], h = HADISLER[pair.h];
-  const Block = ({ label, icon, text, src }) => (
-    <View style={{ gap: 6 }}>
+  const [open, setOpen] = useState(false);
+  const long = (item.tr || '').length > 260;
+  return (
+    <View style={{ gap: 8 }}>
       <Row style={{ gap: 6 }}>
-        <Ionicons name={icon} size={15} color={t.accT} />
-        <Text style={{ fontSize: 13, fontWeight: '800', color: t.accT }}>{label}</Text>
+        <Ionicons name={icon} size={15} color={color} />
+        <Text style={{ fontSize: 13, fontWeight: '800', color }}>{label}</Text>
       </Row>
-      <Text style={{ fontSize: 16.5, lineHeight: 25, color: t.ink, fontWeight: '500' }}>{'“' + text + '”'}</Text>
-      <Text style={{ fontSize: 13, color: t.mute, fontWeight: '600' }}>{src}</Text>
+      {item.ar ? (
+        <Text style={{ fontSize: 21, lineHeight: 38, color: t.ink, textAlign: 'right', writingDirection: 'rtl' }} numberOfLines={open ? undefined : 4}>{item.ar}</Text>
+      ) : null}
+      <Text style={{ fontSize: 16, lineHeight: 24, color: t.ink, fontWeight: '500' }} numberOfLines={open || !long ? undefined : 6}>{item.tr}</Text>
+      {long || (item.ar || '').length > 220 ? (
+        <Pressable onPress={() => setOpen((o) => !o)} hitSlop={6}><Text style={{ fontSize: 13, fontWeight: '800', color: t.accT }}>{open ? 'Kısalt' : 'Devamını oku'}</Text></Pressable>
+      ) : null}
+      <Text style={{ fontSize: 12.5, color: t.mute, fontWeight: '600' }}>{sub}</Text>
     </View>
   );
+}
+
+export function IlhamCard() {
+  const t = useTheme();
+  const [pair, setPair] = useState(null);
+  const [busy, setBusy] = useState(false);
+  const alive = useRef(true);
+  const refresh = async () => {
+    setBusy(true);
+    const [a, h] = await Promise.allSettled([fetchAyet(), fetchHadis()]);
+    if (!alive.current) return;
+    setPair((old) => {
+      const fb = fallbackPair();
+      const next = {
+        ayet: a.status === 'fulfilled' ? a.value : (old && old.ayet) || fb.ayet,
+        hadis: h.status === 'fulfilled' ? h.value : (old && old.hadis) || fb.hadis,
+      };
+      if (a.status === 'fulfilled' || h.status === 'fulfilled') saveCached(next);
+      return next;
+    });
+    setBusy(false);
+  };
+  useEffect(() => {
+    alive.current = true;
+    loadCached().then((c) => { if (alive.current) setPair((p) => p || c || fallbackPair()); });
+    refresh();
+    return () => { alive.current = false; };
+  }, []);
+  const gold = t.dark ? t.gold : '#B07A0A';
   return (
     <Card style={{ borderLeftWidth: 4, borderLeftColor: t.gold }}>
-      <SectionHead icon="sparkles" color={t.dark ? t.gold : '#B07A0A'} title="Günün ayeti ve hadisi"
-        right={<IconBtn name="shuffle" label="Başka bir ayet ve hadis göster" color={t.accT} onPress={() => setPair((p) => randomPair(p))} />} />
-      <Block label="Ayet" icon="book-outline" text={a[0]} src={'Kur’ân-ı Kerîm, ' + a[1]} />
-      <View style={{ height: 1, backgroundColor: t.line }} />
-      <Block label="Hadis" icon="chatbubble-ellipses-outline" text={h[0]} src={h[1] + ' · Riyâzü’s-Sâlihîn'} />
-      <Mute s={12}>Anlamlar sade Türkçeyle aktarılmıştır; kelimesi kelimesine meal değildir.</Mute>
+      <SectionHead icon="sparkles" color={gold} title="Günün ayeti ve hadisi"
+        right={busy ? <Text style={{ fontSize: 12.5, color: t.mute, paddingRight: 8 }}>yükleniyor…</Text>
+          : <IconBtn name="shuffle" label="Başka bir ayet ve hadis göster" color={t.accT} onPress={refresh} />} />
+      {pair ? (
+        <>
+          <IlhamBlock label="Ayet" icon="book-outline" color={gold} item={pair.ayet}
+            sub={'Kur’ân-ı Kerîm, ' + pair.ayet.src + ' · ' + (pair.ayet.meal || 'Diyanet İşleri meali')} />
+          <View style={{ height: 1, backgroundColor: t.line }} />
+          <IlhamBlock label="Hadis" icon="chatbubble-ellipses-outline" color={gold} item={pair.hadis}
+            sub={[pair.hadis.src, pair.hadis.grade, pair.hadis.yedek ? 'uygulamadaki yedek liste' : 'HadeethEnc'].filter(Boolean).join(' · ')} />
+          {pair.ayet.yedek || pair.hadis.yedek ? <Mute s={12}>İnternet bağlantısı olmadığı için uygulamadaki yedek listeden gösteriliyor.</Mute> : null}
+        </>
+      ) : <Mute>Yükleniyor…</Mute>}
     </Card>
   );
 }
@@ -130,11 +175,18 @@ function Hero({ doneN, tot }) {
   );
   return (
     <View style={{ backgroundColor: t.hero, borderRadius: t.r + 4, padding: 20, overflow: 'hidden', gap: 14 }}>
-      {/* hedef halkaları */}
-      <View pointerEvents="none" style={{ position: 'absolute', right: -90, top: -70, width: 230, height: 230, borderRadius: 115, borderWidth: 18, borderColor: alpha(t.gold, 0.22), alignItems: 'center', justifyContent: 'center' }}>
-        <View style={{ width: 150, height: 150, borderRadius: 75, borderWidth: 16, borderColor: alpha(t.coral, 0.25), alignItems: 'center', justifyContent: 'center' }}>
-          <View style={{ width: 70, height: 70, borderRadius: 35, backgroundColor: alpha(t.gold, 0.35) }} />
-        </View>
+      {/* uçan ok: yaydan yeni çıkmış, arkasında hız izleri */}
+      <View pointerEvents="none" style={{ position: 'absolute', right: 14, top: -26, width: 210, height: 120, transform: [{ rotate: '-18deg' }, { scale: 0.82 }] }}>
+        <View style={{ position: 'absolute', left: 0, top: 30, width: 70, height: 6, borderRadius: 3, backgroundColor: alpha(t.gold, 0.28) }} />
+        <View style={{ position: 'absolute', left: -20, top: 50, width: 100, height: 6, borderRadius: 3, backgroundColor: alpha(t.gold, 0.4) }} />
+        <View style={{ position: 'absolute', left: 6, top: 70, width: 60, height: 6, borderRadius: 3, backgroundColor: alpha(t.gold, 0.24) }} />
+        {/* tüyler */}
+        <View style={{ position: 'absolute', left: 92, top: 38, width: 22, height: 10, borderRadius: 3, backgroundColor: alpha(t.coral, 0.55), transform: [{ skewX: '-35deg' }] }} />
+        <View style={{ position: 'absolute', left: 92, top: 58, width: 22, height: 10, borderRadius: 3, backgroundColor: alpha(t.coral, 0.4), transform: [{ skewX: '35deg' }] }} />
+        {/* gövde */}
+        <View style={{ position: 'absolute', left: 90, top: 50, width: 96, height: 6, borderRadius: 3, backgroundColor: alpha(I, 0.55) }} />
+        {/* uç */}
+        <View style={{ position: 'absolute', left: 184, top: 43, width: 0, height: 0, borderTopWidth: 10, borderBottomWidth: 10, borderLeftWidth: 22, borderTopColor: 'transparent', borderBottomColor: 'transparent', borderLeftColor: alpha(t.coral, 0.85) }} />
       </View>
       <Text style={{ color: alpha(I, 0.85), fontSize: 14.5, fontWeight: '700' }}>{greet(n.getHours()) + (name ? ', ' + name : '') + ' 👋'}</Text>
       <DateBlock I={I} />
@@ -255,6 +307,7 @@ export default function Home() {
     grup: G && G.list.length ? G.list.length + ' grup' : 'Grup kur ya da katıl',
   };
   stats.hedef = st.goals.items.length ? st.goals.items.length + ' hedef' : 'Hedef koy';
+  { const ei = Math.min(st.eng.cur || 0, LESSONS.length - 1); stats.ingilizce = (st.eng.cur || 0) >= LESSONS.length ? 'Tümü bitti' : LESSONS[ei].lv + ' · Ders ' + LESSONS[ei].n + '/40'; }
   const tiles = TILES.filter(([k]) => !hidden.includes(k));
   const tileCols = width < 600 ? 3 : width < 900 ? 5 : Math.min(tiles.length, 10);
   const R0 = hidden.includes('rutin') ? [] : st.routines.items;
@@ -316,6 +369,7 @@ export default function Home() {
       {H.today ? <TodayList routines={R0} daily={daily} /> : null}
       {H.gtasks && !hidden.includes('grup') ? <GroupTasksHome /> : null}
       {H.goals && !hidden.includes('hedef') ? <GoalsMini /> : null}
+      {H.eng && !hidden.includes('ingilizce') ? <EngHomeCard /> : null}
       {H.tiles && tiles.length ? (
         <View style={{ gap: 10 }}>
         <SectionHead icon="apps" title="Tüm bölümler" />
@@ -362,7 +416,7 @@ function TodayList({ routines, daily }) {
         return (
           <View key={r.id} style={{ flexDirection: 'row', alignItems: 'center', gap: 10, borderRadius: t.rm, backgroundColor: t.card2, borderWidth: t.bw ? 1 : 0, borderColor: t.line, overflow: 'hidden', minHeight: 60, paddingRight: 2 }}>
             <View style={{ width: 4, alignSelf: 'stretch', backgroundColor: r.color }} />
-            <Pressable style={{ flex: 1, paddingVertical: 6 }} onPress={() => go('rutin')}>
+            <Pressable style={{ flex: 1, paddingVertical: 6 }} onPress={() => go(r.sys === 'eng' ? 'ingilizce' : 'rutin')}>
               <T s={15.5} w="600" c={on ? t.mute : t.ink} style={{ textDecorationLine: on ? 'line-through' : 'none' }}>{r.name}</T>
               <Mute s={13}>{'Rutin · ' + streak(r.done) + ' günlük seri'}</Mute>
             </Pressable>

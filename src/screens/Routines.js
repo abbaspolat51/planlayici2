@@ -3,13 +3,15 @@ import { View, Text, Pressable } from 'react-native';
 import { useStore } from '../store';
 import { useTheme } from '../theme';
 import { T, Mute, H2, H3, Card, Btn, Row, Grid, Empty, IconBtn, MonthView, ListRow, Switch } from '../ui';
-import { useForms } from '../components';
+import { useForms, useGo } from '../components';
+import { EngSwitchCard } from './English';
 import { today, addDays, streak, runs, fmtD, nowYM, shiftM, AY } from '../logic';
 
 export default function Routines() {
   const t = useTheme();
   const { st, update } = useStore();
   const forms = useForms();
+  const go = useGo();
   const R = st.routines.items, td = today();
   const [selId, setSel] = useState(null);
   const [ym, setYm] = useState(nowYM());
@@ -24,12 +26,14 @@ export default function Routines() {
       <Btn kind="pri" title="+ Rutin ekle" onPress={() => forms.open('routine')} />
     </Row>
   );
-  if (!sel) return <View style={{ gap: 16 }}>{head}<Card><Empty text="Henüz rutin yok. Örneğin “Sabah 20 dk kitap” ya da “Spor” ekle; her gün işaretledikçe takvimde zincir oluşur." /></Card></View>;
+  const engCard = (st.prefs.hidden || []).includes('ingilizce') ? null : <EngSwitchCard compact />;
+  if (!sel) return <View style={{ gap: 16 }}>{head}{engCard}<Card><Empty text="Henüz rutin yok. Örneğin “Sabah 20 dk kitap” ya da “Spor” ekle; her gün işaretledikçe takvimde zincir oluşur." /></Card></View>;
   const s = new Set(sel.done), rc = sel.color;
   const rs = runs(sel.done).filter((x) => x.n > 1).reverse().slice(0, 8);
   return (
     <View style={{ gap: 16 }}>
       {head}
+      {engCard}
       <Grid min={250} gap={12}>
         {R.map((r) => {
           const n = streak(r.done), best = Math.max(0, ...runs(r.done).map((x) => x.n)), on = r.done.includes(td), isSel = r.id === sel.id;
@@ -46,6 +50,7 @@ export default function Routines() {
               </Text>
               <Row wrap={false}>
                 <T w="700" c={on ? r.color : t.mute} style={{ flex: 1 }}>{on ? 'Bugün yapıldı' : 'Bugün yapmadın'}</T>
+                {r.sys === 'eng' ? <Btn sm title="Derse git" onPress={() => go('ingilizce')} /> : null}
                 <IconBtn name="create-outline" label="Rutini düzenle" color={t.mute} onPress={() => forms.open('routine', r)} />
                 <Switch value={on} onChange={() => toggle(r.id, td)} label={r.name + ': bugün yapıldı'} color={r.color} />
               </Row>

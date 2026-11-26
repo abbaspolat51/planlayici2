@@ -7,7 +7,7 @@ import { StoreProvider, useStore } from './src/store';
 import { useTheme } from './src/theme';
 import { UIProvider, useUI, IconBtn, T, Sheet } from './src/ui';
 import { alpha, modColor, shadow } from './src/theme';
-import { FormsProvider, GoCtx, usePomo } from './src/components';
+import { FormsProvider, GoCtx, ScrollCtx, usePomo } from './src/components';
 import { GroupsProvider } from './src/groups';
 import { setupNotifications, syncNotifications, ring } from './src/notifications';
 import { useCalendarSync } from './src/calendar';
@@ -23,6 +23,7 @@ import Money from './src/screens/Money';
 import Books from './src/screens/Books';
 import Groups from './src/screens/Groups';
 import Goals from './src/screens/Goals';
+import English from './src/screens/English';
 import Profile from './src/screens/Profile';
 import Login from './src/screens/Login';
 
@@ -30,6 +31,7 @@ const ROUTES = {
   '': ['Bugün', Home, 'home-outline'],
   gorevler: ['Görevler', Tasks, 'checkbox-outline'],
   hedef: ['Hedefler', Goals, 'battery-half-outline'],
+  ingilizce: ['İngilizce', English, 'language-outline'],
   calisma: ['Çalışma', Study, 'timer-outline'],
   rutin: ['Rutinler', Routines, 'link-outline'],
   takvim: ['Takvim', Calendar, 'calendar-outline'],
@@ -100,6 +102,7 @@ function Shell() {
   const scroll = useRef(null);
   const fade = useRef(new Animated.Value(1)).current;
   useCalendarSync();
+  const scrollTop = useCallback(() => { if (scroll.current) scroll.current.scrollTo({ y: 0, animated: false }); }, []);
   const go = useCallback((r) => {
     setMenu(false);
     setRoute(ROUTES[r] ? r : '');
@@ -154,6 +157,7 @@ function Shell() {
   );
   return (
     <GoCtx.Provider value={go}>
+      <ScrollCtx.Provider value={scrollTop}>
       <FormsProvider>
         <Watchers />
         <SafeAreaView edges={['top', 'left', 'right', 'bottom']} style={{ flex: 1, backgroundColor: t.bg }}>
@@ -235,6 +239,7 @@ function Shell() {
           </Sheet>
         </SafeAreaView>
       </FormsProvider>
+      </ScrollCtx.Provider>
     </GoCtx.Provider>
   );
 }

@@ -11,7 +11,7 @@ module.exports = {
     name: 'Planlayıcı',
     slug: 'planlayici',
     ...(push.owner ? { owner: push.owner } : {}),
-    version: '2.3.0',
+    version: '2.4.0',
     orientation: 'default',
     icon: './assets/icon.png',
     userInterfaceStyle: 'automatic',
