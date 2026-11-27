@@ -1,0 +1,147 @@
+# 1 | Son sınıf | Das letzte Studienjahr
+Mein letztes Studienjahr begann mit einer Mischung aus Vorfreude und Druck. Einerseits war das Ende des Studiums endlich in Sicht. Andererseits musste ich unser Abschlussprojekt fertigstellen, mehrere anspruchsvolle Kurse belegen und entscheiden, was ich nach dem Abschluss machen wollte. Professorin Demir warnte uns: "Wenn ihr Dinge aufschiebt, werdet ihr es im Juni bereuen."
+> aufschieben = ertelemek
+
+# 2 | Prototipi tasarlamak | Den Prototyp entwerfen
+Unsere erste große Aufgabe war ein funktionierender Prototyp des solaren Warmwasserbereiters. Das Grundprinzip ist einfach: Sonnenlicht erwärmt eine dunkle Fläche, und die Wärme wird an das Wasser in den Rohren übertragen. Mit billigen Materialien einen guten Wirkungsgrad zu erreichen, ist jedoch alles andere als einfach. Wir haben mehrere Varianten in Computersimulationen verglichen.
+
+# 3 | Simülasyonun sınırları | Die Grenzen der Simulation
+Die Simulationen waren nützlich, aber sie hatten Grenzen. Sie gingen von perfekter Dämmung und idealen Wetterbedingungen aus, die es in der Wirklichkeit nie gibt. Professorin Demir ermutigte uns, die Ergebnisse mit Vorsicht zu betrachten. "Ein Modell ist nur so gut wie seine Annahmen", sagte sie. Deshalb beschlossen wir, zwei Prototypen zu bauen und im Freien zu testen.
+> ausgehen von = varsaymak
+
+# 4 | Malzeme toplamak | Material sammeln
+Das Material zu besorgen war ein Abenteuer für sich. Da unser Budget begrenzt war, besuchten wir Schrottplätze und Gebrauchtmärkte rund um Ankara. Wir fanden altes Fensterglas, Aluminiumbleche und einen gebrauchten Wassertank zu erstaunlich niedrigen Preisen. Ein Verkäufer gab uns sogar einen Rabatt, als er hörte, dass das Projekt für Dorffamilien gedacht war.
+
+# 5 | Çatıda deney | Das Experiment auf dem Dach
+Mit der Erlaubnis der Fakultät installierten wir beide Prototypen auf dem Dach des Ingenieurgebäudes. Wir befestigten Temperatursensoren an den Ein- und Auslassrohren und schlossen sie an einen kleinen Datenlogger an. Jede Stunde zeichnete das Gerät die Temperaturen, die Sonneneinstrahlung und die Lufttemperatur auf. Zum ersten Mal fühlte sich unser Projekt wirklich echt an.
+> anschließen = bağlamak
+> aufzeichnen = kaydetmek
+
+# 6 | Beklenmedik sonuçlar | Unerwartete Ergebnisse
+Nach zwei Wochen waren die Ergebnisse überraschend. Der einfachere Prototyp, von dem wir eine schlechtere Leistung erwartet hatten, lieferte an kalten Morgen sogar wärmeres Wasser. Zehra hatte eine Erklärung: Die komplexe Variante hatte mehr Verbindungsstellen, an denen Wärme entwich. Wir lernten eine wichtige Lektion: Komplexität ist nicht automatisch ein Vorteil, besonders wenn Laien ein System bauen und reparieren müssen.
+
+# 7 | İklim değişikliği semineri | Ein Seminar zum Klimawandel
+Im Oktober organisierte die Fakultät ein Seminar zum Klimawandel. Die Referentin, eine Klimaforscherin, zeigte Daten, nach denen die Durchschnittstemperaturen in der Türkei in den letzten Jahrzehnten deutlich gestiegen sind. Dürren und Extremwetter werden voraussichtlich häufiger. Besonders beeindruckte mich ihr Argument, dass Ingenieure eine zentrale Rolle spielen: beim Senken der Emissionen und bei der Anpassung an Veränderungen, die schon unvermeidbar sind.
+
+# 8 | Enerji politikası tartışması | Eine Debatte über Energiepolitik
+Nach dem Seminar führte unser Kurs eine Debatte über die nationale Energiepolitik. Eine Gruppe argumentierte, dass das Land stark in Solar- und Windenergie investieren sollte, weil wir viel Sonne und starke Winde haben. Eine andere Gruppe wies darauf hin, dass erneuerbare Quellen schwanken und zuverlässige Speicher teuer bleiben. Mir wurde klar, dass gute Politik ökologische, wirtschaftliche und soziale Interessen abwägen muss.
+> hinweisen auf = dikkat çekmek
+> abwägen = tartmak, değerlendirmek
+
+# 9 | Depolama sorunu | Das Speicherproblem
+Die Debatte brachte mich zum Thema Energiespeicherung, das direkt mit meinem Praktikum zu tun hatte. Batterien können Strom für Stunden speichern, aber Energie über Tage oder Jahreszeiten zu speichern ist viel schwieriger. Forscher untersuchen Alternativen wie Pumpspeicher, Wasserstoff und Wärmespeicher. Ich schrieb einen kurzen Aufsatz und argumentierte, dass Wärmespeicher mehr Aufmerksamkeit verdienen, weil sie billig und technisch ausgereift sind.
+> zu tun haben mit = ilgili olmak
+
+# 10 | Yapay zekâ dersi | Ein KI-Kurs
+In diesem Semester belegte ich auch ein Wahlfach über künstliche Intelligenz für Ingenieure. Wir lernten, wie Algorithmen des maschinellen Lernens Muster in großen Datensätzen erkennen. Unser Dozent betonte, dass diese Werkzeuge mächtig, aber nicht magisch sind. Wenn die Trainingsdaten unvollständig oder verzerrt sind, werden die Vorhersagen unzuverlässig. Für mein Kursprojekt trainierte ich ein einfaches Modell, das die Leistung unseres Warmwasserbereiters aus Wettervorhersagen vorhersagt.
+
+# 11 | Modelin tahminleri | Die Vorhersagen des Modells
+Überraschenderweise funktionierte das Modell an sonnigen Tagen recht gut. An bewölkten Tagen waren seine Vorhersagen aber viel ungenauer, weil wir unter diesen Bedingungen nur wenige Daten gesammelt hatten. Diese Erfahrung machte die Warnung des Dozenten für mich konkret. Ein Modell kann nicht wissen, was es nie gesehen hat. In meinem Bericht schlug ich vor, den ganzen Winter über weiter Daten zu sammeln.
+
+# 12 | Sosyal medya ve dikkat | Soziale Medien und Konzentration
+Zu dieser Zeit merkte ich, dass ich zu viel Zeit am Handy verbrachte. Ich öffnete eine App, um eine Nachricht zu lesen, und scrollte dann eine halbe Stunde lang. Das schadete meiner Konzentration, besonders beim Lernen. Nach einem Artikel über digitale Gewohnheiten schaltete ich die meisten Benachrichtigungen aus und setzte mir ein tägliches Zeitlimit. Nach ein paar Wochen fühlte ich mich ruhiger und produktiver.
+> ausschalten = kapatmak
+
+# 13 | Can Berlin'den dönüyor | Can kommt aus Berlin zurück
+Can kam voller Geschichten aus Berlin zurück. Er hatte bei den Schneiders gewohnt, die anscheinend immer noch von mir und meinem türkischen Tee sprachen. Paul war gewachsen und interessierte sich jetzt sehr für Roboter, teilweise wegen meiner Geschichten. Can sprach viel besser Deutsch und war selbstbewusster geworden. Er gab zu, dass mein Rat, immer Deutsch zu sprechen, nervig, aber äußerst wirksam gewesen war.
+> zugeben = itiraf etmek
+
+# 14 | Fon başvurusu | Ein Förderantrag
+Im November erzählte uns Professorin Demir von einem nationalen Innovationsfonds, der Studentenprojekte mit sozialer Wirkung fördert. Bei Erfolg würden wir Geld bekommen, um eine vollständige Anlage in einem echten Dorfhaus zu bauen. Der Antrag war anspruchsvoll: Wir mussten das Problem, unsere Lösung, ein Budget, einen Zeitplan und den erwarteten Nutzen beschreiben. Drei Wochen lang arbeiteten wir jeden Abend daran.
+
+# 15 | Etkiyi ölçmek | Die Wirkung messen
+Am schwierigsten war es, die erwartete Wirkung zu erklären. Es reichte nicht zu sagen, dass unser Gerät den Menschen hilft. Wir mussten schätzen, wie viel Geld eine Familie sparen könnte, wie stark die Kohlendioxidemissionen sinken würden und wie viele Haushalte profitieren könnten. Ich benutzte die Daten unseres Besuchs im Dorf und nannte die Annahmen hinter jeder Zahl klar.
+
+# 16 | Mülakat paneli | Die Jury
+Unser Antrag kam in die letzte Runde, und wir wurden eingeladen, unser Projekt einer Jury von Fachleuten vorzustellen. Ein Jurymitglied, ein Ökonom, fragte, ob die Dorfbewohner die Technik tatsächlich annehmen würden. Das war eine ausgezeichnete Frage, über die wir nicht genug nachgedacht hatten. Zehra antwortete, dass wir die Menschen vor Ort am Bau beteiligen wollten, damit sie das System verstehen und ihm vertrauen.
+> beteiligen = dahil etmek
+
+# 17 | Fonu kazandık | Wir haben die Förderung bekommen
+Zwei Wochen später erfuhren wir, dass unser Projekt gefördert wird. Wir waren überglücklich. Die Summe war bescheiden, aber sie reichte, um eine komplette Anlage in einem Haus zu installieren und ein ganzes Jahr lang zu überwachen. Professorin Demir gratulierte uns und erinnerte uns sofort an unsere Verantwortung. "Jetzt müsst ihr liefern, was ihr versprochen habt", sagte sie lächelnd.
+
+# 18 | Evi seçmek | Das Haus auswählen
+Mit Hilfe des Dorfvorstehers wählten wir das Haus eines älteren Ehepaars, Hatice und Osman. Ihr Haus war typisch für die Region: dicke Steinmauern, kleine Fenster und ein Holzofen. Sie erhitzten Wasser auf dem Ofen, was viel Zeit und Brennholz kostete. Zuerst waren sie etwas skeptisch, aber sie stimmten zu, als wir erklärten, dass die Anlage sie nichts kosten würde.
+
+# 19 | Köylülerle birlikte inşa | Gemeinsam bauen
+Wir bauten die Anlage in den Frühjahrsferien. Wie geplant luden wir die Nachbarn ein, mitzuhelfen. Einige junge Männer halfen bei der schweren Arbeit, und Osman, der früher Schreiner gewesen war, baute den Holzrahmen selbst. Die gemeinsame Arbeit schuf ein Gefühl von Eigentum. Am Ende der Woche war der Kollektor auf dem Dach, der gedämmte Tank auf dem Dachboden, und das erste warme Wasser floss aus dem Hahn.
+
+# 20 | İlk tepkiler | Erste Reaktionen
+Hatices Reaktion war unvergesslich. Als an einem sonnigen Nachmittag warmes Wasser aus dem Hahn kam, lachte sie und rief ihre Nachbarinnen herbei. Innerhalb weniger Tage fragten andere Familien, ob sie eine ähnliche Anlage bekommen könnten. Wir mussten erklären, dass unsere Förderung nur für ein Haus reichte. Trotzdem überzeugte uns ihre Begeisterung, dass das Projekt ein echtes Bedürfnis traf.
+
+# 21 | Veri toplama sorunları | Probleme bei der Datenerfassung
+Die Fernüberwachung war schwieriger als erwartet. Das Mobilfunknetz im Dorf war schwach, deshalb konnte der Datenlogger seine Messwerte oft nicht senden. Einmal löschte ein Stromausfall die Daten von mehreren Tagen. Schließlich speicherten wir die Daten auf einer Speicherkarte und baten Osmans Enkel, uns jede Woche Fotos von einer einfachen Anzeige zu schicken. Manchmal ist die einfachste Lösung die zuverlässigste.
+
+# 22 | Proje raporu | Der Projektbericht
+Den Abschlussbericht zu schreiben war eine große Aufgabe. Er musste nach dem Format eines wissenschaftlichen Artikels aufgebaut sein. Wir beschrieben den Hintergrund, den Entwurfsprozess, die Versuchsmethode, die Ergebnisse und die Grenzen. Professorin Demir bestand darauf, dass wir unsere Misserfolge ehrlich darstellen. "Leser lernen aus dem, was nicht funktioniert hat, genauso viel wie aus dem, was funktioniert hat", erklärte sie.
+> bestehen auf = ısrar etmek
+
+# 23 | İş başvuruları | Bewerbungen
+Inzwischen musste ich über meine Karriere nachdenken. Selin teilte mir mit, dass die Busfirma eine Stelle als Junior-Batterieingenieur ausgeschrieben hatte. Gleichzeitig ermutigte mich Professorin Demir, mich für einen Master in Deutschland zu bewerben. Ich war hin- und hergerissen. Die Stelle bot Sicherheit und praktische Erfahrung, ein Master dagegen würde mein Wissen vertiefen und Türen zur Forschung öffnen.
+> mitteilen = bildirmek
+> hin- und hergerissen sein = ikilemde kalmak
+
+# 24 | Yüksek lisans başvurusu | Die Masterbewerbung
+Für die Bewerbung brauchte ich ein Motivationsschreiben, zwei Empfehlungsschreiben und ein Sprachzertifikat. Im Februar legte ich die Deutschprüfung ab und erreichte ein Ergebnis deutlich über der Mindestanforderung, was eine große Erleichterung war. In meinem Schreiben erklärte ich, wie mein Praktikum und das Dorfprojekt mein Interesse an bezahlbaren Energielösungen geprägt hatten. Selin und Professorin Demir schrieben mir freundlicherweise Empfehlungen.
+> eine Prüfung ablegen = sınava girmek
+
+# 25 | Bir teklif ve bir kabul | Ein Angebot und eine Zusage
+Im April kamen zwei Nachrichten in derselben Woche. Die Busfirma bot mir die Stelle an, und eine Hochschule in Aachen nahm mich in ein zweijähriges Masterprogramm für nachhaltige Energietechnik auf, mit einem Teilstipendium. Statt mich zu freuen, war ich unruhig. Egal, wofür ich mich entschied, ich würde etwas Wertvolles verlieren. Mehrere Nächte lang wog ich Vor- und Nachteile ab.
+> aufnehmen = kabul etmek
+> egal = fark etmez
+
+# 26 | Zor bir karar | Eine schwierige Entscheidung
+Schließlich sprach ich mit Selin selbst über das Dilemma. Zu meiner Überraschung riet sie mir zum Master. Die Firma würde auch in zwei Jahren noch gute Ingenieure brauchen, sagte sie, und internationale Erfahrung würde mich wertvoller machen. Meine Eltern machten sich Sorgen wegen der Kosten, aber das Stipendium deckte die Gebühren, und ich hatte Ersparnisse aus dem Praktikum. Ich sagte zu.
+> zusagen = kabul etmek, evet demek
+
+# 27 | Mezuniyet töreni | Die Abschlussfeier
+Im Juni schloss ich mit Auszeichnung ab. Die Feier fand im Stadion der Universität statt, unter strahlender Sonne. Meine Eltern, Ayşe und Mert saßen im Publikum, und sogar meine Großmutter machte die lange Reise aus dem Dorf. Als mein Name aufgerufen wurde, hörte ich Mert rufen. Danach machten wir unzählige Fotos. Meine Großmutter hielt mein Diplom vorsichtig, als wäre es aus Glas.
+> abschließen = bitirmek (okulu)
+
+# 28 | Veda etmek | Abschied nehmen
+Die Wochen nach dem Abschluss waren voller Abschiede. Can hatte beschlossen, in Ankara zu bleiben und bei einer Rüstungsfirma anzufangen. Zehra hatte eine Stelle in Istanbul gefunden, und Burak gründete ein kleines Unternehmen, das Drohnen repariert. Wir trafen uns ein letztes Mal in unserem Lieblingscafé am Campus. Wir versprachen, in Kontakt zu bleiben, obwohl wir wussten, dass sich unser Leben stark verändern würde.
+
+# 29 | Almanya'ya hazırlık | Vorbereitung auf Deutschland
+Der Umzug ins Ausland war mit überraschend viel Bürokratie verbunden. Ich brauchte ein Visum, eine Krankenversicherung und eine Unterkunft, die in deutschen Universitätsstädten bekanntlich schwer zu finden ist. Nach wochenlanger Suche fand ich ein kleines Zimmer in einer Wohngemeinschaft. Frau Schneider, mit der ich immer noch Nachrichten austauschte, schickte mir praktische Tipps, unter anderem über die Wichtigkeit einer guten Regenjacke.
+
+# 30 | Yeni bir ülke | Ein neues Land
+Ende August kam ich in Aachen an. Mein erster Eindruck war, dass alles sehr ordentlich war. Die Busse fuhren pünktlich, und am Sonntag waren alle Geschäfte geschlossen, was mich anfangs erstaunte. Meine Mitbewohner rieten mir, ein gebrauchtes Fahrrad zu kaufen. In den ersten Tagen war das Radfahren im Regen mit Verkehrsregeln, die ich kaum verstand, beängstigend, aber bald gehörte es zu meinem Alltag.
+
+# 31 | Kültür şoku | Kulturschock
+Trotz meiner Erfahrung in Berlin erlebte ich einen gewissen Kulturschock. Viele Deutsche sind sehr direkt, und anfangs hielt ich ihre Ehrlichkeit manchmal für Unhöflichkeit. In der Türkei schwächen wir Kritik oft ab, um die Gefühle anderer zu schützen. Allmählich lernte ich den deutschen Stil zu schätzen: Wenn jemand sagte, meine Idee sei nicht gut, erklärte er auch genau, warum. Das war wirklich hilfreich.
+> halten für = … saymak
+> abschwächen = yumuşatmak
+
+# 32 | Uluslararası sınıf | Ein internationaler Kurs
+Mein Masterjahrgang bestand aus dreißig Studierenden aus neunzehn Ländern. In Gruppenprojekten waren diese Unterschiede zugleich eine Herausforderung und eine Stärke. Manche erwarteten, dass der Gruppenleiter entscheidet, andere gingen davon aus, dass alle gemeinsam diskutieren. Wir lernten, uns ganz am Anfang jedes Projekts auf Arbeitsweisen zu einigen. Das lehrte mich mehr über Teamarbeit als jede Vorlesung.
+> bestehen aus = -den oluşmak
+> sich einigen = anlaşmak
+
+# 33 | Rüzgâr çiftliği ziyareti | Besuch eines Windparks
+Im ersten Semester besuchten wir einen Offshore-Windpark in der Nordsee. Wir fuhren zwei Stunden mit dem Boot, und ich war die ganze Zeit seekrank. Trotzdem war es atemberaubend, die riesigen Turbinen aus der Nähe zu sehen. Jedes Rotorblatt war länger als ein Fußballfeld. Ein Ingenieur erklärte, wie die Anlagen bei rauem Wetter gewartet werden und wie der Strom durch Kabel im Meeresboden an Land kommt.
+
+# 34 | Akıllı şebekeler | Intelligente Stromnetze
+Einer meiner Lieblingskurse behandelte intelligente Stromnetze. Traditionelle Netze waren dafür gebaut, dass Strom in eine Richtung fließt: von großen Kraftwerken zu den Verbrauchern. Heute erzeugen jedoch Millionen Haushalte ihren eigenen Strom mit Solaranlagen und speichern ihn manchmal in Batterien. Ein intelligentes Netz nutzt Sensoren, Kommunikation und Software, um Angebot und Nachfrage in Echtzeit auszugleichen.
+> ausgleichen = dengelemek
+
+# 35 | Köyden haber | Nachrichten aus dem Dorf
+Im Dezember bekam ich eine Nachricht von Osmans Enkel mit Fotos der Solaranlage im Schnee. Zu unserer Freude funktionierte sie noch, wenn auch im Winter weniger effektiv. Er erwähnte, dass drei andere Familien unser Design mit eigenem Geld und eigenen Materialien nachgebaut hatten. Diese Nachricht bedeutete mir mehr als jede Note. Unsere Idee verbreitete sich ohne uns, und das ist vielleicht das beste Zeichen für Erfolg.
+> nachbauen = kopyalayarak yapmak
+
+# 36 | Yarı zamanlı iş | Ein Nebenjob
+Um meinen Lebensunterhalt zu verdienen, arbeitete ich als studentische Hilfskraft in einem Labor, das Wärmepumpen erforschte. Wärmepumpen holen Wärme aus der Außenluft oder dem Boden ins Gebäude und nutzen Strom viel effizienter als herkömmliche Heizungen. Ich bereitete Versuche vor und verarbeitete Messdaten. Die Arbeit war nicht glamourös, aber ich lernte Laborpraxis und lernte die Forscher kennen, was sich später als sehr wertvoll erwies.
+> sich erweisen als = … olduğu ortaya çıkmak
+
+# 37 | Yalnızlık | Einsamkeit
+Der deutsche Winter war dunkel, nass und lang. Im Januar ging die Sonne vor fünf Uhr unter, und ich fühlte mich einsam und hatte Heimweh. Ich vermisste meine Familie, das türkische Essen und die sonnigen Wintertage in Ankara. Ein Mitbewohner aus Griechenland merkte, dass ich mich zurückzog, und lud mich in eine Laufgruppe ein. Gemeinsamer Sport hob meine Stimmung. Ich lernte, dass es eine Stärke ist, um Unterstützung zu bitten.
+> untergehen = batmak (güneş)
+> sich zurückziehen = içine kapanmak
+
+# 38 | Bir konferans | Eine Konferenz
+Im Frühling schlug mir meine Betreuerin im Labor vor, ein Poster über unser Dorfprojekt auf einer Studierendenkonferenz zu präsentieren. Das zwang mich, zwei Jahre Arbeit auf einer einzigen Seite zusammenzufassen. Auf der Konferenz blieben Dutzende Leute stehen und stellten Fragen. Ein Forscher aus Kenia erzählte mir von einem ähnlichen Projekt in Ostafrika, und wir tauschten Kontaktdaten aus. Mir wurde klar, dass unsere Probleme weltweit geteilt werden.
+> zusammenfassen = özetlemek
+
+# 39 | Tez konusu | Das Thema der Masterarbeit
+Am Ende meines ersten Jahres musste ich ein Thema für meine Masterarbeit wählen. Nach Gesprächen mit meiner Betreuerin entschied ich mich zu untersuchen, wie Wärmepumpen und Wärmespeicher kombiniert werden können, um das Heizen in Regionen mit kalten Wintern und niedrigen Einkommen bezahlbarer zu machen. Das Thema verband meine Erfahrungen aus Bursa, aus dem Dorf und aus Deutschland zu einer klaren Richtung.
+
+# 40 | Geriye bakmak | Rückblick
+An einem warmen Juniabend fuhr ich mit dem Fahrrad durch den Stadtpark und dachte darüber nach, wie sehr sich mein Leben verändert hatte. Fünf Jahre zuvor war ich ein nervöser Erstsemester gewesen, der sich kaum auf Deutsch vorstellen konnte. Jetzt forschte ich in einem fremden Land und diskutierte komplexe Ideen mit Menschen aus aller Welt. Ich war allen dankbar, die mir geholfen hatten, und neugierig auf die Zukunft.

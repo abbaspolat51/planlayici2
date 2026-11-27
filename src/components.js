@@ -455,7 +455,7 @@ function RoutineForm({ data, close }) {
       <TimeField label="Hatırlatma saati (isteğe bağlı)" value={v.rTime} onChange={set('rTime')} />
       <Mute>Saat yazarsan her gün o saatte bildirim gelir; o gün işaretlediysen gelmez.</Mute>
       <ColorPick label="Zincir rengi" colors={RC} value={v.color} onChange={set('color')} />
-      {data.id ? <Btn kind="danger" icon="trash-outline" title="Rutini sil" onPress={() => confirm(data.sys === 'eng' ? 'Günlük İngilizce görevi kapatılsın mı? Zincirin saklanır, yeniden açınca geri gelir.' : 'Bu rutin ve tüm zinciri silinsin mi?', () => { if (data.sys === 'eng') update('eng', (d) => { d.on = false; d.chain = (data.done || []).slice(-1000); }); update('routines', (d) => { d.items = d.items.filter((i) => i.id !== data.id); }); close(); }, data.sys === 'eng' ? 'Kapat' : 'Sil')} /> : null}
+      {data.id ? <Btn kind="danger" icon="trash-outline" title="Rutini sil" onPress={() => confirm(data.sys === 'eng' || data.sys === 'deu' ? 'Günlük dil görevi kapatılsın mı? Zincirin saklanır, yeniden açınca geri gelir.' : 'Bu rutin ve tüm zinciri silinsin mi?', () => { if (data.sys === 'eng' || data.sys === 'deu') update(data.sys, (d) => { d.on = false; d.chain = (data.done || []).slice(-1000); }); update('routines', (d) => { d.items = d.items.filter((i) => i.id !== data.id); }); close(); }, data.sys === 'eng' || data.sys === 'deu' ? 'Kapat' : 'Sil')} /> : null}
     </Sheet>
   );
 }

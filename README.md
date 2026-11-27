@@ -76,6 +76,25 @@ sayfasına `Planlayici-Kurulum.exe` olarak koyar. Bir kez kurman yeter: içerik 
 GitHub'a yüklediğin her güncelleme masaüstü uygulamasına da kendiliğinden yansır.
 Kısayollar: F5 yenile, F11 tam ekran, Ctrl + / Ctrl - yakınlaştır.
 
+## Sürüm 2.5: Almanca, seviye seçme, yeni ayarlar
+
+- **Almanca dersleri:** İngilizcedeki yapının aynısı: A1'den C2'ye 6 seviye, her seviyede 40 metin (yaklaşık 2.700 kelime). Hikâye aynı ama Almanya'ya uyarlandı: Deniz dil kursu için Berlin'e, yüksek lisans için Aachen'a gidiyor.
+  - İsimler kartlarda artikeliyle görünür (ör. "das Haus").
+  - Metinde çekimli bir kelimeye dokununca kökü de gösterilir (ör. "ging → gehen").
+  - Ayrılabilir fiiller ve kalıplar ("aufstehen", "es gibt" gibi) her dersin kelime listesinin altında ayrıca açıklanır.
+  - Menüde **Almanca** bölümü var. Rutinler ekranında **Günlük Almanca görevi** düğmesiyle zincire eklenir.
+- **Seviye seçme:** İngilizce ve Almancada ilk açılışta "Hangi seviyeden başlamak istersin?" sorusu gelir. Sonra istediğin zaman **Seviye seç** düğmesiyle örneğin B1'in 1. dersine geçebilirsin. Bitirdiğin dersler ve kelime kartların silinmez; atladığın dersler "Dersler" listesinde okunabilir kalır.
+- **Ayarlar bölümlere ayrıldı:** Profil ekranında artık uzun bir liste yerine bölümler var: Tema ve görünüm, Ana ekran, Bölümler, Telefon takvimi, Bildirimler ve zil, Hesap ve veriler. Birine dokununca kendi sayfası açılır.
+- **Bugün ekranı:** "Tüm bölümler" kartı kaldırıldı; bölümlere sağ alttaki **Menü**'den ulaşılıyor.
+
+Almanca kaynakları `de/content` klasöründe:
+- `A1.txt` … `C2.txt`: metinler
+- `dict.txt`: anlamlar ("haus = das Haus | ev" biçiminde)
+- `forms.txt`: düzensiz biçimler ("ging > gehen")
+- `names.txt`: özel adlar
+
+Değişiklikten sonra `node de/build.js --write src/german/data.js` komutu uygulama verisini yeniden üretir. `src/screens/English.js` ve `src/english/logic.js` artık sadece yönlendirme dosyası; ortak ekran `src/screens/Language.js`, ortak mantık `src/lang` klasöründe.
+
 ## Sürüm 2.4: İngilizce kelime dersleri
 
 Menüde yeni bir **İngilizce** bölümü var. Her gün bir ders açılır: A1, A2, B1, B2, C1 ve C2 olmak üzere 6 seviye var, her seviyede 40 metin (toplam 240 ders, yaklaşık 2.600 kelime).

@@ -122,6 +122,6 @@ export const battColor = (c, pct) => (pct >= 100 ? c.grn : pct >= 50 ? c.grn : p
 const MODC = {
   '': ['#0E6E7A', '#56D0D6'], gorevler: ['#E0483A', '#FF8A7A'], hedef: ['#C98A10', '#FFC857'], calisma: ['#0E7C86', '#4FD1DF'],
   rutin: ['#7A4FE0', '#B59BFF'], takvim: ['#2F63D9', '#8CB0FF'], grup: ['#C8326E', '#FF86B2'], yemek: ['#2E8B57', '#6FD49A'],
-  para: ['#18805F', '#5FD4A8'], kitap: ['#9A5A1E', '#E6A86A'], ambar: ['#4A55C8', '#9AA4FF'], profil: ['#5B6F75', '#A9BEC3'], ingilizce: ['#2F63D9', '#8CB0FF'],
+  para: ['#18805F', '#5FD4A8'], kitap: ['#9A5A1E', '#E6A86A'], ambar: ['#4A55C8', '#9AA4FF'], profil: ['#5B6F75', '#A9BEC3'], ingilizce: ['#2F63D9', '#8CB0FF'], almanca: ['#C0392B', '#FF8A7A'],
 };
 export const modColor = (t, k) => (MODC[k] || MODC[''])[t.dark ? 1 : 0];

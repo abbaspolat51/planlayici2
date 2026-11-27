@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, Pressable, Platform } from 'react-native';
+import { View, Text, Pressable, Platform, BackHandler } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useStore } from '../store';
 import { useTheme, alpha, THEMES, THEME_IDS, PALETTES, PALETTE_IDS, buildTheme, shadow } from '../theme';
-import { T, Mute, H2, H3, Card, Btn, Chip, Row, Grid, Field, Seg, Check, useUI } from '../ui';
-import { NotifCard } from '../components';
+import { T, Mute, H2, H3, Card, Btn, Chip, Row, Grid, Field, Seg, Check, IconBtn, useUI } from '../ui';
+import { NotifCard, useScrollTop } from '../components';
 import { useGroups } from '../groups';
 import { HOME_SECTIONS } from '../logic';
 import { TILES } from './Home';
@@ -92,48 +92,11 @@ function CalendarCard() {
   );
 }
 
-export default function Profile() {
+function ModeCard() {
   const t = useTheme();
-  const { st, update, user, configured, signOut, importData, status, setTheme, setThemeMode } = useStore();
-  const { toast, confirm } = useUI();
-  const G = useGroups();
+  const { st, setThemeMode } = useStore();
   const P = st.prefs;
-  const [name, setName] = useState(P.name || '');
-  const [imp, setImp] = useState('');
-  const [showImp, setShowImp] = useState(false);
-  const shown = (user && user.email) || '';
-  const display = (P.name || '').trim() || (shown ? shown.split('@')[0] : 'Ben');
-  const doImport = () => {
-    try {
-      const n = importData(JSON.parse(imp));
-      toast(n ? n + ' bölüm aktarıldı' : 'Bu metinde planlayıcı verisi bulunamadı');
-      if (n) { setImp(''); setShowImp(false); }
-    } catch (e) { toast('Metin okunamadı; tamamını kopyaladığından emin ol'); }
-  };
   return (
-    <View style={{ gap: 16 }}>
-      <Card>
-        <Row wrap={false} style={{ gap: 14 }}>
-          <View style={{ width: 64, height: 64, borderRadius: 32, backgroundColor: t.acc, alignItems: 'center', justifyContent: 'center' }}>
-            <Text style={{ color: t.accI, fontSize: 28, fontWeight: '800' }}>{display.slice(0, 1).toUpperCase()}</Text>
-          </View>
-          <View style={{ flex: 1 }}>
-            <T s={24} w="800">{display}</T>
-            <Mute>{shown ? shown + (status === 'on' ? ' · eşitlendi' : '') : 'Eşitleme kapalı'}</Mute>
-          </View>
-        </Row>
-        <Row style={{ alignItems: 'flex-end' }}>
-          <Field label="Görünen adın (gruplarda bu görünür)" value={name} onChangeText={setName} placeholder="Örn. Abbas" />
-          <Btn title="Kaydet" onPress={() => { update('prefs', (d) => { d.name = name.trim(); }); toast('Ad kaydedildi'); }} />
-        </Row>
-      </Card>
-
-      <View style={{ gap: 10 }}>
-        <H2>Temalar</H2>
-        <Mute>Önerilen: Nişan. Her temanın içinde açık/koyu modu ve renk paletini ayrıca seçebilirsin.</Mute>
-        <Grid min={200} gap={12}>
-          {THEME_IDS.map((id) => <ThemeCard key={id} id={id} on={(P.theme || 'nisan') === id} onPress={() => setTheme(id)} />)}
-        </Grid>
         <Card>
           <H3>Açık / koyu mod</H3>
           <View style={{ flexDirection: 'row', gap: 10 }}>
@@ -159,6 +122,14 @@ export default function Profile() {
             })}
           </View>
         </Card>
+  );
+}
+
+function PaletteCard() {
+  const t = useTheme();
+  const { st, update } = useStore();
+  const P = st.prefs;
+  return (
         <Card>
           <H3>Renk paleti</H3>
           <Mute s={13}>{'Düğmeler, switch\'ler ve vurgular bu renkle görünür. Şu an: ' + THEMES[t.id].name + ' · ' + PALETTES[t.pal].name}</Mute>
@@ -184,59 +155,174 @@ export default function Profile() {
             </View>
           ))}
         </Card>
-      </View>
+  );
+}
 
-      <Grid min={310}>
+export default function Profile() {
+  const t = useTheme();
+  const { st, update, user, configured, signOut, importData, status, setTheme, setThemeMode } = useStore();
+  const { toast, confirm } = useUI();
+  const G = useGroups();
+  const P = st.prefs;
+  const [name, setName] = useState(P.name || '');
+  const [imp, setImp] = useState('');
+  const [showImp, setShowImp] = useState(false);
+  const shown = (user && user.email) || '';
+  const display = (P.name || '').trim() || (shown ? shown.split('@')[0] : 'Ben');
+  const doImport = () => {
+    try {
+      const n = importData(JSON.parse(imp));
+      toast(n ? n + ' bölüm aktarıldı' : 'Bu metinde planlayıcı verisi bulunamadı');
+      if (n) { setImp(''); setShowImp(false); }
+    } catch (e) { toast('Metin okunamadı; tamamını kopyaladığından emin ol'); }
+  };
+  const top = useScrollTop();
+  const [sec, setSec] = useState(null);
+  const open = (k) => { setSec(k); top(); };
+  const back = () => { setSec(null); top(); };
+  useEffect(() => {
+    if (!sec) return undefined;
+    const sub = BackHandler.addEventListener('hardwareBackPress', () => { back(); return true; });
+    return () => sub.remove();
+  }, [sec]);
+  const nHome = HOME_SECTIONS.filter(([k]) => P.home[k] !== false).length;
+  const SECTIONS = [
+    ['tema', 'Tema ve görünüm', 'color-palette-outline', THEMES[t.id].name + ' · ' + ((P.mode || 'system') === 'dark' ? 'Koyu' : (P.mode || 'system') === 'light' ? 'Açık' : 'Otomatik') + ' · ' + PALETTES[t.pal].name],
+    ['ana', 'Ana ekran', 'home-outline', nHome + ' / ' + HOME_SECTIONS.length + ' kart görünüyor'],
+    ['bolum', 'Bölümler', 'apps-outline', P.hidden.length ? P.hidden.length + ' bölüm kapalı' : 'Hepsi açık'],
+    ['takvim', 'Telefon takvimi', 'calendar-outline', P.calImport || P.calExport ? 'Eşitleme açık' : 'Kapalı'],
+    ['bildirim', 'Bildirimler ve zil', 'notifications-outline', 'Hatırlatmalar, pomodoro zili, grup bildirimleri'],
+    ['hesap', 'Hesap ve veriler', 'person-circle-outline', shown || 'Eşitleme kapalı'],
+  ];
+  const head = (k) => {
+    const S = SECTIONS.find((x) => x[0] === k);
+    return (
+      <Row wrap={false}>
+        <IconBtn name="arrow-back" label="Ayarlara dön" onPress={back} />
+        <Ionicons name={S[2]} size={22} color={t.accT} />
+        <T s={20} w="800" style={{ flex: 1 }}>{S[1]}</T>
+      </Row>
+    );
+  };
+
+  if (sec === 'tema') {
+    return (
+      <View style={{ gap: 16 }}>
+        {head('tema')}
+        <Mute>Önerilen: Nişan. Her temanın içinde açık/koyu modu ve renk paletini ayrıca seçebilirsin.</Mute>
+        <Grid min={200} gap={12}>
+          {THEME_IDS.map((id) => <ThemeCard key={id} id={id} on={(P.theme || 'nisan') === id} onPress={() => setTheme(id)} />)}
+        </Grid>
+        <ModeCard />
+        <PaletteCard />
+      </View>
+    );
+  }
+  if (sec === 'ana') {
+    return (
+      <View style={{ gap: 16 }}>
+        {head('ana')}
         <Card>
-          <H3>Ana ekranda görünenler</H3>
+          <Mute>Bugün ekranında hangi kartların görüneceğini seç.</Mute>
           {HOME_SECTIONS.map(([k, l]) => (
             <Check key={k} label={l} value={P.home[k] !== false} onChange={(v) => update('prefs', (d) => { d.home[k] = v; })} />
           ))}
         </Card>
+      </View>
+    );
+  }
+  if (sec === 'bolum') {
+    return (
+      <View style={{ gap: 16 }}>
+        {head('bolum')}
         <Card>
-          <H3>Bölümleri aç / kapat</H3>
           <Mute>Kullanmadığın bölümü kapat (örneğin Yemek takibi); menüden ve ana ekrandan kalkar. Verilerin silinmez, açınca geri gelir.</Mute>
           {TILES.map(([k, l]) => (
             <Check key={k} label={l} value={!P.hidden.includes(k)} onChange={(v) => update('prefs', (d) => { d.hidden = v ? d.hidden.filter((x) => x !== k) : [...d.hidden, k]; })} />
           ))}
         </Card>
-      </Grid>
-
-      <Grid min={310}>
-        <CalendarCard />
-        <View style={{ gap: 16 }}>
-          <NotifCard />
+      </View>
+    );
+  }
+  if (sec === 'takvim') return <View style={{ gap: 16 }}>{head('takvim')}<CalendarCard /></View>;
+  if (sec === 'bildirim') {
+    return (
+      <View style={{ gap: 16 }}>
+        {head('bildirim')}
+        <NotifCard />
+        <Card>
+          <H3>Pomodoro zili</H3>
+          <Mute>Süre bitince zil çalar ve telefon titrer. Uygulama kapalıyken de zilli bildirim gelir.</Mute>
+          <Row><Btn title="Zili dene" icon="musical-notes-outline" onPress={async () => { await testPomodoro(); toast(nativeNotifications ? '3 saniye içinde zil çalacak' : 'Zil çalıyor'); }} /></Row>
+        </Card>
+        {nativeNotifications ? (
           <Card>
-            <H3>Pomodoro zili</H3>
-            <Mute>Süre bitince zil çalar ve telefon titrer. Uygulama kapalıyken de zilli bildirim gelir.</Mute>
-            <Row><Btn title="Zili dene" icon="musical-notes-outline" onPress={async () => { await testPomodoro(); toast(nativeNotifications ? '3 saniye içinde zil çalacak' : 'Zil çalıyor'); }} /></Row>
+            <H3>Anlık bildirim (gruplar)</H3>
+            <Mute>{G && G.token
+              ? 'Kurulu. Öğretmenin ya da ekip liderin görev atadığında ya da grupta birlikte çalışma başladığında anında bildirim gelir.'
+              : pushProjectId()
+                ? 'Anlık bildirim için izin bekleniyor ya da Firebase anahtarı eksik (README, Anlık bildirim bölümü).'
+                : 'Henüz kurulmadı. Kurulana kadar grup bildirimleri uygulama açıkken gelir (README, Anlık bildirim bölümü).'}</Mute>
           </Card>
-          {nativeNotifications ? (
-            <Card>
-              <H3>Anlık bildirim (gruplar)</H3>
-              <Mute>{G && G.token
-                ? 'Kurulu. Öğretmenin ya da ekip liderin görev atadığında ya da grupta birlikte çalışma başladığında anında bildirim gelir.'
-                : pushProjectId()
-                  ? 'Anlık bildirim için izin bekleniyor ya da Firebase anahtarı eksik (README, Anlık bildirim bölümü).'
-                  : 'Henüz kurulmadı. Kurulana kadar grup bildirimleri uygulama açıkken gelir (README, Anlık bildirim bölümü).'}</Mute>
-            </Card>
-          ) : null}
-        </View>
-      </Grid>
-
-      <Card>
-        <H3>Hesap ve veriler</H3>
-        <Btn sm title={showImp ? 'Veri aktarmayı kapat' : 'Eski planlayıcıdan veri aktar'} onPress={() => setShowImp(!showImp)} style={{ alignSelf: 'flex-start' }} />
-        {showImp ? (
-          <View style={{ gap: 8 }}>
-            <Mute>Eski planlayıcı sayfasında "Verilerini dışa aktar" düğmesine bas, kopyalanan metni buraya yapıştır.</Mute>
-            <Field value={imp} onChangeText={setImp} multiline placeholder="{ ... }" inputStyle={{ minHeight: 100, textAlignVertical: 'top', paddingTop: 10 }} />
-            <Row><Btn sm kind="pri" title="Aktar" onPress={doImport} /></Row>
-          </View>
         ) : null}
-        {configured && user ? (
-          <Btn kind="danger" title="Çıkış yap" onPress={() => confirm('Çıkış yapılsın mı? Verilerin bulutta kalır.', signOut, 'Çıkış yap')} style={{ alignSelf: 'flex-start' }} />
-        ) : <Mute>Eşitleme kapalı: veriler yalnızca bu cihazda.</Mute>}
+      </View>
+    );
+  }
+  if (sec === 'hesap') {
+    return (
+      <View style={{ gap: 16 }}>
+        {head('hesap')}
+        <Card>
+          <Row style={{ alignItems: 'flex-end' }}>
+            <Field label="Görünen adın (gruplarda bu görünür)" value={name} onChangeText={setName} placeholder="Örn. Abbas" />
+            <Btn title="Kaydet" onPress={() => { update('prefs', (d) => { d.name = name.trim(); }); toast('Ad kaydedildi'); }} />
+          </Row>
+        </Card>
+        <Card>
+          <Btn sm title={showImp ? 'Veri aktarmayı kapat' : 'Eski planlayıcıdan veri aktar'} onPress={() => setShowImp(!showImp)} style={{ alignSelf: 'flex-start' }} />
+          {showImp ? (
+            <View style={{ gap: 8 }}>
+              <Mute>Eski planlayıcı sayfasında "Verilerini dışa aktar" düğmesine bas, kopyalanan metni buraya yapıştır.</Mute>
+              <Field value={imp} onChangeText={setImp} multiline placeholder="{ ... }" inputStyle={{ minHeight: 100, textAlignVertical: 'top', paddingTop: 10 }} />
+              <Row><Btn sm kind="pri" title="Aktar" onPress={doImport} /></Row>
+            </View>
+          ) : null}
+          {configured && user ? (
+            <Btn kind="danger" title="Çıkış yap" onPress={() => confirm('Çıkış yapılsın mı? Verilerin bulutta kalır.', signOut, 'Çıkış yap')} style={{ alignSelf: 'flex-start' }} />
+          ) : <Mute>Eşitleme kapalı: veriler yalnızca bu cihazda.</Mute>}
+        </Card>
+      </View>
+    );
+  }
+
+  return (
+    <View style={{ gap: 16 }}>
+      <Card>
+        <Row wrap={false} style={{ gap: 14 }}>
+          <View style={{ width: 64, height: 64, borderRadius: 32, backgroundColor: t.acc, alignItems: 'center', justifyContent: 'center' }}>
+            <Text style={{ color: t.accI, fontSize: 28, fontWeight: '800' }}>{display.slice(0, 1).toUpperCase()}</Text>
+          </View>
+          <View style={{ flex: 1 }}>
+            <T s={24} w="800">{display}</T>
+            <Mute>{shown ? shown + (status === 'on' ? ' · eşitlendi' : '') : 'Eşitleme kapalı'}</Mute>
+          </View>
+        </Row>
+      </Card>
+      <H2>Ayarlar</H2>
+      <Card style={{ paddingVertical: 6, gap: 0 }}>
+        {SECTIONS.map(([k, l, ic, sub], i) => (
+          <Pressable key={k} onPress={() => open(k)} accessibilityRole="button" accessibilityLabel={l}
+            style={({ pressed }) => ({ flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 12, borderBottomWidth: i === SECTIONS.length - 1 ? 0 : 1, borderColor: t.line, opacity: pressed ? 0.7 : 1 })}>
+            <View style={{ width: 38, height: 38, borderRadius: t.soft ? 13 : 10, backgroundColor: alpha(t.acc, t.dark ? 0.2 : 0.12), alignItems: 'center', justifyContent: 'center' }}>
+              <Ionicons name={ic} size={20} color={t.accT} />
+            </View>
+            <View style={{ flex: 1 }}>
+              <T w="700">{l}</T>
+              <Mute s={13} numberOfLines={1}>{sub}</Mute>
+            </View>
+            <Ionicons name="chevron-forward" size={20} color={t.mute} />
+          </Pressable>
+        ))}
       </Card>
     </View>
   );

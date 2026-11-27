@@ -4,7 +4,8 @@ import { useStore } from '../store';
 import { useTheme } from '../theme';
 import { T, Mute, H2, H3, Card, Btn, Row, Grid, Empty, IconBtn, MonthView, ListRow, Switch } from '../ui';
 import { useForms, useGo } from '../components';
-import { EngSwitchCard } from './English';
+import { LangSwitchCard } from './Language';
+import { LANG_LIST } from '../lang';
 import { today, addDays, streak, runs, fmtD, nowYM, shiftM, AY } from '../logic';
 
 export default function Routines() {
@@ -26,7 +27,7 @@ export default function Routines() {
       <Btn kind="pri" title="+ Rutin ekle" onPress={() => forms.open('routine')} />
     </Row>
   );
-  const engCard = (st.prefs.hidden || []).includes('ingilizce') ? null : <EngSwitchCard compact />;
+  const engCard = LANG_LIST.filter((G) => !(st.prefs.hidden || []).includes(G.route)).map((G) => <LangSwitchCard key={G.key} G={G} compact />);
   if (!sel) return <View style={{ gap: 16 }}>{head}{engCard}<Card><Empty text="Henüz rutin yok. Örneğin “Sabah 20 dk kitap” ya da “Spor” ekle; her gün işaretledikçe takvimde zincir oluşur." /></Card></View>;
   const s = new Set(sel.done), rc = sel.color;
   const rs = runs(sel.done).filter((x) => x.n > 1).reverse().slice(0, 8);
@@ -50,7 +51,7 @@ export default function Routines() {
               </Text>
               <Row wrap={false}>
                 <T w="700" c={on ? r.color : t.mute} style={{ flex: 1 }}>{on ? 'Bugün yapıldı' : 'Bugün yapmadın'}</T>
-                {r.sys === 'eng' ? <Btn sm title="Derse git" onPress={() => go('ingilizce')} /> : null}
+                {r.sys === 'eng' || r.sys === 'deu' ? <Btn sm title="Derse git" onPress={() => go(r.sys === 'eng' ? 'ingilizce' : 'almanca')} /> : null}
                 <IconBtn name="create-outline" label="Rutini düzenle" color={t.mute} onPress={() => forms.open('routine', r)} />
                 <Switch value={on} onChange={() => toggle(r.id, td)} label={r.name + ': bugün yapıldı'} color={r.color} />
               </Row>

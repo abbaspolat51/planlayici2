@@ -1,0 +1,312 @@
+# Düzensiz biçimler:  biçim > kök
+bin, bist, ist, sind, seid, war, warst, waren, wart, gewesen > sein
+hat, hast, hatte, hattest, hatten, gehabt > haben
+kann, kannst, konnte, konnten, gekonnt > können
+mag, magst, mochte, mochten > mögen
+möchtest, möchten > möchte
+gibt, gibst, gab, gaben, gegeben, gib > geben
+wird, wirst, wurde, wurden, geworden > werden
+die, das, dem, den, des > der
+mich, mir > ich
+dich, dir > du
+ihn, ihm > er
+uns > wir
+ihnen > sie
+seine, seinen, seinem, seiner, seines > sein
+isst, isst, aß, gegessen, iss > essen
+liest, las, gelesen, lies > lesen
+sieht, siehst, sah, sahen, gesehen, sieh > sehen
+spricht, sprichst, sprach, sprachen, gesprochen > sprechen
+hilft, hilfst, half, geholfen > helfen
+hält, hältst, hielt, gehalten > halten
+nimmt, nimmst, nahm, nahmen, genommen, nimm > nehmen
+äpfel > apfel
+wörter > wort
+gemacht > gemacht
+im, ins > in
+am, ans > an
+zum, zur > zu
+vom > von
+beim > bei
+erster, ersten, erstes, erstem > erste
+heißt, heiße, heißt, hieß, hießen > heißen
+wäscht, wäschst, wusch > waschen
+nächstes, nächsten, nächster, nächstem > nächste
+gegangen, ging, gingen > gehen
+geschrieben, schrieb, schrieben > schreiben
+entschieden, entschied > entscheiden
+geschrien, schrie > schreien
+gebracht, brachte, brachten > bringen
+gefunden, fand, fanden > finden
+geblieben, blieb, blieben > bleiben
+gesungen, sang > singen
+geschossen, schoss > schießen
+gewonnen, gewann > gewinnen
+gesprungen, sprang > springen
+begonnen, begann, begannen > beginnen
+angefangen, fing > anfangen
+kam, kamen, gekommen > kommen
+angekommen, ankam > ankommen
+saß, saßen, gesessen > sitzen
+lag, lagen, gelegen > liegen
+wusste, wussten, gewusst, weiß, weißt > wissen
+muss, musst, musste, mussten > müssen
+solltest, sollte, sollten, soll, sollst > sollen
+will, willst, wollte, wollten > wollen
+dachte, dachten, gedacht > denken
+kannte, kannten, gekannt > kennen
+verbracht > verbringen
+genossen > genießen
+mitgenommen > mitnehmen
+verglichen > vergleichen
+versprochen > versprechen
+abgegeben > abgeben
+eingetreten > eintreten
+trifft, triffst, traf, getroffen > treffen
+gerannt, rannte > rennen
+angerufen > anrufen
+beigebracht > beibringen
+mitgebracht > mitbringen
+sprich > sprechen
+verloren > verlieren
+gefallen, gefiel > gefallen
+verbrannt > verbrennen
+ausgedruckt > ausdrucken
+ausgefüllt > ausfüllen
+anzubieten > anbieten
+vorzustellen > vorstellen
+anzuschauen > anschauen
+geschienen > scheinen
+teurer, teure, teuren, teures > teuer
+erkannt, erkannte > erkennen
+hohes, hohe, hohen, hoher, höher, höchste > hoch
+museen > museum
+gebeten, bat > bitten
+zweiten, zweites, zweiter, zweitem > zweite
+dritten, drittes, dritter > dritte
+seiten > seite
+getan > tun
+wäre, wären, wärst > sein
+würde, würden, würdest > werden
+beschrieben, beschrieb > beschreiben
+schienen, schien > scheinen
+eingeladen > einladen
+angeboten, bot > anbieten
+erfahren > erfahren
+teilgenommen > teilnehmen
+gezogen, zog > ziehen
+kennengelernt > kennen
+durften, durfte, darf, darfst > dürfen
+enthält, enthielt, enthalten > enthalten
+gemessen, maß > messen
+eingegeben > eingeben
+vorgeschlagen, schlug, schlagen > vorschlagen
+nachgeschlagen > nachschlagen
+aufgefallen > auffallen
+geladen, lädt > laden
+entladen > entladen
+zugeschaut > zuschauen
+heraus > herausstellen
+abgeführt > abführen
+zugestimmt > zustimmen
+verstand, verstanden > verstehen
+zurückkam > zurückkommen
+ergab > ergeben
+aufgeteilt > aufteilen
+ausgewählt > auswählen
+zusammengepasst > zusammenpassen
+herzustellen > herstellen
+angenommen > annehmen
+eingebaut > einbauen
+gestiegen, stieg > steigen
+galt, gilt > gelten
+gehackt > hacken
+nachgedacht > nachdenken
+herausgefunden > herausfinden
+worden > werden
+zurückgeschaut > zurückschauen
+dieselben, derselben, dieselbe, dasselbe, denselben > derselbe
+firmen > firma
+getrennte, getrennt, getrennten > trennen
+aussieht, sieht aus > aussehen
+kleineren, kleinere, kleiner, kleinsten > klein
+größeren, größere, größer, größte, größten > groß
+materialien > material
+beschlossen, beschloss > beschließen
+entwich, entwichen > entweichen
+wies, gewiesen > hinweisen
+belegte > belegen
+schaltete > ausschalten
+setzte > setzen
+gewachsen, wuchs > wachsen
+erfuhren, erfuhr > erfahren
+stimmten > zustimmen
+luden, lud > einladen
+mitzuhelfen > mithelfen
+schuf > schaffen
+floss > fließen
+baten, bat > bitten
+aufgebaut > aufbauen
+bestand > bestehen
+ausgeschrieben > ausschreiben
+wog > abwägen
+riet, rieten > raten
+aufgerufen > aufrufen
+trafen > treffen
+versprachen > versprechen
+austauschte > austauschen
+fuhren, fuhr > fahren
+geschlossen > schließen
+erstaunte > erstaunen
+hielt > halten
+zurückzog > zurückziehen
+hob > heben
+zwang > zwingen
+zusammenzufassen > zusammenfassen
+tauschten > austauschen
+verband > verbinden
+erwies > erweisen
+bekam > bekommen
+auszugleichen > ausgleichen
+nachgebaut > nachbauen
+funktionierender, funktionierende, funktionierenden > funktionieren
+dunkle, dunklen, dunkler, dunkles > dunkel
+einfachere, einfacheren, einfacher > einfach
+schlechtere, schlechter, schlechteren > schlecht
+wärmeres, wärmere, wärmer, wärmeren > warm
+algorithmen > algorithmus
+verbrachte > verbringen
+nannte, nannten, genannt > nennen
+lächelnd > lächeln
+älteren, älter, ältere, älterer > alt
+gedämmte, gedämmt, gedämmten > dämmen
+bereitete > vorbereiten
+widersprachen, widersprach > widersprechen
+verglich > vergleichen
+kennenlernte > kennen
+sank > sinken
+stiegen > steigen
+aufwarf > aufwerfen
+trugen, trug > tragen
+hielten > halten
+bekamen > bekommen
+nachzugehen > nachgehen
+vorgehabt > vorhaben
+zurückzukehren, kehrte > zurückkehren
+beizutragen > beitragen
+lehnte > ablehnen
+herauszufinden > herausfinden
+stimmte > zustimmen
+mitzumachen > mitmachen
+geschulten, geschult > schulen
+erhielten, erhielt > erhalten
+verlassen > verlassen
+gewannen > gewinnen
+hätten, hätte > haben
+verzichtet > verzichten
+überstanden > überstehen
+zuzuhören > zuhören
+litt, litten > leiden
+schlief > schlafen
+jüngerer > jung
+verfassten > verfassen
+warb > werben
+übertrieb > übertreiben
+erhoben > erheben
+starb > sterben
+ließen, ließ > lassen
+nachgesteuert > nachsteuern
+plausibler, plausible, plausiblen > plausibel
+billigeren, billiger, billigere > billig
+sensible, sensiblen > sensibel
+mäntel > mantel
+genauerer, genauer, genauere > genau
+herzens > herz
+frostzyklen > frostzyklus
+wachsender, wachsenden, wachsende > wachsen
+themen > thema
+risiken > risiko
+kodizes > kodex
+langsameren, langsamer, langsamere > langsam
+vorausgesetzt > voraussetzen
+vorschlug > vorschlagen
+ausgemalt > ausmalen
+kritzelte > kritzeln
+einzuordnen > einordnen
+gepriesen, pries > preisen
+hervorzubringen > hervorbringen
+versprach > versprechen
+trieben, trieb > antreiben
+zutraute > zutrauen
+tat > tun
+entzieht > entziehen
+einstreicht > einstreichen
+begegnete > begegnen
+weitergegeben > weitergeben
+handbücher > handbuch
+kündigte > ankündigen
+versicherte > versichern
+hing > abhängen
+heranzubilden > heranbilden
+übertrafen > übertreffen
+trat > beitreten
+lasen > lesen
+gewonnene > gewonnen
+sickerte > einsickern
+drängte > drängen
+unterbrach > unterbrechen
+auffasste > auffassen
+darzustellen > darstellen
+gewählte > wählen
+mitgewirkt > mitwirken
+flossen > fließen
+nachgibt > nachgeben
+zuzulassen > zulassen
+aufgeblüht > aufblühen
+bildete > ausbilden
+herabgesetzt > herabsetzen
+genoss > genießen
+fächern > fach
+vorauszuplanen > vorausplanen
+erschien > erscheinen
+beabsichtigt > beabsichtigen
+stürzten > einstürzen
+meldeten > melden
+wiederherzustellen > wiederherstellen
+zurückgingen > zurückgehen
+empfand > empfinden
+abzufangen > abfangen
+zusammenbrach > zusammenbrechen
+standzuhalten > standhalten
+ausgelöst > auslösen
+eingesetzt > einsetzen
+voraus > voraussetzen
+eingebettet > einbetten
+einzusetzen > einsetzen
+verschweißten > verschweißen
+vorgeschrieben > vorschreiben
+zurechtgelegt > zurechtlegen
+erfundenes > erfinden
+eingegangen > eingehen
+verschaffte > verschaffen
+ergraut > ergrauen
+hinterließ > hinterlassen
+durchdrang > durchdringen
+gestrichen > streichen
+bestaunt > bestaunen
+gewandelt > wandeln
+aufgeschlagen > aufschlagen
+dilemmata > dilemma
+geopfert > opfern
+höheren, höhere, höher > hoch
+bröckelnden, bröckelnd > bröckeln
+wertendes, wertend > werten
+zerbrechliche, zerbrechlichen > zerbrechlich
+prinzipien > prinzip
+jüngeres, jüngere, jüngeren, jünger > jung
+gärten > garten
+nächte > nacht
+rief > rufen
+halfen > helfen
+fiel > fallen
+warf > werfen

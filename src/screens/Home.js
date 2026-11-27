@@ -10,8 +10,8 @@ import { useGroups, GROUP_TYPES } from '../groups';
 import { fetchAyet, fetchHadis, fallbackPair, loadCached, saveCached } from '../ilham';
 import { GoalsMini } from './Goals';
 import { GroupTasksHome } from './Groups';
-import { EngHomeCard } from './English';
-import { LESSONS } from '../english/logic';
+import { LangHomeCard } from './Language';
+import { LANG_LIST } from '../lang';
 
 export const TILES = [
   ['gorevler', 'Görevler', 'checkbox-outline'],
@@ -21,6 +21,7 @@ export const TILES = [
   ['calisma', 'Çalışma', 'timer-outline'],
   ['hedef', 'Hedefler', 'battery-half-outline'],
   ['ingilizce', 'İngilizce', 'language-outline'],
+  ['almanca', 'Almanca', 'language-outline'],
   ['ambar', 'Ders ambarı', 'folder-open-outline'],
   ['para', 'Para takibi', 'wallet-outline'],
   ['kitap', 'Kitaplarım', 'book-outline'],
@@ -290,26 +291,6 @@ export default function Home() {
   const due = open.filter((x) => x.end).sort((a, b) => a.end.localeCompare(b.end) || a.p - b.p).slice(0, 6);
   const daily = T0.filter((x) => x.cat === 'daily').sort(byPri);
   const phone = T0.filter((x) => x.ext === 'cal' && x.start <= td && x.end >= td).sort((a, b) => (a.rTime || '00:00').localeCompare(b.rTime || '00:00'));
-  const R = st.routines.items, best = R.reduce((m, r) => Math.max(m, streak(r.done)), 0);
-  const SL = st.study.log[td] || { m: 0 };
-  const rd = st.books.items.find((b) => b.st === 'oku');
-  const files = st.library.folders.reduce((s, f) => s + f.files.length, 0);
-  const wk = open.filter((x) => x.end && x.end >= td && x.end <= addDays(td, 6)).length;
-  const stats = {
-    gorevler: open.length + ' açık' + (urgent ? ' · ' + urgent + ' acil' : ''),
-    rutin: R.length ? 'En uzun seri ' + best + ' gün' : 'Rutin ekle',
-    takvim: 'Bu hafta ' + wk + ' son gün',
-    yemek: 'Bugün ' + num(ftot(fday(st.food, td))) + ' kcal',
-    calisma: 'Bugün ' + hm(SL.m),
-    ambar: st.library.folders.length + ' klasör · ' + files + ' dosya',
-    para: 'Kalan ' + tl(balance(st.money)),
-    kitap: rd ? rd.title : 'Kitap ekle',
-    grup: G && G.list.length ? G.list.length + ' grup' : 'Grup kur ya da katıl',
-  };
-  stats.hedef = st.goals.items.length ? st.goals.items.length + ' hedef' : 'Hedef koy';
-  { const ei = Math.min(st.eng.cur || 0, LESSONS.length - 1); stats.ingilizce = (st.eng.cur || 0) >= LESSONS.length ? 'Tümü bitti' : LESSONS[ei].lv + ' · Ders ' + LESSONS[ei].n + '/40'; }
-  const tiles = TILES.filter(([k]) => !hidden.includes(k));
-  const tileCols = width < 600 ? 3 : width < 900 ? 5 : Math.min(tiles.length, 10);
   const R0 = hidden.includes('rutin') ? [] : st.routines.items;
   const tot = R0.length + daily.length;
   const doneN = R0.filter((r) => r.done.includes(td)).length + daily.filter((x) => (x.doneOn || []).includes(td)).length;
@@ -369,31 +350,10 @@ export default function Home() {
       {H.today ? <TodayList routines={R0} daily={daily} /> : null}
       {H.gtasks && !hidden.includes('grup') ? <GroupTasksHome /> : null}
       {H.goals && !hidden.includes('hedef') ? <GoalsMini /> : null}
-      {H.eng && !hidden.includes('ingilizce') ? <EngHomeCard /> : null}
-      {H.tiles && tiles.length ? (
-        <View style={{ gap: 10 }}>
-        <SectionHead icon="apps" title="Tüm bölümler" />
-        <View style={{ flexDirection: 'row', flexWrap: 'wrap', marginHorizontal: -6, rowGap: 12 }}>
-          {tiles.map(([k, l, ic]) => (
-            <View key={k} style={{ width: 100 / tileCols + '%', paddingHorizontal: 6 }}>
-              <Pressable onPress={() => go(k)} accessibilityRole="button"
-                style={({ pressed }) => [{ minHeight: 100, padding: 12, borderRadius: t.rm, borderWidth: t.bw, borderColor: pressed ? modColor(t, k) : t.line, backgroundColor: t.card, justifyContent: 'space-between', gap: 8, transform: [{ scale: pressed ? 0.96 : 1 }] }, shadow(t)]}>
-                <View style={{ width: 36, height: 36, borderRadius: 12, backgroundColor: alpha(modColor(t, k), t.dark ? 0.22 : 0.13), alignItems: 'center', justifyContent: 'center' }}>
-                  <Ionicons name={ic} size={20} color={modColor(t, k)} />
-                </View>
-                <View>
-                  <T s={14} w="700" numberOfLines={1}>{l}</T>
-                  <Mute s={12} numberOfLines={1}>{stats[k]}</Mute>
-                </View>
-              </Pressable>
-            </View>
-          ))}
-        </View>
-        </View>
-      ) : null}
+      {LANG_LIST.map((G) => (H[G.key] && !hidden.includes(G.route) ? <LangHomeCard key={G.key} G={G} /> : null))}
       {H.week ? <WeekProgram /> : null}
       {cards.length ? <Grid min={310}>{cards}</Grid> : null}
-      {!cards.length && !H.week && !H.tiles && !H.timer && !H.cal && !H.today && !H.ilham ? (
+      {!cards.length && !H.week && !H.timer && !H.cal && !H.today && !H.ilham ? (
         <Card><Mute>Ana ekranda gösterilecek bölüm seçmedin. Sağ üstteki profil düğmesinden açabilirsin.</Mute></Card>
       ) : null}
     </View>
@@ -416,7 +376,7 @@ function TodayList({ routines, daily }) {
         return (
           <View key={r.id} style={{ flexDirection: 'row', alignItems: 'center', gap: 10, borderRadius: t.rm, backgroundColor: t.card2, borderWidth: t.bw ? 1 : 0, borderColor: t.line, overflow: 'hidden', minHeight: 60, paddingRight: 2 }}>
             <View style={{ width: 4, alignSelf: 'stretch', backgroundColor: r.color }} />
-            <Pressable style={{ flex: 1, paddingVertical: 6 }} onPress={() => go(r.sys === 'eng' ? 'ingilizce' : 'rutin')}>
+            <Pressable style={{ flex: 1, paddingVertical: 6 }} onPress={() => go(r.sys === 'eng' ? 'ingilizce' : r.sys === 'deu' ? 'almanca' : 'rutin')}>
               <T s={15.5} w="600" c={on ? t.mute : t.ink} style={{ textDecorationLine: on ? 'line-through' : 'none' }}>{r.name}</T>
               <Mute s={13}>{'Rutin · ' + streak(r.done) + ' günlük seri'}</Mute>
             </Pressable>

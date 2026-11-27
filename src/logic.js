@@ -79,7 +79,7 @@ export const RC = ['#2f5bea', '#e8590c', '#0ca678', '#ae3ec9', '#1098ad', '#d633
 export const BST = { oku: 'Okuyorum', sira: 'Okunacak', bitti: 'Bitti' };
 
 // ---------- veri şekli ----------
-export const KEYS = ['tasks', 'routines', 'food', 'study', 'library', 'money', 'books', 'week', 'goals', 'eng', 'prefs'];
+export const KEYS = ['tasks', 'routines', 'food', 'study', 'library', 'money', 'books', 'week', 'goals', 'eng', 'deu', 'prefs'];
 export const DEF = {
   tasks: () => ({ items: [], cats: [{ id: 'daily', name: 'Günlük İşler' }, { id: 'genel', name: 'Genel' }] }),
   routines: () => ({ items: [] }),
@@ -91,7 +91,8 @@ export const DEF = {
   week: () => ({ items: [], from: 7, to: 23 }),
   goals: () => ({ items: [] }),
   // İngilizce: on = günlük görev (rutin zinciri) açık mı, cur = sıradaki ders, cards = { kelime: [kutu, tekrar günü] }
-  eng: () => ({ on: false, cur: 0, done: {}, day: '', cards: {}, time: '', chain: [] }),
+  eng: () => ({ on: false, picked: false, cur: 0, done: {}, day: '', cards: {}, time: '', chain: [] }),
+  deu: () => ({ on: false, picked: false, cur: 0, done: {}, day: '', cards: {}, time: '', chain: [] }),
   prefs: () => ({
     theme: 'nisan', palette: 'tema', mode: 'system', name: '',
     home: { ...HOME_DEF }, hidden: [],
@@ -101,8 +102,8 @@ export const DEF = {
 };
 // Ana ekrandaki bölümler (Profil > Ana ekran'dan açılıp kapatılır)
 export const HOME_SECTIONS = [
-  ['ilham', 'Günün ayeti ve hadisi'], ['today', 'Bugün yapılacaklar'], ['gtasks', 'Grup görevleri'], ['goals', 'Hedeflerim (piller)'], ['eng', 'Günün İngilizce dersi'],
-  ['timer', 'Pomodoro sayacı'], ['cal', 'Kalori kartı'], ['tiles', 'Bölüm düğmeleri'], ['week', 'Haftalık program'],
+  ['ilham', 'Günün ayeti ve hadisi'], ['today', 'Bugün yapılacaklar'], ['gtasks', 'Grup görevleri'], ['goals', 'Hedeflerim (piller)'], ['eng', 'Günün İngilizce dersi'], ['deu', 'Günün Almanca dersi'],
+  ['timer', 'Pomodoro sayacı'], ['cal', 'Kalori kartı'], ['week', 'Haftalık program'],
   ['phone', 'Telefon takvimi (bugün)'], ['due', 'Yaklaşan son günler'],
   ['groups', 'Gruplarım'], ['notif', 'Bildirimler'],
 ];
@@ -133,7 +134,7 @@ export function norm(k, v) {
     o.items = (Array.isArray(o.items) ? o.items : []).filter((g) => g && g.id);
     o.items.forEach((g) => { g.logs = Array.isArray(g.logs) ? g.logs : []; g.target = +g.target || 1; });
   }
-  if (k === 'eng') {
+  if (k === 'eng' || k === 'deu') {
     o.cur = Math.max(0, Math.round(+o.cur || 0));
     for (const a of ['done', 'cards']) o[a] = o[a] && typeof o[a] === 'object' && !Array.isArray(o[a]) ? o[a] : {};
     o.chain = Array.isArray(o.chain) ? o.chain : [];

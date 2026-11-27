@@ -1,0 +1,143 @@
+# 1 | Staj aramak | Auf der Suche nach einem Praktikum
+In meinem dritten Jahr habe ich angefangen, ein Praktikum zu suchen. Unsere Fakultät hat uns gesagt, dass ein Sommerpraktikum für Ingenieurstudenten Pflicht ist. Eine gute Stelle zu finden ist aber nicht leicht, weil sich viele Studenten auf dieselben Stellen bewerben. Ich habe eine Liste von Firmen gemacht, die an Elektrofahrzeugen arbeiten. Die meisten wollten einen Lebenslauf und ein Anschreiben.
+
+# 2 | Özgeçmiş yazmak | Den Lebenslauf schreiben
+Den Lebenslauf zu schreiben hat länger gedauert, als ich erwartet hatte. Ich musste meine Ausbildung, meine Fähigkeiten und meine Erfahrung klar und kurz beschreiben. Ich hatte wenig Berufserfahrung, deshalb habe ich über den Robotik-Club, den Kurs in Berlin und meinen Job mit den Kindern geschrieben. Frau Wagner hat meinen Lebenslauf gelesen und ein paar Fehler korrigiert.
+
+# 3 | Ön yazı | Das Anschreiben
+Das Anschreiben war noch schwieriger. Ich musste erklären, warum mich die Firma interessiert und warum ich ein passender Kandidat bin. Ich habe drei Entwürfe geschrieben. Im ersten habe ich zu viel über mich selbst erzählt. Im zweiten waren meine Sätze zu lang und kompliziert. Schließlich habe ich das richtige Gleichgewicht gefunden. Ich habe Bewerbungen an acht Firmen geschickt.
+
+# 4 | Cevaplar | Antworten
+Im nächsten Monat habe ich mehrere Antworten bekommen. Drei Firmen hatten schon Praktikanten gefunden. Zwei haben gar nicht geantwortet, was enttäuschend war. Aber eine Firma, ein Hersteller von Elektrobussen in der Nähe von Bursa, hat mich zu einem Online-Gespräch eingeladen. Ich war aufgeregt und ängstlich zugleich. Ich wusste, dass das eine echte Gelegenheit war.
+
+# 5 | Mülakata hazırlık | Vorbereitung auf das Gespräch
+Zur Vorbereitung habe ich die Firma genau recherchiert. Ich habe erfahren, dass sie 2010 gegründet wurde und heute Busse in mehr als zwanzig Länder exportiert. Mit Can habe ich typische Fragen geübt. Er hat so getan, als wäre er ein strenger Chef. Am Anfang waren meine Antworten zu kurz. Can hat mir geraten, Beispiele aus meiner eigenen Erfahrung zu geben.
+> so tun, als ob = -miş gibi yapmak
+
+# 6 | Çevrim içi mülakat | Das Online-Gespräch
+Das Gespräch fand an einem Donnerstagmorgen statt. Zwei Ingenieure der Firma waren im Videoanruf. Einer hat nach meinem Roboterprojekt gefragt, und ich habe beschrieben, wie wir das Problem gelöst haben. Der andere hat eine technische Frage über Batterien gestellt. Ich kannte die Antwort nicht ganz, also habe ich erklärt, was ich wusste, und gesagt, dass ich gern mehr lernen möchte. Sie schienen mit meiner Ehrlichkeit zufrieden zu sein.
+> stattfinden = gerçekleşmek
+
+# 7 | Kabul edildim | Ich habe das Praktikum bekommen
+Eine Woche später kam eine E-Mail von der Personalabteilung. Sie haben mir ein sechswöchiges Praktikum in der Entwicklungsabteilung angeboten, ab Juli. Ich habe die E-Mail dreimal gelesen, um sicher zu sein. Dann habe ich meine Eltern angerufen. Mein Vater hat sich besonders gefreut, weil er mich immer ermutigt hatte, meinem Interesse an Fahrzeugen zu folgen.
+
+# 8 | Robot yarışması | Der Roboterwettbewerb
+Vor dem Sommer hat unser Robotik-Club an einem nationalen Wettbewerb in Istanbul teilgenommen. Die Teams mussten einen Roboter bauen, der den Weg durch ein Labyrinth findet. Einen Monat lang haben wir jeden Abend lange gearbeitet. Am Wettbewerbstag ist unser Roboter zweimal stecken geblieben, aber er hat das Ziel erreicht. Wir wurden Fünfte von dreißig Teams. Wir haben viel über Teamarbeit gelernt.
+> stecken bleiben = takılıp kalmak
+
+# 9 | Bursa'ya taşınmak | Umzug nach Bursa
+Anfang Juli bin ich für das Praktikum nach Bursa gezogen. Die Firma hatte mir ein Zimmer in einer Wohngemeinschaft mit zwei anderen Praktikanten besorgt. Einer studierte Elektrotechnik in Izmir, der andere Informatik in Eskişehir. Die Wohnung war einfach, aber nah an der Fabrik. Am ersten Abend haben wir zusammen gekocht und über unsere Erwartungen gesprochen. Wir waren alle ein bisschen nervös.
+
+# 10 | İlk iş günü | Der erste Arbeitstag
+An meinem ersten Tag hat uns ein Manager durch die Fabrik geführt. Sie war riesig. Es gab getrennte Bereiche für die Karosserie, die Elektrik und die Endmontage. Alle mussten Sicherheitsschuhe, eine Schutzbrille und einen Helm tragen. Danach habe ich meine Betreuerin Selin kennengelernt. Sie war Ingenieurin im Batterieteam. Sie hat erklärt, dass ich beim Testen von Batteriepaketen helfen würde.
+
+# 11 | İş güvenliği | Sicherheit zuerst
+Bevor wir in der Fabrik arbeiten durften, mussten alle Praktikanten eine Sicherheitsschulung besuchen. Der Trainer hat erklärt, dass Batterien gefährlich sein können, wenn sie beschädigt oder überhitzt sind. Wir haben gelernt, was man bei einem Brand tun muss und wo die Notausgänge sind. Mir wurde klar, dass Sicherheit nicht nur eine Regel ist, sondern ein Teil von guter Ingenieurarbeit.
+> mir wurde klar = farkına vardım
+
+# 12 | Pil testleri | Batterietests
+Meine Hauptaufgabe war, beim Testen von Batteriemodulen zu helfen. Jedes Modul enthält viele kleine Zellen. Wir haben die Module oft geladen und entladen und dabei Temperatur, Spannung und Kapazität gemessen. Die Daten gingen an einen Computer, und ich musste sie auf Fehler prüfen. Selin hat mir geduldig erklärt, wie man die Diagramme liest und wie ein normales Ergebnis aussieht.
+
+# 13 | Bir hata | Ein Fehler
+In meiner zweiten Woche habe ich einen Fehler gemacht. Ich habe falsche Einstellungen für einen Test eingegeben, und die Maschine hat nach zwei Stunden gestoppt. Wir haben die Daten von einem ganzen Tag verloren. Ich habe mich schrecklich gefühlt. Aber Selin hat ruhig gefragt, was passiert war. Dann hat sie gesagt: "Jeder macht Fehler. Wichtig ist, zu verstehen, warum, und es nächstes Mal zu verhindern." Zusammen haben wir eine Checkliste geschrieben.
+> eingeben = girmek (veri)
+
+# 14 | Kontrol listesi | Die Checkliste
+Die Checkliste war sehr nützlich. Sie enthielt jeden Schritt des Tests, vom Prüfen der Kabel bis zum Speichern der Ergebnisse. Bald haben auch andere Ingenieure im Team sie benutzt. Selin hat vorgeschlagen, dass ich sie in der wöchentlichen Teamsitzung vorstelle. Vor erfahrenen Ingenieuren zu sprechen hat mich nervös gemacht, aber sie haben hilfreiche Fragen gestellt und positives Feedback gegeben.
+> vorschlagen = önermek
+
+# 15 | Haftalık toplantı | Die Wochensitzung
+Jeden Montagmorgen hatte das Batterieteam eine Sitzung. Jeder Ingenieur hat über seinen Fortschritt und seine Probleme berichtet. Die Sitzungen waren auf Türkisch, aber viele Fachwörter waren auf Englisch. Ich habe mir Notizen gemacht und abends neue Begriffe nachgeschlagen. Mir ist aufgefallen, dass gute Ingenieure klar kommunizieren. Sie beschreiben ein Problem kurz, nennen die möglichen Ursachen und schlagen eine Lösung vor.
+> nachschlagen = (sözlükte) bakmak
+> auffallen = dikkatini çekmek
+
+# 16 | Öğle arası sohbetleri | Gespräche in der Mittagspause
+Ich habe die Mittagspausen in der Kantine genossen. Ingenieure aus verschiedenen Abteilungen saßen zusammen und diskutierten über alles, von Fußball bis zur Zukunft des Verkehrs. Ein Designer hat mir erzählt, dass die Firma einen kleineren Bus für enge Straßen entwickelt. Diese Gespräche haben mir gezeigt, wie die verschiedenen Teile einer Firma zusammenarbeiten.
+
+# 17 | Elektrikli otobüsler | Elektrobusse
+Ich habe viel darüber gelernt, warum Städte Elektrobusse kaufen. Sie produzieren auf der Straße keine Abgase, deshalb wird die Luft in den Innenstädten sauberer. Sie sind auch viel leiser als Dieselbusse. Allerdings sind sie teurer, und die Städte brauchen Ladestationen. Selin hat erklärt, dass die Gesamtkosten über viele Jahre niedriger sein können, weil Strom billiger als Kraftstoff ist und Elektromotoren weniger Wartung brauchen.
+
+# 18 | Şarj istasyonu | Die Ladestation
+Eines Tages war ich bei einem Team, das eine Schnellladestation in einem Busdepot installierte. Die Station konnte einen Bus in etwa drei Stunden laden. Die Ingenieure mussten sicherstellen, dass das lokale Stromnetz den zusätzlichen Bedarf bewältigen konnte. Ich war überrascht, wie viel Planung nötig war. Ein einzelner Bus scheint einfach, aber er ist Teil eines viel größeren Systems.
+> sicherstellen = güvence altına almak
+
+# 19 | Uludağ'da hafta sonu | Ein Wochenende auf dem Uludağ
+Am Wochenende sind wir Praktikanten mit der Seilbahn auf den Uludağ gefahren, den Berg über Bursa. Sogar im Juli war die Luft oben frisch und kühl. Wir sind durch den Kiefernwald gewandert und haben an einem Bach gepicknickt. Wir haben entdeckt, dass wir alle im Bereich nachhaltige Energie arbeiten wollten. Am Ende des Tages waren wir nicht nur Kollegen, sondern Freunde.
+
+# 20 | Elif'ten haber | Neuigkeiten von Elif
+Am Sonntagabend hat Elif mich angerufen. Sie machte ihr eigenes Praktikum in einem Krankenhaus in Istanbul. Sie hat erzählt, dass sie bei ihrer ersten Operation zugeschaut hat und fast ohnmächtig geworden ist. Wir haben darüber gelacht. Wir haben gemerkt, dass wir beide lernen, für die Sicherheit anderer Menschen verantwortlich zu sein, auf sehr verschiedene Weise.
+
+# 21 | Rapor yazmak | Einen Bericht schreiben
+Jeder Praktikant musste am Ende einen Bericht schreiben. Selin hat mir geraten, jede Woche ein bisschen zu schreiben, statt alles bis zum letzten Moment zu lassen. Der Bericht brauchte eine Einleitung, eine Beschreibung der Firma, einen Teil über meine Aufgaben und einen Schluss. Über meine Arbeit in einem formellen Stil zu schreiben war schwer, aber es hat mir geholfen, das Gelernte zu ordnen.
+
+# 22 | Bir sorun ortaya çıkıyor | Ein Problem taucht auf
+In der fünften Woche hat das Team bemerkt, dass einige Module beim Schnellladen heißer wurden als normal. Das war ein ernstes Problem, denn hohe Temperaturen können die Lebensdauer einer Batterie verkürzen. Selin hat zusätzliche Tests organisiert. Ich habe die Daten von verschiedenen Modulen verglichen. Nach drei Tagen haben wir ein Muster gefunden: Alle heißen Module kamen aus derselben Charge.
+> auftauchen = ortaya çıkmak
+
+# 23 | Sebebi bulmak | Die Ursache finden
+Das Team hat den Lieferanten der Kühlplatten kontaktiert. Es stellte sich heraus, dass eine kleine Änderung in der Produktion die Platten etwas dünner gemacht hatte. Deshalb haben sie weniger Wärme von den Zellen abgeführt. Der Lieferant hat zugestimmt, die fehlerhaften Platten zu ersetzen. Selin hat mir für meine sorgfältige Arbeit gedankt. Ich war stolz, obwohl mein Beitrag klein war.
+> sich herausstellen = ortaya çıkmak, anlaşılmak
+> zustimmen = kabul etmek, onaylamak
+
+# 24 | Veda | Abschied
+An meinem letzten Tag hat das Batterieteam eine kleine Feier für die Praktikanten organisiert. Selin hat mir ein Zeugnis gegeben und gesagt, dass ich mich nach dem Studium für eine feste Stelle bewerben kann. Ich habe allen für ihre Geduld gedankt. Sechs Wochen vorher war ich angekommen und wusste fast nichts über Batterien. Jetzt verstand ich, wie ein echtes Ingenieurteam arbeitet.
+
+# 25 | Üniversiteye dönüş | Zurück an der Uni
+Als ich im September an die Universität zurückkam, fühlte ich mich anders. Die Theorie in den Vorlesungen ergab plötzlich mehr Sinn, weil ich gesehen hatte, wie sie in der Praxis benutzt wird. In Thermodynamik zum Beispiel konnte ich die Gleichungen mit dem Kühlproblem der Batteriemodule verbinden. Ich habe auch mehr Fragen im Unterricht gestellt.
+> Sinn ergeben = anlamlı olmak
+
+# 26 | Grup projesi | Ein Gruppenprojekt
+In unserem Kurs Maschinenelemente mussten wir in Vierergruppen eine kleine Windturbine entwerfen. Ich habe mit Can und zwei anderen Studenten gearbeitet, Zehra und Burak. Am Anfang waren wir uns über fast alles uneinig. Zehra wollte ein einfaches Design, Burak wollte etwas Neues ausprobieren. Schließlich haben wir eine Liste mit Anforderungen gemacht und das Design gewählt, das sie am besten erfüllte.
+> ausprobieren = denemek
+
+# 27 | Görev dağılımı | Die Arbeit aufteilen
+Um effizient zu arbeiten, haben wir die Aufgaben aufgeteilt. Zehra hat die Kräfte auf die Rotorblätter berechnet, Burak hat den Rahmen am Computer konstruiert, Can hat den Generator ausgewählt, und ich war für das Getriebe verantwortlich. Wir haben ein gemeinsames Online-Dokument und einen Zeitplan mit Fristen erstellt. Jeden Freitag haben wir uns in der Bibliothek getroffen.
+> aufteilen = paylaştırmak
+> auswählen = seçmek
+
+# 28 | Atölyede | In der Werkstatt
+Nach den Berechnungen haben wir in der Werkstatt der Universität einen Prototyp gebaut. Der Techniker, Herr Hasan, hat uns gezeigt, wie man die Drehmaschine und die Bohrmaschine sicher benutzt. Der Bau hat viel länger gedauert als geplant. Manche Teile haben nicht zusammengepasst, und wir mussten sie neu machen. Ich habe gelernt, dass ein Design, das auf dem Bildschirm perfekt aussieht, in der Realität schwer herzustellen sein kann.
+> zusammenpassen = birbirine uymak
+> herstellen = üretmek
+
+# 29 | Rüzgâr tünelinde test | Test im Windkanal
+Wir haben unsere Turbine im kleinen Windkanal der Fakultät getestet. Wir haben die Drehzahl und den erzeugten Strom bei verschiedenen Windgeschwindigkeiten gemessen. Die Ergebnisse waren niedriger als unsere Berechnungen. Nach einer Diskussion haben wir verstanden, dass die Reibung im Getriebe höher war, als wir angenommen hatten. Das war mein Teil des Projekts, deshalb fühlte ich mich verantwortlich.
+> annehmen = varsaymak
+
+# 30 | Dişli kutusunu iyileştirmek | Das Getriebe verbessern
+Ich habe zwei Wochenenden damit verbracht, das Getriebe neu zu konstruieren. Ich habe einige Zahnräder aus Kunststoff durch Zahnräder aus Metall ersetzt und bessere Lager eingebaut. Herr Hasan hat mir bei den neuen Teilen geholfen. Beim nächsten Test ist die Leistung um fast dreißig Prozent gestiegen. Ich habe gelernt, dass ein schlechtes Testergebnis kein Misserfolg ist: Es zeigt genau, was man verbessern muss.
+> einbauen = takmak, monte etmek
+
+# 31 | Final sunumu | Die Abschlusspräsentation
+Am Ende des Semesters hat jede Gruppe ihre Turbine den Professoren und den anderen Studenten vorgestellt. Wir haben unsere Entscheidungen erklärt, die Testergebnisse gezeigt und ehrlich über unsere Probleme gesprochen. Ein Professor fragte, warum wir keine vertikale Bauweise gewählt hatten. Zehra hat mit Hilfe der Anforderungsliste sicher geantwortet. Wir haben eine der besten Noten bekommen.
+
+# 32 | Sınav dönemi | Die Prüfungszeit
+Dann kam die Prüfungszeit. Ich hatte sechs Prüfungen in zwei Wochen, darunter Strömungslehre, die als besonders schwer galt. Ich habe einen Lernplan gemacht und mich daran gehalten. Ich habe von morgens bis abends in der Bibliothek gelernt, mit kurzen Pausen jede Stunde. Can und ich haben uns gegenseitig mit alten Prüfungsfragen abgefragt. Gute Planung, habe ich gemerkt, reduziert Stress.
+> sich an etwas halten = bir şeye uymak
+
+# 33 | Kış tatili | Winterferien
+Nach den Prüfungen bin ich für ein paar Tage ins Dorf zu meiner Großmutter gefahren. Alles war voller Schnee, und die Straßen waren glatt. Meine Großmutter wurde älter und brauchte Hilfe bei schwerer Arbeit. Ich habe Holz für den Ofen gehackt und eine kaputte Tür repariert. Abends saßen wir am warmen Ofen, und sie erzählte mir Geschichten aus ihrer Kindheit.
+
+# 34 | Köydeki enerji | Energie im Dorf
+Im Dorf ist mir aufgefallen, wie viel Energie das Haus meiner Großmutter verschwendete. Durch die Fenster kam kalte Luft, und der alte Ofen verbrauchte viel Holz. Ich habe über einfache Lösungen nachgedacht: bessere Dämmung, neue Fenster und vielleicht Solarkollektoren für warmes Wasser. Als ich meine Ideen erklärte, lächelte meine Großmutter: "Die vielen Jahre an der Universität waren also doch nützlich!"
+
+# 35 | Bir fikir | Eine Idee
+Zurück in Ankara konnte ich nicht aufhören, an das Dorf zu denken. Viele alte Häuser in ländlichen Gegenden haben dieselben Probleme. Ich habe mit Can und Zehra darüber gesprochen. Zusammen hatten wir eine Idee für unser Abschlussprojekt: ein günstiges System, das Dämmung und Solarheizung für Dorfhäuser kombiniert. Es sollte billig genug für Familien mit niedrigem Einkommen sein.
+> aufhören = bırakmak, durmak
+
+# 36 | Danışman bulmak | Eine Betreuerin finden
+Wir brauchten eine Professorin, die unser Projekt betreut. Wir haben einen kurzen Vorschlag an Professorin Demir geschickt, die über erneuerbare Energien forschte. Sie hat uns in ihr Büro eingeladen. Ihr gefiel die Idee, aber sie warnte uns, dass das Projekt ehrgeizig war. Wir sollten uns zuerst auf einen Teil konzentrieren: einen solaren Warmwasserbereiter aus lokalen Materialien.
+
+# 37 | Saha ziyareti | Ein Besuch vor Ort
+Im Frühling haben wir das Dorf meiner Großmutter besucht, um Daten zu sammeln. Wir haben die Temperaturen in mehreren Häusern gemessen und die Familien gefragt, wie viel sie für das Heizen ausgeben. Die meisten Leute waren freundlich und neugierig. Ein alter Mann zeigte uns einen Warmwasserbereiter, den er selbst aus einem alten Fass gebaut hatte. Er war nicht effizient, aber die Idee war klug.
+
+# 38 | Bütçe sorunu | Ein Budgetproblem
+Unser erster Entwurf benutzte hochwertige Kupferrohre, aber als wir die Kosten berechneten, war er viel zu teuer. Professorin Demir erinnerte uns daran, dass unser Ziel ein billiges System war. Wir haben nach Alternativen gesucht und herausgefunden, dass bestimmte Kunststoffrohre die nötigen Temperaturen aushalten. Das hat die Kosten halbiert. Ich habe gelernt, dass es in der Technik immer um Entscheidungen zwischen Leistung und Preis geht.
+> herausfinden = bulmak, keşfetmek
+> aushalten = dayanmak
+
+# 39 | Can'ın haberi | Neuigkeiten von Can
+Im Mai hat Can mir aufregende Neuigkeiten erzählt. Er war für einen Sommerkurs in Berlin angenommen worden, an derselben Schule wie ich. Er würde bei den Schneiders wohnen! Ich habe ihm eine lange Liste mit Tipps gegeben und Grüße an Lena und Paul. Can hat gelacht: "Du klingst wie meine Mutter." Trotzdem habe ich mich sehr für ihn gefreut.
+
+# 40 | Üçüncü yılın sonu | Das Ende des dritten Jahres
+Am Ende meines dritten Jahres habe ich zurückgeschaut. Ich hatte ein Praktikum gemacht, eine Turbine gebaut und ein echtes Projekt begonnen. Deutsch war ein Werkzeug geworden, das ich jeden Tag benutzte, nicht nur ein Schulfach. Ich habe auch verstanden, dass es in der Technik nicht nur um Maschinen geht, sondern um Menschen und ihre Bedürfnisse. Ich war bereit für die nächste Herausforderung.

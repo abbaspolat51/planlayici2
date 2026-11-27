@@ -1,0 +1,144 @@
+# 1 | Literatür taraması | Die Literaturrecherche
+Die erste Phase meiner Masterarbeit war eine gründliche Literaturrecherche. Meine Betreuerin, Dr. Weber, bestand darauf, dass ich umfassend lese, bevor ich eine Hypothese formuliere. Innerhalb von zwei Monaten arbeitete ich mich durch über hundert Fachartikel zu Wärmepumpen, Wärmespeichern und Energiearmut. Viele widersprachen einander, was anfangs verwirrend war. Allmählich lernte ich, die Methodik jeder Studie zu bewerten, anstatt ihre Schlussfolgerungen einfach zu übernehmen.
+
+# 2 | Araştırma sorusu | Die Forschungsfrage
+Dr. Weber betonte immer wieder, dass eine gute Arbeit auf einer präzisen Forschungsfrage beruht. Meine ursprüngliche Frage, ob Wärmepumpen das Heizen bezahlbar machen können, war viel zu allgemein. Nach mehreren mühsamen Überarbeitungen grenzte ich sie deutlich ein: Unter welchen Bedingungen senkt die Kombination einer kleinen Wärmepumpe mit einem Wasserspeicher die Heizkosten einkommensschwacher Haushalte im Kontinentalklima? Die neue Frage war weniger ehrgeizig, aber in der verfügbaren Zeit beantwortbar.
+> eingrenzen = daraltmak
+
+# 3 | Bir model kurmak | Ein Modell entwickeln
+Um die Frage zu beantworten, entwickelte ich ein Rechenmodell eines typischen Hauses mit Wänden, Fenstern, Heizsystem und dem Verhalten der Bewohner. Die Kalibrierung war mühsam. Ich verglich die Vorhersagen des Modells mit Messdaten aus dem Labor und passte unsichere Parameter an, bis die Abweichungen akzeptabel klein waren. Dabei dokumentierte ich jede Annahme sorgfältig, weil die Gutachter sie genau prüfen würden.
+> anpassen = ayarlamak, uyarlamak
+
+# 4 | Belirsizlikle başa çıkmak | Umgang mit Unsicherheit
+Eines der wertvollsten Konzepte, die ich kennenlernte, war die Unsicherheitsanalyse. Statt einen einzigen Wert für die Energieeinsparung zu berechnen, führte ich Tausende Simulationen mit veränderten Eingaben durch, etwa Strompreisen und Dämmqualität. Das Ergebnis war eine Spanne plausibler Werte statt einer trügerisch genauen Zahl. Diese Darstellung wirkte zunächst weniger beeindruckend, war aber deutlich ehrlicher und letztlich für Entscheidungsträger nützlicher.
+> durchführen = gerçekleştirmek
+
+# 5 | Şaşırtıcı bir bulgu | Ein kontraintuitiver Befund
+Die Simulationen zeigten etwas Kontraintuitives. In schlecht gedämmten Häusern brachte eine Wärmepumpe allein nur geringe Einsparungen, weil der Großteil der Wärme einfach durch die Wände entwich. Wurde dagegen eine einfache Dämmung mit einer kleineren, billigeren Wärmepumpe kombiniert, sank die Gesamtinvestition und die Einsparungen stiegen erheblich. Die Reihenfolge der Maßnahmen war also entscheidend: zuerst dämmen, dann elektrifizieren.
+
+# 6 | Danışmanla anlaşmazlık | Meinungsverschiedenheit mit der Betreuerin
+Als ich diese Befunde vorstellte, war Dr. Weber zunächst skeptisch. Sie vermutete, das Ergebnis sei ein Artefakt des Modells und kein echter Effekt. Obwohl ich enttäuscht war, erkannte ich, dass ihre Skepsis völlig berechtigt war. Sie schlug einen Test vor: Wenn der Effekt real sei, müsse er auch bestehen bleiben, wenn man die unsichersten Parameter stark variiert. Ich verbrachte einen weiteren Monat mit diesen Sensitivitätstests, und das Ergebnis hielt stand.
+> standhalten = dayanmak, geçerliliğini korumak
+
+# 7 | Araştırma etiği | Forschungsethik
+Um das Modell zu überprüfen, wollte ich echte Haushalte messen, was ethische Fragen aufwarf, über die ich nie nachgedacht hatte. Detaillierte Daten darüber, wann Menschen zu Hause sind, können sensible Informationen über ihr Privatleben verraten. Ich musste einen Antrag bei der Ethikkommission der Universität stellen und erklären, wie die Teilnehmer ihre Einwilligung geben und wie ihre Daten anonymisiert und sicher gespeichert werden. Das Verfahren war bürokratisch, aber ich hielt es bald für unverzichtbar.
+> aufwerfen = (soru) doğurmak
+
+# 8 | Saha çalışması | Feldforschung
+Mit der Genehmigung der Kommission installierten wir Sensoren in zwölf Wohnungen in einer ehemaligen Bergbaustadt, in der viele Bewohner Mühe hatten, ihre Energierechnungen zu bezahlen. Diese Besuche lehrten mich Demut. Manche ältere Bewohner heizten im ganzen Winter nur ein Zimmer und trugen in der Wohnung Mäntel. Hinter jeder Statistik über Energiearmut stehen Menschen, die schwierige Abwägungen zwischen Wärme, Essen und anderen Notwendigkeiten treffen müssen.
+
+# 9 | Verilerin söyledikleri | Was die Daten zeigten
+Die Messdaten bestätigten die Vorhersagen des Modells weitgehend, aber es gab bemerkenswerte Abweichungen. Das Verhalten der Bewohner war viel unterschiedlicher, als ich angenommen hatte. Manche öffneten die Fenster bei laufender Heizung, andere hielten die Temperaturen erstaunlich niedrig, um Geld zu sparen. Ich kam zu dem Schluss, dass technische Lösungen allein nicht ausreichen. Sie brauchen klare Informationen und finanzielle Unterstützung, die die Bedürftigsten tatsächlich erreicht.
+
+# 10 | İlk makale | Der erste Artikel
+Dr. Weber schlug vor, einen Teil meiner Arbeit als Zeitschriftenartikel zu veröffentlichen. Für eine Fachzeitschrift zu schreiben verlangte eine Präzision und Knappheit, die ich nie geübt hatte. Jede Behauptung musste durch Daten oder Quellen belegt sein. Wir reichten das Manuskript im März ein und bekamen drei Monate später die Gutachten. Ein Gutachter war begeistert, der andere vernichtend: Er nannte unsere Methodik unzureichend begründet.
+> einreichen = sunmak, teslim etmek
+
+# 11 | Hakem eleştirisine cevap | Umgang mit Kritik
+Mein erster Impuls war Empörung über das harte Gutachten. Dr. Weber riet mir jedoch, die Kommentare ein paar Tage liegen zu lassen und sie dann nüchtern noch einmal zu lesen. Bei genauerer Betrachtung waren mehrere Kritikpunkte berechtigt. Wir führten zusätzliche Analysen durch, schrieben den Methodenteil neu und antworteten höflich und ausführlich auf jeden Punkt. Der überarbeitete Artikel wurde angenommen. Ich lernte, dass Kritik die Arbeit oft verbessert, so schmerzhaft sie auch ist.
+
+# 12 | Doktora teklifi | Ein Promotionsangebot
+Kurz vor der Abgabe meiner Masterarbeit bot mir Dr. Weber eine voll finanzierte Promotionsstelle in ihrer Gruppe an. Es war ein schmeichelhaftes und verlockendes Angebot. Eine Promotion würde es mir erlauben, den Fragen nachzugehen, die mich faszinierten, und vielleicht Wissenschaftler zu werden. Doch ich zögerte. Ich hatte immer vorgehabt, in die Türkei zurückzukehren und dort direkter zur Lösung praktischer Probleme beizutragen.
+> nachgehen = peşinden gitmek
+> vorhaben = niyet etmek
+
+# 13 | Değerleri tartmak | Werte abwägen
+Um Klarheit zu gewinnen, schrieb ich auf, was mir am wichtigsten war: Lernen, Wirkung, Nähe zur Familie und finanzielle Stabilität. Als ich diese Werte ehrlich ordnete, standen Wirkung und Familie an erster Stelle. Eine Promotion würde das Lernen maximieren, aber ich vermutete, dass ich mehr bewirken könnte, wenn ich vorhandenes Wissen anwende, statt neues zu erzeugen. Schweren Herzens lehnte ich ab, und Dr. Weber respektierte meine Gründe.
+> ablehnen = reddetmek
+
+# 14 | Tez savunması | Die Verteidigung
+Meine Verteidigung fand in einem kleinen Seminarraum vor drei Professoren statt. Der externe Prüfer, ein renommierter Experte für Bauphysik, stellte bohrende Fragen zu den Grenzen meines Modells. An einer Stelle musste ich zugeben, dass ich die Antwort nicht kannte, und erklärte, wie ich sie untersuchen würde. Danach sagte er mir, dass ihn dieses Eingeständnis von Unsicherheit mehr beeindruckt habe als jede selbstsichere Antwort.
+
+# 15 | Türkiye'ye dönüş | Rückkehr in die Türkei
+Ich kehrte mit einem Masterabschluss, einem veröffentlichten Artikel und einem klaren Ziel nach Ankara zurück, aber ohne Stelle. Statt in ein großes Unternehmen einzutreten, wollte ich prüfen, ob unser Dorfprojekt zu einem nachhaltigen Sozialunternehmen werden könnte. Das war riskant, und einige Verwandte stellten meine Entscheidung offen infrage. Mein Vater unterstützte mich jedoch ohne Vorbehalt. "Du hast dich jahrelang vorbereitet", sagte er. "Jetzt ist es Zeit herauszufinden, was du aufbauen kannst."
+> zurückkehren = geri dönmek
+> infrage stellen = sorgulamak
+
+# 16 | Bir girişim kurmak | Ein Unternehmen gründen
+Ich nahm Kontakt zu Zehra auf, die in ihrem Konzernjob unzufrieden geworden war, und schlug vor, das Unternehmen gemeinsam zu gründen. Nach langen Gesprächen stimmte sie zu, zunächst in Teilzeit mitzumachen. Unser Konzept war, bezahlbare Pakete aus Dämmung, solarer Warmwasserbereitung und bei Bedarf kleinen Wärmepumpen anzubieten, installiert von geschulten Technikern aus der Region. Wir schrieben einen Geschäftsplan, obwohl keiner von uns eine Ausbildung in Management oder Finanzen hatte.
+> Kontakt aufnehmen = iletişime geçmek
+> mitmachen = katılmak
+
+# 17 | Finansman arayışı | Auf der Suche nach Geld
+Eine Finanzierung zu sichern erwies sich als außerordentlich schwierig. Banken zögerten, einem jungen Unternehmen ohne Erfolgsbilanz Kredit zu geben, und klassische Investoren erwarteten schnelles Wachstum und hohe Renditen, die mit unserer Mission unvereinbar waren. Schließlich erhielten wir einen kleinen Zuschuss einer internationalen Entwicklungsstiftung und ein zinsloses Darlehen einer regionalen Förderagentur. Die Summen waren bescheiden, aber sie ermöglichten ein Pilotprojekt in drei Dörfern.
+
+# 18 | Teknisyen yetiştirmek | Techniker ausbilden
+Ein zentraler Teil unseres Ansatzes war die Ausbildung lokaler Techniker, damit die Anlagen auch ohne uns gewartet werden konnten. Wir stellten junge Leute aus den Pilotdörfern ein, von denen einige die Schule früh verlassen hatten und kaum Berufsaussichten hatten. Ein Ausbildungsprogramm zu entwickeln zwang uns, technisches Wissen in praktische, verständliche Anleitungen zu übersetzen. Zu sehen, wie unsere Auszubildenden Selbstvertrauen und Fähigkeiten gewannen, war eines der schönsten Erlebnisse überhaupt.
+> einstellen = işe almak
+
+# 19 | İlk kriz | Die erste Krise
+Unser erster Winter brachte eine unerwartete Krise. Eine Charge Ventile von einem neuen Lieferanten versagte bei Frost und verursachte in mehreren Häusern Lecks. Wir hätten dem Lieferanten die Schuld geben können, aber unsere Kunden hatten uns vertraut, nicht dem Lieferanten. Wir ersetzten sofort jedes fehlerhafte Ventil auf eigene Kosten, was unsere Mittel fast aufbrauchte. Der Vorfall war finanziell schmerzhaft, stärkte aber unseren Ruf als zuverlässiges Unternehmen erheblich.
+
+# 20 | Hatadan ders çıkarmak | Aus Fehlern lernen
+Nach der Krise analysierten Zehra und ich genau, wie es dazu gekommen war. Wir stellten fest, dass wir unter Kostendruck darauf verzichtet hatten, Bauteile unter realistischen Bedingungen zu testen. Wir führten ein strenges Verfahren ein: Kein neues Bauteil wird eingebaut, bevor es simulierte Frostzyklen überstanden hat. Rückblickend war der Fehler eine unbezahlbare, wenn auch teure Lektion über die Gefahren von Abkürzungen.
+> feststellen = tespit etmek
+> verzichten auf = vazgeçmek
+> einführen = getirmek, başlatmak
+
+# 21 | Belediyeyle işbirliği | Zusammenarbeit mit der Stadtverwaltung
+Unser wachsender Ruf weckte das Interesse einer Provinzverwaltung, die Energiearmut verringern wollte. Die Zusammenarbeit mit einer Behörde führte uns in eine völlig andere Welt aus Vergaberegeln, Ausschüssen und langen Genehmigungsverfahren. Manchmal wirkte die Bürokratie absurd. Trotzdem verstand ich, dass viele dieser Verfahren Transparenz sichern und Korruption bei der Verwendung öffentlicher Gelder verhindern sollen, was ein berechtigtes Anliegen ist.
+
+# 22 | Paydaş toplantısı | Ein Treffen mit Beteiligten
+Die Verwaltung organisierte ein Treffen mit Bewohnern, örtlichen Beamten und Vertretern des Netzbetreibers. Eine so unterschiedliche Gruppe zu moderieren war eine Herausforderung. Die Bewohner sorgten sich vor allem um Kosten und Störungen, die Beamten um Rechenschaft und der Netzbetreiber um die Belastung des Netzes. Statt unseren Vorschlag zu verteidigen, versuchte ich zuzuhören und Gemeinsamkeiten zu finden. Am Ende hatten wir eine Liste gemeinsamer Prioritäten, die zur Grundlage eines Pilotvertrags wurde.
+> zuhören = dinlemek
+
+# 23 | Ekibin büyümesi | Das Team wächst
+Innerhalb von zwei Jahren war unser Unternehmen auf vierzehn Mitarbeiter gewachsen, darunter Techniker, eine Buchhalterin und eine Koordinatorin für die Gemeinden. Menschen zu führen erwies sich als viel anspruchsvoller als Technik zu beherrschen. Ich musste lernen, konstruktives Feedback zu geben, Konflikte zu lösen und Verantwortung abzugeben, statt jedes Detail kontrollieren zu wollen. Ich las viel über Führung, aber die wichtigsten Lektionen kamen aus meinen eigenen Fehlern.
+
+# 24 | Yetki devretmek | Delegieren lernen
+Das Delegieren fiel mir nicht leicht. Ich war gewohnt, Dinge selbst zu erledigen, teilweise weil ich glaubte, sie besser zu können. Diese Gewohnheit erschöpfte mich und frustrierte meine Kollegen, die das Gefühl hatten, ich vertraue ihnen nicht. Ein Wendepunkt kam, als ein Techniker namens Yusuf unseren Installationsablauf ohne Rücksprache mit mir neu gestaltete und die Installationszeit um ein Drittel verkürzte. Mir wurde klar, dass mein Zögern das Unternehmen gebremst hatte.
+
+# 25 | İş ve yaşam dengesi | Arbeit und Leben
+In dieser Zeit arbeitete ich fast ununterbrochen, oft bis spät in die Nacht und am Wochenende. Meine Gesundheit litt darunter: Ich schlief schlecht und hatte häufig Kopfschmerzen. Ayşe, die inzwischen Psychologie studierte, sprach mich vorsichtig darauf an. Sie wies darauf hin, dass Erschöpfung das Urteilsvermögen beeinträchtigt und dass eine Führungskraft, die ausbrennt, niemandem hilft. Widerwillig begann ich, Grenzen zu setzen und richtig Urlaub zu nehmen.
+> ansprechen = (konuyu) açmak
+
+# 26 | Mert'in seçimi | Merts Entscheidung
+Mein jüngerer Bruder Mert hatte einen ganz anderen Weg gewählt. Statt sofort zu studieren, hatte er eine Ausbildung zum Elektriker gemacht und war stolz auf seine Handarbeit. Einige Verwandte hielten das für eine schlechtere Wahl, eine Haltung, die ich zutiefst ungerecht fand. Fachkräfte sind für die Energiewende unverzichtbar: Ohne sie wird keine Solaranlage und keine Wärmepumpe installiert. Schließlich lud ich Mert in unser technisches Team ein.
+
+# 27 | Politika önerileri | Politische Empfehlungen
+Mit wachsender Erfahrung lud uns ein Ministerium ein, zu einer Anhörung über Energieeffizienzpolitik beizutragen. Wir verfassten Empfehlungen auf Grundlage unserer Daten und argumentierten, dass Förderungen gezielt einkommensschwache Haushalte erreichen und Dämmung vor neuer Heiztechnik priorisieren sollten. Für Politiker zu schreiben erforderte wieder einen anderen Stil: knapp, faktenbasiert und ohne Fachjargon. Mich überraschte, wie selten die Betroffenen direkt gefragt werden.
+
+# 28 | Yeşil aklama | Greenwashing
+Nicht jede Entwicklung in unserer Branche war ermutigend. Als Energieeffizienz in Mode kam, begannen manche Firmen, übertriebene Versprechen über ihre Produkte zu machen, ein Vorgehen, das man Greenwashing nennt. Ein Konkurrent warb mit Einsparungen, die unter normalen Bedingungen physikalisch unmöglich waren. Obwohl es verlockend war, unsere eigenen Ergebnisse zu übertreiben, beschlossen wir, unsere tatsächlichen Leistungsdaten offen zu veröffentlichen. Transparenz, glaubten wir, würde länger halten als Werbung.
+
+# 29 | Bir gazeteci | Eine Journalistin
+Eine Journalistin einer überregionalen Zeitung interviewte mich für einen Artikel über Energiearmut. Ich war besorgt, weil ich gehört hatte, dass Journalisten komplexe Themen manchmal vereinfachen. Zu meiner Erleichterung war sie gut informiert und stellte durchdachte Fragen. Trotzdem übertrieb die Schlagzeile unsere Erfolge deutlich. Ich lernte, vor Interviews kurze Kernbotschaften vorzubereiten und zu akzeptieren, dass ich nicht kontrollieren kann, wie andere meine Worte darstellen.
+
+# 30 | Dijital izleme | Digitale Überwachung
+Um die Wartung zu verbessern, führten wir günstige Sensoren ein, die die Anlagen aus der Ferne überwachten und Techniker bei Störungen alarmierten. So konnten wir Probleme beheben, bevor die Kunden sie überhaupt bemerkten. Das warf jedoch dieselben Datenschutzfragen auf wie in meiner Masterarbeit. Wir legten strenge Grundsätze fest: nur die für die Wartung nötigen Daten erheben, klar erklären, was erhoben wird, und nie Daten verkaufen. Manche Berater hielten das für naiv, aber wir haben es nie bereut.
+> festlegen = belirlemek
+
+# 31 | Can'ın ikilemi | Cans Dilemma
+Can, inzwischen ein erfahrener Ingenieur in der Rüstungsindustrie, vertraute mir an, dass er mit einem moralischen Dilemma kämpfte. Sein Team entwickelte ein Lenksystem, und er zweifelte, ob er zur Waffentechnik beitragen wollte. Wir sprachen bis spät in die Nacht. Ich sagte ihm nicht, was er tun sollte; ich stellte nur Fragen zu seinen Werten. Monate später wechselte er zu einer Firma, die medizinische Bildgebungsgeräte entwickelt.
+> anvertrauen = sır vermek, açılmak
+
+# 32 | Mühendislik ve sorumluluk | Technik und Verantwortung
+Unser Gespräch brachte mich dazu, über die Verantwortung von Ingenieuren allgemein nachzudenken. Technische Entscheidungen sind selten rein technisch. Sie enthalten Entscheidungen darüber, wer profitiert, wer die Risiken trägt und welche Folgen akzeptabel sind. Ingenieure haben daher Pflichten nicht nur gegenüber ihren Arbeitgebern, sondern auch gegenüber der Öffentlichkeit. Berufsethische Kodizes sagen das ausdrücklich, doch im Alltag kann wirtschaftlicher Druck diese Pflichten leicht wegerklären.
+
+# 33 | Bir ödül | Eine Auszeichnung
+In unserem fünften Jahr erhielt unser Unternehmen einen internationalen Preis für soziale Innovation. Die Verleihung in Genf war glanzvoll und ein wenig unwirklich; unter den angesehenen Gästen fühlte ich mich fast wie ein Hochstapler. In meiner kurzen Rede betonte ich, dass der Preis unseren Technikern und den Familien gehörte, die uns vertraut hatten. Insgeheim befürchtete ich, dass Anerkennung uns bequem machen könnte. Preise feiern die Vergangenheit, nicht die Aufgaben, die vor uns liegen.
+
+# 34 | Büyüme ikilemi | Das Wachstumsdilemma
+Nach der Auszeichnung zeigten Investoren, die uns vorher ignoriert hatten, plötzlich Interesse. Einer bot eine große Investition an, unter der Bedingung, schnell in fünf neue Provinzen zu expandieren. Zehra und ich waren darüber heftig uneinig. Sie argumentierte, schnelles Wachstum würde vielen weiteren Familien helfen; ich befürchtete, dass es die Qualität und unsere engen Beziehungen zu den Gemeinden gefährden würde. Schließlich nahmen wir eine kleinere Investition mit langsameren, beherrschbaren Wachstumszielen an.
+
+# 35 | Büyükannemin vefatı | Der Tod meiner Großmutter
+In jenem Herbst starb meine Großmutter friedlich im Schlaf, mit einundneunzig Jahren. Ich fuhr zur Beerdigung ins Dorf, wo die Nachbarn Geschichten über ihre Großzügigkeit und ihre Sturheit erzählten. Als ich in ihrer leeren Küche neben dem alten Ofen saß, an dem sie mir unzählige Geschichten erzählt hatte, überwältigten mich Trauer und Dankbarkeit. In gewisser Weise hatte unser ganzes Unternehmen in genau diesem Raum begonnen.
+
+# 36 | Bir anma | Ein Andenken
+Um ihr Andenken zu ehren, gründeten wir einen kleinen Stipendienfonds für junge Menschen aus ihrem Dorf, die sich zu Technikern ausbilden lassen wollten. Die erste Stipendiatin war eine entschlossene junge Frau namens Esra, die später eine unserer besten Installateurinnen wurde. Ich stelle mir gern vor, dass meine Großmutter, die nie die Grundschule beenden durfte, sich gefreut hätte, dass ihr Vermächtnis die Form von Bildung annahm.
+
+# 37 | İklime uyum | Anpassung an den Klimawandel
+In diesen Jahren wurden die Folgen des Klimawandels immer spürbarer. Die Sommer in Zentralanatolien wurden heißer, und viele unserer Kunden litten nun eher unter Hitze als unter Kälte. Das zwang uns, unser Angebot zu überdenken. Unsere Wärmepumpen konnten auch kühlen, und eine gute Dämmung schützte Häuser vor Hitze genauso wirksam wie vor Kälte. Anpassung, wurde uns klar, war inzwischen genauso wichtig wie Emissionsminderung.
+
+# 38 | Yanlış bir varsayım | Eine falsche Annahme
+Der Einstieg in die Kühlung deckte eine falsche Annahme in unserem Geschäftsmodell auf. Wir hatten vorausgesetzt, dass die Kunden die Geräte sparsam nutzen würden, um Kosten zu senken. Tatsächlich ließen manche Haushalte während Hitzewellen ihre Klimaanlage ununterbrochen laufen, was zu unerwartet hohen Stromrechnungen und Beschwerden führte. Wir reagierten mit einfachen Tipps zum effizienten Kühlen und mit intelligenten Steuerungen. Die Episode erinnerte mich daran, wie schwer vorhersehbar das Zusammenspiel von Technik und menschlichem Verhalten ist.
+> aufdecken = ortaya çıkarmak
+> voraussetzen = varsaymak
+
+# 39 | Bir öğrenci grubu | Eine Gruppe Studierender
+In einem Frühling bat mich Professorin Demir, vor ihren Abschlussstudierenden zu sprechen. Als ich vor ihnen stand, erkannte ich mich selbst wieder: eifrig, idealistisch und ein wenig ängstlich vor der Zukunft. Ich erzählte ihnen offen von unseren Misserfolgen ebenso wie von unseren Erfolgen. Danach fragte ein Student, woher ich gewusst habe, welchen Weg ich wählen sollte. Ich gab zu, dass ich es nicht gewusst hatte. Ich hatte einfach die besten Entscheidungen getroffen, die mit den vorhandenen Informationen möglich waren, und unterwegs nachgesteuert.
+> wiedererkennen = yeniden tanımak
+> nachsteuern = düzeltme yapmak
+
+# 40 | On yıl sonra | Zehn Jahre später
+Zehn Jahre nach meiner ersten Deutschstunde lese ich manchmal die einfachen Sätze in meinem alten Heft: "Mein Name ist Deniz. Ich bin Student." Der Kontrast zu meinem heutigen Leben ist auffällig. Und doch bin ich im Grunde immer noch ein Lernender. Jedes Projekt, jeder Fehler und jedes Gespräch lehrt mich etwas Neues. Vielleicht ist die wichtigste Lektion, dass Fachwissen kein Ziel ist, sondern eine Haltung: die Bereitschaft, weiter zu lernen.

@@ -1,0 +1,151 @@
+# 1 | Merhaba, ben Deniz | Hallo, ich bin Deniz
+Hallo! Mein Name ist Deniz. Ich bin Student. Ich bin 19 Jahre alt. Ich komme aus der Türkei. Ich wohne in Ankara. Ankara ist eine große Stadt. Ich mag meine Stadt. Heute ist mein erster Tag an der Universität. Ich bin glücklich.
+
+# 2 | Ailem | Meine Familie
+Das ist meine Familie. Mein Vater heißt Ahmet. Er ist Lehrer. Meine Mutter heißt Zeynep. Sie ist Ärztin. Ich habe eine Schwester und einen Bruder. Meine Schwester heißt Ayşe. Sie ist 15. Mein Bruder heißt Mert. Er ist 10. Wir wohnen in einem kleinen Haus. Ich liebe meine Familie.
+
+# 3 | Evimiz | Unser Haus
+Unser Haus ist klein, aber schön. Es hat zwei Schlafzimmer, eine Küche und ein Wohnzimmer. Mein Zimmer ist auch klein. In meinem Zimmer gibt es ein Bett, einen Schreibtisch und einen Stuhl. Es gibt auch ein Fenster. Von meinem Fenster sehe ich einen Baum. Ich mag mein Zimmer.
+> es gibt = var (Es gibt ein Bett. = Bir yatak var.)
+
+# 4 | Sabahım | Mein Morgen
+Ich stehe jeden Tag um 7 Uhr auf. Ich wasche mein Gesicht und putze meine Zähne. Dann frühstücke ich mit meiner Familie. Ich esse Brot, Käse und Eier. Ich trinke Tee. Meine Mutter trinkt Kaffee. Um 8 Uhr fahre ich mit dem Bus zur Universität.
+> aufstehen = kalkmak (Ich stehe auf.)
+> zur = zu der: -e, -a (zur Universität = üniversiteye)
+
+# 5 | Üniversitede | An der Universität
+Meine Universität ist groß. Es gibt viele Studenten. Ich studiere Maschinenbau. Mein Unterricht beginnt um 9 Uhr. Heute habe ich zwei Kurse: Mathe und Physik. Mathe ist leicht für mich, aber Physik ist schwer. Meine Lehrerin ist sehr gut. Sie heißt Frau Kaya.
+
+# 6 | Yeni bir arkadaş | Ein neuer Freund
+Im Physikkurs lerne ich einen neuen Freund kennen. Er heißt Can. Er kommt aus Istanbul. Er studiert auch Maschinenbau. Can ist groß und lustig. Wir sitzen im Kurs zusammen. Nach dem Kurs trinken wir Tee im Garten. Can mag Fußball. Ich mag auch Fußball!
+> kennenlernen = tanışmak (Ich lerne ihn kennen.)
+> im = in dem: -de, -da
+
+# 7 | Haftanın günleri | Die Wochentage
+Eine Woche hat sieben Tage: Montag, Dienstag, Mittwoch, Donnerstag, Freitag, Samstag und Sonntag. Von Montag bis Freitag gehe ich zur Universität. Am Samstag spiele ich mit Can Fußball. Am Sonntag bleibe ich zu Hause. Ich lese Bücher und sehe Filme. Der Sonntag ist mein Lieblingstag.
+> am = an dem (Am Samstag = Cumartesi günü)
+> zu Hause = evde
+
+# 8 | Saat kaç? | Wie spät ist es?
+Wie spät ist es? Es ist halb elf. Jetzt bin ich in der Bibliothek. Die Bibliothek ist ruhig. Hier lerne ich zwei Stunden Mathe. Um halb eins esse ich mit Can zu Mittag. Wir essen Suppe und Reis. Das Mittagessen an der Universität ist nicht teuer. Dann gehen wir zurück zum Unterricht.
+> halb elf = on buçuk (11'e yarım var)
+> zu Mittag essen = öğle yemeği yemek
+
+# 9 | Renkler | Farben
+Ich liebe Farben. Meine Lieblingsfarbe ist Blau. Der Himmel ist blau und das Meer ist blau. Meine Tasche ist schwarz. Meine Schuhe sind weiß. Die Lieblingsfarbe von Can ist Rot. Sein Auto ist auch rot. Meine Schwester Ayşe mag Rosa und Lila. Was ist deine Lieblingsfarbe?
+
+# 10 | Kıyafetler | Kleidung
+Heute ist es kalt. Ich trage einen warmen Mantel, einen Pullover und eine Jeans. Ich trage auch eine Mütze. Im Sommer trage ich ein Hemd und eine kurze Hose. Meine Mutter kauft Kleidung für mich. Sie sagt: "Deniz, diese Schuhe sind alt. Du brauchst neue Schuhe." Ich möchte braune Schuhe.
+> möchte = istiyorum (kibar: ich möchte)
+
+# 11 | Hava durumu | Das Wetter
+Wie ist das Wetter heute? In Ankara ist der Winter kalt und es schneit oft. Der Sommer ist heiß und trocken. Heute ist es sonnig, aber windig. Ich nehme meinen Regenschirm, denn im Frühling regnet es oft. Ich mag den Herbst. Die Bäume sind gelb und orange.
+
+# 12 | Alışveriş | Einkaufen
+Am Samstagmorgen gehe ich mit meiner Mutter auf den Markt. Wir kaufen Obst und Gemüse. Die Äpfel sind heute billig. Wir kaufen zwei Kilo Äpfel, ein paar Tomaten und Kartoffeln. Meine Mutter fragt: "Wie viel kostet das?" Der Mann sagt: "Vierzig Lira." Wir bezahlen und gehen nach Hause.
+> ein paar = birkaç
+> nach Hause = eve
+
+# 13 | Mutfakta | In der Küche
+Ich kann ein bisschen kochen. Heute mache ich Nudeln für meine Familie. Zuerst koche ich Wasser. Dann gebe ich die Nudeln ins Wasser. Ich mache eine Tomatensoße mit Öl, Salz und Knoblauch. Mein Bruder Mert hilft mir. Das Abendessen ist fertig! Alle mögen meine Nudeln.
+> ein bisschen = biraz
+
+# 14 | Hobilerim | Meine Hobbys
+Ich habe drei Hobbys. Erstens lese ich gern. Ich lese jeden Monat ein Buch. Zweitens liebe ich Musik. Ich spiele Gitarre. Drittens zeichne ich gern. Ich zeichne Gebäude und Maschinen. Das Hobby von Can ist Fotografie. Er macht Fotos von der Stadt.
+> gern = severek (Ich lese gern. = Okumayı severim.)
+
+# 15 | Spor | Sport
+Sport ist wichtig für mich. Am Samstag spiele ich Fußball, und am Mittwoch laufe ich im Park. Can spielt auch Basketball. Er ist ein guter Spieler. Meine Schwester Ayşe schwimmt. Sie geht zweimal pro Woche ins Schwimmbad. Mein Vater geht jeden Abend spazieren. Sport macht uns gesund.
+> spazieren gehen = yürüyüşe çıkmak
+
+# 16 | Doktorda | Beim Arzt
+Heute geht es mir schlecht. Mein Kopf tut weh und mein Hals tut auch weh. Ich gehe zum Arzt. Der Arzt stellt ein paar Fragen. "Haben Sie Fieber?" "Ja, ein bisschen." Er sagt: "Sie sind erkältet. Trinken Sie viel Wasser und ruhen Sie sich aus. Bleiben Sie zwei Tage im Bett."
+> es geht mir schlecht = kendimi kötü hissediyorum
+> weh tun = ağrımak (Mein Kopf tut weh.)
+> sich ausruhen = dinlenmek
+
+# 17 | Hayvanlar | Tiere
+Meine Großmutter wohnt in einem Dorf. Sie hat einen Bauernhof. Auf dem Bauernhof gibt es viele Tiere: Kühe, Schafe, Hühner und ein Pferd. Sie hat auch einen Hund und zwei Katzen. Der Hund heißt Karabaş. Im Sommer besuche ich meine Großmutter. Ich helfe ihr mit den Tieren. Ich füttere die Hühner.
+
+# 18 | Para | Geld
+Ich habe einen kleinen Job. Am Dienstagabend helfe ich Kindern in Mathe. Ich verdiene 500 Lira pro Woche. Ich gebe 200 Lira für Essen und 100 Lira für den Bus aus. Den Rest spare ich. Ich möchte einen neuen Computer kaufen. Ein guter Computer kostet viel Geld.
+> ausgeben = harcamak (Ich gebe Geld aus.)
+
+# 19 | En iyi arkadaşım | Meine beste Freundin
+Meine beste Freundin heißt Elif. Wir sind Freundinnen seit der Schule. Sie ist klein und hat lange schwarze Haare. Sie ist sehr nett und klug. Elif studiert Medizin in Istanbul. Wir sehen uns nicht oft, aber wir telefonieren jeden Sonntag. Ich vermisse sie.
+> sich sehen = görüşmek (Wir sehen uns.)
+
+# 20 | Bir doğum günü | Ein Geburtstag
+Heute hat meine Schwester Geburtstag. Sie wird 16 Jahre alt. Wir machen eine Party zu Hause. Meine Mutter backt einen großen Schokoladenkuchen. Die Freundinnen von Ayşe kommen zur Party. Sie singen "Zum Geburtstag viel Glück". Ich schenke ihr ein Buch und einen Stift. Sie ist sehr glücklich. Es ist ein toller Tag.
+
+# 21 | Aylar | Die Monate
+Ein Jahr hat zwölf Monate. Mein Geburtstag ist im März. Der März ist im Frühling. Im Juni schließt die Universität und die Sommerferien beginnen. Im Juli und August ist es sehr heiß. Im September beginnt der Unterricht wieder. Im Dezember schneit es in Ankara. In welchem Monat hast du Geburtstag?
+
+# 22 | Ulaşım | Verkehr
+In Ankara gibt es Busse, eine U-Bahn und Taxis. Normalerweise fahre ich mit der U-Bahn zur Universität. Sie ist schnell und billig. Manchmal gehe ich zu Fuß. Das ist langsam, aber gut für mich. Mein Vater fährt mit dem Auto zur Arbeit. Am Morgen sind die Straßen voll. Taxis sind teuer.
+> zu Fuß gehen = yürüyerek gitmek
+
+# 23 | Sınavdan önce | Vor der Prüfung
+Nächste Woche habe ich eine Matheprüfung. Ich lerne jeden Tag. Nach dem Unterricht gehe ich in die Bibliothek. Ich lese meine Notizen und löse Aufgaben. Can lernt mit mir. Wenn wir etwas nicht verstehen, fragen wir Frau Kaya. Sie hilft uns immer. Ich bin ein bisschen nervös, aber ich bin bereit.
+
+# 24 | Sınav günü | Die Prüfung
+Heute ist der Prüfungstag. Ich stehe früh auf. Ich frühstücke gut. Die Prüfung beginnt um 10 Uhr. Es gibt zehn Fragen. Einige Fragen sind leicht, einige sind schwer. Ich beantworte alle Fragen. Nach der Prüfung bin ich müde, aber glücklich. Ich glaube, meine Prüfung ist gut.
+
+# 25 | Sonuçlar | Die Ergebnisse
+Eine Woche später gibt Frau Kaya die Ergebnisse. Ich habe 85 von 100 Punkten! Can hat 90. Wir sind sehr froh. Wir rufen unsere Familien an. Mein Vater sagt: "Gut gemacht, Deniz!" Am Abend essen wir mit unseren Freunden Pizza. Wir feiern.
+> anrufen = telefonla aramak (Wir rufen an.)
+> gut gemacht = aferin
+
+# 26 | Mahallem | Mein Viertel
+Ich wohne in einem ruhigen Viertel. In der Nähe von meinem Haus gibt es eine Bäckerei, eine Apotheke und einen kleinen Supermarkt. Es gibt auch eine Moschee und einen Park. Jeden Morgen kaufe ich frisches Brot in der Bäckerei. Der Bäcker ist ein alter Mann. Er ist immer freundlich. Er kennt meinen Namen.
+> in der Nähe von = yakınında
+
+# 27 | Yol sormak | Nach dem Weg fragen
+Ein Tourist hält mich auf der Straße an. "Entschuldigung, wo ist das Museum?", fragt er. "Gehen Sie geradeaus und dann links bei der Bank. Das Museum ist neben der Post", sage ich. "Ist es weit?" "Nein, es ist nah. Es sind fünf Minuten zu Fuß." Er sagt: "Vielen Dank!"
+> anhalten = durdurmak (Er hält mich an.)
+
+# 28 | Bir telefon | Ein Anruf
+Mein Handy klingelt. Es ist meine Großmutter. "Hallo, Deniz! Wie geht es dir?" "Mir geht es gut, danke. Und dir, Oma?" "Mir geht es auch gut. Wann kommst du ins Dorf?" "Ich komme im Juni, nach meinen Prüfungen." "Gut! Ich möchte dich sehen. Lern fleißig!"
+> Wie geht es dir? = Nasılsın?
+
+# 29 | Ev temizliği | Hausputz
+Am Samstag putzen wir zusammen das Haus. Mein Vater putzt die Küche. Meine Mutter wäscht die Wäsche. Ayşe putzt die Fenster und Mert räumt seine Spielsachen in eine Kiste. Ich putze mein Zimmer und das Bad. Das dauert zwei Stunden. Dann ist das Haus sauber und wir trinken Tee.
+> aufräumen / räumen = toplamak, yerleştirmek
+
+# 30 | Film gecesi | Filmabend
+Am Freitagabend kommen Can und Elif zu mir. Elif ist am Wochenende in Ankara. Wir sehen zusammen einen Film. Es ist ein Science-Fiction-Film über Roboter. Wir essen Popcorn und trinken Saft. Der Film ist lang, aber sehr interessant. Nach dem Film sprechen wir über Roboter und Technik.
+
+# 31 | Planlarım | Meine Pläne
+Ich habe viele Pläne. Diesen Sommer möchte ich gut Deutsch lernen. Ich mache einen Kurs. Nächstes Jahr möchte ich einen Sommerjob in einer Fabrik finden. In der Zukunft möchte ich ein guter Ingenieur sein. Ich möchte Maschinen und Autos entwerfen.
+
+# 32 | Almanca kursu | Der Deutschkurs
+Der Deutschkurs ist am Montag- und Donnerstagabend. In meiner Klasse sind zwölf Studenten. Unsere Lehrerin ist Frau Wagner. Sie kommt aus Berlin. Sie spricht ein bisschen Türkisch. Im Kurs lesen, schreiben, hören und sprechen wir. Ich höre gern deutsche Lieder. Das hilft mir.
+
+# 33 | Elif'e bir mesaj | Eine Nachricht an Elif
+Liebe Elif, wie geht es dir? Ich habe in diesen Tagen viel zu tun. Ich habe Unterricht an der Universität und am Abend einen Deutschkurs. Deutsch ist schwer, aber ich mag es. Frau Wagner ist eine gute Lehrerin. Can sagt dir Hallo. Bitte schreib mir bald. Liebe Grüße, Deniz
+> viel zu tun haben = çok işi olmak
+> Liebe Grüße = sevgiler
+
+# 34 | İki kahvaltı | Zwei Frühstücke
+Frau Wagner fragt uns nach dem türkischen Frühstück. Ich sage: "Wir essen Brot, Käse, Oliven, Tomaten, Gurken, Eier und Honig. Wir trinken schwarzen Tee." Frau Wagner lacht. "In Deutschland essen wir Brötchen mit Wurst, Marmelade oder Müsli. Wir trinken Kaffee." Wurst zum Frühstück? Das ist komisch für mich!
+> fragen nach = hakkında sormak
+
+# 35 | Can'ın ailesi | Die Familie von Can
+Am Sonntag besuche ich die Familie von Can. Sie wohnen in einer Wohnung im Stadtzentrum. Die Mutter von Can ist Krankenschwester und sein Vater ist Taxifahrer. Can hat einen kleinen Bruder, Emre. Emre ist 6. Er liebt Autos und Züge. Die Mutter von Can kocht leckeres Essen für uns. Ich esse sehr viel!
+
+# 36 | Göle gezi | Ein Ausflug zum See
+Im Mai ist das Wetter warm. Unsere Klasse macht einen Ausflug zu einem See in der Nähe von Ankara. Wir fahren mit dem Bus. Am See gehen wir spazieren, machen Fotos und machen ein Picknick. Einige Studenten schwimmen, aber das Wasser ist kalt. Am Nachmittag spielen wir Volleyball. Es ist ein schöner Tag.
+
+# 37 | Hayalimdeki araba | Mein Traumauto
+Ich liebe Autos. Mein Traumauto ist ein Elektroauto. Es ist schnell, leise und sauber. Es braucht kein Benzin. Es fährt mit Strom. Seine Batterie ist sehr groß. In der Zukunft möchte ich solche Autos entwerfen. Das Traumauto von Can ist alt: ein roter Mustang von 1965!
+
+# 38 | Yılın sonu | Das Ende des Jahres
+Es ist Juni. Die Prüfungen sind vorbei. Dieses Jahr ist schwer, aber gut. Ich lerne viel. Ich habe neue Freunde, und mein Deutsch ist jetzt besser. Morgen fahre ich ins Dorf zu meiner Großmutter. Ich bleibe zwei Wochen dort. Ich möchte mich ausruhen, lesen und auf dem Bauernhof helfen.
+> vorbei sein = bitmiş olmak
+
+# 39 | Köyde yaz | Sommer im Dorf
+Das Dorf ist sehr ruhig. Ich stehe früh mit den Hühnern auf! Jeden Morgen trinke ich Milch von den Kühen meiner Großmutter. Ich helfe ihr im Garten. Wir pflanzen Tomaten, Paprika und Bohnen. Am Abend sitzen wir draußen und sehen die Sterne an. Hier gibt es viele Sterne. Es ist nicht wie in der Stadt.
+> ansehen = bakmak, seyretmek (Wir sehen die Sterne an.)
+
+# 40 | Yeni bir başlangıç | Ein neuer Anfang
+Mein Sommer ist vorbei. Ich bin wieder in Ankara. Ich bin bereit für ein neues Jahr an der Universität. Jetzt kann ich auf Deutsch über meine Familie, mein Zuhause, meinen Tag und meine Pläne sprechen. Ich kenne viele Wörter. Als Nächstes möchte ich reisen und mein Deutsch benutzen. Vielleicht fahre ich nach Berlin!

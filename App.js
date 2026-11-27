@@ -23,7 +23,7 @@ import Money from './src/screens/Money';
 import Books from './src/screens/Books';
 import Groups from './src/screens/Groups';
 import Goals from './src/screens/Goals';
-import English from './src/screens/English';
+import { English, German } from './src/screens/Language';
 import Profile from './src/screens/Profile';
 import Login from './src/screens/Login';
 
@@ -32,6 +32,7 @@ const ROUTES = {
   gorevler: ['Görevler', Tasks, 'checkbox-outline'],
   hedef: ['Hedefler', Goals, 'battery-half-outline'],
   ingilizce: ['İngilizce', English, 'language-outline'],
+  almanca: ['Almanca', German, 'language-outline'],
   calisma: ['Çalışma', Study, 'timer-outline'],
   rutin: ['Rutinler', Routines, 'link-outline'],
   takvim: ['Takvim', Calendar, 'calendar-outline'],

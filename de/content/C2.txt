@@ -1,0 +1,134 @@
+# 1 | Bir kitap fikri | Die Idee zu einem Buch
+Es war Ayşe, die mir halb im Scherz vorschlug, ein Buch zu schreiben. "Du erzählst ohnehin ständig Geschichten aus den Dörfern", neckte sie mich, "also kannst du sie auch zu Papier bringen." Der Gedanke ließ mich nicht los. Literarische Ambitionen hatte ich keine, doch ich spürte, dass die Geschichte unseres Unternehmens mit ihren Fehltritten und glücklichen Zufällen bei jungen Ingenieuren Anklang finden könnte, denen selten erzählt wird, wie chaotisch Innovation tatsächlich verläuft.
+
+# 2 | Yazmanın zorluğu | Die Disziplin des Schreibens
+Das Schreiben erwies sich als weit mühseliger, als ich es mir ausgemalt hatte. Technische Berichte hatten mich an einen knappen, unpersönlichen Ton gewöhnt, während ein Buch eine eigene Stimme, Rhythmus und Offenheit verlangte. Meine ersten Entwürfe waren hölzern und selbstgefällig. Eine Lektorin, der mich Professorin Demir vorgestellt hatte, kritzelte eine schonungslose Bemerkung an den Rand: "Weniger Triumph, mehr Zweifel." Dieser lakonische Rat verwandelte das Manuskript.
+
+# 3 | Teknoloji tarihi | Lehren aus der Geschichte
+Um unsere Arbeit in einen größeren Zusammenhang einzuordnen, vertiefte ich mich in die Technikgeschichte. Mir fiel auf, wie oft Innovationen als Allheilmittel gepriesen wurden, nur um unvorhergesehene Missstände hervorzubringen. Das Automobil versprach Freiheit und brachte Staus und Zersiedelung; billige fossile Brennstoffe trieben den Wohlstand an und destabilisierten zugleich das Klima. Solche Präzedenzfälle lehrten mich Misstrauen gegenüber jeder Technik, die als eindeutige Lösung komplexer gesellschaftlicher Probleme vermarktet wird.
+
+# 4 | Jevons paradoksu | Der Rebound-Effekt
+Ein Begriff beschäftigte mich besonders: der Rebound-Effekt, auch Jevons-Paradoxon genannt. Wird eine Ressource effizienter genutzt, wird sie billiger, was paradoxerweise einen höheren Verbrauch anregen kann. Auch unsere Daten deuteten darauf hin: Manche Haushalte heizten verständlicherweise mehr Räume, sobald das Heizen bezahlbar wurde. Ich hielt das nicht für ein Scheitern, denn Wärme ist ein legitimes Bedürfnis, aber es verkomplizierte die schlichte Annahme, Effizienz senke automatisch die Emissionen.
+
+# 5 | Büyüme tartışması | Die Wachstumsdebatte
+Der Rebound-Effekt führte mich beinahe zwangsläufig in die umstrittene Debatte über Wirtschaftswachstum. Befürworter des sogenannten grünen Wachstums behaupten, Wohlstand lasse sich durch Innovation von Umweltschäden entkoppeln. Anhänger der Postwachstumsbewegung halten dagegen, wohlhabende Gesellschaften müssten ihren Konsum grundsätzlich einschränken. Keines der beiden Lager überzeugte mich ganz. Dogmatismus auf beiden Seiten schien die unscheinbare, schrittweise Arbeit zu verdecken, konkrete Systeme sparsamer und gerechter zu machen.
+
+# 6 | Bir açılış konuşması | Ein Festvortrag
+Als ich eingeladen wurde, auf einer internationalen Energiekonferenz den Festvortrag zu halten, wollte ich zunächst ablehnen, weil ich mir das nötige Ansehen nicht zutraute. Zehra tat mein Zögern als falsche Bescheidenheit ab. In der Rede verzichtete ich auf große Verkündigungen und erzählte stattdessen die Geschichte der fehlerhaften Ventile. Nach der Reaktion des Publikums zu urteilen, war das Eingeständnis der eigenen Fehlbarkeit überzeugender als jede polierte Vision einer reibungslosen Zukunft.
+
+# 7 | Otomasyon ve emek | Automatisierung und Arbeit
+In der Fragerunde wollte ein Teilnehmer wissen, ob die Automatisierung Techniker wie unsere überflüssig machen würde. Eine scharfsinnige Frage. Algorithmen optimierten unsere Wartungspläne bereits mit verblüffender Genauigkeit. Doch Dämmung in einem bröckelnden Dorfhaus einzubauen, einen misstrauischen Hausbesitzer zu überzeugen oder mit spärlichen Mitteln eine Reparatur zu improvisieren, verlangt implizites Können, das sich der Automatisierung hartnäckig entzieht. Die eigentliche Frage, sagte ich, sei nicht, ob Maschinen Arbeiter ersetzen, sondern wer die Gewinne einstreicht.
+
+# 8 | Örtük bilgi | Implizites Wissen
+Der Philosoph Michael Polanyi stellte einmal fest, dass wir mehr wissen, als wir zu sagen wissen. Diese Einsicht, der ich erst spät begegnete, erhellte vieles in meiner Erfahrung. Yusuf konnte eine defekte Pumpe allein am Geräusch erkennen, tat sich aber schwer zu erklären, wie. Solches implizite Wissen wird durch Lehre und gemeinsame Praxis weitergegeben, nicht durch Handbücher. Organisationen, die es missachten, so meine Überzeugung, gefährden genau die Kompetenz, auf die sie angewiesen sind.
+
+# 9 | Zehra'nın ayrılışı | Zehra geht
+Nach neun Jahren kündigte Zehra an, das Unternehmen zu verlassen, um in Politikwissenschaft zu promovieren. Die Nachricht war bittersüß. Unsere Partnerschaft hatte unzählige Streitigkeiten und Krisen überstanden, und ihr Pragmatismus hatte meinen Idealismus oft gemildert. Sie versicherte mir, ihr Weggang sei keine Absage an unsere Arbeit, sondern deren natürliche Fortsetzung. Wir feierten den Anlass mit einem bescheidenen Abendessen und schwelgten in Erinnerungen, bis das Personal demonstrativ die Stühle hochstellte.
+
+# 10 | Liderlik devri | Die Staffelübergabe
+Zehras Weggang zwang mich, mich einer unbequemen Frage zu stellen: Hing das Unternehmen zu sehr von seinen Gründern ab? Ich beschloss, eine neue Generation von Führungskräften heranzubilden. Esra, die erste Stipendiatin aus dem Fonds meiner Großmutter, war inzwischen Leiterin des operativen Geschäfts. Ihr echte Befugnisse statt bloß nominaler Verantwortung zu übertragen, verlangte von mir, Kontrolle auf eine manchmal beunruhigende Weise abzugeben. Doch ihre Entscheidungen übertrafen oft meine eigenen.
+> abhängen von = -e bağlı olmak
+
+# 11 | Bir okuma grubu | Ein Lesekreis
+Teils als Gegengewicht zum unerbittlichen Pragmatismus meines Berufslebens trat ich einem Lesekreis bei, der sich monatlich in einer Buchhandlung in Ankara traf. Wir lasen Romane und Gedichte, türkische und ausländische, oft in Übersetzung. Anfangs näherte ich mich der Literatur mit der Ungeduld eines Ingenieurs und suchte nach Handlung und Auflösung. Mit der Zeit lernte ich, Mehrdeutigkeit zu genießen und zu schätzen, dass die tiefsten Werke eine Auflösung oft verweigern, statt sie zu liefern.
+> beitreten = katılmak, üye olmak
+
+# 12 | Belirsizlikle yaşamak | Mit Mehrdeutigkeit leben
+Diese neu gewonnene Toleranz für Mehrdeutigkeit sickerte unerwartet in mein berufliches Handeln ein. Ich drängte bei verzwickten Problemen weniger auf einen vorschnellen Abschluss und war eher bereit, mehrere Hypothesen gleichzeitig in Betracht zu ziehen. In Besprechungen hörte ich mehr zu und unterbrach seltener. Ein Kollege aus Deutschland bemerkte mit typischer Direktheit, ich sei "weniger sicher und überzeugender" geworden, was ich als Kompliment auffasste.
+> in Betracht ziehen = göz önüne almak
+
+# 13 | Mentorluk | Mentoring
+Jedes Jahr begleitete ich eine Handvoll junger Ingenieure als Mentor, einige aus unserem Team, andere von Universitäten. Mentoring ist ein eigentümliches Unterfangen. Die Versuchung ist groß, Ratschläge zu verteilen und den eigenen Werdegang wie eine Schablone darzustellen. Doch die Umstände sind verschieden, und was für mich klug war, kann für sie unklug sein. Ich lernte allmählich, dass das Wertvollste, was ich bieten konnte, nicht Antworten waren, sondern gut gewählte Fragen und ein aufmerksames, nicht wertendes Ohr.
+
+# 14 | Başarısızlığa övgü | Lob des Scheiterns
+Bei meinen Mentees bemerkte ich eine allgegenwärtige Angst vor dem Scheitern, vielleicht verstärkt durch die ständige Zurschaustellung inszenierten Erfolgs in den sozialen Medien. Viele von ihnen sahen einen einzigen Rückschlag als Urteil über ihren Wert. Ich erzählte ihnen die ungeschönte Chronik unserer Fehltritte, von den undichten Ventilen bis zur verfehlten Kühlstrategie. Sie sollten begreifen, dass Scheitern, wenn man es anerkennt und untersucht, nicht das Gegenteil von Kompetenz ist, sondern einer ihrer unverzichtbaren Bestandteile.
+
+# 15 | Mühendislik ve demokrasi | Technik und Demokratie
+Die Zusammenarbeit mit Kommunen überzeugte mich, dass Infrastruktur von Natur aus politisch ist. Entscheidungen darüber, wo Stromleitungen gebaut werden, welche Viertel zuerst modernisiert werden oder wie Kosten verteilt werden, beruhen auf Werturteilen, so technisch sie auch präsentiert werden. Werden solche Entscheidungen undurchsichtig getroffen, schwindet das öffentliche Vertrauen. Ich setzte mich für partizipative Planung ein, bei der Bürger über Infrastruktur beraten, so schwerfällig solche Prozesse auch sein mögen.
+> sich einsetzen für = savunmak, için çaba göstermek
+
+# 16 | Bir hayal kırıklığı | Eine Ernüchterung
+Nicht all mein Engagement trug Früchte. Ein nationales Programm, an dem ich mitgewirkt hatte, wurde nach einem Regierungswechsel bis zur Unkenntlichkeit verwässert. Gelder flossen in prestigeträchtige Projekte, die gute Schlagzeilen brachten, aber armen Haushalten kaum nützten. Ich war entmutigt und eine Zeit lang zynisch. Ayşe erinnerte mich daran, dass Fortschritt selten geradlinig verläuft und dass Ernüchterung, wenn man ihr nachgibt, zur Ausrede für Rückzug wird. Ich nahm mir vor, das nicht zuzulassen.
+> sich vornehmen = karar vermek, kendine söz vermek
+
+# 17 | Mert'in atölyesi | Merts Werkstatt
+Mert war inzwischen aufgeblüht. Er hatte eine eigene Werkstatt gegründet und bildete Elektriker in der Installation von Solaranlagen und Batteriespeichern aus. Seine Lehrlinge schätzten seine hohen Ansprüche und seinen respektlosen Humor gleichermaßen. Bei meinen Besuchen beeindruckte mich, wie selbstverständlich er sorgfältige Handwerkskunst mit unprätentiöser Großzügigkeit verband. Die Verwandten, die seine Wahl einst herabgesetzt hatten, baten ihn nun um Rat, sobald ihre eigene Verkabelung streikte, eine Wendung, die er diskret genoss.
+
+# 18 | Ayşe'nin araştırması | Ayşes Forschung
+Ayşe, inzwischen klinische Psychologin, erforschte, wie chronische finanzielle Unsicherheit die psychische Gesundheit beeinflusst. Unsere Gespräche offenbarten unerwartete Gemeinsamkeiten zwischen unseren Fächern. Sie erklärte, dass ständige Sorge um Rechnungen geistige Ressourcen verbraucht und Menschen dadurch weniger fähig macht, vorauszuplanen; Forscher nennen dieses Phänomen Knappheit. Das veränderte mein Verständnis von Energiearmut. Eine kalte Wohnung war nicht bloß eine körperliche Not, sondern eine seelische Last, die Benachteiligung auf heimtückische Weise verstärkte.
+
+# 19 | Bir hikâyenin anlatılışı | Wie eine Geschichte erzählt wird
+Mein Buch erschien schließlich auf Türkisch und auf Deutsch. Die Resonanz war erfreulich, wenn auch bescheiden. Eine Rezension warf mir jedoch vor, das Landleben zu romantisieren und die Dorfbewohner als passive Empfänger statt als Handelnde darzustellen. Die Kritik traf mich, gerade weil sie zum Teil berechtigt war. Beim erneuten Lesen bemerkte ich einen herablassenden Unterton, den ich nicht beabsichtigt hatte. Erzählungen über andere, wurde mir bewusst, verraten unweigerlich ebenso viel über den Erzähler wie über die Erzählten.
+> vorwerfen = suçlamak, kınamak
+
+# 20 | Kimin sesi? | Wessen Stimmen?
+Als Antwort arbeitete ich mit einer Dokumentarfilmerin an einem Projekt, in dem die Bewohner der Pilotdörfer ihre eigenen Erfahrungen schilderten, ohne meine Deutung dazwischen. Ihre Berichte waren abwechselnd humorvoll, kritisch und bewegend. Hatice, inzwischen über achtzig, erinnerte sich mit schelmischem Vergnügen an ihr anfängliches Misstrauen gegenüber "den jungen Ingenieuren mit ihren seltsamen Apparaten". Die Deutungshoheit abzugeben fühlte sich unbehaglich an, doch der Film war weit reicher als alles, was ich hätte schreiben können.
+
+# 21 | Deprem | Das Erdbeben
+Dann kam das Erdbeben. In den frühen Morgenstunden eines Wintertags erschütterte ein verheerendes Beben mehrere Provinzen, und Zehntausende Gebäude stürzten ein. Unter den betroffenen Gebieten waren Städte, in denen wir Anlagen installiert hatten. In den folgenden Tagen war das Ausmaß der Katastrophe kaum zu begreifen. Unsere Techniker, von denen einige Angehörige verloren hatten, meldeten sich trotzdem freiwillig, um bei eisiger Kälte Heizung und Strom in Notunterkünften wiederherzustellen.
+> einstürzen = çökmek
+> sich freiwillig melden = gönüllü olmak
+
+# 22 | Yıkımın ardından | Nach der Katastrophe
+Die Arbeit nach der Katastrophe war erschütternd. Die Zerstörung war überwältigend, doch am tiefsten prägte sich der menschliche Verlust ein. Ich traf einen älteren Mann, der in den Trümmern nach Fotos seiner verstorbenen Frau suchte. Als Ingenieur konnte ich der unbequemen Wahrheit nicht ausweichen, dass viele Tote nicht auf das Beben selbst zurückgingen, sondern auf fahrlässiges Bauen und die laxe Durchsetzung von Bauvorschriften, die längst auf dem Papier existierten.
+> zurückgehen auf = -den kaynaklanmak
+
+# 23 | Hesap verebilirlik | Verantwortung
+Die Katastrophe löste eine heftige öffentliche Abrechnung aus. Ingenieure, Bauunternehmer und Beamte wurden unter die Lupe genommen, einige wurden angeklagt. Ich empfand eine Mischung aus Wut und Selbstprüfung. Es war zu einfach, einzelne Schuldige zu beschuldigen und die systemischen Anreize zu übersehen, die Geschwindigkeit und Kostensenkung über Sicherheit stellten. In einem Essay argumentierte ich, dass berufliche Integrität von Institutionen getragen werden muss, die sie durchsetzen können; sonst werden gewissenhafte Ingenieure von skrupellosen einfach verdrängt.
+> auslösen = tetiklemek
+
+# 24 | Yeniden inşa | Wiederaufbau
+Beim anschließenden Wiederaufbau wurde unser Unternehmen gebeten, neue Wohnungen zugleich erdbebensicher und energieeffizient zu planen. Diese Ziele standen mitunter im Widerspruch; schwere Dämmstoffe etwa konnten das Gewicht der Gebäude erhöhen. Sie miteinander zu vereinbaren erforderte enge Zusammenarbeit mit Statikern, Architekten und Bewohnern. Immer wieder wiederholte ich einen Grundsatz, den ich von Professorin Demir gelernt hatte: Übereilte Lösungen, so gut gemeint sie sein mögen, zementieren oft genau die Probleme, die sie zu lösen vorgeben.
+
+# 25 | Dayanıklılık | Resilienz
+Das Erdbeben veränderte mein Denken über Resilienz. Effiziente Systeme sind oft bis zur Zerbrechlichkeit optimiert, ohne Reserven, um Erschütterungen abzufangen. In den Notunterkünften hatten dezentrale Solarmodule und Batterien weiter funktioniert, als das zentrale Netz zusammenbrach. Ich begann zu argumentieren, dass Energieplanung Robustheit und Redundanz wertschätzen sollte, selbst auf Kosten der Effizienz. Resilienz, so meine These, ist nicht bloß die Fähigkeit, Störungen standzuhalten, sondern sich danach mit Anstand zu erholen.
+> zusammenbrechen = çökmek
+
+# 26 | Can'ın mektubu | Ein Brief von Can
+Einige Monate später schrieb mir Can einen langen Brief, eine ungewöhnliche Geste in einer Zeit knapper Nachrichten. Er erinnerte sich an unsere Studienzeit, an den Roboter, der sich einst im Kreis drehte, und an das nächtliche Gespräch, das seinen Berufswechsel ausgelöst hatte. Seine Bildgebungsgeräte wurden inzwischen in Krankenhäusern der ganzen Region eingesetzt, auch in solchen, die Erdbebenopfer behandelt hatten. Er schloss mit typischem Understatement: "Nicht schlecht für zwei Jungs, die sich einst beim Löten die Finger verbrannt haben."
+
+# 27 | Elif ile buluşma | Wiedersehen mit Elif
+Elif, die ich über die Jahre nur sporadisch gesehen hatte, besuchte Ankara für einen Medizinkongress. Sie war eine angesehene Kinderchirurgin geworden. Bei einem langen Abendessen verglichen wir die ethischen Dilemmata unserer Berufe: Sie wog die Risiken ab, zerbrechliche Säuglinge zu operieren; ich wog Bezahlbarkeit gegen Sicherheit ab. Wir waren uns einig, dass Medizin wie Technik verlangen, trotz unaufhebbarer Unsicherheit entschlossen zu handeln und mit den Folgen zu leben.
+
+# 28 | Teknolojik iyimserlik | Technikoptimismus
+Ein jüngerer Kollege warf mir einmal, nicht unfreundlich, vor, ich sei zum Pessimisten geworden. Ich widersprach: Ich sei weiterhin Optimist, wenn auch ein geläuterter. Naiver Technikoptimismus setzt voraus, dass Erfindungsgeist unsere Probleme von selbst löst. Der Optimismus, den ich vertrete, ist bedingter: Er erkennt an, dass Technik Leid lindern kann, aber nur, wenn sie in gerechte Institutionen eingebettet ist, von Demut begleitet wird und der Prüfung derer unterliegt, die mit ihr leben müssen.
+
+# 29 | Zaman ve bakım | Zeit und Instandhaltung
+Als ich ein Dorf besuchte, in dem wir vor über fünfzehn Jahren unsere ersten Anlagen installiert hatten, rührte es mich, mehrere noch in Betrieb zu finden, liebevoll geflickt von örtlichen Technikern. Instandhaltung, dachte ich, ist das unbesungene Gegenstück zur Innovation. Gesellschaften überhäufen Erfinder mit Bewunderung und vernachlässigen die Hüter, die die Dinge am Laufen halten. Doch ohne sorgfältige Wartung verkommt selbst die genialste Erfindung rasch zu Schrott. Ich nahm mir vor, mich für die Würde der Reparatur einzusetzen.
+
+# 30 | Onarım hakkı | Das Recht auf Reparatur
+Diese Überzeugung führte mich zur Bewegung für das Recht auf Reparatur. Hersteller gestalten Produkte zunehmend so, dass sie sich absichtlich schwer reparieren lassen, mit proprietären Teilen, verschweißten Gehäusen und Softwaresperren. Diese Praxis ist zwar profitabel, erzeugt aber Berge von Abfall und beraubt Gemeinschaften ihrer Selbstständigkeit. Ich sagte vor einem Parlamentsausschuss aus und argumentierte, dass langlebiges, reparierbares Design vorgeschrieben werden sollte, statt es dem Ermessen von Unternehmen zu überlassen, deren Anreize in die entgegengesetzte Richtung weisen.
+> aussagen = ifade vermek
+
+# 31 | Bir öğrencinin sorusu | Die Frage einer Studentin
+Bei einem Vortrag an der Universität stellte eine Studentin eine Frage, die mich verunsicherte: Hatte ich je meine Prinzipien dem Unternehmen zuliebe geopfert? Nach einer Pause gab ich zu, dass ich das getan hatte. Jahre zuvor hatten wir unter finanziellem Druck Geld von einer Firma angenommen, deren Umweltbilanz ich für fragwürdig hielt. Ich hatte es mir als pragmatisch zurechtgelegt. Es öffentlich zu erzählen war unangenehm, doch Offenheit schien lehrreicher als ein makelloses, aber erfundenes Bild von Integrität.
+> sich zurechtlegen = kendine açıklama uydurmak
+
+# 32 | Ahlaki uzlaşma | Moralische Kompromisse
+Die Frage brachte mich dazu, genauer über moralische Kompromisse nachzudenken. Absolute Reinheit ist für jene, die in der Welt handeln, selten erreichbar; auch Enthaltung hat Folgen. Dennoch gibt es einen bedeutsamen Unterschied zwischen einem prinzipientreuen Kompromiss, offen und mit klaren Grenzen eingegangen, und schleichender Erosion, bei der jedes Zugeständnis das nächste harmloser erscheinen lässt. Die Gefahr, schloss ich, liegt weniger in einer einzelnen Entscheidung als im unmerklichen Abdriften der Gewohnheit.
+> eingehen = (uzlaşmaya) girmek
+
+# 33 | Dil ve düşünce | Sprache und Denken
+Ein Leben in zwei Sprachen hatte mein Denken subtil verändert. Manche Gedanken kamen mir leichter auf Deutsch, andere nur auf Türkisch. Einige türkische Ausdrücke, getränkt von gemeinschaftlicher Wärme, haben im Deutschen keine befriedigende Entsprechung, während mir das Deutsche eine gewisse Distanz verschaffte, die beim Analysieren nützlich war. Ich begann, Zweisprachigkeit nicht als bloße Fertigkeit zu sehen, sondern als eine Art doppelten Blick, der die Annahmen sichtbar macht, die in jeder Sprache stecken.
+
+# 34 | Babamın emekliliği | Mein Vater geht in Rente
+Mein Vater ging nach vierzig Jahren als Lehrer in Rente. Bei seiner Abschiedsfeier sprachen ehemalige Schüler, einige schon ergraut, vom nachhaltigen Einfluss seiner Geduld und Integrität. Als ich ihnen zuhörte, erkannte ich, wie tief sein stilles Vorbild mein eigenes Handeln geprägt hatte. Er hatte mir nie Vorträge über Ethik gehalten; er hatte einfach im Einklang mit seinen Überzeugungen gelebt. Mir wurde klar, dass die beständigsten Formen des Lehrens oft unausgesprochen bleiben.
+
+# 35 | Mirasın anlamı | Was ein Vermächtnis bedeutet
+Sein Ruhestand brachte mich dazu, über den schwer fassbaren Begriff des Vermächtnisses nachzudenken. Früher hatte ich mir darunter eine monumentale Leistung vorgestellt, die den eigenen Namen trägt. Zunehmend vermutete ich, dass ein Vermächtnis diffuser ist: die Gewohnheiten, die wir anderen mitgeben, die Institutionen, die wir mittragen, die Freundlichkeiten, die sich unbemerkt ausbreiten. Meine Großmutter hinterließ kein Denkmal, und doch durchdrang ihr Einfluss ein ganzes Unternehmen und das Leben von Dutzenden Technikern, denen sie nie begegnet war.
+
+# 36 | Berlin'e dönüş | Rückkehr nach Berlin
+Jahrzehnte nach meiner ersten Reise kehrte ich für eine Konferenz nach Berlin zurück. Aus einem Impuls heraus besuchte ich die Straße, in der die Schneiders gewohnt hatten. Das Haus war neu gestrichen, und Fremde wohnten darin. Lena, wusste ich, war Lehrerin in Hamburg, und Paul war, erstaunlicherweise, Robotikingenieur geworden und schrieb seine Berufung meiner jugendlichen Begeisterung zu. Als ich im vertrauten Nieselregen auf diesem Bürgersteig stand, spürte ich den seltsamen Schwindel der Zeit, die sich in sich selbst zurückfaltet.
+> zuschreiben = atfetmek
+
+# 37 | Teknik müzesi | Wieder im Technikmuseum
+Ich besuchte auch wieder das Technikmuseum, wo ich einst die Dampfmaschinen bestaunt hatte. Die Ausstellungen hatten sich gewandelt und rückten nun Klima, Energiewende und die ethischen Zwickmühlen der Technik in den Vordergrund. In einer Halle blieb ich vor einer Tafel stehen, die fragte, ob Fortschritt immer gut sei. Mein jüngeres Ich hätte die Frage rätselhaft, ja beinahe ketzerisch gefunden. Jetzt hielt ich sie für die wichtigste Frage, die ein Technikmuseum stellen kann.
+
+# 38 | Bir konuşma taslağı | Eine Rede entwerfen
+Zurück in Ankara wurde ich gebeten, an meiner alten Universität die Rede zur Abschlussfeier zu halten. Sie zu schreiben war unerwartet einschüchternd. Ich wollte sowohl hohles Pathos als auch weltmüden Zynismus vermeiden. Schließlich entschied ich mich für eine einfache Struktur: drei Dinge, die ich in ihrem Alter gern verstanden hätte. Dass Kompetenz gemeinschaftlich ist, nicht einsam. Dass Zweifel eine berufliche Tugend ist. Und dass der Zweck der Technik nicht Maschinen sind, sondern das Gedeihen der Menschen, denen sie dienen.
+
+# 39 | Mezuniyet konuşması | Die Abschlussrede
+Am Rednerpult blickte ich auf das Meer junger Gesichter und erinnerte mich an meinen eigenen Abschluss, an meine Großmutter, die mein Diplom hielt, als wäre es aus Glas. Ich sagte den Absolventen, dass sie Probleme erben würden, die meine Generation nicht gelöst hatte, und dass ich ihnen keine Entschuldigung anbiete, sondern eine Einladung. "Seid gründlich, seid demütig und seid gütig", schloss ich. Der Applaus war warm, doch es waren die Gesichter der wenigen Ängstlichen und Hoffnungsvollen, die mir im Gedächtnis blieben.
+
+# 40 | Bitmeyen yolculuk | Die unvollendete Reise
+Heute Abend, während ich diese Zeilen schreibe, liegt ein altes Heft aufgeschlagen neben mir. Auf der ersten Seite stehen in meiner ungelenken jugendlichen Handschrift die Worte: "Mein Name ist Deniz. Ich bin Student." Ich habe zwei Fremdsprachen gelernt, ein Unternehmen aufgebaut, Verluste ertragen und unzählige Fehler gemacht. Und doch sind diese ersten Sätze im tiefsten Sinne wahr geblieben. Lernen ist keine Lebensphase, die man abschließt, sondern eine Lebensweise, für die man sich immer wieder entscheidet.
